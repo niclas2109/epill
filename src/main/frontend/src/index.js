@@ -20,20 +20,70 @@ ReactDOM.render(
         <I18nextProvider i18n={i18n}>
             <Router>
                 <div>
-                    <div className="menu">
-                        <Link to="/">Drug List</Link>
-                        <Link to="/user/register">Register</Link>
-                        <Link to="/user/login">Login</Link>
-                    </div>
+	                <div className="navbar-wrapper">
+	            		<div className ="container">
+	            			<nav className="navbar navbar-inverse navbar-static-top">
+	            				<div className="container">
+	            					<div className="navbar-header">
+	            						<button type="button" className="navbar-toggle collapsed">
+	            							<span className="icon-bar"></span>
+	            							<span className="icon-bar"></span>
+	            							<span className="icon-bar"></span>
+	            						</button>
+	            						<Link to="/" className="navbar-brand">
+	            						 	<img src="/assets/images/logo_v.svg" className="logo"></img>
+	            						 </Link>
+	            					</div>
+	            	
+	            					<div className="collapse navbar-collapse"
+	            						id="bs-example-navbar-collapse-1">
+	            						<ul className="nav navbar-nav">
+	            							<li><Link to="/about">About</Link></li>
+	            							<li><Link to="/drug">Medikamente</Link></li>
+	            						</ul>
+	            	
+	            						<autocomplete></autocomplete>
+	            	
+	            						<ul className="nav navbar-nav navbar-right">
+	            							<li className="dropdown open">
+	            								<Link to="/user" className="dropdown-toggle">
+	            									Benutzername
+	            								</Link>
+	            								<ul className="dropdown-menu">
+	            									<li><Link to="/like">my drugs</Link></li>
+	            									<li><Link to="/compare">compare drugs</Link></li>
+	            									<li><Link to="/user/1/settings/de/">settings</Link></li>
+	            									<li><Link to="/user/1/de/">user data</Link></li>
+	            									<li><Link to="/user/all/de/">users</Link></li>
+	            									<li><Link to="">logout</Link></li>
+	            								</ul></li>
+	            						</ul>
+	            						<ul className="nav navbar-nav navbar-right">
+	            							<li className="dropdown open">
+	            								<Link to="#" className="dropdown-toggle">
+	            									login/register
+	            								</Link>
+	            								<ul className="dropdown-menu">
+	            									<li><Link to="/user/login">login</Link></li>
+	            									<li><Link to="/user/register">register</Link></li>
+	            								</ul></li>
+	            						</ul>
+	            					</div>
+	            				</div>
+	            			</nav>
+	            		</div>
+	            	</div>
+                    
+                    
                     <Switch>
-                        {/*Authentication*/}
+                        {/* Authentication */}
                         <Route path="/user/login" component={Authentication}/>
                         <Route path="/user/register" component={Register}/>
 
-                        {/*Post handling*/}
+                        {/* Post handling */}
                         <Route path="/drug/:id" component={DrugDetail}/>
 
-                        {/*Default route*/}
+                        {/* Default route */}
                         <Route path="/" component={DrugList}/>
                     </Switch>
                 </div>
