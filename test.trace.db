@@ -1,0 +1,8 @@
+2017-06-28 13:45:52 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Tabelle "POST_COMMENTS" nicht gefunden
+Table "POST_COMMENTS" not found; SQL statement:
+DELETE FROM POST_COMMENTS [42102-194]
+2017-06-28 13:50:25 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLException: Tabelle "POST_COMMENTS" nicht gefunden
+Table "POST_COMMENTS" not found; SQL statement:
+DELETE FROM POST_COMMENTS [42102-194]
