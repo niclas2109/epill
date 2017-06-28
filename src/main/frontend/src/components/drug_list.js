@@ -40,7 +40,7 @@ class DrugList extends React.Component {
             return (
                <li className="col-sm-12 col-md-12 col-lg-12" key={drug.id}>
         		<div className="image-container col-sm-2 col-md-2 col-lg-2">
-        			
+        			image
         		</div>
 
         		<div className="info col-sm-9 col-md-9 col-lg-9">
@@ -83,14 +83,16 @@ class DrugList extends React.Component {
 
     render() {
         return (
-            <div className="component">
+        	<div className="container no-banner">
                 <h1>Medikamente</h1>
                 <div>
                 	Hier findest du eine Übersicht...
                 </div>
-                <ul>
-                    {this.renderPosts()}
-                </ul>
+                <div className="row">
+	                <ul className="drug-list">
+	                    {this.renderPosts()}
+	                </ul>
+                </div>
             </div>
         );
     }

@@ -47,7 +47,7 @@ ReactDOM.render(
 	            						<ul className="nav navbar-nav navbar-right">
 	            							<li className="dropdown open">
 	            								<Link to="/user" className="dropdown-toggle">
-	            									Benutzername
+	            									{User.username || 'not logged in'}
 	            								</Link>
 	            								<ul className="dropdown-menu">
 	            									<li><Link to="/like">my drugs</Link></li>
