@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.doccuty.epill.model.Language;
 import com.doccuty.epill.model.util.UserCreator;
-import com.doccuty.epill.rest.user.UserService;
+import com.doccuty.epill.user.UserService;
 
 import de.uniks.networkparser.Deep;
 import de.uniks.networkparser.Filter;

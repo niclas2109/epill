@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.doccuty.epill.rest.drug.DrugService;
-import com.doccuty.epill.rest.user.UserService;
+import com.doccuty.epill.drug.DrugService;
+import com.doccuty.epill.user.UserService;
 
 import javax.transaction.Transactional;
 import java.util.Iterator;
