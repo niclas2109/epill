@@ -6,9 +6,9 @@ import {I18nextProvider} from "react-i18next";
 import {HashRouter as Router, Link, Route, Switch} from "react-router-dom";
 
 import Authentication from "./components/authentication";
-import PostCreate from "./components/post_create";
-import PostDetail from "./components/post_detail";
-import PostList from "./components/post_list";
+import Register from "./components/register";
+import DrugDetail from "./components/drug_detail";
+import DrugList from "./components/drug_list";
 import i18n from "./i18n";
 import User from "./util/User";
 
@@ -21,20 +21,20 @@ ReactDOM.render(
             <Router>
                 <div>
                     <div className="menu">
-                        <Link to="/">Post list</Link>
-                        <Link to="/post/new">Create post</Link>
+                        <Link to="/">Drug List</Link>
+                        <Link to="/user/register">Register</Link>
                         <Link to="/user/login">Login</Link>
                     </div>
                     <Switch>
                         {/*Authentication*/}
                         <Route path="/user/login" component={Authentication}/>
+                        <Route path="/user/register" component={Register}/>
 
                         {/*Post handling*/}
-                        <Route path="/post/new" component={PostCreate}/>
-                        <Route path="/post/:id" component={PostDetail}/>
+                        <Route path="/drug/:id" component={DrugDetail}/>
 
                         {/*Default route*/}
-                        <Route path="/" component={PostList}/>
+                        <Route path="/" component={DrugList}/>
                     </Switch>
                 </div>
             </Router>

@@ -12580,17 +12580,17 @@ var _authentication = __webpack_require__(133);
 
 var _authentication2 = _interopRequireDefault(_authentication);
 
-var _post_create = __webpack_require__(134);
+var _register = __webpack_require__(136);
 
-var _post_create2 = _interopRequireDefault(_post_create);
+var _register2 = _interopRequireDefault(_register);
 
-var _post_detail = __webpack_require__(135);
+var _drug_detail = __webpack_require__(134);
 
-var _post_detail2 = _interopRequireDefault(_post_detail);
+var _drug_detail2 = _interopRequireDefault(_drug_detail);
 
-var _post_list = __webpack_require__(136);
+var _drug_list = __webpack_require__(135);
 
-var _post_list2 = _interopRequireDefault(_post_list);
+var _drug_list2 = _interopRequireDefault(_drug_list);
 
 var _i18n = __webpack_require__(137);
 
@@ -12623,12 +12623,12 @@ _reactDom2.default.render(_react2.default.createElement(
                     _react2.default.createElement(
                         _reactRouterDom.Link,
                         { to: "/" },
-                        "Post list"
+                        "Drug List"
                     ),
                     _react2.default.createElement(
                         _reactRouterDom.Link,
-                        { to: "/post/new" },
-                        "Create post"
+                        { to: "/user/register" },
+                        "Register"
                     ),
                     _react2.default.createElement(
                         _reactRouterDom.Link,
@@ -12640,9 +12640,9 @@ _reactDom2.default.render(_react2.default.createElement(
                     _reactRouterDom.Switch,
                     null,
                     _react2.default.createElement(_reactRouterDom.Route, { path: "/user/login", component: _authentication2.default }),
-                    _react2.default.createElement(_reactRouterDom.Route, { path: "/post/new", component: _post_create2.default }),
-                    _react2.default.createElement(_reactRouterDom.Route, { path: "/post/:id", component: _post_detail2.default }),
-                    _react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _post_list2.default })
+                    _react2.default.createElement(_reactRouterDom.Route, { path: "/user/register", component: _register2.default }),
+                    _react2.default.createElement(_reactRouterDom.Route, { path: "/drug/:id", component: _drug_detail2.default }),
+                    _react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _drug_list2.default })
                 )
             )
         )
@@ -13684,110 +13684,6 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactI18next = __webpack_require__(106);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// See https://facebook.github.io/react/docs/forms.html for documentation about forms.
-var PostCreate = function (_React$Component) {
-    _inherits(PostCreate, _React$Component);
-
-    function PostCreate(props) {
-        _classCallCheck(this, PostCreate);
-
-        var _this = _possibleConstructorReturn(this, (PostCreate.__proto__ || Object.getPrototypeOf(PostCreate)).call(this, props));
-
-        _this.state = {
-            title: ''
-        };
-
-        _this.handleTitleChange = _this.handleTitleChange.bind(_this);
-        _this.handleSubmit = _this.handleSubmit.bind(_this);
-        return _this;
-    }
-
-    _createClass(PostCreate, [{
-        key: "handleTitleChange",
-        value: function handleTitleChange(event) {
-            this.setState({ title: event.target.value });
-        }
-    }, {
-        key: "handleSubmit",
-        value: function handleSubmit(event) {
-            var _this2 = this;
-
-            event.preventDefault();
-            _axios2.default.post('/api/post', {
-                title: this.state.title
-            }).then(function (data) {
-                // Redirect to front page.
-                _this2.props.history.push("/");
-            });
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var t = this.props.t;
-
-
-            return _react2.default.createElement(
-                "div",
-                { className: "component" },
-                _react2.default.createElement(
-                    "h1",
-                    null,
-                    "Post create"
-                ),
-                _react2.default.createElement(
-                    "form",
-                    { onSubmit: this.handleSubmit },
-                    _react2.default.createElement(
-                        "label",
-                        null,
-                        "title",
-                        _react2.default.createElement("input", { type: "text", name: "title", value: this.state.title, onChange: this.handleTitleChange })
-                    ),
-                    _react2.default.createElement("input", { type: "submit", value: "Submit" })
-                ),
-                _react2.default.createElement("hr", null),
-                "Name: ",
-                t('applicationName')
-            );
-        }
-    }]);
-
-    return PostCreate;
-}(_react2.default.Component);
-
-exports.default = (0, _reactI18next.translate)()(PostCreate);
-
-/***/ }),
-/* 135 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _axios = __webpack_require__(26);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _react = __webpack_require__(5);
-
-var _react2 = _interopRequireDefault(_react);
-
 var _User = __webpack_require__(45);
 
 var _User2 = _interopRequireDefault(_User);
@@ -13800,87 +13696,39 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var PostDetail = function (_React$Component) {
-    _inherits(PostDetail, _React$Component);
+var DrugDetail = function (_React$Component) {
+    _inherits(DrugDetail, _React$Component);
 
-    function PostDetail(props) {
-        _classCallCheck(this, PostDetail);
+    function DrugDetail(props) {
+        _classCallCheck(this, DrugDetail);
 
-        var _this = _possibleConstructorReturn(this, (PostDetail.__proto__ || Object.getPrototypeOf(PostDetail)).call(this));
+        var _this = _possibleConstructorReturn(this, (DrugDetail.__proto__ || Object.getPrototypeOf(DrugDetail)).call(this));
 
         _this.state = {
-            post: undefined,
-            comment: ''
+            drug: undefined
         };
 
-        _this.handleCommentSubmit = _this.handleCommentSubmit.bind(_this);
-        _this.handleCommentChange = _this.handleCommentChange.bind(_this);
         return _this;
     }
 
-    _createClass(PostDetail, [{
+    _createClass(DrugDetail, [{
         key: "componentWillMount",
         value: function componentWillMount() {
             var _this2 = this;
 
-            _axios2.default.get("/api/post/" + this.props.match.params.id).then(function (_ref) {
+            _axios2.default.get("/drug/" + this.props.match.params.id + "/de").then(function (_ref) {
                 var data = _ref.data;
 
                 _this2.setState({
-                    post: data
+                    drug: data.value
                 });
-            });
-        }
-    }, {
-        key: "handleCommentChange",
-        value: function handleCommentChange(event) {
-            this.setState({ comment: event.target.value });
-        }
-    }, {
-        key: "handleCommentSubmit",
-        value: function handleCommentSubmit(event) {
-            var _this3 = this;
-
-            event.preventDefault();
-            _axios2.default.post("/api/post/" + this.props.match.params.id + "/comment", {
-                text: this.state.comment
-            }).then(function (data) {
-                // Update state to show comment by retrieving state from server.
-                // Alternatively we could also simply add the comment to our state to prevent a
-                // call to the backend.
-                _this3.setState({ comment: '' });
-                _this3.componentWillMount();
-            });
-        }
-    }, {
-        key: "renderComments",
-        value: function renderComments(post) {
-            return post.comments.map(function (comment) {
-                return _react2.default.createElement(
-                    "div",
-                    { key: comment.id },
-                    _react2.default.createElement("hr", null),
-                    _react2.default.createElement(
-                        "div",
-                        null,
-                        "Author ",
-                        comment.author.email
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        null,
-                        "Created at ",
-                        new Date(comment.createdAt).toISOString()
-                    ),
-                    comment.text
-                );
             });
         }
     }, {
         key: "render",
         value: function render() {
-            var post = this.state.post;
-            if (!post) {
+            var drug = this.state.drug;
+            if (!drug) {
                 // Do not show anything while loading.
                 return _react2.default.createElement("div", null);
             }
@@ -13891,50 +13739,26 @@ var PostDetail = function (_React$Component) {
                 _react2.default.createElement(
                     "h1",
                     null,
-                    "Post Detail"
+                    "Drug Detail"
                 ),
                 _react2.default.createElement(
                     "div",
                     null,
                     "Title ",
-                    post.title
+                    drug.name
                 ),
-                _react2.default.createElement(
-                    "div",
-                    null,
-                    "Author ",
-                    post.author.email
-                ),
-                _react2.default.createElement(
-                    "div",
-                    null,
-                    "Created at ",
-                    new Date(post.createdAt).toISOString()
-                ),
-                this.renderComments(post),
-                _react2.default.createElement("hr", null),
-                _User2.default.isAuthenticated() && _react2.default.createElement(
-                    "form",
-                    { onSubmit: this.handleCommentSubmit },
-                    _react2.default.createElement(
-                        "label",
-                        null,
-                        "Comment",
-                        _react2.default.createElement("textarea", { name: "comment", value: this.state.comment, onChange: this.handleCommentChange })
-                    ),
-                    _react2.default.createElement("input", { type: "submit", value: "Submit" })
-                )
+                _User2.default.isAuthenticated() && Eingeloggt
             );
         }
     }]);
 
-    return PostDetail;
+    return DrugDetail;
 }(_react2.default.Component);
 
-exports.default = PostDetail;
+exports.default = DrugDetail;
 
 /***/ }),
-/* 136 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13964,16 +13788,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var PostList = function (_React$Component) {
-    _inherits(PostList, _React$Component);
+var DrugList = function (_React$Component) {
+    _inherits(DrugList, _React$Component);
 
-    function PostList(props) {
-        _classCallCheck(this, PostList);
+    function DrugList(props) {
+        _classCallCheck(this, DrugList);
 
-        var _this = _possibleConstructorReturn(this, (PostList.__proto__ || Object.getPrototypeOf(PostList)).call(this));
+        var _this = _possibleConstructorReturn(this, (DrugList.__proto__ || Object.getPrototypeOf(DrugList)).call(this));
 
         _this.state = {
-            posts: []
+            drugs: []
         };
         return _this;
     }
@@ -13981,16 +13805,16 @@ var PostList = function (_React$Component) {
     // This function is called before render() to initialize its state.
 
 
-    _createClass(PostList, [{
+    _createClass(DrugList, [{
         key: "componentWillMount",
         value: function componentWillMount() {
             var _this2 = this;
 
-            _axios2.default.get('/api/post').then(function (_ref) {
+            _axios2.default.get('/drug/all').then(function (_ref) {
                 var data = _ref.data;
 
                 _this2.setState({
-                    posts: data
+                    drugs: data.value
                 });
             });
         }
@@ -14001,41 +13825,77 @@ var PostList = function (_React$Component) {
 
             // ES6 string interpolation (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
             // No error handling for now, e.g. if the user is not authenticated.
-            _axios2.default.delete("/api/post/" + id).then(function (data) {
+            _axios2.default.delete("/drugs/delete/" + id).then(function (data) {
                 // Remove post from list of posts.
                 var posts = _this3.state.posts.filter(function (e) {
                     return e.id != id;
                 });
                 _this3.setState({
-                    posts: posts
+                    drugs: drugs
                 });
             });
         }
     }, {
         key: "renderPosts",
         value: function renderPosts() {
-            var _this4 = this;
-
-            return this.state.posts.map(function (post) {
+            return this.state.drugs.map(function (drug) {
                 return _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: "/post/" + post.id, key: post.id },
+                    "li",
+                    { className: "col-sm-12 col-md-12 col-lg-12", key: drug.id },
+                    _react2.default.createElement("div", { className: "image-container col-sm-2 col-md-2 col-lg-2" }),
                     _react2.default.createElement(
-                        "li",
-                        null,
-                        post.id,
-                        " ",
-                        post.title,
-                        " ",
-                        post.author.email,
-                        " ",
+                        "div",
+                        { className: "info col-sm-9 col-md-9 col-lg-9" },
                         _react2.default.createElement(
-                            "span",
-                            {
-                                onClick: function onClick() {
-                                    return _this4.deletePost(post.id);
-                                } },
-                            "DELETE"
+                            "h4",
+                            null,
+                            drug.name
+                        ),
+                        _react2.default.createElement("p", { className: "drug-features" }),
+                        _react2.default.createElement(
+                            "p",
+                            null,
+                            "Verwendet bei"
+                        ),
+                        _react2.default.createElement(
+                            "p",
+                            null,
+                            "Wirkstoff(e):"
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "action-pattern col-sm-1 col-md-1 col-lg-1" },
+                        _react2.default.createElement(
+                            "ul",
+                            null,
+                            _react2.default.createElement(
+                                "li",
+                                null,
+                                _react2.default.createElement(
+                                    "button",
+                                    { type: "button", className: "btn btn-xs btn-like" },
+                                    _react2.default.createElement("span", { className: "glyphicon glyphicon-heart" })
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "li",
+                                null,
+                                _react2.default.createElement(
+                                    "button",
+                                    { type: "button", className: "btn btn-xs btn-add" },
+                                    _react2.default.createElement("span", { className: "glyphicon glyphicon-plus" })
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "li",
+                                null,
+                                _react2.default.createElement(
+                                    "button",
+                                    { type: "button", className: "btn btn-xs btn-open" },
+                                    _react2.default.createElement("span", { className: "glyphicon glyphicon-eye-open" })
+                                )
+                            )
                         )
                     )
                 );
@@ -14050,7 +13910,12 @@ var PostList = function (_React$Component) {
                 _react2.default.createElement(
                     "h1",
                     null,
-                    "Posts"
+                    "Medikamente"
+                ),
+                _react2.default.createElement(
+                    "div",
+                    null,
+                    "Hier findest du eine \xDCbersicht..."
                 ),
                 _react2.default.createElement(
                     "ul",
@@ -14061,10 +13926,146 @@ var PostList = function (_React$Component) {
         }
     }]);
 
-    return PostList;
+    return DrugList;
 }(_react2.default.Component);
 
-exports.default = PostList;
+exports.default = DrugList;
+
+/***/ }),
+/* 136 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _axios = __webpack_require__(26);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactI18next = __webpack_require__(106);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// See https://facebook.github.io/react/docs/forms.html for documentation about forms.
+var Register = function (_React$Component) {
+    _inherits(Register, _React$Component);
+
+    function Register(props) {
+        _classCallCheck(this, Register);
+
+        var _this = _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).call(this, props));
+
+        _this.state = {
+            username: '',
+            password: '',
+            passwordRepeat: ''
+        };
+
+        _this.handleUsernameChange = _this.handleUsernameChange.bind(_this);
+        _this.handlePasswordChange = _this.handlePasswordChange.bind(_this);
+        _this.handlePasswordRepeatChange = _this.handlePasswordRepeatChange.bind(_this);
+
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
+    }
+
+    _createClass(Register, [{
+        key: "handleUsernameChange",
+        value: function handleUsernameChange(event) {
+            this.setState({ username: event.target.value });
+        }
+    }, {
+        key: "handlePasswordChange",
+        value: function handlePasswordChange(event) {
+            this.setState({ password: event.target.value });
+        }
+    }, {
+        key: "handlePasswordRepeatChange",
+        value: function handlePasswordRepeatChange(event) {
+            this.setState({ passwordRepeat: event.target.value });
+        }
+    }, {
+        key: "handleSubmit",
+        value: function handleSubmit(event) {
+            event.preventDefault();
+
+            if (this.state.password != this.state.passwordRepeat) {
+                console.log("different passwords");
+                return;
+            }
+
+            _axios2.default.post('/user/save', {
+                username: this.state.username,
+                password: this.state.password
+            }).then(function (data) {
+                // Redirect to front page.
+                //this.props.history.push("/");
+            });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var t = this.props.t;
+
+
+            return _react2.default.createElement(
+                "div",
+                { className: "component" },
+                _react2.default.createElement(
+                    "h1",
+                    null,
+                    "Register"
+                ),
+                _react2.default.createElement(
+                    "form",
+                    { onSubmit: this.handleSubmit },
+                    _react2.default.createElement(
+                        "label",
+                        null,
+                        "username ",
+                        _react2.default.createElement("input", { type: "text", name: "username", value: this.state.usernam, onChange: this.handleUsernameChange })
+                    ),
+                    _react2.default.createElement(
+                        "label",
+                        null,
+                        "password ",
+                        _react2.default.createElement("input", { type: "password", name: "password", value: this.state.password, onChange: this.handlePasswordChange })
+                    ),
+                    _react2.default.createElement(
+                        "label",
+                        null,
+                        "password repeat ",
+                        _react2.default.createElement("input", { type: "password", name: "password_rep", value: this.state.password_repeat, onChange: this.handlePasswordRepeatChange })
+                    ),
+                    _react2.default.createElement("input", { type: "submit", value: "Submit" })
+                ),
+                _react2.default.createElement("hr", null),
+                "Name: ",
+                t('applicationName')
+            );
+        }
+    }]);
+
+    return Register;
+}(_react2.default.Component);
+
+exports.default = (0, _reactI18next.translate)()(Register);
 
 /***/ }),
 /* 137 */
