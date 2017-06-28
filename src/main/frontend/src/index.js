@@ -5,6 +5,8 @@ import ReactDOM from "react-dom";
 import {I18nextProvider} from "react-i18next";
 import {HashRouter as Router, Link, Route, Switch} from "react-router-dom";
 
+
+import Start from "./components/start";
 import Authentication from "./components/authentication";
 import Register from "./components/register";
 import DrugDetail from "./components/drug_detail";
@@ -39,7 +41,7 @@ ReactDOM.render(
 	            						id="bs-example-navbar-collapse-1">
 	            						<ul className="nav navbar-nav">
 	            							<li><Link to="/about">About</Link></li>
-	            							<li><Link to="/drug">Medikamente</Link></li>
+	            							<li><Link to="/drug/list">Medikamente</Link></li>
 	            						</ul>
 	            	
 	            						<autocomplete></autocomplete>
@@ -80,11 +82,12 @@ ReactDOM.render(
                         <Route path="/user/login" component={Authentication}/>
                         <Route path="/user/register" component={Register}/>
 
-                        {/* Post handling */}
+                        {/* Get handling */}
                         <Route path="/drug/:id" component={DrugDetail}/>
+                        <Route path="/drug/list" component={DrugList}/>
 
                         {/* Default route */}
-                        <Route path="/" component={DrugList}/>
+                        <Route path="/" component={Start}/>
                     </Switch>
                 </div>
             </Router>
