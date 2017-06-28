@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.Gender;
-import com.doccuty.epill.model.User;
 import com.doccuty.epill.model.util.GenderCreator;
 import com.doccuty.epill.model.util.UserCreator;
 
@@ -214,35 +213,6 @@ public class UserController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
-    
-    @RequestMapping(value={"/gender/all"}, method = RequestMethod.GET)
-    public ResponseEntity<JsonObject> getAllGender() {
-    	// A pragmatic approach to security which does not use much framework-specific magic. While other approaches
-        // with annotations, etc. are possible they are much more complex while this is quite easy to understand and
-        // extend.
-        if (service.isAnonymous()) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-
-    	IdMap map = GenderCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(1)));
-    	
-		List<Gender> list = service.getAllGender();
-    	
-    	JsonObject json = new JsonObject();
-    	JsonArray array = new JsonArray();
-
-    	for(Gender gender : list) {
-    		array.add(map.toJsonObject(gender));
-    	}
-    	
-		json.add("value", array);
-			
-		return new ResponseEntity<>(json, HttpStatus.OK);
-    }
-    
-    
     
     /**
      * handling favorites

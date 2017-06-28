@@ -19,7 +19,7 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
  */
 
-package com.doccuty.epill.model;
+package com.doccuty.epill.user;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -49,8 +49,8 @@ import de.uniks.networkparser.interfaces.SendableEntity;
 
 import com.doccuty.epill.model.util.PackagingTopicSet;
 import com.doccuty.epill.model.PackagingTopic;
+import com.doccuty.epill.language.Language;
 import com.doccuty.epill.model.Country;
-import com.doccuty.epill.model.Language;
 import com.doccuty.epill.model.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

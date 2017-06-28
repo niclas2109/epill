@@ -19,7 +19,7 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
  */
    
-package com.doccuty.epill.model;
+package com.doccuty.epill.user;
 
 import java.util.Set;
 
@@ -33,8 +33,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import com.doccuty.epill.model.util.PackagingTopicSet;
 import com.doccuty.epill.model.PackagingTopic;
+import com.doccuty.epill.language.Language;
 import com.doccuty.epill.model.Country;
-import com.doccuty.epill.model.Language;
 import com.doccuty.epill.model.Gender;
 import com.doccuty.epill.model.util.ItemInvocationSet;
 import com.doccuty.epill.model.ItemInvocation;
@@ -44,6 +44,8 @@ import com.doccuty.epill.model.util.DiseaseSet;
 import com.doccuty.epill.model.util.DrugFeatureSet;
 import com.doccuty.epill.model.util.DrugSet;
 import com.doccuty.epill.model.Disease;
+import com.doccuty.epill.model.Drug;
+import com.doccuty.epill.model.DrugFeature;
    /**
     * 
     * @see <a href='../../../../../../../src/test/java/com/doccuty/epill/model/SDMLib/ModelCreator.java'>ModelCreator.java</a>

@@ -8,20 +8,20 @@ class Authentication extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
+            username: '',
             password: '',
             error: undefined
         };
 
-        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
         this.cookies = this.props.cookies;
     }
 
-    handleEmailChange(event) {
-        this.setState({email: event.target.value});
+    handleUsernameChange(event) {
+        this.setState({username: event.target.value});
     }
 
 
@@ -32,7 +32,10 @@ class Authentication extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        axios.post('/user/login', this.state, {
+        
+        console.log(this.state);
+        
+        axios.post('/auth/login', this.state, {
             // We allow a status code of 401 (unauthorized). Otherwise it is interpreted as an error and we can't
             // check the HTTP status code.
             validateStatus: (status) => {
@@ -76,8 +79,8 @@ class Authentication extends React.Component {
             component =
                 <form onSubmit={this.handleSubmit}>
                     <label>
-                        Email
-                        <input type="text" name="email" value={this.state.email} onChange={this.handleEmailChange}/>
+                        Username
+                        <input type="text" name="username" value={this.state.username} onChange={this.handleUsernameChange}/>
                     </label>
                     <label>
                         Password
@@ -94,7 +97,7 @@ class Authentication extends React.Component {
         return (
             <div className="component">
                 <h1>Authentication</h1>
-                Current user: {User.email || 'not logged in'}
+                Current user: {User.username || 'not logged in'}
 
                 <p/>
                 {component}

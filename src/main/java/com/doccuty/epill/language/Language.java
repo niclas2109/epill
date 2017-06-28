@@ -19,7 +19,7 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
  */
    
-package com.doccuty.epill.model;
+package com.doccuty.epill.language;
 
 import de.uniks.networkparser.interfaces.SendableEntity;
 import java.beans.PropertyChangeSupport;
@@ -37,7 +37,7 @@ import javax.persistence.Table;
 import java.beans.PropertyChangeListener;
 import de.uniks.networkparser.EntityUtil;
 import com.doccuty.epill.model.util.UserSet;
-import com.doccuty.epill.model.User;
+import com.doccuty.epill.user.User;
    /**
     * 
     * @see <a href='../../../../../../../src/test/java/com/doccuty/epill/model/SDMLib/ModelCreator.java'>ModelCreator.java</a>

@@ -23,11 +23,11 @@ package com.doccuty.epill.model.util;
 
 import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
 import com.doccuty.epill.model.UserQuery;
+import com.doccuty.epill.user.User;
+
 import de.uniks.networkparser.IdMap;
 
 import java.util.Date;
-
-import com.doccuty.epill.model.User;
 
 public class UserQueryCreator implements SendableEntityCreatorNoIndex
 {

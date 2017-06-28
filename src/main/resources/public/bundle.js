@@ -13534,12 +13534,12 @@ var Authentication = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Authentication.__proto__ || Object.getPrototypeOf(Authentication)).call(this, props));
 
         _this.state = {
-            email: '',
+            username: '',
             password: '',
             error: undefined
         };
 
-        _this.handleEmailChange = _this.handleEmailChange.bind(_this);
+        _this.handleUsernameChange = _this.handleUsernameChange.bind(_this);
         _this.handlePasswordChange = _this.handlePasswordChange.bind(_this);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         _this.handleLogout = _this.handleLogout.bind(_this);
@@ -13548,9 +13548,9 @@ var Authentication = function (_React$Component) {
     }
 
     _createClass(Authentication, [{
-        key: "handleEmailChange",
-        value: function handleEmailChange(event) {
-            this.setState({ email: event.target.value });
+        key: "handleUsernameChange",
+        value: function handleUsernameChange(event) {
+            this.setState({ username: event.target.value });
         }
     }, {
         key: "handlePasswordChange",
@@ -13563,7 +13563,10 @@ var Authentication = function (_React$Component) {
             var _this2 = this;
 
             event.preventDefault();
-            _axios2.default.post('/user/login', this.state, {
+
+            console.log(this.state);
+
+            _axios2.default.post('/auth/login', this.state, {
                 // We allow a status code of 401 (unauthorized). Otherwise it is interpreted as an error and we can't
                 // check the HTTP status code.
                 validateStatus: function validateStatus(status) {
@@ -13613,8 +13616,8 @@ var Authentication = function (_React$Component) {
                     _react2.default.createElement(
                         "label",
                         null,
-                        "Email",
-                        _react2.default.createElement("input", { type: "text", name: "email", value: this.state.email, onChange: this.handleEmailChange })
+                        "Username",
+                        _react2.default.createElement("input", { type: "text", name: "username", value: this.state.username, onChange: this.handleUsernameChange })
                     ),
                     _react2.default.createElement(
                         "label",
@@ -13642,7 +13645,7 @@ var Authentication = function (_React$Component) {
                     "Authentication"
                 ),
                 "Current user: ",
-                _User2.default.email || 'not logged in',
+                _User2.default.username || 'not logged in',
                 _react2.default.createElement("p", null),
                 component,
                 _react2.default.createElement("p", null),

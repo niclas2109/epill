@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.doccuty.epill.model.Language;
 import com.doccuty.epill.model.util.UserCreator;
 import com.doccuty.epill.user.UserService;
 

@@ -34,9 +34,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.doccuty.epill.interfaces.Personalize;
 import com.doccuty.epill.model.util.AnswerSet;
 import com.doccuty.epill.model.util.UserSet;
+import com.doccuty.epill.user.User;
 
 import java.beans.PropertyChangeListener;
 import de.uniks.networkparser.EntityUtil;
@@ -48,7 +48,7 @@ import de.uniks.networkparser.EntityUtil;
  */
 @Entity
 @Table(name = "question")
-public class Question implements SendableEntity, Personalize {
+public class Question implements SendableEntity {
 
 	// ==========================================================================
 
@@ -240,19 +240,5 @@ public class Question implements SendableEntity, Personalize {
 		Answer value = new Answer();
 		withAnswer(value);
 		return value;
-	}
-
-	@Override
-	public void replaceTokens(User user) {
-
-		if (this.question != null) {
-			this.question = this.question.replaceAll(SIMPLE_FIRSTNAME, user.getFirstname())
-					.replaceAll(SIMPLE_LASTNAME, user.getLastname());
-		}
-
-		if (this.address != null) {
-			this.address = this.address.replaceAll(SIMPLE_FIRSTNAME, user.getFirstname())
-					.replaceAll(SIMPLE_LASTNAME, user.getLastname());
-		}
 	}
 }

@@ -28,7 +28,7 @@ import de.uniks.networkparser.list.NumberList;
 import de.uniks.networkparser.list.ObjectSet;
 import java.util.Collections;
 import com.doccuty.epill.model.util.UserSet;
-import com.doccuty.epill.model.User;
+import com.doccuty.epill.user.User;
 
 public class PackagingTopicSet extends HashSet<PackagingTopic>
 {

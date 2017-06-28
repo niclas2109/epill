@@ -39,7 +39,7 @@ import de.uniks.networkparser.EntityUtil;
 import com.doccuty.epill.model.util.DrugSet;
 import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.util.UserSet;
-import com.doccuty.epill.model.User;
+import com.doccuty.epill.user.User;
    /**
     * 
     * @see <a href='../../../../../../../src/test/java/com/doccuty/epill/model/SDMLib/ModelCreator.java'>ModelCreator.java</a>

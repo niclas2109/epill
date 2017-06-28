@@ -48,6 +48,7 @@ import com.doccuty.epill.model.util.InteractionSet;
 import com.doccuty.epill.model.Interaction;
 import com.doccuty.epill.model.util.ItemInvocationSet;
 import com.doccuty.epill.model.util.UserSet;
+import com.doccuty.epill.user.User;
 import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.model.util.DiseaseSet;
 import com.doccuty.epill.model.util.DrugFeatureSet;

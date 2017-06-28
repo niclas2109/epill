@@ -30,7 +30,7 @@ import java.util.Collections;
 import java.util.Date;
 
 import com.doccuty.epill.model.util.UserSet;
-import com.doccuty.epill.model.User;
+import com.doccuty.epill.user.User;
 import com.doccuty.epill.model.ItemInvocation;
 
 public class UserQuerySet extends HashSet<UserQuery> {

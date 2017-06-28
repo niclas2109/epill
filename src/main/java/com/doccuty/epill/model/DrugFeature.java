@@ -37,6 +37,7 @@ import javax.persistence.Transient;
 
 import com.doccuty.epill.model.util.DrugSet;
 import com.doccuty.epill.model.util.UserSet;
+import com.doccuty.epill.user.User;
 
 import java.beans.PropertyChangeListener;
 import de.uniks.networkparser.EntityUtil;

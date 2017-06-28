@@ -22,9 +22,10 @@
 package com.doccuty.epill.model.util;
 
 import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
-import com.doccuty.epill.model.Language;
 import de.uniks.networkparser.IdMap;
-import com.doccuty.epill.model.User;
+
+import com.doccuty.epill.language.Language;
+import com.doccuty.epill.user.User;
 
 public class LanguageCreator implements SendableEntityCreatorNoIndex
 {

@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.doccuty.epill.model.Question;
-import com.doccuty.epill.model.SimpleUser;
-import com.doccuty.epill.model.User;
+import com.doccuty.epill.user.SimpleUser;
+import com.doccuty.epill.user.User;
 
 import java.util.List;
 
@@ -39,8 +39,6 @@ public class QuestionService {
 
 	public Question getNewQuestion(User user) {
 		Question question = questionRepository.findOne((long) 1);
-		question.replaceTokens(user);
-		
 		return question;
 	}
 }

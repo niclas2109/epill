@@ -22,13 +22,13 @@
 package com.doccuty.epill.model.util;
 
 import java.util.HashSet;
-import com.doccuty.epill.model.Language;
 import java.util.Collection;
 import de.uniks.networkparser.list.NumberList;
 import de.uniks.networkparser.list.ObjectSet;
 import java.util.Collections;
 import com.doccuty.epill.model.util.UserSet;
-import com.doccuty.epill.model.User;
+import com.doccuty.epill.user.User;
+import com.doccuty.epill.language.Language;
 
 public class LanguageSet extends HashSet<Language>
 {

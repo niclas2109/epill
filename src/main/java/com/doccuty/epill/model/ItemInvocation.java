@@ -40,7 +40,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.beans.PropertyChangeListener;
 import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.PackagingSection;
-import com.doccuty.epill.model.User;
+import com.doccuty.epill.user.User;
    /**
     * 
     * @see <a href='../../../../../../../src/test/java/com/doccuty/epill/model/SDMLib/ModelCreator.java'>ModelCreator.java</a>

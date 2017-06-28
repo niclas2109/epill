@@ -30,7 +30,7 @@ import java.util.Collections;
 import com.doccuty.epill.model.util.DrugSet;
 import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.util.UserSet;
-import com.doccuty.epill.model.User;
+import com.doccuty.epill.user.User;
 
 public class DiseaseSet extends HashSet<Disease>
 {

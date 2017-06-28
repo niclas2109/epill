@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.doccuty.epill.model.PackagingSection;
 import com.doccuty.epill.model.PackagingTopic;
-import com.doccuty.epill.model.User;
 import com.doccuty.epill.model.util.PackagingCreator;
 import com.doccuty.epill.model.util.PackagingSectionCreator;
 import com.doccuty.epill.model.util.PackagingTopicCreator;
 import com.doccuty.epill.model.util.UserCreator;
+import com.doccuty.epill.user.User;
 import com.doccuty.epill.user.UserService;
 
 import de.uniks.networkparser.Deep;

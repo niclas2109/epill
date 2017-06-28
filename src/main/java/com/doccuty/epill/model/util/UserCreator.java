@@ -22,18 +22,17 @@
 package com.doccuty.epill.model.util;
 
 import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
-
-import com.doccuty.epill.model.User;
 import de.uniks.networkparser.IdMap;
 import com.doccuty.epill.model.PackagingTopic;
 
 import java.util.Date;
 
+import com.doccuty.epill.language.Language;
 import com.doccuty.epill.model.Country;
-import com.doccuty.epill.model.Language;
 import com.doccuty.epill.model.Gender;
 import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.model.UserQuery;
+import com.doccuty.epill.user.User;
 import com.doccuty.epill.model.Disease;
 import com.doccuty.epill.model.DrugFeature;
 

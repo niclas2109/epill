@@ -33,7 +33,7 @@ import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.util.PackagingSectionSet;
 import com.doccuty.epill.model.PackagingSection;
 import com.doccuty.epill.model.util.UserSet;
-import com.doccuty.epill.model.User;
+import com.doccuty.epill.user.User;
 
 public class ItemInvocationSet extends HashSet<ItemInvocation>
 {

@@ -5,8 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.doccuty.epill.model.SimpleUser;
-
 @Repository
 public interface SimpleUserRepository<T extends SimpleUser> extends CrudRepository<T, Long> {
 	

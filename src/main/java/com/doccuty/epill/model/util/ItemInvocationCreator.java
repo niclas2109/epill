@@ -29,7 +29,7 @@ import java.util.Date;
 
 import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.PackagingSection;
-import com.doccuty.epill.model.User;
+import com.doccuty.epill.user.User;
 
 public class ItemInvocationCreator implements SendableEntityCreatorNoIndex
 {

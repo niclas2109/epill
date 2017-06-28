@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
-import com.doccuty.epill.model.User;
+import com.doccuty.epill.user.User;
 
 import java.util.List;
 import java.util.Map;

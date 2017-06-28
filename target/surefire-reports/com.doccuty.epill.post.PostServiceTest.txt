@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.doccuty.epill.post.PostServiceTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.68 sec - in com.doccuty.epill.post.PostServiceTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.761 sec - in com.doccuty.epill.post.PostServiceTest

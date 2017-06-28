@@ -10,15 +10,14 @@ import org.springframework.stereotype.Service;
 import com.doccuty.epill.authentication.AuthenticationService;
 import com.doccuty.epill.country.CountryRepository;
 import com.doccuty.epill.drug.DrugRepository;
+import com.doccuty.epill.gender.GenderRepository;
+import com.doccuty.epill.language.Language;
 import com.doccuty.epill.language.LanguageRepository;
 import com.doccuty.epill.model.Country;
 import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.DrugFeature;
 import com.doccuty.epill.model.Gender;
-import com.doccuty.epill.model.Language;
 import com.doccuty.epill.model.PackagingTopic;
-import com.doccuty.epill.model.SimpleUser;
-import com.doccuty.epill.model.User;
 import com.doccuty.epill.model.ItemInvocation;
 
 import java.util.List;
@@ -65,12 +64,13 @@ public class UserService {
 	public User saveUser(User user) {
 
 		SecureRandom random = new SecureRandom();
-		byte[] salt = new byte[20];
-		random.nextBytes(salt);
+		byte[] randomByte = new byte[30];
+		random.nextBytes(randomByte);
 
-		String encryptedPassword = authenticationService.hashPassword(salt.toString(), user.getPassword());
+		String salt = randomByte.toString();
+		String encryptedPassword = authenticationService.hashPassword(salt, user.getPassword());
 		user.withPassword(encryptedPassword)
-			.withSalt(salt.toString());
+			.withSalt(salt);
 
 		user = repository.save(user);
 		

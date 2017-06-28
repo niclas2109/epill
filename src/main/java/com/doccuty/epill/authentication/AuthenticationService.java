@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.doccuty.epill.model.LoginAttempt;
-import com.doccuty.epill.model.SimpleUser;
-import com.doccuty.epill.model.User;
-import com.doccuty.epill.model.UserToken;
+import com.doccuty.epill.user.SimpleUser;
+import com.doccuty.epill.user.User;
 import com.doccuty.epill.user.UserRepository;
+import com.doccuty.epill.user.UserToken;
 
 @Service
 public class AuthenticationService {
@@ -30,7 +30,7 @@ public class AuthenticationService {
     /**
      * Create a JWT token and additional user information if the user's credentails are valid.
      *
-     * @param username    username
+     * @param username username
      * @param password password
      * @return a UserToken or null if the credentials are not valid
      */

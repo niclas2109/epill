@@ -1,4 +1,4 @@
-package com.doccuty.epill.model;
+package com.doccuty.epill.user;
 
 /**
  * Return object containing a valid user and his corresponding JWT token.

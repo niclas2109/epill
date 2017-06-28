@@ -22,7 +22,6 @@
 package com.doccuty.epill.model.util;
 
 import java.util.HashSet;
-import com.doccuty.epill.model.User;
 import java.util.Collection;
 import de.uniks.networkparser.list.NumberList;
 import de.uniks.networkparser.list.ObjectSet;
@@ -32,14 +31,15 @@ import java.util.Date;
 import com.doccuty.epill.model.util.PackagingTopicSet;
 import com.doccuty.epill.model.PackagingTopic;
 import com.doccuty.epill.model.util.CountrySet;
+import com.doccuty.epill.language.Language;
 import com.doccuty.epill.model.Country;
 import com.doccuty.epill.model.util.LanguageSet;
-import com.doccuty.epill.model.Language;
 import com.doccuty.epill.model.util.GenderSet;
 import com.doccuty.epill.model.Gender;
 import com.doccuty.epill.model.util.ItemInvocationSet;
 import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.model.util.UserQuerySet;
+import com.doccuty.epill.user.User;
 import com.doccuty.epill.model.UserQuery;
 import com.doccuty.epill.model.util.DiseaseSet;
 import com.doccuty.epill.model.Disease;
