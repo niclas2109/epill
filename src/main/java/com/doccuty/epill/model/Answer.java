@@ -114,7 +114,6 @@ public class Answer implements SendableEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idanswer")
 	private long id;
 
 	public long getId() {

@@ -104,7 +104,6 @@ import de.uniks.networkparser.EntityUtil;
    
    @Id
    @GeneratedValue(strategy=GenerationType.AUTO)
-   @Column(name="idtag")
    private int id;
 
    public int getId()

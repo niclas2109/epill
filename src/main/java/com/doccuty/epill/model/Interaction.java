@@ -114,7 +114,6 @@ import com.doccuty.epill.model.util.DrugSet;
    
    @Id
    @GeneratedValue(strategy=GenerationType.AUTO)
-   @Column(name="idinteraction")
    private int id;
 
    public int getId()

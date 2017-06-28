@@ -107,7 +107,6 @@ public class PackagingTopic implements SendableEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idpackaging_topic")
 	private int id;
 
 	public int getId() {

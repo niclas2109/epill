@@ -105,7 +105,6 @@ public class Question implements SendableEntity, Personalize {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idquestion")
 	private long id;
 
 	public long getId() {

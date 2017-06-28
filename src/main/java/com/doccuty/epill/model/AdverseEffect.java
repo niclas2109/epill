@@ -110,7 +110,6 @@ import com.doccuty.epill.model.Drug;
    
    @Id
    @GeneratedValue(strategy=GenerationType.AUTO)
-   @Column(name="idadverse_effect")
    private int id;
 
    public int getId()

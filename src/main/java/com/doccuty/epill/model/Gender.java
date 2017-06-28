@@ -110,7 +110,6 @@ import com.doccuty.epill.model.User;
    
    @Id
    @GeneratedValue(strategy=GenerationType.AUTO)
-   @Column(name="idgender")
    private int id;
 
    public int getId()
@@ -152,19 +151,19 @@ import com.doccuty.epill.model.User;
    public static final String PROPERTY_GENDER = "gender";
    
    @Column(unique=true)
-   private String name;
+   private String gender;
 
    public String getGender()
    {
-      return this.name;
+      return this.gender;
    }
    
    public void setGender(String value)
    {
-      if ( ! EntityUtil.stringEquals(this.name, value)) {
+      if ( ! EntityUtil.stringEquals(this.gender, value)) {
       
-         String oldValue = this.name;
-         this.name = value;
+         String oldValue = this.gender;
+         this.gender = value;
          this.firePropertyChange(PROPERTY_GENDER, oldValue, value);
       }
    }

@@ -108,7 +108,6 @@ import com.doccuty.epill.model.PharmaceuticalForm;
    
    @Id
    @GeneratedValue(strategy=GenerationType.AUTO)
-   @Column(name="idintake_information")
    private int id;
 
    public int getId()

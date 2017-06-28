@@ -116,7 +116,6 @@ public class DrugFeature implements SendableEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "iddrug_feature")
 	private long id;
 
 	public long getId() {

@@ -110,7 +110,6 @@ import com.doccuty.epill.model.User;
    
    @Id
    @GeneratedValue(strategy=GenerationType.AUTO)
-   @Column(name="idlanguage")
    private int id;
 
    public int getId()
@@ -151,19 +150,19 @@ import com.doccuty.epill.model.User;
    
    public static final String PROPERTY_LANGUAGE = "language";
    
-   private String name;
+   private String language;
 
    public String getLanguage()
    {
-      return this.name;
+      return this.language;
    }
    
    public void setLanguage(String value)
    {
-      if ( ! EntityUtil.stringEquals(this.name, value)) {
+      if ( ! EntityUtil.stringEquals(this.language, value)) {
       
-         String oldValue = this.name;
-         this.name = value;
+         String oldValue = this.language;
+         this.language = value;
          this.firePropertyChange(PROPERTY_LANGUAGE, oldValue, value);
       }
    }

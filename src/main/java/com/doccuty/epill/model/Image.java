@@ -87,7 +87,6 @@ public class Image implements SendableEntity
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "iddrug_image")
 	private long id;
 
 	public long getId() {

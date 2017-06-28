@@ -19,7 +19,6 @@ public class LoginAttempt {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", unique = true)
 	private long id;
 
 	public long getId() {

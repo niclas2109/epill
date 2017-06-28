@@ -110,7 +110,6 @@ public class PackagingSection implements SendableEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "idpackaging_section")
 	private long id;
 
 	public long getId() {

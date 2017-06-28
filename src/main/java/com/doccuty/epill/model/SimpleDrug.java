@@ -123,7 +123,6 @@ import com.doccuty.epill.model.ProductGroup;
    
    @Id
    @GeneratedValue(strategy=GenerationType.AUTO)
-   @Column(name="iddrug")
    private long id;
 
    public long getId()

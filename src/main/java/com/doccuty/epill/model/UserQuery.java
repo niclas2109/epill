@@ -117,7 +117,6 @@ import com.doccuty.epill.model.User;
    
    @Id
    @GeneratedValue(strategy=GenerationType.AUTO)
-   @Column(name="iduser_query")
    private long id;
 
    public long getId()

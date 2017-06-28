@@ -147,7 +147,6 @@ public class SimpleUser implements SendableEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "iduser", unique = true)
 	private long id;
 
 	public long getId() {

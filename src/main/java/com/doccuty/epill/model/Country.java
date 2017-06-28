@@ -110,7 +110,6 @@ import com.doccuty.epill.model.User;
    
    @Id
    @GeneratedValue(strategy=GenerationType.AUTO)
-   @Column(name="idcountry")
    private int id;
 
    public int getId()

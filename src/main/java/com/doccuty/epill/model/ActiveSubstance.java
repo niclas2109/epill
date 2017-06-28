@@ -115,7 +115,6 @@ import com.doccuty.epill.model.SubstanceGroup;
    
    @Id
    @GeneratedValue(strategy=GenerationType.AUTO)
-   @Column(name="idactive_substance")
    private int id;
 
    public int getId()
