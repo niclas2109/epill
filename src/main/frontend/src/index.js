@@ -6,11 +6,11 @@ import {I18nextProvider} from "react-i18next";
 import {HashRouter as Router, Link, Route, Switch} from "react-router-dom";
 
 
-import Start from "./components/start";
+import Carousel from "./components/carousel";
 import Authentication from "./components/authentication";
 import Register from "./components/register";
-import DrugDetail from "./components/drug_detail";
 import DrugList from "./components/drug_list";
+import DrugDetail from "./components/drug_detail";
 import i18n from "./i18n";
 import User from "./util/User";
 
@@ -83,11 +83,11 @@ ReactDOM.render(
                         <Route path="/user/register" component={Register}/>
 
                         {/* Get handling */}
-                        <Route path="/drug/:id" component={DrugDetail}/>
                         <Route path="/drug/list" component={DrugList}/>
+                        <Route path="/drug/:id" component={DrugDetail}/>
 
                         {/* Default route */}
-                        <Route path="/" component={Start}/>
+                        <Route path="/" component={Carousel}/>	
                     </Switch>
                 </div>
             </Router>

@@ -38,7 +38,7 @@ public class DrugController {
     @Autowired
     private UserService userService;
     
-    @RequestMapping(value = "/drug/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/drug/list/all", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> getAllDrugs() {
 
     	IdMap map = DrugCreator.createIdMap("");

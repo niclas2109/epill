@@ -12576,25 +12576,25 @@ var _reactI18next = __webpack_require__(107);
 
 var _reactRouterDom = __webpack_require__(43);
 
-var _start = __webpack_require__(137);
+var _carousel = __webpack_require__(134);
 
-var _start2 = _interopRequireDefault(_start);
+var _carousel2 = _interopRequireDefault(_carousel);
 
 var _authentication = __webpack_require__(133);
 
 var _authentication2 = _interopRequireDefault(_authentication);
 
-var _register = __webpack_require__(136);
+var _register = __webpack_require__(137);
 
 var _register2 = _interopRequireDefault(_register);
 
-var _drug_detail = __webpack_require__(134);
-
-var _drug_detail2 = _interopRequireDefault(_drug_detail);
-
-var _drug_list = __webpack_require__(135);
+var _drug_list = __webpack_require__(136);
 
 var _drug_list2 = _interopRequireDefault(_drug_list);
+
+var _drug_detail = __webpack_require__(135);
+
+var _drug_detail2 = _interopRequireDefault(_drug_detail);
 
 var _i18n = __webpack_require__(138);
 
@@ -12792,9 +12792,9 @@ _reactDom2.default.render(_react2.default.createElement(
 																				null,
 																				_react2.default.createElement(_reactRouterDom.Route, { path: "/user/login", component: _authentication2.default }),
 																				_react2.default.createElement(_reactRouterDom.Route, { path: "/user/register", component: _register2.default }),
-																				_react2.default.createElement(_reactRouterDom.Route, { path: "/drug/:id", component: _drug_detail2.default }),
 																				_react2.default.createElement(_reactRouterDom.Route, { path: "/drug/list", component: _drug_list2.default }),
-																				_react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _start2.default })
+																				_react2.default.createElement(_reactRouterDom.Route, { path: "/drug/:id", component: _drug_detail2.default }),
+																				_react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _carousel2.default })
 																)
 												)
 								)
@@ -13879,13 +13879,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DrugDetail = function (_React$Component) {
-    _inherits(DrugDetail, _React$Component);
+var Carousel = function (_React$Component) {
+    _inherits(Carousel, _React$Component);
 
-    function DrugDetail(props) {
-        _classCallCheck(this, DrugDetail);
+    function Carousel(props) {
+        _classCallCheck(this, Carousel);
 
-        var _this = _possibleConstructorReturn(this, (DrugDetail.__proto__ || Object.getPrototypeOf(DrugDetail)).call(this));
+        var _this = _possibleConstructorReturn(this, (Carousel.__proto__ || Object.getPrototypeOf(Carousel)).call(this));
 
         _this.state = {
             drug: undefined
@@ -13894,54 +13894,373 @@ var DrugDetail = function (_React$Component) {
         return _this;
     }
 
-    _createClass(DrugDetail, [{
+    _createClass(Carousel, [{
         key: "componentWillMount",
-        value: function componentWillMount() {
-            var _this2 = this;
-
-            _axios2.default.get("/drug/" + this.props.match.params.id + "/de").then(function (_ref) {
-                var data = _ref.data;
-
-                _this2.setState({
-                    drug: data.value
-                });
-            });
-        }
+        value: function componentWillMount() {}
     }, {
         key: "render",
         value: function render() {
-            var drug = this.state.drug;
-            if (!drug) {
-                // Do not show anything while loading.
-                return _react2.default.createElement("div", null);
-            }
-
             return _react2.default.createElement(
                 "div",
-                { className: "component" },
-                _react2.default.createElement(
-                    "h1",
-                    null,
-                    "Drug Detail"
-                ),
+                { id: "landing-page-carousel", className: "carousel slide" },
                 _react2.default.createElement(
                     "div",
-                    null,
-                    "Title ",
-                    drug.name
-                ),
-                _User2.default.isAuthenticated() && Eingeloggt
+                    { className: "carousel-inner", role: "listbox" },
+                    _react2.default.createElement(
+                        "div",
+                        { className: "item active" },
+                        _react2.default.createElement("img", { className: "first-slide", src: "/assets/images/header1.png", alt: "First slide" }),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "container" },
+                            _react2.default.createElement(
+                                "div",
+                                { className: "carousel-caption" },
+                                _react2.default.createElement(
+                                    "h1",
+                                    null,
+                                    "ad,"
+                                ),
+                                _react2.default.createElement(
+                                    "p",
+                                    null,
+                                    "sdfs"
+                                ),
+                                _react2.default.createElement(
+                                    "div",
+                                    { className: "rating-wrapper center-block" },
+                                    _react2.default.createElement("input", { id: "rating_5", name: "rating", value: "5", type: "radio" }),
+                                    _react2.default.createElement("label", { className: "full", htmlFor: "rating_5", title: "" }),
+                                    _react2.default.createElement("input", { id: "rating_4", name: "rating", value: "4", type: "radio" }),
+                                    _react2.default.createElement("label", { className: "full", htmlFor: "rating_4", title: "" }),
+                                    _react2.default.createElement("input", { id: "rating_3", name: "rating", value: "3", type: "radio" }),
+                                    _react2.default.createElement("label", { className: "full", htmlFor: "rating_3", title: "" }),
+                                    _react2.default.createElement("input", { id: "rating_2", name: "rating", value: "2", type: "radio" }),
+                                    _react2.default.createElement("label", { className: "full", htmlFor: "rating_2", title: "" }),
+                                    _react2.default.createElement("input", { id: "rating_1", name: "rating", value: "1", type: "radio" }),
+                                    _react2.default.createElement("label", { className: "full", htmlFor: "rating_1", title: "" }),
+                                    _react2.default.createElement("div", { className: "clearit" })
+                                )
+                            )
+                        )
+                    )
+                )
             );
         }
     }]);
 
-    return DrugDetail;
+    return Carousel;
+}(_react2.default.Component);
+
+exports.default = Carousel;
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _axios = __webpack_require__(23);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _User = __webpack_require__(34);
+
+var _User2 = _interopRequireDefault(_User);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var DrugDetail = function (_React$Component) {
+  _inherits(DrugDetail, _React$Component);
+
+  function DrugDetail(props) {
+    _classCallCheck(this, DrugDetail);
+
+    var _this = _possibleConstructorReturn(this, (DrugDetail.__proto__ || Object.getPrototypeOf(DrugDetail)).call(this));
+
+    _this.state = {
+      drug: undefined
+    };
+    return _this;
+  }
+
+  _createClass(DrugDetail, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var _this2 = this;
+
+      _axios2.default.get("/drug/" + this.props.match.params.id + "/de").then(function (_ref) {
+        var data = _ref.data;
+
+
+        _this2.setState({
+          drug: data.value
+        });
+      });
+    }
+
+    // for html conversion
+
+  }, {
+    key: "createMarkup",
+    value: function createMarkup(text) {
+      return { __html: text };
+    }
+  }, {
+    key: "renderDrugFeatures",
+    value: function renderDrugFeatures(drug) {
+
+      if (!drug.drugFeature) return;
+
+      return _react2.default.createElement(
+        "p",
+        null,
+        drug.drugFeature.map(function (feature, i) {
+          return _react2.default.createElement(
+            "span",
+            { key: feature.id },
+            feature.drugFeature
+          );
+        })
+      );
+    }
+  }, {
+    key: "renderDisease",
+    value: function renderDisease(drug) {
+      if (!drug.disease) {
+        return;
+      }
+
+      return _react2.default.createElement(
+        "p",
+        null,
+        " U. a. verwendet bei:",
+        drug.disease.map(function (packaging, i) {
+          return _react2.default.createElement(
+            "span",
+            { key: disease.id },
+            disease.name
+          );
+        })
+      );
+    }
+  }, {
+    key: "renderActiveSubstance",
+    value: function renderActiveSubstance(drug) {
+      if (!drug.activeSubstance) {
+        return;
+      }
+
+      return _react2.default.createElement(
+        "p",
+        null,
+        " Wirkstoff(e):",
+        drug.activeSubstance.map(function (substance, i) {
+          return _react2.default.createElement(
+            "span",
+            { key: substance.id },
+            substance.name
+          );
+        })
+      );
+    }
+  }, {
+    key: "renderPZN",
+    value: function renderPZN(drug) {
+      if (!drug.packaging) {
+        return;
+      }
+
+      return _react2.default.createElement(
+        "p",
+        null,
+        " PZN:",
+        drug.packaging.map(function (packaging, i) {
+          return _react2.default.createElement(
+            "span",
+            { key: packaging.id },
+            packaging.name,
+            " ",
+            packaging.pzn
+          );
+        })
+      );
+    }
+  }, {
+    key: "renderSectionOverview",
+    value: function renderSectionOverview(drug) {
+      if (!drug.packagingSection) {
+        return;
+      }
+
+      return drug.packagingSection.map(function (section) {
+        return _react2.default.createElement(
+          "li",
+          { key: section.id },
+          _react2.default.createElement(
+            "a",
+            null,
+            section.topic.title
+          )
+        );
+      });
+    }
+  }, {
+    key: "renderSectionList",
+    value: function renderSectionList(drug) {
+      var _this3 = this;
+
+      if (!drug.packagingSection) {
+        return;
+      }
+
+      return drug.packagingSection.map(function (section) {
+        return _react2.default.createElement(
+          "div",
+          { className: "panel panel-default", key: section.id },
+          _react2.default.createElement(
+            "div",
+            { className: "panel-heading" },
+            _react2.default.createElement(
+              "h4",
+              { id: "packaging-heading-section.topic.id", className: "panel-title" },
+              _react2.default.createElement(
+                "a",
+                null,
+                section.topic.title
+              )
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            null,
+            _react2.default.createElement("div", { className: "panel-body", dangerouslySetInnerHTML: _this3.createMarkup(section.text) })
+          )
+        );
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var drug = this.state.drug;
+      if (!drug) {
+        // Do not show anything while loading.
+        return _react2.default.createElement(
+          "div",
+          { className: "container marketing no-banner" },
+          "loading"
+        );
+      }
+
+      return _react2.default.createElement(
+        "div",
+        { className: "container marketing no-banner" },
+        _react2.default.createElement(
+          "div",
+          { className: "page-header" },
+          _react2.default.createElement(
+            "div",
+            { className: "btn-toolbar pull-right" },
+            _react2.default.createElement("div", { className: "btn-group" })
+          ),
+          _react2.default.createElement(
+            "h3",
+            null,
+            drug.name,
+            " ",
+            _react2.default.createElement(
+              "span",
+              { className: "text-muted" },
+              "drug.productGroup.name"
+            ),
+            _react2.default.createElement(
+              "button",
+              { type: "button", className: "btn btn-xs btn-add" },
+              _react2.default.createElement("span", { className: "glyphicon glyphicon-plus" })
+            ),
+            _react2.default.createElement(
+              "button",
+              { type: "button", className: "btn btn-xs btn-like" },
+              _react2.default.createElement("span", { className: "glyphicon glyphicon-heart" })
+            )
+          )
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "row drug-features col-md-12 miniature" },
+          this.renderDrugFeatures(drug),
+          _react2.default.createElement("img", { src: "", alt: "feature.drugFeature", title: "feature.drugFeature", className: "drug-feature-icon" })
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "row featurette" },
+          _react2.default.createElement(
+            "div",
+            { className: "col-md-3" },
+            _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "{drug.name}", src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg" })
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "col-md-6" },
+            _react2.default.createElement(
+              "p",
+              null,
+              drug.personalizedInformation
+            ),
+            this.renderDisease(drug),
+            _react2.default.createElement(
+              "p",
+              null,
+              "Indikation-Gruppe:",
+              _react2.default.createElement(
+                "span",
+                null,
+                "drug.indicationGroup.name"
+              )
+            ),
+            this.renderActiveSubstance(drug),
+            this.renderPZN(drug)
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "col-md-3 drug-detail-short-links" },
+            _react2.default.createElement(
+              "ul",
+              null,
+              this.renderSectionOverview(drug)
+            )
+          )
+        ),
+        _react2.default.createElement("hr", null),
+        this.renderSectionList(drug)
+      );
+    }
+  }]);
+
+  return DrugDetail;
 }(_react2.default.Component);
 
 exports.default = DrugDetail;
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13993,7 +14312,7 @@ var DrugList = function (_React$Component) {
         value: function componentWillMount() {
             var _this2 = this;
 
-            _axios2.default.get('/drug/all').then(function (_ref) {
+            _axios2.default.get('/drug/list/all').then(function (_ref) {
                 var data = _ref.data;
 
                 _this2.setState({
@@ -14002,8 +14321,8 @@ var DrugList = function (_React$Component) {
             });
         }
     }, {
-        key: "deletePost",
-        value: function deletePost(id) {
+        key: "deleteDrug",
+        value: function deleteDrug(id) {
             var _this3 = this;
 
             // ES6 string interpolation (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
@@ -14019,36 +14338,98 @@ var DrugList = function (_React$Component) {
             });
         }
     }, {
-        key: "renderPosts",
-        value: function renderPosts() {
+        key: "renderDrugFeatures",
+        value: function renderDrugFeatures(drug) {
+
+            if (!drug.drugFeature) {
+                return;
+            }
+
+            return _react2.default.createElement(
+                "p",
+                null,
+                drug.drugFeature.map(function (feature, i) {
+                    return _react2.default.createElement(
+                        "span",
+                        { key: feature.id },
+                        feature.drugFeature
+                    );
+                })
+            );
+        }
+    }, {
+        key: "renderDisease",
+        value: function renderDisease(drug) {
+            if (!drug.disease) {
+                return;
+            }
+
+            return _react2.default.createElement(
+                "p",
+                null,
+                " U. a. verwendet bei:",
+                drug.disease.map(function (packaging, i) {
+                    return _react2.default.createElement(
+                        "span",
+                        { key: disease.id },
+                        disease.name
+                    );
+                })
+            );
+        }
+    }, {
+        key: "renderActiveSubstance",
+        value: function renderActiveSubstance(drug) {
+            if (!drug.activeSubstance) {
+                return;
+            }
+
+            return _react2.default.createElement(
+                "p",
+                null,
+                " Wirkstoff(e):",
+                drug.activeSubstance.map(function (substance, i) {
+                    return _react2.default.createElement(
+                        "span",
+                        { key: substance.id },
+                        substance.name
+                    );
+                })
+            );
+        }
+    }, {
+        key: "renderDrugs",
+        value: function renderDrugs() {
+            var _this4 = this;
+
             return this.state.drugs.map(function (drug) {
                 return _react2.default.createElement(
                     "li",
                     { className: "col-sm-12 col-md-12 col-lg-12", key: drug.id },
                     _react2.default.createElement(
-                        "div",
-                        { className: "image-container col-sm-2 col-md-2 col-lg-2" },
-                        "image"
+                        _reactRouterDom.Link,
+                        { to: "/drug/" + drug.id },
+                        _react2.default.createElement(
+                            "div",
+                            { className: "image-container col-sm-2 col-md-2 col-lg-2" },
+                            _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "{drug.name}", src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg" })
+                        )
                     ),
                     _react2.default.createElement(
                         "div",
                         { className: "info col-sm-9 col-md-9 col-lg-9" },
                         _react2.default.createElement(
-                            "h4",
-                            null,
-                            drug.name
+                            _reactRouterDom.Link,
+                            { to: "/drug/" + drug.id },
+                            _react2.default.createElement(
+                                "h4",
+                                null,
+                                drug.name
+                            )
                         ),
-                        _react2.default.createElement("p", { className: "drug-features" }),
-                        _react2.default.createElement(
-                            "p",
-                            null,
-                            "Verwendet bei"
-                        ),
-                        _react2.default.createElement(
-                            "p",
-                            null,
-                            "Wirkstoff(e):"
-                        )
+                        _this4.renderDrugFeatures(drug),
+                        _this4.renderDisease(drug),
+                        _this4.renderActiveSubstance(drug)
                     ),
                     _react2.default.createElement(
                         "div",
@@ -14078,9 +14459,13 @@ var DrugList = function (_React$Component) {
                                 "li",
                                 null,
                                 _react2.default.createElement(
-                                    "button",
-                                    { type: "button", className: "btn btn-xs btn-open" },
-                                    _react2.default.createElement("span", { className: "glyphicon glyphicon-eye-open" })
+                                    _reactRouterDom.Link,
+                                    { to: "/drug/" + drug.id },
+                                    _react2.default.createElement(
+                                        "button",
+                                        { type: "button", className: "btn btn-xs btn-open" },
+                                        _react2.default.createElement("span", { className: "glyphicon glyphicon-eye-open" })
+                                    )
                                 )
                             )
                         )
@@ -14110,7 +14495,7 @@ var DrugList = function (_React$Component) {
                     _react2.default.createElement(
                         "ul",
                         { className: "drug-list" },
-                        this.renderPosts()
+                        this.renderDrugs()
                     )
                 )
             );
@@ -14123,7 +14508,7 @@ var DrugList = function (_React$Component) {
 exports.default = DrugList;
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14292,211 +14677,6 @@ var Register = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = (0, _reactI18next.translate)()(Register);
-
-/***/ }),
-/* 137 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _axios = __webpack_require__(23);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _react = __webpack_require__(4);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _User = __webpack_require__(34);
-
-var _User2 = _interopRequireDefault(_User);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Start = function (_React$Component) {
-    _inherits(Start, _React$Component);
-
-    function Start(props) {
-        _classCallCheck(this, Start);
-
-        var _this = _possibleConstructorReturn(this, (Start.__proto__ || Object.getPrototypeOf(Start)).call(this));
-
-        _this.state = {
-            drug: undefined
-        };
-
-        return _this;
-    }
-
-    _createClass(Start, [{
-        key: "componentWillMount",
-        value: function componentWillMount() {}
-    }, {
-        key: "render",
-        value: function render() {
-            return _react2.default.createElement(
-                "div",
-                { id: "landing-page-carousel", className: "carousel slide" },
-                _react2.default.createElement(
-                    "ol",
-                    { className: "carousel-indicators" },
-                    _react2.default.createElement("li", { "data-target": "#landing-page-carousel", className: "active" }),
-                    _react2.default.createElement("li", { "data-target": "#landing-page-carousel", className: "" }),
-                    _react2.default.createElement("li", { "data-target": "#landing-page-carousel", className: "" })
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "carousel-inner", role: "listbox" },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "item" },
-                        _react2.default.createElement("img", { className: "first-slide", src: "/assets/images/header1.png", alt: "First slide" }),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "container" },
-                            _react2.default.createElement(
-                                "div",
-                                { className: "carousel-caption" },
-                                _react2.default.createElement(
-                                    "h1",
-                                    null,
-                                    "ad,"
-                                ),
-                                _react2.default.createElement(
-                                    "p",
-                                    null,
-                                    "sdfs"
-                                ),
-                                _react2.default.createElement(
-                                    "div",
-                                    { className: "rating-wrapper center-block" },
-                                    _react2.default.createElement("input", { id: "rating_5", name: "rating", value: "5", type: "radio" }),
-                                    _react2.default.createElement("label", { className: "full", htmlFor: "rating_5", title: "" }),
-                                    _react2.default.createElement("input", { id: "rating_4", name: "rating", value: "4", type: "radio" }),
-                                    _react2.default.createElement("label", { className: "full", htmlFor: "rating_4", title: "" }),
-                                    _react2.default.createElement("input", { id: "rating_3", name: "rating", value: "3", type: "radio" }),
-                                    _react2.default.createElement("label", { className: "full", htmlFor: "rating_3", title: "" }),
-                                    _react2.default.createElement("input", { id: "rating_2", name: "rating", value: "2", type: "radio" }),
-                                    _react2.default.createElement("label", { className: "full", htmlFor: "rating_2", title: "" }),
-                                    _react2.default.createElement("input", { id: "rating_1", name: "rating", value: "1", type: "radio" }),
-                                    _react2.default.createElement("label", { className: "full", htmlFor: "rating_1", title: "" }),
-                                    _react2.default.createElement("div", { className: "clearit" })
-                                )
-                            )
-                        )
-                    )
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "container marketing" },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "row" },
-                        _react2.default.createElement(
-                            "div",
-                            { className: "col-lg-4" },
-                            _react2.default.createElement("img", { className: "img-circle", src: "/assets/images/logo_s.svg",
-                                alt: "Generic placeholder image", width: "140", height: "140" }),
-                            _react2.default.createElement(
-                                "h2",
-                                null,
-                                "ePill"
-                            ),
-                            _react2.default.createElement(
-                                "p",
-                                null,
-                                "Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna."
-                            ),
-                            _react2.default.createElement(
-                                "p",
-                                null,
-                                _react2.default.createElement(
-                                    "a",
-                                    { className: "btn btn-default", href: "/about", role: "button",
-                                        target: "blank" },
-                                    "View details \xBB"
-                                )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "col-lg-4" },
-                            _react2.default.createElement("img", { className: "img-circle",
-                                src: "/assets/images/prof_sunyaev.jpg",
-                                alt: "Generic placeholder image", width: "140", height: "140" }),
-                            _react2.default.createElement(
-                                "h2",
-                                null,
-                                "team"
-                            ),
-                            _react2.default.createElement(
-                                "p",
-                                null,
-                                "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh."
-                            ),
-                            _react2.default.createElement(
-                                "p",
-                                null,
-                                _react2.default.createElement(
-                                    "a",
-                                    { className: "btn btn-default",
-                                        href: "https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/team.html",
-                                        role: "button", target: "blank" },
-                                    "View details \xBB"
-                                )
-                            )
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "col-lg-4" },
-                            _react2.default.createElement("img", { className: "img-circle",
-                                src: "/assets/images/articles.jpg",
-                                alt: "Generic placeholder image", width: "140", height: "140" }),
-                            _react2.default.createElement(
-                                "h2",
-                                null,
-                                "articles"
-                            ),
-                            _react2.default.createElement(
-                                "p",
-                                null,
-                                "Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus."
-                            ),
-                            _react2.default.createElement(
-                                "p",
-                                null,
-                                _react2.default.createElement(
-                                    "a",
-                                    { className: "btn btn-default",
-                                        href: "https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/research.html",
-                                        role: "button", target: "blank" },
-                                    "View details \xBB"
-                                )
-                            )
-                        )
-                    )
-                )
-            );
-        }
-    }]);
-
-    return Start;
-}(_react2.default.Component);
-
-exports.default = Start;
 
 /***/ }),
 /* 138 */
