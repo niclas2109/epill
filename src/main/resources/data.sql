@@ -3,39 +3,39 @@
 -- for explanation. This is a cool spring feature :-).
 
 
--- Delete all.
+-- TRUNCATE all.
 
-DELETE FROM drug_active_substance;
-DELETE FROM drug_pharmaceutical_form;
-DELETE FROM drug_drug_feature;
-DELETE FROM drug_disease;
-DELETE FROM drug_adverse_effect;
-DELETE FROM user_preferred_topic;
-DELETE FROM user_disease;
-DELETE FROM user_drug_feature;
-DELETE FROM user_query;
+TRUNCATE drug_active_substance;
+TRUNCATE drug_pharmaceutical_form;
+TRUNCATE drug_drug_feature;
+TRUNCATE drug_disease;
+TRUNCATE drug_adverse_effect;
+TRUNCATE user_preferred_topic;
+TRUNCATE user_disease;
+TRUNCATE user_drug_feature;
+TRUNCATE user_query;
 
-DELETE FROM tag;
-DELETE FROM adverse_effect;
-DELETE FROM packaging;
-DELETE FROM packaging_section;
-DELETE FROM packaging_topic;
-DELETE FROM drug_feature;
-DELETE FROM pharmaceutical_form;
-DELETE FROM disease;
-DELETE FROM item_invocation;
-DELETE FROM user_drug;
-DELETE FROM drug;
-DELETE FROM drug_simple;
-DELETE FROM user_;
-DELETE FROM user_simple;
-DELETE FROM indication_group;
-DELETE FROM active_substance;
-DELETE FROM image;
-DELETE FROM gender;
-DELETE FROM language;
-DELETE FROM country;
-DELETE FROM question;
+TRUNCATE tag;
+TRUNCATE adverse_effect;
+TRUNCATE packaging;
+TRUNCATE packaging_section;
+TRUNCATE packaging_topic;
+TRUNCATE drug_feature;
+TRUNCATE pharmaceutical_form;
+TRUNCATE disease;
+TRUNCATE item_invocation;
+TRUNCATE user_drug;
+TRUNCATE drug;
+TRUNCATE drug_simple;
+TRUNCATE user_;
+TRUNCATE user_simple;
+TRUNCATE indication_group;
+TRUNCATE active_substance;
+TRUNCATE image;
+TRUNCATE gender;
+TRUNCATE language;
+TRUNCATE country;
+TRUNCATE question;
 
 
 
