@@ -1,3 +1,11 @@
 {
-  "applicationName": "Beiträge und Kommentare"
+  "firstname"	: "Vorname",
+  "lastname"	: "Nachname",
+  "username"	: "Benutzername",	  
+  "password"	: "Passwort",
+  "passwordRepeat"	: "Passwort wiederholen",
+  "login"	: "Login",
+  "register": "Registrieren",
+  "loginSuccess"	: "Login war erfolgreich!",
+  "loginFailed"		: "Login war nicht erfolgreich!"
 }

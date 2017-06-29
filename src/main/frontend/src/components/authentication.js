@@ -2,8 +2,8 @@ import axios from "axios";
 import React from "react";
 
 import {Link} from "react-router-dom";
-
 import {withCookies} from "react-cookie";
+import {translate} from "react-i18next";
 
 import User from "../util/User";
 
@@ -77,35 +77,35 @@ class Authentication extends React.Component {
 
 
     render() {
+        const {t} = this.props;
+
         let component = null;
         if (User.isNotAuthenticated()) {
             component =
                 <form onSubmit={this.handleSubmit}>
-
-            <div className="form-group">
-                <label htmlFor="username">username</label>
-                <input type="text" name="username" id="username" className="form-control" value={this.state.username} onChange={this.handleUsernameChange} />
-            </div>
-            	
-            <div className="form-group">
-                <label htmlFor="password">password</label>
-                <input type="text" name="password" id="password" className="form-control" value={this.state.password} onChange={this.handlePasswordChange} />
-            </div>
-            <div className="form-actions">
-	            <button type="submit" className="btn btn-primary">Login</button>
-	            <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="></img>
-	            <Link to="/user/register">register</Link>
-	        </div>
+		            <div className="form-group">
+		                <label htmlFor="username">{t('username')}</label>
+		                <input type="text" name="username" id="username" className="form-control" value={this.state.username} onChange={this.handleUsernameChange} />
+		            </div>
+		            	
+		            <div className="form-group">
+		                <label htmlFor="password">{t('password')}</label>
+		                <input type="text" name="password" id="password" className="form-control" value={this.state.password} onChange={this.handlePasswordChange} />
+		            </div>
+		            <div className="form-actions">
+			            <button type="submit" className="btn btn-primary">Login</button>
+			            <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="></img>
+			            <Link to="/user/register">register</Link>
+			        </div>
                 </form>
         } else {
-            component =
-                <span onClick={this.handleLogout}>Logout</span>
+            component = <span onClick={this.handleLogout}>Logout</span>
         }
 
         return (
         	<div className="container no-banner">
         		<div className="page-header">
-        			<h2>Login</h2>
+        			<h2>{t('login')}</h2>
         		</div>
         		<div className="container">
                 	Current user: {User.username || 'not logged in'}
@@ -114,9 +114,9 @@ class Authentication extends React.Component {
                 		{component}
                 	<p/>
 	                { this.state.error &&
-	                <div className="error">
-	                    Login was not successful.
-	                </div>
+		                <div className="error">
+		                	{t('loginFailed')}
+		                </div>
 	                }
 	             </div>
 	          </div>
@@ -125,4 +125,4 @@ class Authentication extends React.Component {
 }
 
 
-export default withCookies(Authentication);
+export default withCookies(translate()(Authentication));

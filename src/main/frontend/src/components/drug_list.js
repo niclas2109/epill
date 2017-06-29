@@ -140,8 +140,8 @@ class DrugList extends React.Component {
         return (
         	<div className="container no-banner">
                 <h1>Medikamente</h1>
-                <div>
-                	Hier findest du eine Übersicht...
+                <div className="text-box">
+                	Hier findest du eine Übersicht über alle Medikamente.
                 </div>
                 <div className="row">
 	                <ul className="drug-list">
