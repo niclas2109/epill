@@ -2,8 +2,8 @@ import axios from "axios";
 import React from "react";
 
 import {Link} from "react-router-dom";
-
 import {translate} from "react-i18next";
+import { toast } from 'react-toastify';
 
 // See https://facebook.github.io/react/docs/forms.html for documentation about forms.
 class Register extends React.Component {
@@ -52,8 +52,8 @@ class Register extends React.Component {
         event.preventDefault();
         
         if(this.state.password != this.state.passwordRepeat) {
-        	console.log("different passwords");
-        	return;
+	        	console.log("different passwords");
+	        	return;
         }
         
         axios.post('/user/save',
@@ -65,8 +65,8 @@ class Register extends React.Component {
             })
             .then((data) => {
                 // Redirect to front page.
-            	console.log(data);
-            	this.props.history.push("/user/login");
+	            toast(<div>Registration Successfull</div>);
+	            	this.props.history.push("/user/login");
             });
     }
 

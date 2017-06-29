@@ -5,6 +5,8 @@ import ReactDOM from "react-dom";
 import {I18nextProvider} from "react-i18next";
 import {HashRouter as Router, Link, Route, Switch} from "react-router-dom";
 
+import { ToastContainer } from 'react-toastify';
+
 import Home from "./components/home";
 import About from "./components/about";
 import Authentication from "./components/authentication";
@@ -19,6 +21,7 @@ import UserList from "./components/user/list";
 
 import User from "./util/User";
 import UserMenue from "./util/UserMenue";
+import AutoComplete from "./util/AutoComplete";
 
 import i18n from "./i18n";
 
@@ -53,7 +56,7 @@ ReactDOM.render(
 	            							<li><Link to="/drug/list">Drugs</Link></li>
 	            						</ul>
 	            	
-	            						<autocomplete></autocomplete>
+	            						<AutoComplete />
 	            	
 	            						<UserMenue />
 	            					</div>
@@ -144,7 +147,7 @@ ReactDOM.render(
     	    				</div>
     	    			</div>
     	    		</footer>
-                </div>
+          </div>
             </Router>
         </I18nextProvider>
     </CookiesProvider>,

@@ -31,9 +31,10 @@ class Authentication extends React.Component {
         this.setState({password: event.target.value});
     }
 
-
     handleSubmit(event) {
         event.preventDefault();
+
+		const Greet = ({ name }) => <div>Hello {name}</div>
        
         axios.post('/auth/login', this.state, {
             // We allow a status code of 401 (unauthorized). Otherwise it is interpreted as an error and we can't
@@ -62,8 +63,11 @@ class Authentication extends React.Component {
                         break;
 
                     case 401:
-                        this.setState({error: true});
-                        break;
+                    		console.log(data);
+	            			toast(<Greet name="harry" />);
+	            			
+                    		this.setState({error: true});
+                        	break;
                 }
             });
     }
