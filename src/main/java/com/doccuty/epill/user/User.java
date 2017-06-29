@@ -51,7 +51,7 @@ import com.doccuty.epill.model.DrugFeature;
     * @see <a href='../../../../../../../src/test/java/com/doccuty/epill/model/SDMLib/ModelCreator.java'>ModelCreator.java</a>
  */
 @Entity
-@Table(name="user")
+@Table(name="user_")
    public class User extends SimpleUser
 {
 
@@ -97,7 +97,7 @@ import com.doccuty.epill.model.DrugFeature;
    public static final String PROPERTY_PREFERREDPACKAGINGTOPIC = "preferredPackagingTopic";
 
    @ManyToMany(cascade=CascadeType.ALL)  
-   @JoinTable(name="user_preferred_topic", joinColumns=@JoinColumn(name="iduser"), inverseJoinColumns=@JoinColumn(name="idpackaging_topic"))
+   @JoinTable(name="user_preferred_topic", joinColumns=@JoinColumn(name="id"), inverseJoinColumns=@JoinColumn(name="idpackaging_topic"))
    private Set<PackagingTopic> preferredPackagingTopic = null;
 
    public Set<PackagingTopic> getPreferredPackagingTopic()

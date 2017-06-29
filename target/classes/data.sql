@@ -27,7 +27,7 @@ DELETE FROM item_invocation;
 DELETE FROM user_drug;
 DELETE FROM drug;
 DELETE FROM drug_simple;
-DELETE FROM user;
+DELETE FROM user_;
 DELETE FROM user_simple;
 DELETE FROM indication_group;
 DELETE FROM active_substance;
@@ -71,10 +71,10 @@ INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstna
 	(1,'2017-06-27','2017-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser',3,'a53c6f59e0cffc2a08a8d6086fd611024a53b4e123813dc60a08964a49db760eb2aa26778677e3b835175be8ffce2d58b51eebf2854d9f283174956f370d210c',12,'[B@22373b1f','nic');
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `user_`
 --
 
-INSERT INTO user (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
+INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
 
 
 

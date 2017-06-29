@@ -73,6 +73,8 @@ ReactDOM.render(
     </CookiesProvider>,
     document.getElementById('root'));
 
+
+
 ReactDOM.render(
 	 <I18nextProvider i18n={i18n}>
 	    <footer className="footer">
