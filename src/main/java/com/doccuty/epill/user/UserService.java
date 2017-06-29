@@ -267,6 +267,9 @@ public class UserService {
 			return false;
 		
 		User user = repository.findOne(getCurrentUser().getId());
+		if(user == null)
+			return false;
+		
 		user.withPreferredDrug(drug);
 
 		repository.save(user);

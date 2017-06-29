@@ -20,7 +20,20 @@ class DrugList extends React.Component {
             });
     }
 
-
+    //=============================
+    
+    addToTakingList(id) {
+    	 axios.post('/drug/taking/add',  { id : id }).then(({data}) => {
+	         console.log(data);
+         });
+    }
+    
+    addToRememberList(id) {
+	   	 axios.post('/drug/remember/add',  { id : id }).then(({data}) => {
+	         console.log(data);
+	     });
+    }
+    
     deleteDrug(id) {
         // ES6 string interpolation (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
         // No error handling for now, e.g. if the user is not authenticated.
@@ -34,6 +47,10 @@ class DrugList extends React.Component {
             });
     }
 
+    
+    
+    //=============================
+    
     renderDrugFeatures(drug) {
 		
 		if(!drug.drugFeature) {
@@ -95,12 +112,12 @@ class DrugList extends React.Component {
         		<div className="action-pattern col-sm-1 col-md-1 col-lg-1">
         			<ul>
         				<li>
-        					<button type="button" className="btn btn-xs btn-like">
+        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.addToTakingList(drug.id)}>
         						<span className="glyphicon glyphicon-heart"></span>
         					</button>
         				</li>
         				<li>
-        					<button type="button" className="btn btn-xs btn-add">
+        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.addToRememberList(drug.id)}>
         						<span className="glyphicon glyphicon-plus"></span>
         					</button>
         				</li>

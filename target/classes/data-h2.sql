@@ -24,6 +24,7 @@ DELETE FROM drug_feature;
 DELETE FROM pharmaceutical_form;
 DELETE FROM disease;
 DELETE FROM item_invocation;
+DELETE FROM user_drug;
 DELETE FROM drug;
 DELETE FROM drug_simple;
 DELETE FROM user;

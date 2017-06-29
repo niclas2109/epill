@@ -215,44 +215,4 @@ public class UserController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
-    /**
-     * handling favorites
-     * @param drug
-     * @return
-     */
-    
-    @RequestMapping(value = "/fav/add", method = RequestMethod.POST)
-    public ResponseEntity<JsonObject> addDrugToUserFavorites(@RequestBody Drug drug) {
-
-		// A pragmatic approach to security which does not use much
-		// framework-specific magic. While other approaches
-		// with annotations, etc. are possible they are much more complex while
-		// this is quite easy to understand and
-		// extend.
-		if (service.isAnonymous()) {
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		}
-		
-		service.addDrugToUserFavorites(drug);
-		
-		return new ResponseEntity<>(HttpStatus.OK);
-    }
-    
-    @RequestMapping(value = "/fav/remove", method = RequestMethod.POST)
-    public ResponseEntity<JsonObject> removeDrugToUserFavorites(@RequestBody Drug drug) {
-
-		// A pragmatic approach to security which does not use much
-		// framework-specific magic. While other approaches
-		// with annotations, etc. are possible they are much more complex while
-		// this is quite easy to understand and
-		// extend.
-		if (service.isAnonymous()) {
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		}
-		
-		service.removeDrugFromUserFavorites(drug);
-		
-		return new ResponseEntity<>(HttpStatus.OK);
-    }
 }

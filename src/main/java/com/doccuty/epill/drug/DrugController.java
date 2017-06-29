@@ -28,6 +28,7 @@ import de.uniks.networkparser.json.JsonObject;
 
 
 @RestController
+@RequestMapping("/drug")
 public class DrugController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(DrugController.class);
@@ -38,7 +39,7 @@ public class DrugController {
     @Autowired
     private UserService userService;
     
-    @RequestMapping(value = "/drug/list/all", method = RequestMethod.GET)
+    @RequestMapping(value = "list/all", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> getAllDrugs() {
 
     	IdMap map = DrugCreator.createIdMap("");
@@ -58,7 +59,7 @@ public class DrugController {
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }
     
-    @RequestMapping(value={"/drug/{id}/{lang}"}, method = RequestMethod.GET)
+    @RequestMapping(value={"{id}/{lang}"}, method = RequestMethod.GET)
     public ResponseEntity<JsonObject> getDrugById(@PathVariable(value = "id") long id, @PathVariable(value = "lang") String lang) {
 
 		IdMap map = DrugCreator.createIdMap("");
@@ -75,7 +76,7 @@ public class DrugController {
     }
 
     
-    @RequestMapping(value={"/drug/{id}/image"}, method = RequestMethod.GET)
+    @RequestMapping(value={"{id}/image"}, method = RequestMethod.GET)
     public ResponseEntity<byte[]> getDrugById(@PathVariable(value = "id") long id) {
 
     	Drug drug = service.findDrugById(id);
@@ -91,7 +92,7 @@ public class DrugController {
     	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     } 
 
-    @RequestMapping(value = "/drug/save", method = RequestMethod.POST)
+    @RequestMapping(value = "save", method = RequestMethod.POST)
     public ResponseEntity<Object> addDrug(@RequestBody Drug drug) {
 		// A pragmatic approach to security which does not use much
 		// framework-specific magic. While other approaches
@@ -107,7 +108,7 @@ public class DrugController {
 		return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/drug/search", method = RequestMethod.GET)
+    @RequestMapping(value = "search", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> searchDrug(@RequestParam("exp") String exp) {
 		
 		IdMap map = DrugCreator.createIdMap("");
@@ -128,7 +129,7 @@ public class DrugController {
     }
     
 
-    @RequestMapping(value = "/drug/feature/all", method = RequestMethod.GET)
+    @RequestMapping(value = "feature/all", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> searchDrug() {
 		
 		IdMap map = DrugCreator.createIdMap("");
@@ -155,7 +156,7 @@ public class DrugController {
      * @return
      */
 
-    @RequestMapping(value = "/drug/adverseEffects", method = RequestMethod.GET)
+    @RequestMapping(value = "adverseEffects", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> checkForAdverseEffects() {
 		
 		IdMap map = DrugCreator.createIdMap("");
@@ -167,14 +168,56 @@ public class DrugController {
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }
     
+    /**
+     * handling drugs a user is frequently taking
+     * @param drug
+     * @return
+     */
     
+    @RequestMapping(value = "/taking/add", method = RequestMethod.POST)
+    public ResponseEntity<Object> addDrugToUserFavorites(@RequestBody Drug drug) {
+
+		// A pragmatic approach to security which does not use much
+		// framework-specific magic. While other approaches
+		// with annotations, etc. are possible they are much more complex while
+		// this is quite easy to understand and
+		// extend.
+		if (userService.isAnonymous()) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+		
+		if(userService.addDrugToUserFavorites(drug)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    
+    @RequestMapping(value = "/taking/remove", method = RequestMethod.POST)
+    public ResponseEntity<Object> removeDrugToUserFavorites(@RequestBody Drug drug) {
+
+		// A pragmatic approach to security which does not use much
+		// framework-specific magic. While other approaches
+		// with annotations, etc. are possible they are much more complex while
+		// this is quite easy to understand and
+		// extend.
+		if (userService.isAnonymous()) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+		
+		if(userService.removeDrugFromUserFavorites(drug)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
     
     /**
-     * retrieve user favorites
+     * retrieve drugs a user has marked as frequently taking
      * @return
      */
 
-    @RequestMapping(value = "/drug/fav", method = RequestMethod.GET)
+    @RequestMapping(value = "/taking", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> getUserFavorites() {
     	
 		// A pragmatic approach to security which does not use much
@@ -203,4 +246,5 @@ public class DrugController {
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }
+
 }
