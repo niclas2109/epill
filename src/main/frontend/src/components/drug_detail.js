@@ -114,7 +114,14 @@ class DrugDetail extends React.Component {
         const drug = this.state.drug;
         if (!drug) {
             // Do not show anything while loading.
-            return (<div className="container marketing no-banner">loading</div>);
+            return (
+                	<div className="container marketing no-banner">
+	            		<div className='page-header'>
+	            			<h3> </h3>
+	            		</div>
+	            		loading...
+            		</div>
+            );
         }
 
         return (

@@ -23,9 +23,9 @@ class UserMenue extends React.Component {
 						<ul className="dropdown-menu">
 							<li><Link to="/like">{t('userDrugs')}</Link></li>
 							<li><Link to="/compare">{t('rememberedDrugs')}</Link></li>
-							<li><Link to="/user/1/settings/de/">{t('userSettings')}</Link></li>
-							<li><Link to="/user/1/de/">{t('userData')}</Link></li>
-							<li><Link to="/user/all/de/">{t('userList')}</Link></li>
+							<li><Link to="/user/settings">{t('userSettings')}</Link></li>
+							<li><Link to="/user/data">{t('userData')}</Link></li>
+							<li><Link to="/user/list">{t('userList')}</Link></li>
 							<li><a href="#">{t('logout')}</a></li>
 						</ul></li>
 				</ul>;

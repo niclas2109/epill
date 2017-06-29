@@ -54,7 +54,6 @@ class DrugList extends React.Component {
     //=============================
     
     renderDrugFeatures(drug) {
-		
 		if(!drug.drugFeature) {
 			return;
 		}
@@ -142,7 +141,9 @@ class DrugList extends React.Component {
         const {t} = this.props;
         return (
         	<div className="container no-banner">
-                <h1>Medikamente</h1>
+	    		<div className='page-header'>
+					<h3>Medikamente</h3>
+				</div>
                 <div className="text-box">
                 	{t('drugListAllDescriptionText')}
                 </div>

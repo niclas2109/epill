@@ -5,12 +5,17 @@ import ReactDOM from "react-dom";
 import {I18nextProvider} from "react-i18next";
 import {HashRouter as Router, Link, Route, Switch} from "react-router-dom";
 
-
 import Home from "./components/home";
+import About from "./components/about";
 import Authentication from "./components/authentication";
 import Register from "./components/register";
 import DrugList from "./components/drug_list";
 import DrugDetail from "./components/drug_detail";
+
+
+import UserData from "./components/user/data";
+import UserSettings from "./components/user/settings";
+import UserList from "./components/user/list";
 
 import User from "./util/User";
 import UserMenue from "./util/UserMenue";
@@ -63,12 +68,22 @@ ReactDOM.render(
 	                        <Route path="/user/login" component={Authentication}/>
 	                        <Route path="/user/register" component={Register}/>
 	
-	                        {/* Get handling */}
+	                        {/* Drug handling */}
 	                        <Route path="/drug/list" component={DrugList}/>
 	                        <Route path="/drug/:id" component={DrugDetail}/>
-	
+
+	                        {/* User sites */}
+	                        <Route path="/user/rememberedDrugs" component={DrugList}/>
+	                        <Route path="/user/takenDrugs" component={DrugList}/>
+	                        <Route path="/user/data" component={UserData}/>
+	                        <Route path="/user/settings" component={UserSettings}/>
+	                        <Route path="/user/list" component={UserList}/>
+	                        
+	                        {/* Information sites */}
+	                        <Route path="/about" component={About} />
+	                        
 	                        {/* Default route */}
-	                        <Route path="/" component={Home}/>	
+	                        <Route path="/" component={Home} />
 	                    </Switch>
                     </div>
                     
