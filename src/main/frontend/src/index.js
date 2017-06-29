@@ -13,6 +13,7 @@ import DrugList from "./components/drug_list";
 import DrugDetail from "./components/drug_detail";
 import i18n from "./i18n";
 import User from "./util/User";
+import UserMenue from "./util/UserMenue";
 
 // Force initialization of the object.
 User.isAuthenticated();
@@ -46,30 +47,7 @@ ReactDOM.render(
 	            	
 	            						<autocomplete></autocomplete>
 	            	
-	            						<ul className="nav navbar-nav navbar-right">
-	            							<li className="dropdown open">
-	            								<Link to="/user" className="dropdown-toggle">
-	            									{User.firstname} {User.lastname}
-	            								</Link>
-	            								<ul className="dropdown-menu">
-	            									<li><Link to="/like">my drugs</Link></li>
-	            									<li><Link to="/compare">compare drugs</Link></li>
-	            									<li><Link to="/user/1/settings/de/">settings</Link></li>
-	            									<li><Link to="/user/1/de/">user data</Link></li>
-	            									<li><Link to="/user/all/de/">users</Link></li>
-	            									<li><a onClick={Authentication.handleLogout}>logout</a></li>
-	            								</ul></li>
-	            						</ul>
-	            						<ul className="nav navbar-nav navbar-right">
-	            							<li className="dropdown open">
-	            								<Link to="#" className="dropdown-toggle">
-	            									login/register
-	            								</Link>
-	            								<ul className="dropdown-menu">
-	            									<li><Link to="/user/login">login</Link></li>
-	            									<li><Link to="/user/register">register</Link></li>
-	            								</ul></li>
-	            						</ul>
+	            						<UserMenue />
 	            					</div>
 	            				</div>
 	            			</nav>

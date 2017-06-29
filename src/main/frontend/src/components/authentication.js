@@ -69,8 +69,6 @@ class Authentication extends React.Component {
     }
 
     handleLogout() {
-    	console.log("logout");
-    	
         axios.defaults.headers.common['Authorization'] = undefined;
         User.reset();
         this.cookies.remove('auth');
