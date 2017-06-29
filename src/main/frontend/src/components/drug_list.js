@@ -60,7 +60,7 @@ class DrugList extends React.Component {
 		
         return (
         	<p>
-        		{ drug.drugFeature.map((feature, i) => <span key={feature.id}>{feature.drugFeature}</span> ) }
+        		{ drug.drugFeature.map(feature => <span key={feature.id}>{feature.drugFeature}</span> ) }
 	        </p>
 		);
     }
@@ -72,7 +72,7 @@ class DrugList extends React.Component {
 		
         return (
         	<p> U. a. verwendet bei: 
-	        	{ drug.disease.map((packaging, i) => <span key={disease.id}>{disease.name}</span> ) }
+	        	{ drug.disease.map(packaging => <span key={disease.id}>{disease.name}</span> ) }
 	        </p>
 		);
 	}
@@ -84,14 +84,25 @@ class DrugList extends React.Component {
 		
         return (
         	<p> Wirkstoff(e): 
-	        	{ drug.activeSubstance.map((substance, i) => <span key={substance.id}>{substance.name}</span> ) }
+	        	{ drug.activeSubstance.map(substance => <span key={substance.id}>{substance.name}</span> ) }
 	        </p>
 		);
 	}
     
     
     renderDrugs() {
-        return this.state.drugs.map((drug => {
+    	
+        const drugs = this.state.drugs;
+        
+        if (drugs) {
+            return (
+	            	<div className="col-sm-12 col-md-12 col-lg-12">
+	            		loading...
+            		</div>
+            );
+        }
+    	
+        return drugs.map((drug => {
             return (
                <li className="col-sm-12 col-md-12 col-lg-12" key={drug.id}>
                		<Link to={`/drug/${drug.id}`}>
