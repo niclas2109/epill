@@ -15,5 +15,7 @@
   "rememberedDrugs"	: "remembered drugs",
   "userSettings"	: "your settings",
   "userData"	: "your data",
-  "userList"	: "all users"
+  "userList"	: "all users",
+  "save"		: "save",
+  "userCockpitDescr"	: "Hello {User.firstname} {User.lastname}, here your can change your account settings."
 }
