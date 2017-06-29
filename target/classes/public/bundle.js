@@ -4199,12 +4199,16 @@ var User = function () {
         key: "set",
         value: function set(data) {
             this.username = data.username;
+            this.firstname = data.firstname;
+            this.lastname = data.lastname;
             this.id = data.id;
         }
     }, {
         key: "reset",
         value: function reset() {
             this.username = undefined;
+            this.firstname = undefined;
+            this.lastname = undefined;
             this.id = -1;
         }
     }, {
@@ -12685,7 +12689,9 @@ _reactDom2.default.render(_react2.default.createElement(
 											_react2.default.createElement(
 												_reactRouterDom.Link,
 												{ to: "/user", className: "dropdown-toggle" },
-												_User2.default.username || 'not logged in'
+												_User2.default.firstname,
+												" ",
+												_User2.default.lastname
 											),
 											_react2.default.createElement(
 												"ul",
@@ -13903,9 +13909,9 @@ var Authentication = function (_React$Component) {
             password: '',
             error: undefined
         };
-
         _this.handleUsernameChange = _this.handleUsernameChange.bind(_this);
         _this.handlePasswordChange = _this.handlePasswordChange.bind(_this);
+
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         _this.handleLogout = _this.handleLogout.bind(_this);
         _this.cookies = _this.props.cookies;
@@ -13929,8 +13935,6 @@ var Authentication = function (_React$Component) {
 
             event.preventDefault();
 
-            console.log(this.state);
-
             _axios2.default.post('/auth/login', this.state, {
                 // We allow a status code of 401 (unauthorized). Otherwise it is interpreted as an error and we can't
                 // check the HTTP status code.
@@ -13944,6 +13948,8 @@ var Authentication = function (_React$Component) {
                 switch (status) {
                     case 200:
                         _User2.default.setCookieCredentials(data);
+
+                        console.log(data);
 
                         _this2.setState({ error: undefined });
 
@@ -14007,7 +14013,7 @@ var Authentication = function (_React$Component) {
                         _react2.default.createElement(
                             "button",
                             { type: "submit", className: "btn btn-primary" },
-                            "Register"
+                            "Login"
                         ),
                         _react2.default.createElement("img", { src: "data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" }),
                         _react2.default.createElement(
@@ -14764,10 +14770,15 @@ var Register = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).call(this, props));
 
         _this.state = {
+            firstname: '',
+            lastname: '',
             username: '',
             password: '',
             passwordRepeat: ''
         };
+
+        _this.handleFirstnameChange = _this.handleFirstnameChange.bind(_this);
+        _this.handleLastnameChange = _this.handleLastnameChange.bind(_this);
 
         _this.handleUsernameChange = _this.handleUsernameChange.bind(_this);
         _this.handlePasswordChange = _this.handlePasswordChange.bind(_this);
@@ -14778,6 +14789,16 @@ var Register = function (_React$Component) {
     }
 
     _createClass(Register, [{
+        key: "handleFirstnameChange",
+        value: function handleFirstnameChange(event) {
+            this.setState({ firstname: event.target.value });
+        }
+    }, {
+        key: "handleLastnameChange",
+        value: function handleLastnameChange(event) {
+            this.setState({ lastname: event.target.value });
+        }
+    }, {
         key: "handleUsernameChange",
         value: function handleUsernameChange(event) {
             this.setState({ username: event.target.value });
@@ -14805,10 +14826,13 @@ var Register = function (_React$Component) {
             }
 
             _axios2.default.post('/user/save', {
+                firstname: this.state.firstname,
+                lastname: this.state.lastname,
                 username: this.state.username,
                 password: this.state.password
             }).then(function (data) {
                 // Redirect to front page.
+                console.log(data);
                 _this2.props.history.push("/user/login");
             });
         }
@@ -14836,6 +14860,26 @@ var Register = function (_React$Component) {
                     _react2.default.createElement(
                         "form",
                         { onSubmit: this.handleSubmit },
+                        _react2.default.createElement(
+                            "div",
+                            { className: "form-group" },
+                            _react2.default.createElement(
+                                "label",
+                                { htmlFor: "firstname" },
+                                "firstname"
+                            ),
+                            _react2.default.createElement("input", { type: "text", name: "firstname", id: "firstname", className: "form-control", value: this.state.firstname, onChange: this.handleFirstnameChange })
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "form-group" },
+                            _react2.default.createElement(
+                                "label",
+                                { htmlFor: "lastname" },
+                                "lastname"
+                            ),
+                            _react2.default.createElement("input", { type: "text", name: "lastname", id: "lastname", className: "form-control", value: this.state.lastname, onChange: this.handleLastnameChange })
+                        ),
                         _react2.default.createElement(
                             "div",
                             { className: "form-group" },

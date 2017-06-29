@@ -10,10 +10,16 @@ class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+        	firstname: '',
+            lastname: '',
         	username: '',
             password: '',
             passwordRepeat: ''
         };
+
+        this.handleFirstnameChange = this.handleFirstnameChange.bind(this);
+        this.handleLastnameChange = this.handleLastnameChange.bind(this);
+        
 
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -23,6 +29,14 @@ class Register extends React.Component {
     }
 
 
+    handleFirstnameChange(event) {
+    	this.setState({firstname: event.target.value});
+    }
+
+    handleLastnameChange(event) {
+    	this.setState({lastname: event.target.value});
+    }
+    
     handleUsernameChange(event) {
         this.setState({username: event.target.value});
     }
@@ -45,11 +59,14 @@ class Register extends React.Component {
         
         axios.post('/user/save',
             {
-                username: this.state.username,
-                password: this.state.password
+            	firstname	: this.state.firstname,
+            	lastname	: this.state.lastname,
+                username	: this.state.username,
+                password	: this.state.password
             })
             .then((data) => {
                 // Redirect to front page.
+            	console.log(data);
             	this.props.history.push("/user/login");
             });
     }
@@ -66,6 +83,17 @@ class Register extends React.Component {
 	        		<div className="container">
 		                <form onSubmit={this.handleSubmit}>
 
+			                <div className="form-group">
+			                    <label htmlFor="firstname">firstname</label>
+			                    <input type="text" name="firstname" id="firstname" className="form-control" value={this.state.firstname} onChange={this.handleFirstnameChange} />
+			                </div>
+			                
+			                <div className="form-group">
+			                   <label htmlFor="lastname">lastname</label>
+			                   <input type="text" name="lastname" id="lastname" className="form-control" value={this.state.lastname} onChange={this.handleLastnameChange} />
+			                </div> 
+		                    
+		                
 				            <div className="form-group">
 				                <label htmlFor="username">username</label>
 				                <input type="text" name="username" id="username" className="form-control" value={this.state.username} onChange={this.handleUsernameChange} />

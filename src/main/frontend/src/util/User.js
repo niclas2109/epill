@@ -17,12 +17,16 @@ class User {
     }
 
     set(data) {
-        this.username = data.username;
+        this.username	= data.username;
+        this.firstname	= data.firstname;
+        this.lastname	= data.lastname;
         this.id = data.id;
     }
 
     reset() {
         this.username = undefined;
+        this.firstname = undefined;
+        this.lastname = undefined;
         this.id = -1;
     }
 
