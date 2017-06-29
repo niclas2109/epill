@@ -15,5 +15,7 @@
   "rememberedDrugs"	: "Gemerkte Medikamente",
   "userSettings"	: "Benutzereinstellungen",
   "userData"	: "Benutzerdaten",
-  "userList"	: "Alle Benutzer"
+  "userList"	: "Alle Benutzer",
+  "save"		: "speichern",
+  "userCockpitDescr"	: "Hallo {User.firstname} {User.lastname}, hier kannst du Einstellungen vornehmen."
 }
