@@ -76,7 +76,7 @@ ReactDOM.render(
     	    			<div className="container">
     	    				<div className="row bottom-rule">
     	    					<div className="col-sm-4 footer-section">
-    	    						<strong>Connect with Best Store</strong>
+    	    						<strong>Connect with us</strong>
     	    						<p>Email promotions, news, and information</p>
     	    						<form className="form-inline">
     	    							<div className="form-group">

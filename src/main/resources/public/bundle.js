@@ -12718,7 +12718,7 @@ _reactDom2.default.render(_react2.default.createElement(
                                 _react2.default.createElement(
                                     "strong",
                                     null,
-                                    "Connect with Best Store"
+                                    "Connect with us"
                                 ),
                                 _react2.default.createElement(
                                     "p",
