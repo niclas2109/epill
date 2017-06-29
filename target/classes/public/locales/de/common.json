@@ -10,5 +10,10 @@
   "loginFailed"		: "Login war nicht erfolgreich!",
   "drugListAllDescriptionText"	: "Hier eine Übersicht über alle im System geführten Medikamente",
   "drugs"	: "Medikamente",
-  "drug"	: "Medikament"
+  "drug"	: "Medikament",
+  "userDrugs"	: "Deine Medikamente",
+  "rememberedDrugs"	: "Gemerkte Medikamente",
+  "userSettings"	: "Benutzereinstellungen",
+  "userData"	: "Benutzerdaten",
+  "userList"	: "Alle Benutzer"
 }

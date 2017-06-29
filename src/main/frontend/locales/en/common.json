@@ -10,5 +10,10 @@
   "loginFailed"		: "login failed!",
   "drugListAllDescriptionText"	: "This is an overview about all drugs in the system.",
   "drugs"	: "drugs",
-  "drug"	: "drug"
+  "drug"	: "drug",
+  "userDrugs"	: "your drugs",
+  "rememberedDrugs"	: "remembered drugs",
+  "userSettings"	: "your settings",
+  "userData"	: "your data",
+  "userList"	: "all users"
 }

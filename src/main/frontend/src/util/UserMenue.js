@@ -2,6 +2,7 @@ import React from "react";
 import User from "./User";
 
 import {Link} from "react-router-dom";
+import {translate} from "react-i18next";
 
 class UserMenue extends React.Component {
 	  constructor(props) {
@@ -10,6 +11,8 @@ class UserMenue extends React.Component {
 	  }
 
 	  render() {
+	      const {t} = this.props;
+
 		  let menue = null;
 		  if(User.isAuthenticated()) {
 				menue = <ul className="nav navbar-nav navbar-right">
@@ -18,12 +21,12 @@ class UserMenue extends React.Component {
 							{User.firstname} {User.lastname}
 						</Link>
 						<ul className="dropdown-menu">
-							<li><Link to="/like">my drugs</Link></li>
-							<li><Link to="/compare">compare drugs</Link></li>
-							<li><Link to="/user/1/settings/de/">settings</Link></li>
-							<li><Link to="/user/1/de/">user data</Link></li>
-							<li><Link to="/user/all/de/">users</Link></li>
-							<li><a href="#">logout</a></li>
+							<li><Link to="/like">{t('userDrugs')}</Link></li>
+							<li><Link to="/compare">{t('rememberedDrugs')}</Link></li>
+							<li><Link to="/user/1/settings/de/">{t('userSettings')}</Link></li>
+							<li><Link to="/user/1/de/">{t('userData')}</Link></li>
+							<li><Link to="/user/all/de/">{t('userList')}</Link></li>
+							<li><a href="#">{t('logout')}</a></li>
 						</ul></li>
 				</ul>;
 				
@@ -31,11 +34,11 @@ class UserMenue extends React.Component {
 			  menue = <ul className="nav navbar-nav navbar-right">
 					<li className="dropdown open">
 					<Link to="#" className="dropdown-toggle">
-						login/register
+						{t('login')}/{t('register')}
 					</Link>
 					<ul className="dropdown-menu">
-						<li><Link to="/user/login">login</Link></li>
-						<li><Link to="/user/register">register</Link></li>
+						<li><Link to="/user/login">{t('login')}</Link></li>
+						<li><Link to="/user/register">{t('register')}</Link></li>
 					</ul></li>
 				</ul>;
 		  }
@@ -46,4 +49,4 @@ class UserMenue extends React.Component {
 	  }
 	}
 
-export default UserMenue;
+export default translate()(UserMenue);
