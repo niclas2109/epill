@@ -7,5 +7,8 @@
   "login"	: "login",
   "register": "register",
   "loginSuccess"	: "login was successfull!",
-  "loginFailed"		: "login failed!"
+  "loginFailed"		: "login failed!",
+  "drugListAllDescriptionText"	: "This is an overview about all drugs in the system.",
+  "drugs"	: "drugs",
+  "drug"	: "drug"
 }

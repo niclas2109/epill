@@ -7,5 +7,8 @@
   "login"	: "Login",
   "register": "Registrieren",
   "loginSuccess"	: "Login war erfolgreich!",
-  "loginFailed"		: "Login war nicht erfolgreich!"
+  "loginFailed"		: "Login war nicht erfolgreich!",
+  "drugListAllDescriptionText"	: "Hier eine Übersicht über alle im System geführten Medikamente",
+  "drugs"	: "Medikamente",
+  "drug"	: "Medikament"
 }

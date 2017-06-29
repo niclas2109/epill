@@ -45,7 +45,7 @@ ReactDOM.render(
 	            						id="bs-example-navbar-collapse-1">
 	            						<ul className="nav navbar-nav">
 	            							<li><Link to="/about">About</Link></li>
-	            							<li><Link to="/drug/list">Medikamente</Link></li>
+	            							<li><Link to="/drug/list">Drugs</Link></li>
 	            						</ul>
 	            	
 	            						<autocomplete></autocomplete>

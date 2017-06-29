@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
+
 import {Link} from "react-router-dom";
+import {translate} from "react-i18next";
 
 class DrugList extends React.Component {
     constructor(props) {
@@ -137,11 +139,12 @@ class DrugList extends React.Component {
 
 
     render() {
+        const {t} = this.props;
         return (
         	<div className="container no-banner">
                 <h1>Medikamente</h1>
                 <div className="text-box">
-                	Hier findest du eine Übersicht über alle Medikamente.
+                	{t('drugListAllDescriptionText')}
                 </div>
                 <div className="row">
 	                <ul className="drug-list">
@@ -154,4 +157,4 @@ class DrugList extends React.Component {
 }
 
 
-export default DrugList;
+export default translate()(DrugList);
