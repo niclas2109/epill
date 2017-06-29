@@ -3,39 +3,39 @@
 -- for explanation. This is a cool spring feature :-).
 
 
--- -- DELETE all.
+-- Delete all.
 
--- DELETE FROM user_drug;
--- DELETE FROM item_invocation;
--- DELETE FROM drug_active_substance;
--- DELETE FROM drug_pharmaceutical_form;
--- DELETE FROM drug_drug_feature;
--- DELETE FROM drug_disease;
--- DELETE FROM drug_adverse_effect;
--- DELETE FROM user_preferred_topic;
--- DELETE FROM user_disease;
--- DELETE FROM user_drug_feature;
--- DELETE FROM user_query;
+DELETE FROM drug_active_substance;
+DELETE FROM drug_pharmaceutical_form;
+DELETE FROM drug_drug_feature;
+DELETE FROM drug_disease;
+DELETE FROM drug_adverse_effect;
+DELETE FROM user_preferred_topic;
+DELETE FROM user_disease;
+DELETE FROM user_drug_feature;
+DELETE FROM user_query;
 
--- DELETE FROM tag;
--- DELETE FROM adverse_effect;
--- DELETE FROM packaging;
--- DELETE FROM packaging_section;
--- DELETE FROM packaging_topic;
--- DELETE FROM drug_feature;
--- DELETE FROM pharmaceutical_form;
--- DELETE FROM disease;
--- DELETE FROM drug;
--- DELETE FROM drug_simple;
--- DELETE FROM user_;
--- DELETE FROM user_simple;
--- DELETE FROM indication_group;
--- DELETE FROM active_substance;
--- DELETE FROM image;
--- DELETE FROM gender;
--- DELETE FROM language;
--- DELETE FROM country;
--- DELETE FROM question;
+DELETE FROM tag;
+DELETE FROM adverse_effect;
+DELETE FROM packaging;
+DELETE FROM packaging_section;
+DELETE FROM packaging_topic;
+DELETE FROM drug_feature;
+DELETE FROM pharmaceutical_form;
+DELETE FROM disease;
+DELETE FROM item_invocation;
+DELETE FROM user_drug;
+DELETE FROM drug;
+DELETE FROM drug_simple;
+DELETE FROM user_;
+DELETE FROM user_simple;
+DELETE FROM indication_group;
+DELETE FROM active_substance;
+DELETE FROM image;
+DELETE FROM gender;
+DELETE FROM language;
+DELETE FROM country;
+DELETE FROM question;
 
 
 
@@ -65,6 +65,7 @@ INSERT INTO country (id, name) VALUES (1,'Deutschland');
 -- Dumping data for table `user_simple`
 --
 
+
 INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstname, lastname, level_of_detail, password, preferred_font_size, salt, username)
 	VALUES
 	(1,'2017-06-27','2017-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser',3,'a53c6f59e0cffc2a08a8d6086fd611024a53b4e123813dc60a08964a49db760eb2aa26778677e3b835175be8ffce2d58b51eebf2854d9f283174956f370d210c',12,'[B@22373b1f','nic');
@@ -73,8 +74,7 @@ INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstna
 -- Dumping data for table `user_`
 --
 
--- INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
-
+INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
 
 
 

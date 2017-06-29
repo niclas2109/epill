@@ -78,7 +78,6 @@ INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
 
 
 
-
 --
 -- Dumping data for table `drug_simple`
 --
