@@ -14300,10 +14300,10 @@ var DrugDetail = function (_React$Component) {
             null,
             drug.name,
             " ",
-            _react2.default.createElement(
+            drug.productGroup && _react2.default.createElement(
               "span",
               { className: "text-muted" },
-              drug.productGroup.name || ""
+              "drug.productGroup.name"
             ),
             _react2.default.createElement(
               "button",

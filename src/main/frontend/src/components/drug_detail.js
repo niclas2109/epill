@@ -124,7 +124,7 @@ class DrugDetail extends React.Component {
         				<div className='btn-group'></div>
         			</div>
         			<h3>
-        				{drug.name} <span className="text-muted">{drug.productGroup.name || ""}</span>
+        				{drug.name} {drug.productGroup && <span className="text-muted">drug.productGroup.name</span> }
         				<button type="button" className="btn btn-xs btn-add">
         					<span className="glyphicon glyphicon-plus"></span>
         				</button>
