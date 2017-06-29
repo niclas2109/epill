@@ -49,6 +49,7 @@ class Authentication extends React.Component {
                 switch (status) {
                     case 200:
                         User.setCookieCredentials(data);
+                        
                         this.setState({error: undefined});
 
                         // Store authentication values even after refresh.
@@ -69,6 +70,8 @@ class Authentication extends React.Component {
     }
 
     handleLogout() {
+    	console.log("logout");
+    	
         axios.defaults.headers.common['Authorization'] = undefined;
         User.reset();
         this.cookies.remove('auth');

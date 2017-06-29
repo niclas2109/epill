@@ -300,6 +300,10 @@ public class UserService {
 	
 	public User saveItemInvocation(ItemInvocation click) {
 		User user = repository.findOne(click.getUser().getId());
+		
+		if(user == null)
+			return null;
+		
 		click.setUser(user);
 		
 		return repository.save(user);

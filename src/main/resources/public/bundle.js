@@ -4198,19 +4198,19 @@ var User = function () {
     }, {
         key: "set",
         value: function set(data) {
-            this.email = data.email;
+            this.username = data.username;
             this.id = data.id;
         }
     }, {
         key: "reset",
         value: function reset() {
-            this.email = undefined;
+            this.username = undefined;
             this.id = -1;
         }
     }, {
         key: "isAuthenticated",
         value: function isAuthenticated() {
-            return this.email && this.id != -1;
+            return this.username && this.id != -1;
         }
     }, {
         key: "isNotAuthenticated",
@@ -12610,196 +12610,407 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _User2.default.isAuthenticated();
 
 _reactDom2.default.render(_react2.default.createElement(
-				_reactCookie.CookiesProvider,
+	_reactCookie.CookiesProvider,
+	null,
+	_react2.default.createElement(
+		_reactI18next.I18nextProvider,
+		{ i18n: _i18n2.default },
+		_react2.default.createElement(
+			_reactRouterDom.HashRouter,
+			null,
+			_react2.default.createElement(
+				"div",
 				null,
 				_react2.default.createElement(
-								_reactI18next.I18nextProvider,
-								{ i18n: _i18n2.default },
+					"div",
+					{ className: "navbar-wrapper" },
+					_react2.default.createElement(
+						"div",
+						{ className: "container" },
+						_react2.default.createElement(
+							"nav",
+							{ className: "navbar navbar-inverse navbar-static-top" },
+							_react2.default.createElement(
+								"div",
+								{ className: "container" },
 								_react2.default.createElement(
-												_reactRouterDom.HashRouter,
-												null,
+									"div",
+									{ className: "navbar-header" },
+									_react2.default.createElement(
+										"button",
+										{ type: "button", className: "navbar-toggle collapsed" },
+										_react2.default.createElement("span", { className: "icon-bar" }),
+										_react2.default.createElement("span", { className: "icon-bar" }),
+										_react2.default.createElement("span", { className: "icon-bar" })
+									),
+									_react2.default.createElement(
+										_reactRouterDom.Link,
+										{ to: "/", className: "navbar-brand" },
+										_react2.default.createElement("img", { src: "/assets/images/logo_v.svg", className: "logo" })
+									)
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "collapse navbar-collapse",
+										id: "bs-example-navbar-collapse-1" },
+									_react2.default.createElement(
+										"ul",
+										{ className: "nav navbar-nav" },
+										_react2.default.createElement(
+											"li",
+											null,
+											_react2.default.createElement(
+												_reactRouterDom.Link,
+												{ to: "/about" },
+												"About"
+											)
+										),
+										_react2.default.createElement(
+											"li",
+											null,
+											_react2.default.createElement(
+												_reactRouterDom.Link,
+												{ to: "/drug/list" },
+												"Medikamente"
+											)
+										)
+									),
+									_react2.default.createElement("autocomplete", null),
+									_react2.default.createElement(
+										"ul",
+										{ className: "nav navbar-nav navbar-right" },
+										_react2.default.createElement(
+											"li",
+											{ className: "dropdown open" },
+											_react2.default.createElement(
+												_reactRouterDom.Link,
+												{ to: "/user", className: "dropdown-toggle" },
+												_User2.default.username || 'not logged in'
+											),
+											_react2.default.createElement(
+												"ul",
+												{ className: "dropdown-menu" },
 												_react2.default.createElement(
-																"div",
-																null,
-																_react2.default.createElement(
-																				"div",
-																				{ className: "navbar-wrapper" },
-																				_react2.default.createElement(
-																								"div",
-																								{ className: "container" },
-																								_react2.default.createElement(
-																												"nav",
-																												{ className: "navbar navbar-inverse navbar-static-top" },
-																												_react2.default.createElement(
-																																"div",
-																																{ className: "container" },
-																																_react2.default.createElement(
-																																				"div",
-																																				{ className: "navbar-header" },
-																																				_react2.default.createElement(
-																																								"button",
-																																								{ type: "button", className: "navbar-toggle collapsed" },
-																																								_react2.default.createElement("span", { className: "icon-bar" }),
-																																								_react2.default.createElement("span", { className: "icon-bar" }),
-																																								_react2.default.createElement("span", { className: "icon-bar" })
-																																				),
-																																				_react2.default.createElement(
-																																								_reactRouterDom.Link,
-																																								{ to: "/", className: "navbar-brand" },
-																																								_react2.default.createElement("img", { src: "/assets/images/logo_v.svg", className: "logo" })
-																																				)
-																																),
-																																_react2.default.createElement(
-																																				"div",
-																																				{ className: "collapse navbar-collapse",
-																																								id: "bs-example-navbar-collapse-1" },
-																																				_react2.default.createElement(
-																																								"ul",
-																																								{ className: "nav navbar-nav" },
-																																								_react2.default.createElement(
-																																												"li",
-																																												null,
-																																												_react2.default.createElement(
-																																																_reactRouterDom.Link,
-																																																{ to: "/about" },
-																																																"About"
-																																												)
-																																								),
-																																								_react2.default.createElement(
-																																												"li",
-																																												null,
-																																												_react2.default.createElement(
-																																																_reactRouterDom.Link,
-																																																{ to: "/drug/list" },
-																																																"Medikamente"
-																																												)
-																																								)
-																																				),
-																																				_react2.default.createElement("autocomplete", null),
-																																				_react2.default.createElement(
-																																								"ul",
-																																								{ className: "nav navbar-nav navbar-right" },
-																																								_react2.default.createElement(
-																																												"li",
-																																												{ className: "dropdown open" },
-																																												_react2.default.createElement(
-																																																_reactRouterDom.Link,
-																																																{ to: "/user", className: "dropdown-toggle" },
-																																																_User2.default.username || 'not logged in'
-																																												),
-																																												_react2.default.createElement(
-																																																"ul",
-																																																{ className: "dropdown-menu" },
-																																																_react2.default.createElement(
-																																																				"li",
-																																																				null,
-																																																				_react2.default.createElement(
-																																																								_reactRouterDom.Link,
-																																																								{ to: "/like" },
-																																																								"my drugs"
-																																																				)
-																																																),
-																																																_react2.default.createElement(
-																																																				"li",
-																																																				null,
-																																																				_react2.default.createElement(
-																																																								_reactRouterDom.Link,
-																																																								{ to: "/compare" },
-																																																								"compare drugs"
-																																																				)
-																																																),
-																																																_react2.default.createElement(
-																																																				"li",
-																																																				null,
-																																																				_react2.default.createElement(
-																																																								_reactRouterDom.Link,
-																																																								{ to: "/user/1/settings/de/" },
-																																																								"settings"
-																																																				)
-																																																),
-																																																_react2.default.createElement(
-																																																				"li",
-																																																				null,
-																																																				_react2.default.createElement(
-																																																								_reactRouterDom.Link,
-																																																								{ to: "/user/1/de/" },
-																																																								"user data"
-																																																				)
-																																																),
-																																																_react2.default.createElement(
-																																																				"li",
-																																																				null,
-																																																				_react2.default.createElement(
-																																																								_reactRouterDom.Link,
-																																																								{ to: "/user/all/de/" },
-																																																								"users"
-																																																				)
-																																																),
-																																																_react2.default.createElement(
-																																																				"li",
-																																																				null,
-																																																				_react2.default.createElement(
-																																																								_reactRouterDom.Link,
-																																																								{ to: "" },
-																																																								"logout"
-																																																				)
-																																																)
-																																												)
-																																								)
-																																				),
-																																				_react2.default.createElement(
-																																								"ul",
-																																								{ className: "nav navbar-nav navbar-right" },
-																																								_react2.default.createElement(
-																																												"li",
-																																												{ className: "dropdown open" },
-																																												_react2.default.createElement(
-																																																_reactRouterDom.Link,
-																																																{ to: "#", className: "dropdown-toggle" },
-																																																"login/register"
-																																												),
-																																												_react2.default.createElement(
-																																																"ul",
-																																																{ className: "dropdown-menu" },
-																																																_react2.default.createElement(
-																																																				"li",
-																																																				null,
-																																																				_react2.default.createElement(
-																																																								_reactRouterDom.Link,
-																																																								{ to: "/user/login" },
-																																																								"login"
-																																																				)
-																																																),
-																																																_react2.default.createElement(
-																																																				"li",
-																																																				null,
-																																																				_react2.default.createElement(
-																																																								_reactRouterDom.Link,
-																																																								{ to: "/user/register" },
-																																																								"register"
-																																																				)
-																																																)
-																																												)
-																																								)
-																																				)
-																																)
-																												)
-																								)
-																				)
-																),
-																_react2.default.createElement(
-																				_reactRouterDom.Switch,
-																				null,
-																				_react2.default.createElement(_reactRouterDom.Route, { path: "/user/login", component: _authentication2.default }),
-																				_react2.default.createElement(_reactRouterDom.Route, { path: "/user/register", component: _register2.default }),
-																				_react2.default.createElement(_reactRouterDom.Route, { path: "/drug/list", component: _drug_list2.default }),
-																				_react2.default.createElement(_reactRouterDom.Route, { path: "/drug/:id", component: _drug_detail2.default }),
-																				_react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _carousel2.default })
-																)
+													"li",
+													null,
+													_react2.default.createElement(
+														_reactRouterDom.Link,
+														{ to: "/like" },
+														"my drugs"
+													)
+												),
+												_react2.default.createElement(
+													"li",
+													null,
+													_react2.default.createElement(
+														_reactRouterDom.Link,
+														{ to: "/compare" },
+														"compare drugs"
+													)
+												),
+												_react2.default.createElement(
+													"li",
+													null,
+													_react2.default.createElement(
+														_reactRouterDom.Link,
+														{ to: "/user/1/settings/de/" },
+														"settings"
+													)
+												),
+												_react2.default.createElement(
+													"li",
+													null,
+													_react2.default.createElement(
+														_reactRouterDom.Link,
+														{ to: "/user/1/de/" },
+														"user data"
+													)
+												),
+												_react2.default.createElement(
+													"li",
+													null,
+													_react2.default.createElement(
+														_reactRouterDom.Link,
+														{ to: "/user/all/de/" },
+														"users"
+													)
+												),
+												_react2.default.createElement(
+													"li",
+													null,
+													_react2.default.createElement(
+														"a",
+														{ onClick: _authentication2.default.handleLogout },
+														"logout"
+													)
 												)
+											)
+										)
+									),
+									_react2.default.createElement(
+										"ul",
+										{ className: "nav navbar-nav navbar-right" },
+										_react2.default.createElement(
+											"li",
+											{ className: "dropdown open" },
+											_react2.default.createElement(
+												_reactRouterDom.Link,
+												{ to: "#", className: "dropdown-toggle" },
+												"login/register"
+											),
+											_react2.default.createElement(
+												"ul",
+												{ className: "dropdown-menu" },
+												_react2.default.createElement(
+													"li",
+													null,
+													_react2.default.createElement(
+														_reactRouterDom.Link,
+														{ to: "/user/login" },
+														"login"
+													)
+												),
+												_react2.default.createElement(
+													"li",
+													null,
+													_react2.default.createElement(
+														_reactRouterDom.Link,
+														{ to: "/user/register" },
+														"register"
+													)
+												)
+											)
+										)
+									)
 								)
+							)
+						)
+					)
+				),
+				_react2.default.createElement(
+					_reactRouterDom.Switch,
+					null,
+					_react2.default.createElement(_reactRouterDom.Route, { path: "/user/login", component: _authentication2.default }),
+					_react2.default.createElement(_reactRouterDom.Route, { path: "/user/register", component: _register2.default }),
+					_react2.default.createElement(_reactRouterDom.Route, { path: "/drug/list", component: _drug_list2.default }),
+					_react2.default.createElement(_reactRouterDom.Route, { path: "/drug/:id", component: _drug_detail2.default }),
+					_react2.default.createElement(_reactRouterDom.Route, { path: "/", component: _carousel2.default })
 				)
+			)
+		)
+	)
 ), document.getElementById('root'));
+
+_reactDom2.default.render(_react2.default.createElement(
+	_reactI18next.I18nextProvider,
+	{ i18n: _i18n2.default },
+	_react2.default.createElement(
+		"footer",
+		{ className: "footer" },
+		_react2.default.createElement(
+			"div",
+			{ className: "container" },
+			_react2.default.createElement(
+				"div",
+				{ className: "row bottom-rule" },
+				_react2.default.createElement(
+					"div",
+					{ className: "col-sm-4 footer-section" },
+					_react2.default.createElement(
+						"strong",
+						null,
+						"Connect with Best Store"
+					),
+					_react2.default.createElement(
+						"p",
+						null,
+						"Email promotions, news, and information"
+					),
+					_react2.default.createElement(
+						"form",
+						{ className: "form-inline" },
+						_react2.default.createElement(
+							"div",
+							{ className: "form-group" },
+							_react2.default.createElement(
+								"label",
+								{ className: "sr-only", htmlFor: "inputEmail" },
+								"Email"
+							),
+							" ",
+							_react2.default.createElement("input", {
+								type: "email", className: "form-control", id: "inputEmail",
+								placeholder: "address@example.com" })
+						),
+						_react2.default.createElement(
+							"button",
+							{ type: "submit", className: "btn btn-default" },
+							"Subscribe"
+						)
+					)
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "col-sm-5 footer-section" },
+					_react2.default.createElement(
+						"ul",
+						{ className: "list-inline" },
+						_react2.default.createElement(
+							"li",
+							{ className: "text-uppercase" },
+							"ePill:"
+						),
+						_react2.default.createElement(
+							"li",
+							null,
+							_react2.default.createElement(
+								"a",
+								{ href: "https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/team.html", target: "blank" },
+								"Team"
+							)
+						),
+						_react2.default.createElement(
+							"li",
+							null,
+							_react2.default.createElement(
+								"a",
+								{ href: "https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/research.html", target: "blank" },
+								"Articles"
+							)
+						),
+						_react2.default.createElement(
+							"li",
+							null,
+							_react2.default.createElement(
+								"a",
+								{ href: "#!/about" },
+								"Why Register?"
+							)
+						)
+					),
+					_react2.default.createElement(
+						"ul",
+						{ className: "list-inline" },
+						_react2.default.createElement(
+							"li",
+							{ className: "text-uppercase" },
+							"Help:"
+						),
+						_react2.default.createElement(
+							"li",
+							null,
+							_react2.default.createElement(
+								"a",
+								{ href: "#!/sitemap" },
+								"Functions"
+							)
+						),
+						_react2.default.createElement(
+							"li",
+							null,
+							_react2.default.createElement(
+								"a",
+								{ href: "#!/privacy" },
+								"Privacy"
+							)
+						)
+					)
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "col-sm-3" },
+					_react2.default.createElement(
+						"address",
+						null,
+						_react2.default.createElement(
+							"strong",
+							null,
+							"Universit\xE4t Kassel"
+						),
+						_react2.default.createElement("br", null),
+						" Henschelstra\xDFe 4",
+						_react2.default.createElement("br", null),
+						"34127, Kassel",
+						_react2.default.createElement("br", null),
+						" (+49) 561-804-3450",
+						_react2.default.createElement("br", null),
+						_react2.default.createElement(
+							"a",
+							{ href: "mailto:sunyaev@uni-kassel.de" },
+							"Contact Us"
+						)
+					)
+				)
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "row bottom-rule" },
+				_react2.default.createElement(
+					"div",
+					{ className: "col-sm-12" },
+					_react2.default.createElement(
+						"nav",
+						{ className: "navbar navbar-default navbar-footer" },
+						_react2.default.createElement(
+							"ul",
+							{ className: "nav navbar-nav" },
+							_react2.default.createElement(
+								"li",
+								null,
+								_react2.default.createElement(
+									"a",
+									{ href: "#" },
+									"Customer Care"
+								)
+							),
+							_react2.default.createElement(
+								"li",
+								null,
+								_react2.default.createElement(
+									"a",
+									{ href: "#" },
+									"News"
+								)
+							),
+							_react2.default.createElement(
+								"li",
+								null,
+								_react2.default.createElement(
+									"a",
+									{ href: "#" },
+									"Impressum"
+								)
+							)
+						)
+					)
+				)
+			),
+			_react2.default.createElement(
+				"div",
+				{ className: "row leg-room" },
+				_react2.default.createElement(
+					"div",
+					{ className: "col-md-12 text-center" },
+					_react2.default.createElement(
+						"h3",
+						{ className: "text-uppercase" },
+						"ePill"
+					),
+					_react2.default.createElement(
+						"p",
+						{ className: "monospaced" },
+						"\xA92017 ePill ",
+						_react2.default.createElement(
+							"span",
+							{ className: "text-uppercase" },
+							"All Rights Reserved"
+						)
+					)
+				)
+			)
+		)
+	)
+), document.getElementById('footer'));
 
 /***/ }),
 /* 116 */
@@ -13733,6 +13944,7 @@ var Authentication = function (_React$Component) {
                 switch (status) {
                     case 200:
                         _User2.default.setCookieCredentials(data);
+
                         _this2.setState({ error: undefined });
 
                         // Store authentication values even after refresh.
@@ -13754,6 +13966,8 @@ var Authentication = function (_React$Component) {
     }, {
         key: "handleLogout",
         value: function handleLogout() {
+            console.log("logout");
+
             _axios2.default.defaults.headers.common['Authorization'] = undefined;
             _User2.default.reset();
             this.cookies.remove('auth');

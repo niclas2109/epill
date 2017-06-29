@@ -37,19 +37,16 @@ public class DrugService {
 	public Drug findDrugById(long id) {
 		
 		Drug drug = repository.findOne(id);
-		User user = null;
-		
+
 		if(drug != null && !userService.isAnonymous()) {
+			User user = userService.getCurrentUser();
+			
 			ItemInvocation invocation = new ItemInvocation();
-			invocation.withDrug(drug).withUser(userService.getCurrentUser());
+			invocation.withDrug(drug).withUser(user);
 			
 			user = userService.saveItemInvocation(invocation);
 		}
-		
-		if(user != null) {
-			
-		}
-		
+
 		return drug;
 	}
 	

@@ -17,17 +17,17 @@ class User {
     }
 
     set(data) {
-        this.email = data.email;
+        this.username = data.username;
         this.id = data.id;
     }
 
     reset() {
-        this.email = undefined;
+        this.username = undefined;
         this.id = -1;
     }
 
     isAuthenticated() {
-        return this.email && this.id != -1;
+        return this.username && this.id != -1;
     }
 
     isNotAuthenticated() {

@@ -57,7 +57,7 @@ ReactDOM.render(
 	            									<li><Link to="/user/1/settings/de/">settings</Link></li>
 	            									<li><Link to="/user/1/de/">user data</Link></li>
 	            									<li><Link to="/user/all/de/">users</Link></li>
-	            									<li><Link to="">logout</Link></li>
+	            									<li><a onClick={Authentication.handleLogout}>logout</a></li>
 	            								</ul></li>
 	            						</ul>
 	            						<ul className="nav navbar-nav navbar-right">
@@ -95,3 +95,64 @@ ReactDOM.render(
     </CookiesProvider>,
     document.getElementById('root'));
 
+ReactDOM.render(
+	 <I18nextProvider i18n={i18n}>
+	    <footer className="footer">
+			<div className="container">
+				<div className="row bottom-rule">
+					<div className="col-sm-4 footer-section">
+						<strong>Connect with Best Store</strong>
+						<p>Email promotions, news, and information</p>
+						<form className="form-inline">
+							<div className="form-group">
+								<label className="sr-only" htmlFor="inputEmail">Email</label> <input
+									type="email" className="form-control" id="inputEmail"
+									placeholder="address@example.com" />
+							</div>
+							<button type="submit" className="btn btn-default">Subscribe</button>
+						</form>
+					</div>
+					<div className="col-sm-5 footer-section">
+						<ul className="list-inline">
+							<li className="text-uppercase">ePill:</li>
+							<li><a href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/team.html" target="blank">Team</a></li>
+							<li><a href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/research.html" target="blank">Articles</a></li>
+							<li><a href="#!/about">Why Register?</a></li>
+						</ul>
+						<ul className="list-inline">
+							<li className="text-uppercase">Help:</li>
+							<li><a href="#!/sitemap">Functions</a></li>
+							<li><a href="#!/privacy">Privacy</a></li>
+						</ul>
+					</div>
+					<div className="col-sm-3">
+						<address>
+							<strong>Universität Kassel</strong><br /> Henschelstraße 4<br />
+							34127, Kassel<br /> (+49) 561-804-3450<br />
+							<a href="mailto:sunyaev@uni-kassel.de">Contact Us</a>
+						</address>
+					</div>
+				</div>
+				<div className="row bottom-rule">
+					<div className="col-sm-12">
+						<nav className="navbar navbar-default navbar-footer">
+							<ul className="nav navbar-nav">
+								<li><a href="#">Customer Care</a></li>
+								<li><a href="#">News</a></li>
+								<li><a href="#">Impressum</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+				<div className="row leg-room">
+					<div className="col-md-12 text-center">
+						<h3 className="text-uppercase">ePill</h3>
+						<p className="monospaced">
+							&copy;2017 ePill <span className="text-uppercase">All Rights Reserved</span>
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</I18nextProvider>,
+	document.getElementById('footer'));
