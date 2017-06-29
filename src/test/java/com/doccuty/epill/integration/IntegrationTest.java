@@ -37,13 +37,11 @@ public class IntegrationTest {
      */
     @Test
     public void testPostList() {
-    	/*
         RestTemplate rest = new RestTemplate();
-        ResponseEntity<List> response = rest.getForEntity(getPostURL(), List.class);
-        List<User> posts = response.getBody();
-        assertEquals(200, response.getStatusCodeValue());
-        assertTrue(posts.size() == 0);
-        */
+        //ResponseEntity<List> response = rest.getForEntity(getPostURL(), List.class);
+        //List<User> list = response.getBody();
+        //assertEquals(200, response.getStatusCodeValue());
+        //assertTrue(list.size() == 0);
     }
 
     /**
@@ -61,7 +59,7 @@ public class IntegrationTest {
 
 
     private String getPostURL() {
-        return "http://localhost:" + port + "/drug/all";
+        return "http://localhost:" + port + "/drug/list/all";
     }
 
     private String fixResponseURL(String url) {

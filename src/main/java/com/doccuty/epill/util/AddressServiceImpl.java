@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
+@Profile("default")
 public class AddressServiceImpl implements AddressService {
     @Value("${addressService.address}")
     private String serverAddress;

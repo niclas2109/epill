@@ -3,39 +3,39 @@
 -- for explanation. This is a cool spring feature :-).
 
 
--- TRUNCATE all.
+-- DELETE all.
 
-TRUNCATE drug_active_substance;
-TRUNCATE drug_pharmaceutical_form;
-TRUNCATE drug_drug_feature;
-TRUNCATE drug_disease;
-TRUNCATE drug_adverse_effect;
-TRUNCATE user_preferred_topic;
-TRUNCATE user_disease;
-TRUNCATE user_drug_feature;
-TRUNCATE user_query;
+DELETE drug_active_substance;
+DELETE drug_pharmaceutical_form;
+DELETE drug_drug_feature;
+DELETE drug_disease;
+DELETE drug_adverse_effect;
+DELETE user_preferred_topic;
+DELETE user_disease;
+DELETE user_drug_feature;
+DELETE user_query;
 
-TRUNCATE tag;
-TRUNCATE adverse_effect;
-TRUNCATE packaging;
-TRUNCATE packaging_section;
-TRUNCATE packaging_topic;
-TRUNCATE drug_feature;
-TRUNCATE pharmaceutical_form;
-TRUNCATE disease;
-TRUNCATE item_invocation;
-TRUNCATE user_drug;
-TRUNCATE drug;
-TRUNCATE drug_simple;
-TRUNCATE user_;
-TRUNCATE user_simple;
-TRUNCATE indication_group;
-TRUNCATE active_substance;
-TRUNCATE image;
-TRUNCATE gender;
-TRUNCATE language;
-TRUNCATE country;
-TRUNCATE question;
+DELETE tag;
+DELETE adverse_effect;
+DELETE packaging;
+DELETE packaging_section;
+DELETE packaging_topic;
+DELETE drug_feature;
+DELETE pharmaceutical_form;
+DELETE disease;
+DELETE item_invocation;
+DELETE user_drug;
+DELETE drug;
+DELETE drug_simple;
+DELETE user_;
+DELETE user_simple;
+DELETE indication_group;
+DELETE active_substance;
+DELETE image;
+DELETE gender;
+DELETE language;
+DELETE country;
+DELETE question;
 
 
 
@@ -66,15 +66,15 @@ INSERT INTO country (id, name) VALUES (1,'Deutschland');
 --
 
 
-INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstname, lastname, level_of_detail, password, preferred_font_size, salt, username)
-	VALUES
-	(1,'2017-06-27','2017-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser',3,'a53c6f59e0cffc2a08a8d6086fd611024a53b4e123813dc60a08964a49db760eb2aa26778677e3b835175be8ffce2d58b51eebf2854d9f283174956f370d210c',12,'[B@22373b1f','nic');
+--INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstname, lastname, level_of_detail, password, preferred_font_size, salt, username)
+--	VALUES
+--	(1,'2017-06-27','2017-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser',3,'a53c6f59e0cffc2a08a8d6086fd611024a53b4e123813dc60a08964a49db760eb2aa26778677e3b835175be8ffce2d58b51eebf2854d9f283174956f370d210c',12,'[B@22373b1f','nic');
 
 --
 -- Dumping data for table `user_`
 --
 
-INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
+-- INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
 
 
 
