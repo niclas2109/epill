@@ -67,7 +67,7 @@ public class DrugController {
 
     	Drug drug = service.findDrugById(id);
 
-    	drug.setPersonalizedInformation("This is where the magic happens. Tailored information...");
+    	drug.setPersonalizedInformation("Lieber %firstname% %lastname%, das ist deine personalisierte Information.");
     	
     	JsonObject json = new JsonObject();
 		json.add("value", map.toJsonObject(drug));
