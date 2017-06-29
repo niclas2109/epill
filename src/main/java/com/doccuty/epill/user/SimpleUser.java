@@ -348,7 +348,6 @@ public class SimpleUser implements SendableEntity {
 	public static final String PROPERTY_LEVELOFDETAIL = "levelOfDetail";
 
 	
-	@Column(nullable = false, columnDefinition = "tinyint default 3")
 	private int levelOfDetail = PROPERTY_LEVELOFDETAIL_DEFAULT;
 
 	public int getLevelOfDetail() {
