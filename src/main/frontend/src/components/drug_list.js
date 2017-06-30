@@ -220,9 +220,11 @@ class DrugList extends React.Component {
 		    		<div className='page-header'>
 						<h3>Medikamente</h3>
 					</div>
-	                <div className="text-box">
-	                	{t('drugListAllDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
-	                </div>
+					{User.isAuthenticated() &&
+		                <div className="text-box">
+		                		{t('drugListAllDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
+		                </div>
+					}
 	                <div className="row">
 		                <ul className="drug-list">
 		                    {this.renderDrugs(drugs)}

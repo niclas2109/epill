@@ -14567,7 +14567,7 @@ var DrugList = function (_React$Component) {
                         "Medikamente"
                     )
                 ),
-                _react2.default.createElement(
+                _User2.default.isAuthenticated() && _react2.default.createElement(
                     "div",
                     { className: "text-box" },
                     t('drugListAllDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
