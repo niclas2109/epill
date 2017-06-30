@@ -97,9 +97,9 @@ public class UserController {
     @RequestMapping(value="/save", method = RequestMethod.POST)
     public ResponseEntity<Object> saveUser(@RequestBody User user) {
 		
-    	System.out.println(user);
-    	
-    	service.saveUser(user);
+    		if(service.saveUser(user) == null) {
+    			return new ResponseEntity<>(HttpStatus.CONFLICT);
+    		}
 
 		return new ResponseEntity<>(HttpStatus.OK);
     }

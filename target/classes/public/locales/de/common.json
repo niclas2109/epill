@@ -17,5 +17,6 @@
   "userData"	: "Benutzerdaten",
   "userList"	: "Alle Benutzer",
   "save"		: "speichern",
-  "userCockpitDescr"	: "Hallo {User.firstname} {User.lastname}, hier kannst du Einstellungen vornehmen."
+  "userCockpitDescr"	: "Hallo {User.firstname} {User.lastname}, hier kannst du Einstellungen vornehmen.",
+  "searchDrug"	: "Suche nach einem Medikament..."
 }
