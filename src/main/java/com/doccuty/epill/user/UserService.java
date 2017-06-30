@@ -63,6 +63,12 @@ public class UserService {
 	
 	public User saveUser(User user) {
 
+		if(repository.findByUsername(user.getUsername()) != null)
+			return null;
+		
+		if(repository.findByEmail(user.getEmail()) != null)
+			return null;
+		
 		SecureRandom random = new SecureRandom();
 		byte[] randomByte = new byte[30];
 		random.nextBytes(randomByte);

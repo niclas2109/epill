@@ -12,9 +12,9 @@ class DrugDetail extends React.Component {
     }
 
     componentWillMount() {
+    		console.log("load");
         axios.get(`/drug/${this.props.match.params.id}/de`)
             .then(({data}) => {
-            	
                 this.setState({
                     drug: data.value
                 });

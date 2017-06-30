@@ -10,9 +10,9 @@ class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-        	firstname: '',
+        		firstname: '',
             lastname: '',
-        	username: '',
+            username: '',
             password: '',
             passwordRepeat: ''
         };
@@ -52,22 +52,37 @@ class Register extends React.Component {
         event.preventDefault();
         
         if(this.state.password != this.state.passwordRepeat) {
-	        	console.log("different passwords");
+        		toast(<Greet name="differing password"/>);
 	        	return;
         }
         
         axios.post('/user/save',
             {
-            	firstname	: this.state.firstname,
-            	lastname	: this.state.lastname,
-                username	: this.state.username,
-                password	: this.state.password
+            		firstname	: this.state.firstname,
+            		lastname	: this.state.lastname,
+            		username	: this.state.username,
+            		password	: this.state.password
+            }, {
+                // We allow a status code of 401 (unauthorized). Otherwise it is interpreted as an error and we can't
+                // check the HTTP status code.
+                validateStatus: (status) => {
+                    return (status >= 200 && status < 300) || status == 409
+                }
             })
-            .then((data) => {
-                // Redirect to front page.
-	            toast(<div>Registration Successfull</div>);
-	            	this.props.history.push("/user/login");
-            });
+            .then(({data, status}) => {
+	            	switch (status) {
+	                case 200:
+	                    // Redirect to front page.
+		    	            toast(<div>Registration Successfull</div>);
+		    	            	this.props.history.push("/user/login");
+		    	            	break;
+	                case 409:
+	                		console.log("username already in use");
+	            			toast(<Greet name="username already in use"/>);
+	                    	break;
+	            	
+	            }
+            	});
     }
 
 
