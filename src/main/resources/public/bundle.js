@@ -13904,7 +13904,7 @@ var Carousel = function (_React$Component) {
                                 _react2.default.createElement(
                                     "p",
                                     null,
-                                    "sdfs"
+                                    "eine personalisierte Frage"
                                 ),
                                 _react2.default.createElement(
                                     "div",
@@ -14281,7 +14281,7 @@ var DrugDetail = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         "div",
-                        { className: "col-md-6" },
+                        { className: "col-xs-9 col-md-6" },
                         _User2.default.isAuthenticated() && drug.personalizedInformation && _react2.default.createElement(
                             "p",
                             null,
@@ -14303,7 +14303,7 @@ var DrugDetail = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         "div",
-                        { className: "col-md-3 drug-detail-short-links" },
+                        { className: "col-xs-0 col-md-3 drug-detail-short-links" },
                         _react2.default.createElement(
                             "ul",
                             null,

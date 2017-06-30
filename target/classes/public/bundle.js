@@ -13904,7 +13904,7 @@ var Carousel = function (_React$Component) {
                                 _react2.default.createElement(
                                     "p",
                                     null,
-                                    "sdfs"
+                                    "eine personalisierte Frage"
                                 ),
                                 _react2.default.createElement(
                                     "div",
@@ -15104,7 +15104,7 @@ exports.default = (0, _reactI18next.translate)()(Register);
 
 
 Object.defineProperty(exports, "__esModule", {
-				value: true
+   value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -15135,198 +15135,209 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // See https://facebook.github.io/react/docs/forms.html for documentation about forms.
 var UserData = function (_React$Component) {
-				_inherits(UserData, _React$Component);
+   _inherits(UserData, _React$Component);
 
-				function UserData(props) {
-								_classCallCheck(this, UserData);
+   function UserData(props) {
+      _classCallCheck(this, UserData);
 
-								var _this = _possibleConstructorReturn(this, (UserData.__proto__ || Object.getPrototypeOf(UserData)).call(this, props));
+      var _this = _possibleConstructorReturn(this, (UserData.__proto__ || Object.getPrototypeOf(UserData)).call(this, props));
 
-								_this.state = {
-												firstname: '',
-												lastname: '',
-												dateOfBirth: ''
-								};
+      _this.state = {
+         firstname: '',
+         lastname: '',
+         dateOfBirth: '',
+         sending: false
+      };
 
-								_this.handleFirstnameChange = _this.handleFirstnameChange.bind(_this);
-								_this.handleLastnameChange = _this.handleLastnameChange.bind(_this);
+      _this.handleFirstnameChange = _this.handleFirstnameChange.bind(_this);
+      _this.handleLastnameChange = _this.handleLastnameChange.bind(_this);
 
-								_this.handleDateOfBirthChange = _this.handleDateOfBirthChange.bind(_this);
+      _this.handleDateOfBirthChange = _this.handleDateOfBirthChange.bind(_this);
 
-								_this.handleSubmit = _this.handleSubmit.bind(_this);
-								return _this;
-				}
+      _this.handleSubmit = _this.handleSubmit.bind(_this);
+      return _this;
+   }
 
-				_createClass(UserData, [{
-								key: "componentWillMount",
-								value: function componentWillMount() {
-												var _this2 = this;
+   _createClass(UserData, [{
+      key: "componentWillMount",
+      value: function componentWillMount() {
+         var _this2 = this;
 
-												if (!_User2.default.isAuthenticated()) return;
+         if (!_User2.default.isAuthenticated()) return;
 
-												_axios2.default.get("/user/" + _User2.default.id).then(function (_ref) {
-																var data = _ref.data;
+         _axios2.default.get("/user/" + _User2.default.id).then(function (_ref) {
+            var data = _ref.data;
 
 
-																_this2.setState({
-																				firstname: data.value.firstname,
-																				lastname: data.value.lastname,
-																				dateOfBirth: data.value.dateOfBirth,
-																				username: data.value.username,
-																				gender: data.value.gender
-																});
-												});
-								}
-				}, {
-								key: "handleFirstnameChange",
-								value: function handleFirstnameChange(event) {
-												var s = this.state;
-												s.firstname = event.target.value;
-												this.setState(s);
-								}
-				}, {
-								key: "handleLastnameChange",
-								value: function handleLastnameChange(event) {
-												var s = this.state;
-												s.lastname = event.target.value;
-												this.setState(this.state);
-								}
-				}, {
-								key: "handleDateOfBirthChange",
-								value: function handleDateOfBirthChange(event) {
-												var s = this.state;
-												s.dateOfBirth = event.target.value;
-												this.setState(s);
-								}
-				}, {
-								key: "handleUsernameChange",
-								value: function handleUsernameChange(event) {
-												var s = this.state;
-												s.username = event.target.value;
-												this.setState(s);
-								}
-				}, {
-								key: "handleSubmit",
-								value: function handleSubmit(event) {
-												event.preventDefault();
+            _this2.setState({
+               firstname: data.value.firstname,
+               lastname: data.value.lastname,
+               dateOfBirth: data.value.dateOfBirth,
+               username: data.value.username,
+               gender: data.value.gender
+            });
+         });
+      }
+   }, {
+      key: "handleFirstnameChange",
+      value: function handleFirstnameChange(event) {
+         var s = this.state;
+         s.firstname = event.target.value;
+         this.setState(s);
+      }
+   }, {
+      key: "handleLastnameChange",
+      value: function handleLastnameChange(event) {
+         var s = this.state;
+         s.lastname = event.target.value;
+         this.setState(this.state);
+      }
+   }, {
+      key: "handleDateOfBirthChange",
+      value: function handleDateOfBirthChange(event) {
+         var s = this.state;
+         s.dateOfBirth = event.target.value;
+         this.setState(s);
+      }
+   }, {
+      key: "handleUsernameChange",
+      value: function handleUsernameChange(event) {
+         var s = this.state;
+         s.username = event.target.value;
+         this.setState(s);
+      }
+   }, {
+      key: "handleSubmit",
+      value: function handleSubmit(event) {
+         var _this3 = this;
 
-												_axios2.default.post('/user/update', {
-																firstname: this.state.firstname,
-																lastname: this.state.lastname,
-																dateOfBirth: this.state.dateOfBirth
-												}).then(function (data) {
-																console.log(data);
-												});
-								}
-				}, {
-								key: "render",
-								value: function render() {
-												var t = this.props.t;
+         event.preventDefault();
 
-												var firstname = _User2.default.firstname;
-												var lastname = _User2.default.lastname;
+         if (this.state.sending) return;
 
-												return _react2.default.createElement(
-																"div",
-																{ className: "container marketing no-banner" },
-																_react2.default.createElement(
-																				"div",
-																				{ className: "page-header" },
-																				_react2.default.createElement(
-																								"h3",
-																								null,
-																								t("userData")
-																				)
-																),
-																_react2.default.createElement(
-																				"p",
-																				{ className: "justify" },
-																				t("userCockpitDescr").replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
-																),
-																_react2.default.createElement(
-																				"form",
-																				{ onSubmit: this.handleSubmit },
-																				_react2.default.createElement(
-																								"fieldset",
-																								null,
-																								_react2.default.createElement(
-																												"div",
-																												{ className: "form-group col-lg-2 col-md-2" },
-																												_react2.default.createElement(
-																																"label",
-																																{ htmlFor: "address" },
-																																t('address')
-																												),
-																												_react2.default.createElement(
-																																"select",
-																																null,
-																																_react2.default.createElement(
-																																				"option",
-																																				null,
-																																				"Herr"
-																																),
-																																_react2.default.createElement(
-																																				"option",
-																																				null,
-																																				"Frau"
-																																)
-																												)
-																								),
-																								_react2.default.createElement(
-																												"div",
-																												{ className: "form-group col-lg-5 col-md-5" },
-																												_react2.default.createElement(
-																																"label",
-																																{ htmlFor: "firstname" },
-																																t('firstname')
-																												),
-																												_react2.default.createElement("input", { type: "text", name: "firstname", id: "firstname", className: "form-control", value: this.state.firstname, onChange: this.handleFirstnameChange })
-																								),
-																								_react2.default.createElement(
-																												"div",
-																												{ className: "form-group col-lg-5 col-md-5" },
-																												_react2.default.createElement(
-																																"label",
-																																{ htmlFor: "lastname" },
-																																t('lastname')
-																												),
-																												_react2.default.createElement("input", { type: "text", name: "lastname", id: "lastname", className: "form-control", value: this.state.lastname, onChange: this.handleLastnameChange })
-																								)
-																				),
-																				_react2.default.createElement(
-																								"fieldset",
-																								null,
-																								_react2.default.createElement(
-																												"div",
-																												{ className: "form-group col-lg-5 col-md-5" },
-																												_react2.default.createElement(
-																																"label",
-																																{ htmlFor: "dateOfBirth" },
-																																t('dateOfBirth')
-																												),
-																												_react2.default.createElement("input", { type: "text", name: "dateOfBirth", id: "dateOfBirth", className: "form-control", value: this.state.dateOfBirth, onChange: this.handleDateOfBirthChange })
-																								)
-																				),
-																				_react2.default.createElement(
-																								"fieldset",
-																								null,
-																								_react2.default.createElement(
-																												"div",
-																												{ className: "form-group col-lg-3 col-md-3" },
-																												_react2.default.createElement(
-																																"button",
-																																{ type: "submit", className: "btn btn-primary" },
-																																t('save')
-																												),
-																												_react2.default.createElement("img", { src: "data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" })
-																								)
-																				)
-																)
-												);
-								}
-				}]);
+         this.state.sending = true;
 
-				return UserData;
+         this.setState(this.state);
+
+         _axios2.default.post('/user/update', {
+            firstname: this.state.firstname,
+            lastname: this.state.lastname,
+            dateOfBirth: this.state.dateOfBirth
+         }).then(function (data) {
+            console.log(data);
+
+            _this3.state.sending = false;
+            _this3.setState(_this3.state);
+         });
+      }
+   }, {
+      key: "render",
+      value: function render() {
+         var t = this.props.t;
+
+         var firstname = _User2.default.firstname;
+         var lastname = _User2.default.lastname;
+
+         return _react2.default.createElement(
+            "div",
+            { className: "container marketing no-banner" },
+            _react2.default.createElement(
+               "div",
+               { className: "page-header" },
+               _react2.default.createElement(
+                  "h3",
+                  null,
+                  t("userData")
+               )
+            ),
+            _react2.default.createElement(
+               "p",
+               { className: "text-box" },
+               t("userCockpitDescr").replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
+            ),
+            _react2.default.createElement(
+               "form",
+               { onSubmit: this.handleSubmit },
+               _react2.default.createElement(
+                  "fieldset",
+                  null,
+                  _react2.default.createElement(
+                     "div",
+                     { className: "form-group col-lg-2 col-md-2" },
+                     _react2.default.createElement(
+                        "label",
+                        { htmlFor: "address" },
+                        t('address')
+                     ),
+                     _react2.default.createElement(
+                        "select",
+                        null,
+                        _react2.default.createElement(
+                           "option",
+                           null,
+                           "Herr"
+                        ),
+                        _react2.default.createElement(
+                           "option",
+                           null,
+                           "Frau"
+                        )
+                     )
+                  ),
+                  _react2.default.createElement(
+                     "div",
+                     { className: "form-group col-lg-5 col-md-5" },
+                     _react2.default.createElement(
+                        "label",
+                        { htmlFor: "firstname" },
+                        t('firstname')
+                     ),
+                     _react2.default.createElement("input", { type: "text", name: "firstname", id: "firstname", className: "form-control", value: this.state.firstname, onChange: this.handleFirstnameChange })
+                  ),
+                  _react2.default.createElement(
+                     "div",
+                     { className: "form-group col-lg-5 col-md-5" },
+                     _react2.default.createElement(
+                        "label",
+                        { htmlFor: "lastname" },
+                        t('lastname')
+                     ),
+                     _react2.default.createElement("input", { type: "text", name: "lastname", id: "lastname", className: "form-control", value: this.state.lastname, onChange: this.handleLastnameChange })
+                  )
+               ),
+               _react2.default.createElement(
+                  "fieldset",
+                  null,
+                  _react2.default.createElement(
+                     "div",
+                     { className: "form-group col-lg-5 col-md-5" },
+                     _react2.default.createElement(
+                        "label",
+                        { htmlFor: "dateOfBirth" },
+                        t('dateOfBirth')
+                     ),
+                     _react2.default.createElement("input", { type: "text", name: "dateOfBirth", id: "dateOfBirth", className: "form-control", value: this.state.dateOfBirth, onChange: this.handleDateOfBirthChange })
+                  )
+               ),
+               _react2.default.createElement(
+                  "div",
+                  { className: "form-actions" },
+                  !this.state.sending ? _react2.default.createElement(
+                     "button",
+                     { type: "submit", className: "btn btn-primary" },
+                     t('save')
+                  ) : _react2.default.createElement(
+                     "button",
+                     { className: "btn btn-default" },
+                     _react2.default.createElement("img", { src: "data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" })
+                  )
+               )
+            )
+         );
+      }
+   }]);
+
+   return UserData;
 }(_react2.default.Component);
 
 exports.default = (0, _reactI18next.translate)()(UserData);

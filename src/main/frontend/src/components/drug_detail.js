@@ -218,7 +218,7 @@ class DrugDetail extends React.Component {
 	    					{this.renderDrugFeatures(drug)}
 	            		</div>
         			</div>
-        			<div className="col-md-6">
+        			<div className="col-xs-9 col-md-6">
         				{ User.isAuthenticated() && drug.personalizedInformation && <p>{drug.personalizedInformation.replace("%User.firstname%", User.firstname).replace("%User.lastname%", User.lastname)}</p> }
       
         				{this.renderDisease(drug)}
@@ -232,7 +232,7 @@ class DrugDetail extends React.Component {
         				{this.renderPZN(drug)}
 
         			</div>
-        			<div className="col-md-3 drug-detail-short-links">
+        			<div className="col-xs-0 col-md-3 drug-detail-short-links">
         				<ul>
         					{this.renderSectionOverview(drug)}
         				</ul>

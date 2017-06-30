@@ -54,7 +54,7 @@ class Carousel extends React.Component {
         					{User.isAuthenticated() && 
         						<div className="carousel-caption">
 	        						{this.generatePersonalizedAddress()}
-	        						<p>sdfs</p>
+	        						<p>eine personalisierte Frage</p>
 	        						<div className="rating-wrapper center-block">
 	        							<input id='rating_5' name='rating' value='5' type='radio' />
 	        							<label className='full' htmlFor='rating_5' title=''></label>
