@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.doccuty.epill.drug.DrugService;
+import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.user.UserService;
 
 import javax.transaction.Transactional;
@@ -48,35 +49,67 @@ public class UserServiceTest {
 
 
     /**
-     * Test that adding a new post leads to an id (and the post is thus persisted).
+     * Test that adding a new user leads to an id (and the post is thus persisted).
      */
     @Test
     @Transactional
     public void testUserSave() {
-    	
-    	String username = "peterle";
-    	
-    	User user = new User();
-    	user.withFirstname("Peter")
-    		.withLastname("Mustermann")
-    		.withUsername("peterle")
-    		.withPassword("password")
-    		.withEmail("test@test.de");
+	    	
+	    	String username = "peterle";
+	    	
+	    	User user = new User();
+	    	user.withFirstname("Peter")
+	    		.withLastname("Mustermann")
+	    		.withUsername("peterle")
+	    		.withPassword("password")
+	    		.withEmail("test@test.de");
+	
+	    	assertEquals("User has no id", user.getId(), 0);
+	    	
+	    	user = userService.saveUser(user);
+	    	
+	    	assertNotNull("User has id", user.getId());
+	
+	    	user = userService.getUserById(user.getId());
+	
+	    	assertNotNull("User found by id", user);
+	
+	    	user = userService.findByUsername(username);
+	
+	    	assertNotNull("User found by username", user);
+	    	
+	}
+    
+    /**
+     * Test that adding a new user leads to an id (and the post is thus persisted).
+     */
+    @Test
+    @Transactional
+    public void testUserDrugTaking() {
+	    	
+	    	String username = "peterle";
+	    	
+	    	User user = new User();
+	    	user.withFirstname("Peter")
+	    		.withLastname("Mustermann")
+	    		.withUsername("peterle121")
+	    		.withPassword("password")
+	    		.withEmail("test@test.de");
+	
 
-    	assertEquals("User has no id", user.getId(), 0);
-    	
-    	user = userService.saveUser(user);
-    	
-    	assertNotNull("User has id", user.getId());
+	    	Drug drug = new Drug();
+	    	drug.withName("example");
 
-    	user = userService.getUserById(user.getId());
+	    	
+	    	assertEquals("User takes drugs", user.getTakingDrug().size(), 0);
+	    	
+	    	user.withTakingDrug(drug);
+	    	user = userService.saveUser(user);
 
-    	assertNotNull("User found by id", user);
-
-    	user = userService.findByUsername(username);
-
-    	assertNotNull("User found by username", user);
-    	
-    }
+	    	user = userService.getUserById(user.getId());
+	    	
+	    	assertEquals("User takes drugs", user.getTakingDrug().size(), 1);
+	    	
+	}
 
 }

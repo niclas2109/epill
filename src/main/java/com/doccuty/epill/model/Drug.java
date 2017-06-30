@@ -910,7 +910,7 @@ import com.doccuty.epill.model.Disease;
 
             if (changed)
             {
-               item.withPreferredDrug(this);
+               item.withTakingDrug(this);
                firePropertyChange(PROPERTY_USER, null, item);
             }
          }
@@ -926,7 +926,7 @@ import com.doccuty.epill.model.Disease;
          {
             if (this.user.remove(item))
             {
-               item.withoutPreferredDrug(this);
+               item.withoutTakingDrug(this);
                firePropertyChange(PROPERTY_USER, item, null);
             }
          }

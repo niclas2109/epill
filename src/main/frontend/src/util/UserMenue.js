@@ -7,44 +7,55 @@ import {translate} from "react-i18next";
 class UserMenue extends React.Component {
 	  constructor(props) {
 	    super(props);
+	    this.status = {
+	    		show		: false
+	    }
 
+        this.toggleShow = this.toggleShow.bind(this);
 	  }
 
+	  toggleShow(event) {
+		  this.status.show = !this.status.show;
+		  this.setState(this.status);
+	  }
+
+	  
 	  render() {
 	      const {t} = this.props;
-
+	      const show = this.status.show;
+	      
 		  let menue = null;
 		  if(User.isAuthenticated()) {
-				menue = <ul className="nav navbar-nav navbar-right">
-						<li className="dropdown open">
-						<Link to="/user" className="dropdown-toggle">
-							{User.firstname} {User.lastname}
-						</Link>
-						<ul className="dropdown-menu">
-							<li><Link to="/like">{t('userDrugs')}</Link></li>
-							<li><Link to="/compare">{t('rememberedDrugs')}</Link></li>
-							<li><Link to="/user/settings">{t('userSettings')}</Link></li>
-							<li><Link to="/user/data">{t('userData')}</Link></li>
-							<li><Link to="/user/list">{t('userList')}</Link></li>
-							<li><a href="#">{t('logout')}</a></li>
-						</ul></li>
-				</ul>;
+				menue = <ul className="nav navbar-nav navbar-right" onClick={this.toggleShow}>
+							<li className="dropdown open">
+							<a className="dropdown-toggle">{User.firstname} {User.lastname}</a>
+								{show &&
+									<ul className="dropdown-menu">
+										<li><Link to="/like">{t('userDrugs')}</Link></li>
+										<li><Link to="/compare">{t('rememberedDrugs')}</Link></li>
+										<li><Link to="/user/settings">{t('userSettings')}</Link></li>
+										<li><Link to="/user/data">{t('userData')}</Link></li>
+										<li><Link to="/user/list">{t('userList')}</Link></li>
+										<li><Link to="/user/login">{t('logout')}</Link></li>
+									</ul> }
+							</li>
+					</ul>;
 				
 		  } else {
-			  menue = <ul className="nav navbar-nav navbar-right">
-					<li className="dropdown open">
-					<Link to="#" className="dropdown-toggle">
-						{t('login')}/{t('register')}
-					</Link>
-					<ul className="dropdown-menu">
-						<li><Link to="/user/login">{t('login')}</Link></li>
-						<li><Link to="/user/register">{t('register')}</Link></li>
-					</ul></li>
-				</ul>;
+			  menue = <ul className="nav navbar-nav navbar-right" onClick={this.toggleShow}>
+						<li className="dropdown open">
+						<a className="dropdown-toggle">{t('login')}/{t('register')}</a>
+						{show &&
+							<ul className="dropdown-menu">
+								<li><Link to="/user/login">{t('login')}</Link></li>
+								<li><Link to="/user/register">{t('register')}</Link></li>
+							</ul> }
+						</li>
+					</ul>;
 		  }
 		
 	    return (
-	    	menue
+	    		menue
 	    );
 	  }
 	}

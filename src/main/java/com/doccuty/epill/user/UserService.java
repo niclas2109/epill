@@ -134,8 +134,6 @@ public class UserService {
 			.withLastname(usr.getLastname())
 			.withUsername(usr.getUsername())
 			.withDateOfBirth(usr.getDateOfBirth());
-		
-
 
 		Language language = null;
 		if(usr.getLanguage() != null)
@@ -276,7 +274,7 @@ public class UserService {
 		if(user == null)
 			return false;
 		
-		user.withPreferredDrug(drug);
+		user.withTakingDrug(drug);
 
 		repository.save(user);
 		
@@ -299,7 +297,7 @@ public class UserService {
 			return false;
 		
 		User user = repository.findOne(getCurrentUser().getId());
-		user.withoutPreferredDrug(drug);
+		user.withoutTakingDrug(drug);
 
 		repository.save(user);
 		

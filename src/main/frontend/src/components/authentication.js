@@ -34,21 +34,17 @@ class Authentication extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-		const Greet = ({ name }) => <div>Hello {name}</div>
-       
         axios.post('/auth/login', this.state, {
-            // We allow a status code of 401 (unauthorized). Otherwise it is interpreted as an error and we can't
-            // check the HTTP status code.
-            validateStatus: (status) => {
-                return (status >= 200 && status < 300) || status == 401
-            }
-        })
+	            // We allow a status code of 401 (unauthorized). Otherwise it is interpreted as an error and we can't
+	            // check the HTTP status code.
+	            validateStatus: (status) => {
+	                return (status >= 200 && status < 300) || status == 401
+	            }
+        		})
             .then(({data, status}) => {
                 switch (status) {
                     case 200:
                         User.setCookieCredentials(data);
-                        
-                        console.log(data);
                         
                         this.setState({error: undefined});
 
@@ -63,9 +59,6 @@ class Authentication extends React.Component {
                         break;
 
                     case 401:
-                    		console.log(data);
-	            			toast(<Greet name="harry" />);
-	            			
                     		this.setState({error: true});
                         	break;
                 }
@@ -86,7 +79,7 @@ class Authentication extends React.Component {
         let component = null;
         if (User.isNotAuthenticated()) {
             component =
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} className="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0 col-lg-4 col-lg-offset-0 column">
 		            <div className="form-group">
 		                <label htmlFor="username">{t('username')}</label>
 		                <input type="text" name="username" id="username" className="form-control" value={this.state.username} onChange={this.handleUsernameChange} />
@@ -94,7 +87,7 @@ class Authentication extends React.Component {
 		            	
 		            <div className="form-group">
 		                <label htmlFor="password">{t('password')}</label>
-		                <input type="text" name="password" id="password" className="form-control" value={this.state.password} onChange={this.handlePasswordChange} />
+		                <input type="password" name="password" id="password" className="form-control" value={this.state.password} onChange={this.handlePasswordChange} />
 		            </div>
 		            <div className="form-actions">
 			            <button type="submit" className="btn btn-primary">Login</button>
@@ -103,7 +96,10 @@ class Authentication extends React.Component {
 			        </div>
                 </form>
         } else {
-            component = <span onClick={this.handleLogout}>Logout</span>
+            component = <div>
+        						Current user: {User.username || 'not logged in'}<br />
+            					<span onClick={this.handleLogout}>Logout</span>
+            				</div>
         }
 
         return (
@@ -112,18 +108,17 @@ class Authentication extends React.Component {
         			<h2>{t('login')}</h2>
         		</div>
         		<div className="container">
-                	Current user: {User.username || 'not logged in'}
-
-                	<p/>
-                		{component}
-                	<p/>
-	                { this.state.error &&
-		                <div className="error">
-		                	{t('loginFailed')}
-		                </div>
-	                }
-	             </div>
+                	{component}
+                		
+                	{User.isNotAuthenticated() &&
+                		<div className="hidden-xs hidden-sm col-md-6 col-lg-4 container">
+	             	
+	             		<h4>Hast du noch keinen Account?</h4>
+	             		<Link to="/user/register">{t('register')}</Link>
+	    		        </div>
+	             }
 	          </div>
+	         </div>
         );
     }
 }

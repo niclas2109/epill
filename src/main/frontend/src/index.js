@@ -5,8 +5,6 @@ import ReactDOM from "react-dom";
 import {I18nextProvider} from "react-i18next";
 import {HashRouter as Router, Link, Route, Switch} from "react-router-dom";
 
-import { ToastContainer } from 'react-toastify';
-
 import Home from "./components/home";
 import About from "./components/about";
 import Authentication from "./components/authentication";

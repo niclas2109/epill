@@ -4,11 +4,13 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {translate} from "react-i18next";
 
+import User from "./../util/User";
+
 class DrugList extends React.Component {
     constructor(props) {
         super();
         this.state = {
-        	drugs: []
+        		drugs: []
         }
     }
 
@@ -16,7 +18,6 @@ class DrugList extends React.Component {
     componentWillMount() {
         axios.get('/drug/list/all')
             .then(({data}) => {
-            	
                 this.setState({
                     drugs: data.value
                 });
@@ -26,16 +27,74 @@ class DrugList extends React.Component {
     //=============================
     
     addToTakingList(id) {
-    	 axios.post('/drug/taking/add',  { id : id }).then(({data}) => {
-	         console.log(data);
+    	 	axios.post('/drug/taking/add', { id : id }, {
+	            validateStatus: (status) => {
+	                return (status >= 200 && status < 300) || status == 400 || status == 401
+	            }
+     		})
+         .then(({data, status}) => {
+        	 
+             switch (status) {
+                 case 200:
+                     console.log(data, "added");
+                     break;
+                 case 400:
+                  	console.log(data, "not available");
+                     break;
+                 case 401:
+                 	console.log(data, "not permitted");
+                    	break;
+             }
          });
     }
     
+    removeFromTakingList(id) {
+	 	axios.post('/drug/taking/remove', { id : id }, {
+            validateStatus: (status) => {
+                return (status >= 200 && status < 300) || status == 400 || status == 401
+            }
+ 		})
+	     .then(({data, status}) => {
+	    	 
+	         switch (status) {
+	             case 200:
+	                 console.log(data, "added");
+	                 break;
+	             case 400:
+	              	console.log(data, "not available");
+	                 break;
+	             case 401:
+	             	console.log(data, "not permitted");
+	                	break;
+	         }
+	     });
+	}
+    
     addToRememberList(id) {
-	   	 axios.post('/drug/remember/add',  { id : id }).then(({data}) => {
-	         console.log(data);
+	 	axios.post('/drug/remember/add', { id : id }, {
+            validateStatus: (status) => {
+                return (status >= 200 && status < 300) || status == 400 || status == 401 || status == 405
+            }
+ 		})
+	     .then(({data, status}) => {
+	    	 
+	         switch (status) {
+	             case 200:
+	                 console.log(data, "added");
+	                 break;
+	             case 400:
+	              	console.log(data, "not available");
+	                 break;
+	             case 401:
+	             	console.log(data, "not permitted");
+	                	break;
+	             case 405:
+		            console.log(data, "Method not allowed");
+		            break;
+	         }
 	     });
     }
+    
     
     deleteDrug(id) {
         // ES6 string interpolation (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
@@ -91,11 +150,9 @@ class DrugList extends React.Component {
 	}
     
     
-    renderDrugs() {
-    	
-        const drugs = this.state.drugs;
-        
-        if (!drugs) {
+    renderDrugs(drugs) {
+
+        if (drugs.length == 0) {
             return (
 	            	<div className="col-sm-12 col-md-12 col-lg-12">
 	            		loading...
@@ -121,16 +178,18 @@ class DrugList extends React.Component {
         			{this.renderDisease(drug)}
         			
         			{this.renderActiveSubstance(drug)}
+
+        			{drug.year && <p>new Date(drug.year).toISOString()</p>}
         		</div>
         		<div className="action-pattern col-sm-1 col-md-1 col-lg-1">
         			<ul>
         				<li>
-        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.addToTakingList(drug.id)}>
+        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.addToTakingList(drug.id, event)}>
         						<span className="glyphicon glyphicon-heart"></span>
         					</button>
         				</li>
         				<li>
-        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.addToRememberList(drug.id)}>
+        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.addToRememberList(drug.id, event)}>
         						<span className="glyphicon glyphicon-plus"></span>
         					</button>
         				</li>
@@ -151,20 +210,25 @@ class DrugList extends React.Component {
 
     render() {
         const {t} = this.props;
+        const firstname = User.firstname;
+        const lastname = User.lastname;
+
+        const drugs = this.state.drugs;
+
         return (
-        	<div className="container no-banner">
-	    		<div className='page-header'>
-					<h3>Medikamente</h3>
-				</div>
-                <div className="text-box">
-                	{t('drugListAllDescriptionText')}
-                </div>
-                <div className="row">
-	                <ul className="drug-list">
-	                    {this.renderDrugs()}
-	                </ul>
-                </div>
-            </div>
+	        	<div className="container no-banner">
+		    		<div className='page-header'>
+						<h3>Medikamente</h3>
+					</div>
+	                <div className="text-box">
+	                	{t('drugListAllDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
+	                </div>
+	                <div className="row">
+		                <ul className="drug-list">
+		                    {this.renderDrugs(drugs)}
+		                </ul>
+	                </div>
+	            </div>
         );
     }
 }

@@ -8,7 +8,7 @@
   "register": "Registrieren",
   "loginSuccess"	: "Login war erfolgreich!",
   "loginFailed"		: "Login war nicht erfolgreich!",
-  "drugListAllDescriptionText"	: "Hier eine Übersicht über alle im System geführten Medikamente",
+  "drugListAllDescriptionText"	: "%User.firstname%, hier findest du eine Übersicht über alle im System geführten Medikamente. Details kannst ruftst du auf, indem du ein Medikament anklickst. Du kannst Medikamente, die du regelmäßig benutzt zu deiner Liste hinzufügen. Medikamente, die du dir merken möchtest, kannst du in eine Merkliste hinzufügen.",
   "drugs"	: "Medikamente",
   "drug"	: "Medikament",
   "userDrugs"	: "Deine Medikamente",
@@ -17,6 +17,8 @@
   "userData"	: "Benutzerdaten",
   "userList"	: "Alle Benutzer",
   "save"		: "speichern",
-  "userCockpitDescr"	: "Hallo {User.firstname} {User.lastname}, hier kannst du Einstellungen vornehmen.",
-  "searchDrug"	: "Suche nach einem Medikament..."
+  "userCockpitDescr"	: "Hallo %User.firstname% %User.lastname%, hier kannst du Einstellungen vornehmen.",
+  "searchDrug"	: "Suche nach einem Medikament...",
+  "address"		: "Anrede",
+  "dateOfBirth"	: "Geburtsdatum"
 }

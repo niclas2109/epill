@@ -39,60 +39,27 @@ public class DrugController {
     @Autowired
     private UserService userService;
     
-    @RequestMapping(value = "list/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/all", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> getAllDrugs() {
-
-    	IdMap map = DrugCreator.createIdMap("");
+	
+	    	IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(2)));
-		
-        List<Drug> set = service.findAllDrugs();
-    	
-    	JsonObject json = new JsonObject();
-    	JsonArray drugArray = new JsonArray();
-    	
-    	for(Drug drug : set) {
-    		drugArray.add(map.toJsonObject(drug));
-    	}
+			
+	    List<Drug> set = service.findAllDrugs();
+	    	
+	    	JsonObject json = new JsonObject();
+	    	JsonArray drugArray = new JsonArray();
+	    	
+	    	for(Drug drug : set) {
+	    		drugArray.add(map.toJsonObject(drug));
+	    	}
     	
 		json.add("value", drugArray);
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }
     
-    @RequestMapping(value={"{id}/{lang}"}, method = RequestMethod.GET)
-    public ResponseEntity<JsonObject> getDrugById(@PathVariable(value = "id") long id, @PathVariable(value = "lang") String lang) {
-
-		IdMap map = DrugCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(5)));
-
-    	Drug drug = service.findDrugById(id);
-
-    	drug.setPersonalizedInformation("Lieber %firstname% %lastname%, das ist deine personalisierte Information.");
-    	
-    	JsonObject json = new JsonObject();
-		json.add("value", map.toJsonObject(drug));
-
-		return new ResponseEntity<>(json, HttpStatus.OK);
-    }
-
-    
-    @RequestMapping(value={"{id}/image"}, method = RequestMethod.GET)
-    public ResponseEntity<byte[]> getDrugById(@PathVariable(value = "id") long id) {
-
-    	Drug drug = service.findDrugById(id);
-
-    	byte[] img = null;
-    	
-    	if(drug.getImage() != null) {
-    		img = drug.getImage().getImage();
-    		return ResponseEntity.ok().contentLength(img.length).contentType(MediaType.IMAGE_PNG).body(img);
-    	} else 
-    		img = ("").getBytes();
-
-    	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } 
-
-    @RequestMapping(value = "save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<Object> addDrug(@RequestBody Drug drug) {
 		// A pragmatic approach to security which does not use much
 		// framework-specific magic. While other approaches
@@ -103,46 +70,46 @@ public class DrugController {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		
-    	service.saveDrug(drug);
+    		service.saveDrug(drug);
 
 		return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "search", method = RequestMethod.GET)
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> searchDrug(@RequestParam("exp") String exp) {
 		
 		IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(2)));
 
-    	List<Drug> list = service.findDrugByName(exp);
-    	
-    	JsonObject json = new JsonObject();
-    	JsonArray drugArray = new JsonArray();
-    	
-    	for(Drug drug : list) {
-    		drugArray.add(map.toJsonObject(drug));
-    	}
-    	
+	    	List<Drug> list = service.findDrugByName(exp);
+	    	
+	    	JsonObject json = new JsonObject();
+	    	JsonArray drugArray = new JsonArray();
+	    	
+	    	for(Drug drug : list) {
+	    		drugArray.add(map.toJsonObject(drug));
+	    	}
+	    	
 		json.add("value", drugArray);
 		
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }
     
 
-    @RequestMapping(value = "feature/all", method = RequestMethod.GET)
+    @RequestMapping(value = "/feature/all", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> searchDrug() {
 		
 		IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(1)));
 
-    	List<DrugFeature> list = service.findAllDrugFeaturesSimple();
-    	
-    	JsonObject json = new JsonObject();
-    	JsonArray drugArray = new JsonArray();
-    	
-    	for(DrugFeature feature : list) {
-    		drugArray.add(map.toJsonObject(feature));
-    	}
+	    	List<DrugFeature> list = service.findAllDrugFeaturesSimple();
+	    	
+	    	JsonObject json = new JsonObject();
+	    	JsonArray drugArray = new JsonArray();
+	    	
+	    	for(DrugFeature feature : list) {
+	    		drugArray.add(map.toJsonObject(feature));
+	    	}
     	
 		json.add("value", drugArray);
 
@@ -156,14 +123,51 @@ public class DrugController {
      * @return
      */
 
-    @RequestMapping(value = "adverseEffects", method = RequestMethod.GET)
+    @RequestMapping(value = "/adverseEffects", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> checkForAdverseEffects() {
 		
 		IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(1)));
 
-    	JsonObject json = new JsonObject();
+		JsonObject json = new JsonObject();
 		json.add("value", service.checkUserDrugsForAdverseEffects());
+
+		return new ResponseEntity<>(json, HttpStatus.OK);
+    }
+    
+    
+    
+    /**
+     * retrieve drugs a user has marked as frequently taking
+     * @return
+     */
+
+    @RequestMapping(value = "/taking", method = RequestMethod.GET)
+    public ResponseEntity<JsonObject> getUserFavorites() {
+    	
+		// A pragmatic approach to security which does not use much
+		// framework-specific magic. While other approaches
+		// with annotations, etc. are possible they are much more complex while
+		// this is quite easy to understand and
+		// extend.
+
+		if (userService.isAnonymous()) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}  
+		
+		IdMap map = DrugCreator.createIdMap("");
+		map.withFilter(Filter.regard(Deep.create(2)));
+		
+        List<Drug> set = service.getAllUserFavorites(userService.getCurrentUser());
+    	
+	    	JsonObject json = new JsonObject();
+	    	JsonArray drugArray = new JsonArray();
+	    	
+	    	for(Drug drug : set) {
+	    		drugArray.add(map.toJsonObject(drug));
+	    	}
+    	
+		json.add("value", drugArray);
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }
@@ -211,40 +215,42 @@ public class DrugController {
 		
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
     
-    /**
-     * retrieve drugs a user has marked as frequently taking
-     * @return
-     */
 
-    @RequestMapping(value = "/taking", method = RequestMethod.GET)
-    public ResponseEntity<JsonObject> getUserFavorites() {
-    	
-		// A pragmatic approach to security which does not use much
-		// framework-specific magic. While other approaches
-		// with annotations, etc. are possible they are much more complex while
-		// this is quite easy to understand and
-		// extend.
+    
+    
+    @RequestMapping(value={"{id}/{lang}"}, method = RequestMethod.GET)
+    public ResponseEntity<JsonObject> getDrugById(@PathVariable(value = "id") long id, @PathVariable(value = "lang") String lang) {
 
-		if (userService.isAnonymous()) {
-			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-		}  
-		
-    	IdMap map = DrugCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(2)));
-		
-        List<Drug> set = service.getAllUserFavorites(userService.getCurrentUser());
-    	
-    	JsonObject json = new JsonObject();
-    	JsonArray drugArray = new JsonArray();
-    	
-    	for(Drug drug : set) {
-    		drugArray.add(map.toJsonObject(drug));
-    	}
-    	
-		json.add("value", drugArray);
+		IdMap map = DrugCreator.createIdMap("");
+		map.withFilter(Filter.regard(Deep.create(5)));
+	
+	    	Drug drug = service.findDrugById(id);
+	
+	    	drug.setPersonalizedInformation("Lieber %firstname% %lastname%, das ist deine personalisierte Information.");
+	    	
+	    	JsonObject json = new JsonObject();
+			json.add("value", map.toJsonObject(drug));
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }
+
+    
+    @RequestMapping(value={"{id}/image"}, method = RequestMethod.GET)
+    public ResponseEntity<byte[]> getDrugById(@PathVariable(value = "id") long id) {
+	
+	    	Drug drug = service.findDrugById(id);
+	
+	    	byte[] img = null;
+	    	
+	    	if(drug.getImage() != null) {
+	    		img = drug.getImage().getImage();
+	    		return ResponseEntity.ok().contentLength(img.length).contentType(MediaType.IMAGE_PNG).body(img);
+	    	} else 
+	    		img = ("").getBytes();
+	
+	    	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    } 
 
 }

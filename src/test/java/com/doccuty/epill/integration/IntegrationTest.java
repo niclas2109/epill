@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
+import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.user.User;
 
 import java.util.List;
@@ -33,23 +34,32 @@ public class IntegrationTest {
     int port;
 
     /**
-     * Test that listing posts works.
+     * Test that listing drugs works.
      */
     @Test
-    public void testPostList() {
+    public void testDrugList() {
         RestTemplate rest = new RestTemplate();
-        //ResponseEntity<List> response = rest.getForEntity(getPostURL(), List.class);
+        //ResponseEntity<List> response = rest.getForEntity(getPostURL()+"/list/all", List.class);
         //List<User> list = response.getBody();
         //assertEquals(200, response.getStatusCodeValue());
         //assertTrue(list.size() == 0);
     }
 
     /**
+     * Test that adding drugs as frequently taking works.
+     */
+    @Test
+    public void testPostList() {
+
+
+    }
+    
+    /**
      * Create a HTTP entity to be used in authenticated requests. The default user is kai.
      *
      * @param entity object
      * @param <T>    Object's type
-     * @return an entityt with authentication header.
+     * @return an entity with authentication header.
      */
     private <T> HttpEntity<T> getEntity(T entity) {
         HttpHeaders headers = new HttpHeaders();
@@ -59,7 +69,7 @@ public class IntegrationTest {
 
 
     private String getPostURL() {
-        return "http://localhost:" + port + "/drug/list/all";
+        return "http://localhost:" + port + "/drug";
     }
 
     private String fixResponseURL(String url) {

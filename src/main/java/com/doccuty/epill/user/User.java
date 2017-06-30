@@ -249,7 +249,7 @@ import com.doccuty.epill.model.DrugFeature;
    @JoinTable(name="user_drug", joinColumns=@JoinColumn(name="iduser"), inverseJoinColumns=@JoinColumn(name="iddrug"))
    private Set<Drug> preferredDrug = null;
 
-   public Set<Drug> getPreferredDrug()
+   public Set<Drug> getTakingDrug()
    {
       if (this.preferredDrug == null)
       {
@@ -259,7 +259,7 @@ import com.doccuty.epill.model.DrugFeature;
       return this.preferredDrug;
    }
 
-   public User withPreferredDrug(Drug... value)
+   public User withTakingDrug(Drug... value)
    {
       if(value==null){
          return this;
@@ -285,7 +285,7 @@ import com.doccuty.epill.model.DrugFeature;
       return this;
    } 
 
-   public User withoutPreferredDrug(Drug... value)
+   public User withoutTakingDrug(Drug... value)
    {
       for (Drug item : value)
       {
@@ -304,7 +304,7 @@ import com.doccuty.epill.model.DrugFeature;
    public Drug createPreferredDrug()
    {
 	  Drug value = new Drug();
-      withPreferredDrug(value);
+      withTakingDrug(value);
       return value;
    } 
    

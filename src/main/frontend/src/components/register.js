@@ -10,11 +10,12 @@ class Register extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-        		firstname: '',
-            lastname: '',
-            username: '',
-            password: '',
-            passwordRepeat: ''
+        		firstname	: '',
+        		lastname		: '',
+        		username		: '',
+        		password		: '',
+        		passwordRepeat: '',
+            	sending		: false
         };
 
         this.handleFirstnameChange = this.handleFirstnameChange.bind(this);
@@ -29,32 +30,44 @@ class Register extends React.Component {
 
 
     handleFirstnameChange(event) {
-    	this.setState({firstname: event.target.value});
+    		this.state.firstname = event.target.value;
+    		this.setState(this.state);
     }
 
     handleLastnameChange(event) {
-    	this.setState({lastname: event.target.value});
+		this.state.lastname = event.target.value;
+		this.setState(this.state);
     }
     
     handleUsernameChange(event) {
         this.setState({username: event.target.value});
+		this.state.username = event.target.value;
+		this.setState(this.state);
     }
 
     handlePasswordChange(event) {
-        this.setState({password: event.target.value});
+		this.state.password = event.target.value;
+		this.setState(this.state);
     }
 
     handlePasswordRepeatChange(event) {
-        this.setState({passwordRepeat: event.target.value});
+		this.state.passwordRepeat = event.target.value;
+		this.setState(this.state);
     }
 
     handleSubmit(event) {
         event.preventDefault();
         
+        if(this.state.firstname.length == 0 || this.state.lastname.length == 0 || this.state.username.length == 0 || this.state.password == 0) {
+        		return;
+        }
+        
         if(this.state.password != this.state.passwordRepeat) {
-        		toast(<Greet name="differing password"/>);
+        		console.log("differing password");
 	        	return;
         }
+        this.state.sending = true;
+        this.setState(this.state);
         
         axios.post('/user/save',
             {
@@ -88,15 +101,15 @@ class Register extends React.Component {
 
     render() {
         const {t} = this.props;
-
+        const sending = this.state.sending;
+        
         return (
         		<div className="container no-banner">
 	        		<div className="page-header">
 	        			<h2>{t('register')}</h2>
 	        		</div>
 	        		<div className="container">
-		                <form onSubmit={this.handleSubmit}>
-
+		                <form onSubmit={this.handleSubmit} className="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0 col-lg-4 col-lg-offset-0 column">
 			                <div className="form-group">
 			                    <label htmlFor="firstname">{t('firstname')}</label>
 			                    <input type="text" name="firstname" id="firstname" className="form-control" value={this.state.firstname} onChange={this.handleFirstnameChange} />
@@ -115,21 +128,23 @@ class Register extends React.Component {
 				            	
 				            <div className="form-group">
 				                <label htmlFor="password">{t('password')}</label>
-				                <input type="text" name="password" id="password" className="form-control" value={this.state.password} onChange={this.handlePasswordChange} />
+				                <input type="password" name="password" id="password" className="form-control" value={this.state.password} onChange={this.handlePasswordChange} />
 				            </div>
 				            	
 						    <div className="form-group">
 				                <label htmlFor="password_rep">{t('passwordRepeat')}</label>
-				                <input type="text" name="password_rep" id="password_rep" className="form-control" value={this.state.password_repeat} onChange={this.handlePasswordRepeatChange} />
+				                <input type="password" name="password_rep" id="password_rep" className="form-control" value={this.state.password_repeat} onChange={this.handlePasswordRepeatChange} />
 				            </div>
 	
 				            <div className="form-actions">
 					            <button type="submit" className="btn btn-primary">{t('register')}</button>
-					            <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="></img>
+					            {sending && <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="></img> }
 					            <Link to="/user/login">{t('login')}</Link>
 					        </div>
-				            	
 		                </form>
+		                <div className="hidden-xs hidden-sm col-md-6 col-lg-4 container">
+		                			<h4>Warum die dich registrieren kannst?</h4>
+		                </div>
 		           </div>
 		       </div>
 		              
