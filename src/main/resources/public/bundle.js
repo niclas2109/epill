@@ -14834,7 +14834,7 @@ exports.default = (0, _reactI18next.translate)()(Home);
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+				value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -14861,225 +14861,237 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // See https://facebook.github.io/react/docs/forms.html for documentation about forms.
 var Register = function (_React$Component) {
-    _inherits(Register, _React$Component);
+				_inherits(Register, _React$Component);
 
-    function Register(props) {
-        _classCallCheck(this, Register);
+				function Register(props) {
+								_classCallCheck(this, Register);
 
-        var _this = _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).call(this, props));
+								var _this = _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).call(this, props));
 
-        _this.state = {
-            firstname: '',
-            lastname: '',
-            username: '',
-            password: '',
-            passwordRepeat: '',
-            sending: false
-        };
+								_this.state = {
+												firstname: '',
+												lastname: '',
+												username: '',
+												password: '',
+												passwordRepeat: '',
+												sending: false
+								};
 
-        _this.handleFirstnameChange = _this.handleFirstnameChange.bind(_this);
-        _this.handleLastnameChange = _this.handleLastnameChange.bind(_this);
+								_this.handleFirstnameChange = _this.handleFirstnameChange.bind(_this);
+								_this.handleLastnameChange = _this.handleLastnameChange.bind(_this);
 
-        _this.handleUsernameChange = _this.handleUsernameChange.bind(_this);
-        _this.handlePasswordChange = _this.handlePasswordChange.bind(_this);
-        _this.handlePasswordRepeatChange = _this.handlePasswordRepeatChange.bind(_this);
+								_this.handleUsernameChange = _this.handleUsernameChange.bind(_this);
+								_this.handlePasswordChange = _this.handlePasswordChange.bind(_this);
+								_this.handlePasswordRepeatChange = _this.handlePasswordRepeatChange.bind(_this);
 
-        _this.handleSubmit = _this.handleSubmit.bind(_this);
-        return _this;
-    }
+								_this.handleSubmit = _this.handleSubmit.bind(_this);
+								return _this;
+				}
 
-    _createClass(Register, [{
-        key: "handleFirstnameChange",
-        value: function handleFirstnameChange(event) {
-            this.state.firstname = event.target.value;
-            this.setState(this.state);
-        }
-    }, {
-        key: "handleLastnameChange",
-        value: function handleLastnameChange(event) {
-            this.state.lastname = event.target.value;
-            this.setState(this.state);
-        }
-    }, {
-        key: "handleUsernameChange",
-        value: function handleUsernameChange(event) {
-            this.setState({ username: event.target.value });
-            this.state.username = event.target.value;
-            this.setState(this.state);
-        }
-    }, {
-        key: "handlePasswordChange",
-        value: function handlePasswordChange(event) {
-            this.state.password = event.target.value;
-            this.setState(this.state);
-        }
-    }, {
-        key: "handlePasswordRepeatChange",
-        value: function handlePasswordRepeatChange(event) {
-            this.state.passwordRepeat = event.target.value;
-            this.setState(this.state);
-        }
-    }, {
-        key: "handleSubmit",
-        value: function handleSubmit(event) {
-            var _this2 = this;
+				_createClass(Register, [{
+								key: "handleFirstnameChange",
+								value: function handleFirstnameChange(event) {
+												this.state.firstname = event.target.value;
+												this.setState(this.state);
+								}
+				}, {
+								key: "handleLastnameChange",
+								value: function handleLastnameChange(event) {
+												this.state.lastname = event.target.value;
+												this.setState(this.state);
+								}
+				}, {
+								key: "handleUsernameChange",
+								value: function handleUsernameChange(event) {
+												this.setState({ username: event.target.value });
+												this.state.username = event.target.value;
+												this.setState(this.state);
+								}
+				}, {
+								key: "handlePasswordChange",
+								value: function handlePasswordChange(event) {
+												this.state.password = event.target.value;
+												this.setState(this.state);
+								}
+				}, {
+								key: "handlePasswordRepeatChange",
+								value: function handlePasswordRepeatChange(event) {
+												this.state.passwordRepeat = event.target.value;
+												this.setState(this.state);
+								}
+				}, {
+								key: "handleSubmit",
+								value: function handleSubmit(event) {
+												var _this2 = this;
 
-            event.preventDefault();
+												event.preventDefault();
 
-            if (this.state.firstname.length == 0 || this.state.lastname.length == 0 || this.state.username.length == 0 || this.state.password == 0) {
-                return;
-            }
+												if (this.state.firstname.length == 0 || this.state.lastname.length == 0 || this.state.username.length == 0 || this.state.password == 0) {
+																return;
+												}
 
-            if (this.state.password != this.state.passwordRepeat) {
-                console.log("differing password");
-                return;
-            }
-            this.state.sending = true;
-            this.setState(this.state);
+												if (this.state.password != this.state.passwordRepeat) {
+																console.log("differing password");
+																return;
+												}
+												this.state.sending = true;
+												this.setState(this.state);
 
-            _axios2.default.post('/user/save', {
-                firstname: this.state.firstname,
-                lastname: this.state.lastname,
-                username: this.state.username,
-                password: this.state.password
-            }, {
-                // We allow a status code of 401 (unauthorized). Otherwise it is interpreted as an error and we can't
-                // check the HTTP status code.
-                validateStatus: function validateStatus(status) {
-                    return status >= 200 && status < 300 || status == 409;
-                }
-            }).then(function (_ref) {
-                var data = _ref.data,
-                    status = _ref.status;
-
-
-                _this2.state.sending = false;
-                _this2.setState(_this2.state);
-
-                switch (status) {
-                    case 200:
-                        // Redirect to front page.
-                        console.log("Registration Successfull");
-                        _this2.props.history.push("/user/login");
-                        break;
-                    case 409:
-                        console.log("username already in use");
-                        break;
-                }
-            });
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var t = this.props.t;
+												_axios2.default.post('/user/save', {
+																firstname: this.state.firstname,
+																lastname: this.state.lastname,
+																username: this.state.username,
+																password: this.state.password
+												}, {
+																// We allow a status code of 401 (unauthorized). Otherwise it is interpreted as an error and we can't
+																// check the HTTP status code.
+																validateStatus: function validateStatus(status) {
+																				return status >= 200 && status < 300 || status == 409;
+																}
+												}).then(function (_ref) {
+																var data = _ref.data,
+																    status = _ref.status;
 
 
-            return _react2.default.createElement(
-                "div",
-                { className: "container no-banner" },
-                _react2.default.createElement(
-                    "div",
-                    { className: "page-header" },
-                    _react2.default.createElement(
-                        "h2",
-                        null,
-                        t('register')
-                    )
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "container" },
-                    _react2.default.createElement(
-                        "form",
-                        { onSubmit: this.handleSubmit, className: "col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0 col-lg-4 col-lg-offset-0 column" },
-                        _react2.default.createElement(
-                            "div",
-                            { className: "form-group" },
-                            _react2.default.createElement(
-                                "label",
-                                { htmlFor: "firstname" },
-                                t('firstname')
-                            ),
-                            _react2.default.createElement("input", { type: "text", name: "firstname", id: "firstname", className: "form-control", value: this.state.firstname, onChange: this.handleFirstnameChange })
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "form-group" },
-                            _react2.default.createElement(
-                                "label",
-                                { htmlFor: "lastname" },
-                                t('lastname')
-                            ),
-                            _react2.default.createElement("input", { type: "text", name: "lastname", id: "lastname", className: "form-control", value: this.state.lastname, onChange: this.handleLastnameChange })
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "form-group" },
-                            _react2.default.createElement(
-                                "label",
-                                { htmlFor: "username" },
-                                t('username')
-                            ),
-                            _react2.default.createElement("input", { type: "text", name: "username", id: "username", className: "form-control", value: this.state.username, onChange: this.handleUsernameChange })
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "form-group" },
-                            _react2.default.createElement(
-                                "label",
-                                { htmlFor: "password" },
-                                t('password')
-                            ),
-                            _react2.default.createElement("input", { type: "password", name: "password", id: "password", className: "form-control", value: this.state.password, onChange: this.handlePasswordChange })
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "form-group" },
-                            _react2.default.createElement(
-                                "label",
-                                { htmlFor: "password_rep" },
-                                t('passwordRepeat')
-                            ),
-                            _react2.default.createElement("input", { type: "password", name: "password_rep", id: "password_rep", className: "form-control", value: this.state.password_repeat, onChange: this.handlePasswordRepeatChange })
-                        ),
-                        _react2.default.createElement(
-                            "div",
-                            { className: "form-actions" },
-                            !this.state.sending ? _react2.default.createElement(
-                                "button",
-                                { type: "submit", className: "btn btn-primary" },
-                                t('register')
-                            ) : _react2.default.createElement(
-                                "button",
-                                { className: "btn btn-default" },
-                                _react2.default.createElement("img", { src: "data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" })
-                            ),
-                            _react2.default.createElement(
-                                _reactRouterDom.Link,
-                                { to: "/user/login" },
-                                _react2.default.createElement(
-                                    "button",
-                                    { type: "button", className: "btn btn-default" },
-                                    t('login')
-                                )
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "hidden-xs hidden-sm col-md-6 col-lg-4 container" },
-                        _react2.default.createElement(
-                            "h4",
-                            null,
-                            "Warum die dich registrieren kannst?"
-                        )
-                    )
-                )
-            );
-        }
-    }]);
+																_this2.state.sending = false;
+																_this2.setState(_this2.state);
 
-    return Register;
+																switch (status) {
+																				case 200:
+																								// Redirect to front page.
+																								console.log("Registration Successfull");
+																								_this2.props.history.push("/user/login");
+																								break;
+																				case 409:
+																								console.log("username already in use");
+																								break;
+																}
+												});
+								}
+				}, {
+								key: "render",
+								value: function render() {
+												var t = this.props.t;
+
+
+												return _react2.default.createElement(
+																"div",
+																{ className: "container no-banner" },
+																_react2.default.createElement(
+																				"div",
+																				{ className: "page-header" },
+																				_react2.default.createElement(
+																								"h2",
+																								null,
+																								t('register')
+																				)
+																),
+																_react2.default.createElement(
+																				"div",
+																				{ className: "container" },
+																				_react2.default.createElement(
+																								"form",
+																								{ onSubmit: this.handleSubmit, className: "col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0 col-lg-4 col-lg-offset-0 column" },
+																								_react2.default.createElement(
+																												"div",
+																												{ className: "form-group" },
+																												_react2.default.createElement(
+																																"label",
+																																{ htmlFor: "firstname" },
+																																t('firstname')
+																												),
+																												_react2.default.createElement("input", { type: "text", name: "firstname", id: "firstname", className: "form-control", value: this.state.firstname, onChange: this.handleFirstnameChange })
+																								),
+																								_react2.default.createElement(
+																												"div",
+																												{ className: "form-group" },
+																												_react2.default.createElement(
+																																"label",
+																																{ htmlFor: "lastname" },
+																																t('lastname')
+																												),
+																												_react2.default.createElement("input", { type: "text", name: "lastname", id: "lastname", className: "form-control", value: this.state.lastname, onChange: this.handleLastnameChange })
+																								),
+																								_react2.default.createElement(
+																												"div",
+																												{ className: "form-group" },
+																												_react2.default.createElement(
+																																"label",
+																																{ htmlFor: "username" },
+																																t('username')
+																												),
+																												_react2.default.createElement("input", { type: "text", name: "username", id: "username", className: "form-control", value: this.state.username, onChange: this.handleUsernameChange })
+																								),
+																								_react2.default.createElement(
+																												"div",
+																												{ className: "form-group" },
+																												_react2.default.createElement(
+																																"label",
+																																{ htmlFor: "password" },
+																																t('password')
+																												),
+																												_react2.default.createElement("input", { type: "password", name: "password", id: "password", className: "form-control", value: this.state.password, onChange: this.handlePasswordChange })
+																								),
+																								_react2.default.createElement(
+																												"div",
+																												{ className: "form-group" },
+																												_react2.default.createElement(
+																																"label",
+																																{ htmlFor: "password_rep" },
+																																t('passwordRepeat')
+																												),
+																												_react2.default.createElement("input", { type: "password", name: "password_rep", id: "password_rep", className: "form-control", value: this.state.password_repeat, onChange: this.handlePasswordRepeatChange })
+																								),
+																								_react2.default.createElement(
+																												"div",
+																												{ className: "form-actions" },
+																												!this.state.sending ? _react2.default.createElement(
+																																"button",
+																																{ type: "submit", className: "btn btn-primary" },
+																																t('register')
+																												) : _react2.default.createElement(
+																																"button",
+																																{ className: "btn btn-default" },
+																																_react2.default.createElement("img", { src: "data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" })
+																												),
+																												_react2.default.createElement(
+																																_reactRouterDom.Link,
+																																{ to: "/user/login" },
+																																_react2.default.createElement(
+																																				"button",
+																																				{ type: "button", className: "btn btn-default" },
+																																				t('login')
+																																)
+																												)
+																								)
+																				),
+																				_react2.default.createElement(
+																								"div",
+																								{ className: "hidden-xs hidden-sm col-md-6 col-lg-4 container" },
+																								_react2.default.createElement(
+																												"h4",
+																												null,
+																												"Warum du dich registrieren kannst?"
+																								),
+																								_react2.default.createElement(
+																												"p",
+																												null,
+																												"Es gibt viele tolle Features, die dir dabei helfen k\xF6nnen,",
+																												_react2.default.createElement("br", null),
+																												"dein Verst\xE4ndnis f\xFCr Medikamente zu verbessern."
+																								),
+																								_react2.default.createElement(
+																												"p",
+																												null,
+																												"Beispielsweise k\xF6nnen wir dir genau die Informationen..."
+																								)
+																				)
+																)
+												);
+								}
+				}]);
+
+				return Register;
 }(_react2.default.Component);
 
 exports.default = (0, _reactI18next.translate)()(Register);

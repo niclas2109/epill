@@ -144,7 +144,10 @@ class Register extends React.Component {
 					        </div>
 		                </form>
 		                <div className="hidden-xs hidden-sm col-md-6 col-lg-4 container">
-		                			<h4>Warum die dich registrieren kannst?</h4>
+		                			<h4>Warum du dich registrieren kannst?</h4>
+		                			<p>Es gibt viele tolle Features, die dir dabei helfen können,<br />
+		                			dein Verständnis für Medikamente zu verbessern.</p>
+		                			<p>Beispielsweise können wir dir genau die Informationen...</p>
 		                </div>
 		           </div>
 		       </div>
