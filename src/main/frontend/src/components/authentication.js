@@ -101,7 +101,7 @@ class Authentication extends React.Component {
 			            {!this.state.sending ?
 	            				<button type="submit" className="btn btn-primary">Login</button>
 	            				: <button className="btn btn-default"><img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="></img></button> }
-			            <Link to="/user/register">register</Link>
+			            <Link to="/user/register"><button type="button" className="btn btn-default">{t('register')}</button></Link>
 			        </div>
                 </form>
         } else {
@@ -112,22 +112,22 @@ class Authentication extends React.Component {
         }
 
         return (
-        	<div className="container no-banner">
-        		<div className="page-header">
-        			<h2>{t('login')}</h2>
-        		</div>
-        		<div className="container">
-                	{component}
-                		
-                	{User.isNotAuthenticated() &&
-                		<div className="hidden-xs hidden-sm col-md-6 col-lg-4 container">
-	             	
-	             		<h4>Hast du noch keinen Account?</h4>
-	             		<Link to="/user/register">{t('register')}</Link>
-	    		        </div>
-	             }
-	          </div>
-	         </div>
+	        	<div className="container no-banner">
+	        		<div className="page-header">
+	        			<h2>{t('login')}</h2>
+	        		</div>
+	        		<div className="container">
+	                	{component}
+	                		
+	                	{User.isNotAuthenticated() &&
+	                		<div className="hidden-xs hidden-sm col-md-6 col-lg-4 container">
+		             	
+		             		<h4>Hast du noch keinen Account?</h4>
+		             		<Link to="/user/register">{t('register')}</Link>
+		    		        </div>
+		             }
+		          </div>
+		         </div>
         );
     }
 }

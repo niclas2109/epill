@@ -13734,7 +13734,11 @@ var Authentication = function (_React$Component) {
                         _react2.default.createElement(
                             _reactRouterDom.Link,
                             { to: "/user/register" },
-                            "register"
+                            _react2.default.createElement(
+                                "button",
+                                { type: "button", className: "btn btn-default" },
+                                t('register')
+                            )
                         )
                     )
                 );
@@ -15036,7 +15040,7 @@ var Register = function (_React$Component) {
                             !this.state.sending ? _react2.default.createElement(
                                 "button",
                                 { type: "submit", className: "btn btn-primary" },
-                                "Login"
+                                t('register')
                             ) : _react2.default.createElement(
                                 "button",
                                 { className: "btn btn-default" },
@@ -15045,7 +15049,11 @@ var Register = function (_React$Component) {
                             _react2.default.createElement(
                                 _reactRouterDom.Link,
                                 { to: "/user/login" },
-                                t('login')
+                                _react2.default.createElement(
+                                    "button",
+                                    { type: "button", className: "btn btn-default" },
+                                    t('login')
+                                )
                             )
                         )
                     ),
