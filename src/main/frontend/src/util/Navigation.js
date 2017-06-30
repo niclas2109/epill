@@ -24,13 +24,23 @@ import UserList from "./../components/user/list";
 class Navigation extends React.Component {
 	  constructor(props) {
 	    super(props);
+	    this.status = {
+	    		show		: false
+	    }
 
+	    this.toggleShow = this.toggleShow.bind(this);
+	  }
+
+	  toggleShow(event) {
+		  this.status.show = !this.status.show;
+		  this.setState(this.status);
 	  }
 	  
 	  render() {
 
 	      const {t} = this.props;
-	      
+	      const show = this.status.show;
+		  
 		  return (
 	                <div>
 		                <div className="navbar-wrapper">
@@ -38,7 +48,7 @@ class Navigation extends React.Component {
 		            			<nav className="navbar navbar-inverse navbar-static-top">
 		            				<div className="container">
 		            					<div className="navbar-header">
-		            						<button type="button" className="navbar-toggle collapsed">
+		            						<button type="button" className="navbar-toggle collapsed" onClick={this.toggleShow}>
 		            							<span className="icon-bar"></span>
 		            							<span className="icon-bar"></span>
 		            							<span className="icon-bar"></span>
@@ -48,17 +58,19 @@ class Navigation extends React.Component {
 		            						 </Link>
 		            					</div>
 		            	
-		            					<div className="collapse navbar-collapse"
-		            						id="bs-example-navbar-collapse-1">
-		            						<ul className="nav navbar-nav">
-		            							<li><Link to="/about">{t("about")}</Link></li>
-		            							<li><Link to="/drug/list">{t("drugs")}</Link></li>
-		            						</ul>
-		            	
-		            						<AutoComplete />
-		            	
-		            						<UserMenue />
-		            					</div>
+		            					{show && 
+			            					
+			            					<div className="navbar-collapse" id="bs-example-navbar-collapse-1">
+			            						<ul className="nav navbar-nav">
+			            							<li><Link to="/about">{t("about")}</Link></li>
+			            							<li><Link to="/drug/list">{t("drugs")}</Link></li>
+			            						</ul>
+			            	
+			            						<AutoComplete />
+			            	
+			            						<UserMenue />
+			            					</div>
+		            					}
 		            				</div>
 		            			</nav>
 		            		</div>

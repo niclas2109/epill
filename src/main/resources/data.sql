@@ -220,6 +220,9 @@ INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (4,'verschreibungs
 INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (5,'ohne Alkohol',NULL);
 INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (6,'homöopathisch',NULL);
 INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (7,'glutenfrei',NULL);
+INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (8,'Für Schwangere ungeeignet.',NULL);
+INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (9,'vegan',NULL);
+INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (10,'lactosefrei',NULL);
 
 
 --

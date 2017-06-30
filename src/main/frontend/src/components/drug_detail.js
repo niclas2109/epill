@@ -21,7 +21,82 @@ class DrugDetail extends React.Component {
             });
     }
     
+    //=============================
+    
+    addToTakingList(id) {
+    	 	axios.post('/drug/taking/add', { id : id }, {
+	            validateStatus: (status) => {
+	                return (status >= 200 && status < 300) || status == 400 || status == 401
+	            }
+     		})
+         .then(({data, status}) => {
+        	 
+             switch (status) {
+                 case 200:
+                     console.log(data, "added");
+                     break;
+                 case 400:
+                  	console.log(data, "not available");
+                     break;
+                 case 401:
+                 	console.log(data, "not permitted");
+                    	break;
+             }
+         });
+    }
+    
+    removeFromTakingList(id) {
+	 	axios.post('/drug/taking/remove', { id : id }, {
+            validateStatus: (status) => {
+                return (status >= 200 && status < 300) || status == 400 || status == 401
+            }
+ 		})
+	     .then(({data, status}) => {
+	    	 
+	         switch (status) {
+	             case 200:
+	                 console.log(data, "added");
+	                 break;
+	             case 400:
+	              	console.log(data, "not available");
+	                 break;
+	             case 401:
+	             	console.log(data, "not permitted");
+	                	break;
+	         }
+	     });
+	}
+    
+    addToRememberList(id) {
+	 	axios.post('/drug/remember/add', { id : id }, {
+            validateStatus: (status) => {
+                return (status >= 200 && status < 300) || status == 400 || status == 401 || status == 405
+            }
+ 		})
+	     .then(({data, status}) => {
+	    	 
+	         switch (status) {
+	             case 200:
+	                 console.log(data, "added");
+	                 break;
+	             case 400:
+	              	console.log(data, "not available");
+	                 break;
+	             case 401:
+	             	console.log(data, "not permitted");
+	                	break;
+	             case 405:
+		            console.log(data, "Method not allowed");
+		            break;
+	         }
+	     });
+    }
  
+    
+    
+    //=============================
+    
+    
     // for html conversion
 	createMarkup(text) { return {__html: text}; };
     
@@ -31,10 +106,10 @@ class DrugDetail extends React.Component {
 		if(!drug.drugFeature)
 			return;
 		
-        return (
-        	<p>
-        		{ drug.drugFeature.map((feature, i) => <span key={feature.id}>{feature.drugFeature}</span> ) }
-	        </p>
+		return (
+        		<p>
+        			{ drug.drugFeature.map(feature => <img key={feature.id} src={"./../../assets/icons/"+feature.id + ".svg"} alt={feature.drugFeature} title={feature.drugFeature} className="drug-feature-icon"></img> ) }
+        		</p>
 		);
     }
     
@@ -119,18 +194,17 @@ class DrugDetail extends React.Component {
         			</div>
         			<h3>
         				{drug.name} {drug.productGroup && <span className="text-muted">drug.productGroup.name</span> }
-        				<button type="button" className="btn btn-xs btn-add">
+	    				<button type="button" className="btn btn-xs btn-like" onClick={() => this.addToTakingList(drug.id, event)}>
+						<span className="glyphicon glyphicon-heart"></span>
+					</button>
+					
+        				<button type="button" className="btn btn-xs btn-add" onClick={() => this.addToRememberList(drug.id, event)}>
         					<span className="glyphicon glyphicon-plus"></span>
-        				</button>
-        				<button type="button" className="btn btn-xs btn-like">
-        					<span className="glyphicon glyphicon-heart"></span>
         				</button>
         			</h3>
         		</div>
         		<div className="row drug-features col-md-12 miniature">
 					{this.renderDrugFeatures(drug)}
-        			<img src="" alt="feature.drugFeature" title="feature.drugFeature" className="drug-feature-icon"></img>
-        					
         		</div>
         		<div className="row featurette">
         			<div className="col-md-3">

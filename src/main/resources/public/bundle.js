@@ -13995,6 +13995,90 @@ var DrugDetail = function (_React$Component) {
             });
         }
 
+        //=============================
+
+    }, {
+        key: "addToTakingList",
+        value: function addToTakingList(id) {
+            _axios2.default.post('/drug/taking/add', { id: id }, {
+                validateStatus: function validateStatus(status) {
+                    return status >= 200 && status < 300 || status == 400 || status == 401;
+                }
+            }).then(function (_ref2) {
+                var data = _ref2.data,
+                    status = _ref2.status;
+
+
+                switch (status) {
+                    case 200:
+                        console.log(data, "added");
+                        break;
+                    case 400:
+                        console.log(data, "not available");
+                        break;
+                    case 401:
+                        console.log(data, "not permitted");
+                        break;
+                }
+            });
+        }
+    }, {
+        key: "removeFromTakingList",
+        value: function removeFromTakingList(id) {
+            _axios2.default.post('/drug/taking/remove', { id: id }, {
+                validateStatus: function validateStatus(status) {
+                    return status >= 200 && status < 300 || status == 400 || status == 401;
+                }
+            }).then(function (_ref3) {
+                var data = _ref3.data,
+                    status = _ref3.status;
+
+
+                switch (status) {
+                    case 200:
+                        console.log(data, "added");
+                        break;
+                    case 400:
+                        console.log(data, "not available");
+                        break;
+                    case 401:
+                        console.log(data, "not permitted");
+                        break;
+                }
+            });
+        }
+    }, {
+        key: "addToRememberList",
+        value: function addToRememberList(id) {
+            _axios2.default.post('/drug/remember/add', { id: id }, {
+                validateStatus: function validateStatus(status) {
+                    return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
+                }
+            }).then(function (_ref4) {
+                var data = _ref4.data,
+                    status = _ref4.status;
+
+
+                switch (status) {
+                    case 200:
+                        console.log(data, "added");
+                        break;
+                    case 400:
+                        console.log(data, "not available");
+                        break;
+                    case 401:
+                        console.log(data, "not permitted");
+                        break;
+                    case 405:
+                        console.log(data, "Method not allowed");
+                        break;
+                }
+            });
+        }
+
+        //=============================
+
+
         // for html conversion
 
     }, {
@@ -14011,12 +14095,8 @@ var DrugDetail = function (_React$Component) {
             return _react2.default.createElement(
                 "p",
                 null,
-                drug.drugFeature.map(function (feature, i) {
-                    return _react2.default.createElement(
-                        "span",
-                        { key: feature.id },
-                        feature.drugFeature
-                    );
+                drug.drugFeature.map(function (feature) {
+                    return _react2.default.createElement("img", { key: feature.id, src: "./../../assets/icons/" + feature.id + ".svg", alt: feature.drugFeature, title: feature.drugFeature, className: "drug-feature-icon" });
                 })
             );
         }
@@ -14115,6 +14195,8 @@ var DrugDetail = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
+            var _this3 = this;
+
             var drug = this.state.drug;
 
             if (!drug) {
@@ -14158,21 +14240,24 @@ var DrugDetail = function (_React$Component) {
                         ),
                         _react2.default.createElement(
                             "button",
-                            { type: "button", className: "btn btn-xs btn-add" },
-                            _react2.default.createElement("span", { className: "glyphicon glyphicon-plus" })
+                            { type: "button", className: "btn btn-xs btn-like", onClick: function onClick() {
+                                    return _this3.addToTakingList(drug.id, event);
+                                } },
+                            _react2.default.createElement("span", { className: "glyphicon glyphicon-heart" })
                         ),
                         _react2.default.createElement(
                             "button",
-                            { type: "button", className: "btn btn-xs btn-like" },
-                            _react2.default.createElement("span", { className: "glyphicon glyphicon-heart" })
+                            { type: "button", className: "btn btn-xs btn-add", onClick: function onClick() {
+                                    return _this3.addToRememberList(drug.id, event);
+                                } },
+                            _react2.default.createElement("span", { className: "glyphicon glyphicon-plus" })
                         )
                     )
                 ),
                 _react2.default.createElement(
                     "div",
                     { className: "row drug-features col-md-12 miniature" },
-                    this.renderDrugFeatures(drug),
-                    _react2.default.createElement("img", { src: "", alt: "feature.drugFeature", title: "feature.drugFeature", className: "drug-feature-icon" })
+                    this.renderDrugFeatures(drug)
                 ),
                 _react2.default.createElement(
                     "div",
@@ -14402,13 +14487,9 @@ var DrugList = function (_React$Component) {
 
             return _react2.default.createElement(
                 "p",
-                null,
+                { className: "drug-features" },
                 drug.drugFeature.map(function (feature) {
-                    return _react2.default.createElement(
-                        "span",
-                        { key: feature.id },
-                        feature.drugFeature
-                    );
+                    return _react2.default.createElement("img", { key: feature.id, src: "./../../assets/icons/" + feature.id + ".svg", className: "drug-feature-icon", alt: feature.drugFeature, title: feature.drugFeature });
                 })
             );
         }
@@ -15771,14 +15852,28 @@ var Navigation = function (_React$Component) {
 	function Navigation(props) {
 		_classCallCheck(this, Navigation);
 
-		return _possibleConstructorReturn(this, (Navigation.__proto__ || Object.getPrototypeOf(Navigation)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (Navigation.__proto__ || Object.getPrototypeOf(Navigation)).call(this, props));
+
+		_this.status = {
+			show: false
+		};
+
+		_this.toggleShow = _this.toggleShow.bind(_this);
+		return _this;
 	}
 
 	_createClass(Navigation, [{
+		key: "toggleShow",
+		value: function toggleShow(event) {
+			this.status.show = !this.status.show;
+			this.setState(this.status);
+		}
+	}, {
 		key: "render",
 		value: function render() {
 			var t = this.props.t;
 
+			var show = this.status.show;
 
 			return _react2.default.createElement(
 				"div",
@@ -15800,7 +15895,7 @@ var Navigation = function (_React$Component) {
 									{ className: "navbar-header" },
 									_react2.default.createElement(
 										"button",
-										{ type: "button", className: "navbar-toggle collapsed" },
+										{ type: "button", className: "navbar-toggle collapsed", onClick: this.toggleShow },
 										_react2.default.createElement("span", { className: "icon-bar" }),
 										_react2.default.createElement("span", { className: "icon-bar" }),
 										_react2.default.createElement("span", { className: "icon-bar" })
@@ -15811,10 +15906,9 @@ var Navigation = function (_React$Component) {
 										_react2.default.createElement("img", { src: "/assets/images/logo_v.svg", className: "logo" })
 									)
 								),
-								_react2.default.createElement(
+								show && _react2.default.createElement(
 									"div",
-									{ className: "collapse navbar-collapse",
-										id: "bs-example-navbar-collapse-1" },
+									{ className: "navbar-collapse", id: "bs-example-navbar-collapse-1" },
 									_react2.default.createElement(
 										"ul",
 										{ className: "nav navbar-nav" },

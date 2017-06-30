@@ -117,11 +117,11 @@ class DrugList extends React.Component {
 		if(!drug.drugFeature) {
 			return;
 		}
-		
+	
         return (
-        	<p>
-        		{ drug.drugFeature.map(feature => <span key={feature.id}>{feature.drugFeature}</span> ) }
-	        </p>
+        		<p className="drug-features">
+        			{ drug.drugFeature.map(feature => <img key={feature.id} src={"./../../assets/icons/"+feature.id + ".svg"} className="drug-feature-icon" alt={feature.drugFeature} title={feature.drugFeature}></img> ) }
+        		</p>
 		);
     }
 

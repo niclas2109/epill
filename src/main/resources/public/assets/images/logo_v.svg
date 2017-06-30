@@ -2,12 +2,15 @@
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="99.21px" height="99.21px" viewBox="0 0 99.21 99.21" enable-background="new 0 0 99.21 99.21" xml:space="preserve">
+	 width="99.21px" height="36.85px" viewBox="0 0 99.21 36.85" enable-background="new 0 0 99.21 36.85" xml:space="preserve">
 <g>
-	<path fill="none" stroke="#B2B2B2" stroke-miterlimit="10" d="M49.346,1.351H18.059C8.753,1.351,1.21,8.894,1.21,18.198
-		c0,9.306,7.543,16.848,16.849,16.848h31.287V1.351z"/>
-	<path fill="#00A7A9" d="M48.972,35.396h31.94c9.498,0,17.197-7.699,17.197-17.198C98.109,8.7,90.41,1,80.912,1h-31.94V35.396z"/>
-	<rect x="33.314" y="9.88" fill="none" width="57.461" height="21.38"/>
-	<text transform="matrix(1 0 0 1 33.3149 28.4287)"><tspan x="0" y="0" fill="#00A7A9" font-family="'GothamRounded-Medium'" font-size="25.2361">e</tspan><tspan x="15.242" y="0" fill="#FFFFFF" font-family="'GothamRounded-Medium'" font-size="25.2361">Pill</tspan></text>
+	<g>
+		<path fill="#FFFFFF" stroke="#B2B2B2" stroke-miterlimit="10" d="M49.112,1.516H18.13c-9.215,0-16.684,7.469-16.684,16.683
+			c0,9.215,7.469,16.684,16.684,16.684h30.982V1.516z"/>
+		<path fill="#10A69C" d="M47.972,35.396h31.941c9.498,0,17.197-7.699,17.197-17.198C97.11,8.7,89.411,1,79.913,1H47.972V35.396z"/>
+	</g>
+	<rect x="32.315" y="9.88" fill="none" width="57.461" height="21.38"/>
+	<text transform="matrix(1 0 0 1 32.3154 28.4287)"><tspan x="0" y="0" fill="#10A69C" font-family="'GothamRounded-Medium'" font-size="25.2361">e</tspan><tspan x="15.242" y="0" fill="#FFFFFF" font-family="'GothamRounded-Medium'" font-size="25.2361">Pill</tspan></text>
 </g>
+<rect x="0" fill="none" width="99.209" height="36.85"/>
 </svg>

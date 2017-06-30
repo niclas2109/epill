@@ -14291,6 +14291,8 @@ var DrugList = function (_React$Component) {
                     drugs: data.value
                 });
             });
+
+            var data = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"json!./data.json\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
         }
 
         //=============================
@@ -14567,7 +14569,7 @@ var DrugList = function (_React$Component) {
                         "Medikamente"
                     )
                 ),
-                _react2.default.createElement(
+                _User2.default.isAuthenticated() && _react2.default.createElement(
                     "div",
                     { className: "text-box" },
                     t('drugListAllDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
