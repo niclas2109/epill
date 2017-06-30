@@ -57,10 +57,8 @@ class Navigation extends React.Component {
 		            						 	<img src="/assets/images/logo_v.svg" className="logo"></img>
 		            						 </Link>
 		            					</div>
-		            	
-		            					{show && 
-			            					
-			            					<div className="navbar-collapse" id="bs-example-navbar-collapse-1">
+		            					{show &&
+		            						<div className="navbar-collapse" id="bs-example-navbar-collapse-1">
 			            						<ul className="nav navbar-nav">
 			            							<li><Link to="/about">{t("about")}</Link></li>
 			            							<li><Link to="/drug/list">{t("drugs")}</Link></li>
@@ -71,6 +69,16 @@ class Navigation extends React.Component {
 			            						<UserMenue />
 			            					</div>
 		            					}
+	            						<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		            						<ul className="nav navbar-nav">
+		            							<li><Link to="/about">{t("about")}</Link></li>
+		            							<li><Link to="/drug/list">{t("drugs")}</Link></li>
+		            						</ul>
+		            	
+		            						<AutoComplete />
+		            	
+		            						<UserMenue />
+		            					</div>
 		            				</div>
 		            			</nav>
 		            		</div>

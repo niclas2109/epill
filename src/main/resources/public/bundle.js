@@ -15933,6 +15933,34 @@ var Navigation = function (_React$Component) {
 									),
 									_react2.default.createElement(_AutoComplete2.default, null),
 									_react2.default.createElement(_UserMenue2.default, null)
+								),
+								_react2.default.createElement(
+									"div",
+									{ className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1" },
+									_react2.default.createElement(
+										"ul",
+										{ className: "nav navbar-nav" },
+										_react2.default.createElement(
+											"li",
+											null,
+											_react2.default.createElement(
+												_reactRouterDom.Link,
+												{ to: "/about" },
+												t("about")
+											)
+										),
+										_react2.default.createElement(
+											"li",
+											null,
+											_react2.default.createElement(
+												_reactRouterDom.Link,
+												{ to: "/drug/list" },
+												t("drugs")
+											)
+										)
+									),
+									_react2.default.createElement(_AutoComplete2.default, null),
+									_react2.default.createElement(_UserMenue2.default, null)
 								)
 							)
 						)
