@@ -4,9 +4,9 @@ import React from "react";
 import {Link} from "react-router-dom";
 import {translate} from "react-i18next";
 
-import User from "./../util/User";
+import User from "./../../util/User";
 
-class DrugList extends React.Component {
+class UserTakingDrugList extends React.Component {
     constructor(props) {
         super();
         this.state = {
@@ -25,28 +25,6 @@ class DrugList extends React.Component {
     }
 
     //=============================
-    
-    addToTakingList(id) {
-    	 	axios.post('/drug/taking/add', { id : id }, {
-	            validateStatus: (status) => {
-	                return (status >= 200 && status < 300) || status == 400 || status == 401
-	            }
-     		})
-         .then(({data, status}) => {
-        	 
-             switch (status) {
-                 case 200:
-                     console.log(data, "added");
-                     break;
-                 case 400:
-                  	console.log(data, "not available");
-                     break;
-                 case 401:
-                 	console.log(data, "not permitted");
-                    	break;
-             }
-         });
-    }
     
     removeFromTakingList(id) {
 	 	axios.post('/drug/taking/remove', { id : id }, {
@@ -152,10 +130,12 @@ class DrugList extends React.Component {
     
     renderDrugs(drugs) {
 
-        if (drugs.length == 0) {
+        const {t} = this.props;
+        
+        if (!drugs.length) {
             return (
 	            	<div className="col-sm-12 col-md-12 col-lg-12">
-	            		loading...
+	            		{t("emptyList")}
             		</div>
             );
         }
@@ -185,8 +165,8 @@ class DrugList extends React.Component {
 	        		{User.isAuthenticated() &&
 	        			<ul>
 	        				<li>
-	        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.addToTakingList(drug.id, event)}>
-	        						<span className="glyphicon glyphicon-heart"></span>
+	        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.removeFromTakingList(drug.id, event)}>
+	        						<span className="glyphicon glyphicon-trash"></span>
 	        					</button>
 	        				</li>
 	        				<li>
@@ -220,22 +200,29 @@ class DrugList extends React.Component {
         return (
 	        	<div className="container no-banner">
 		    		<div className='page-header'>
-						<h3>{t('drugs')}</h3>
-					</div>
-					{User.isAuthenticated() &&
+			    		<div className='btn-toolbar pull-right'>
+			            <div className='btn-group'>
+			                	<button className="btn btn-default" disabled={drugs.length <= 1}>
+									{t("checkForAdverseEffects")}
+								</button>
+			            </div>
+			        </div>
+					<h3>{t('drugsTaking')}</h3>
+				</div>
+				{User.isAuthenticated() &&
 		                <div className="text-box">
-		                		{t('drugListAllDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
+		                		{t('drugTakingListAllDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
 		                </div>
-					}
-	                <div className="row">
-		                <ul className="drug-list">
-		                    {this.renderDrugs(drugs)}
-		                </ul>
-	                </div>
+				}
+	            <div className="row">
+		            <ul className="drug-list">
+		                {this.renderDrugs(drugs)}
+		            </ul>
 	            </div>
+	        </div>
         );
     }
 }
 
 
-export default translate()(DrugList);
+export default translate()(UserTakingDrugList);

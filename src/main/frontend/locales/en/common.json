@@ -11,6 +11,7 @@
   "drugListAllDescriptionText"	: "%User.firstname%, this is an overview about all drugs in the system. You can add drugs you take frequently into a list by clicking on the heart icon. You can add drugs you want to remember into another list by clicking on the plus icon.",
   "drugs"	: "drugs",
   "drug"		: "drug",
+  "checkForAdverseEffects"	: "Check for adverse effects",
   "userDrugs"	: "your drugs",
   "rememberedDrugs"	: "remembered drugs",
   "userSettings"	: "your settings",
@@ -27,5 +28,8 @@
   "greetingNoon"		: "Hello %User.firstname%,",
   "greetingHighNoon"	: "Good day %User.firstname%,",
   "greetingEvening"	: "Good evening %User.firstname%,",
-  "greetingNight"	: "Oh, you are still awake, %User.firstname%!"
+  "greetingNight"	: "Oh, you are still awake, %User.firstname%!",
+  "drugsTaking"		: "Your current medication",
+  "drugTakingListAllDescriptionText"	: "%User.firstname%,this is an overview about all drugs you are frequently taking. You can add new drugs to or remove drugs from this list.",
+  "emptyList"	: "This list is still empty..."
 }

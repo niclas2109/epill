@@ -292,11 +292,14 @@ public class UserService {
 
 		drug = drugRepository.findOne(drug.getId());
 
-		
 		if(drug == null)
 			return false;
 		
 		User user = repository.findOne(getCurrentUser().getId());
+		
+		if(user == null)
+			return false;
+		
 		user.withoutTakingDrug(drug);
 
 		repository.save(user);

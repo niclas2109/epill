@@ -19,6 +19,7 @@ import DrugDetail from "./../components/drug_detail";
 import UserData from "./../components/user/data";
 import UserSettings from "./../components/user/settings";
 import UserList from "./../components/user/list";
+import UserTakingDrugList from "./../components/user/user_taking_drug_list.js";
 
 
 class Navigation extends React.Component {
@@ -92,6 +93,7 @@ class Navigation extends React.Component {
 		
 		                        {/* Drug handling */}
 		                        <Route path="/drug/list" component={DrugList}/>
+		                        <Route path="/drug/taking" component={UserTakingDrugList}/>
 		                        <Route path="/drug/:id" component={DrugDetail}/>
 	
 		                        {/* User sites */}
