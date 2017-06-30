@@ -14,6 +14,10 @@ span.enumeration {
 	margin-right:4px;
 }
 
+.margin-s {
+	margin-top: 8px;
+}
+
 .btn-group {
 	padding-left: 0px;
 }
@@ -117,11 +121,11 @@ a.wide { display : block }
 }
 
 .btn-like {
-	background-color: #ffc8de;
+	background-color: #ff7884;
 }
 
 .btn-add {
-	background-color: #beebb3;
+	background-color: #11a59b;
 }
 
 

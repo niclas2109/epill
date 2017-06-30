@@ -182,25 +182,27 @@ class DrugList extends React.Component {
         			{drug.year && <p>new Date(drug.year).toISOString()</p>}
         		</div>
         		<div className="action-pattern col-sm-1 col-md-1 col-lg-1">
-        			<ul>
-        				<li>
-        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.addToTakingList(drug.id, event)}>
-        						<span className="glyphicon glyphicon-heart"></span>
-        					</button>
-        				</li>
-        				<li>
-        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.addToRememberList(drug.id, event)}>
-        						<span className="glyphicon glyphicon-plus"></span>
-        					</button>
-        				</li>
-        				<li>
-	        				<Link to={`/drug/${drug.id}`}>
-	        					<button type="button" className="btn btn-xs btn-open">
-	        						<span className="glyphicon glyphicon-eye-open"></span>
+	        		{User.isAuthenticated() &&
+	        			<ul>
+	        				<li>
+	        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.addToTakingList(drug.id, event)}>
+	        						<span className="glyphicon glyphicon-heart"></span>
 	        					</button>
-	        				</Link>
-        				</li>
-        			</ul>
+	        				</li>
+	        				<li>
+	        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.addToRememberList(drug.id, event)}>
+	        						<span className="glyphicon glyphicon-plus"></span>
+	        					</button>
+	        				</li>
+	        				<li>
+		        				<Link to={`/drug/${drug.id}`}>
+		        					<button type="button" className="btn btn-xs btn-open">
+		        						<span className="glyphicon glyphicon-eye-open"></span>
+		        					</button>
+		        				</Link>
+	        				</li>
+	        			</ul>
+	        		}
         		</div>
         	</li>
             );

@@ -14232,6 +14232,28 @@ var DrugDetail = function (_React$Component) {
                         { className: "btn-toolbar pull-right" },
                         _react2.default.createElement("div", { className: "btn-group" })
                     ),
+                    _User2.default.isAuthenticated() && _react2.default.createElement(
+                        "div",
+                        { className: "btn-toolbar pull-right" },
+                        _react2.default.createElement(
+                            "div",
+                            { className: "btn-group" },
+                            _react2.default.createElement(
+                                "button",
+                                { type: "button", className: "btn btn-like", onClick: function onClick() {
+                                        return _this3.addToTakingList(drug.id, event);
+                                    } },
+                                _react2.default.createElement("span", { className: "glyphicon glyphicon-heart" })
+                            ),
+                            _react2.default.createElement(
+                                "button",
+                                { type: "button", className: "btn btn-add", onClick: function onClick() {
+                                        return _this3.addToRememberList(drug.id, event);
+                                    } },
+                                _react2.default.createElement("span", { className: "glyphicon glyphicon-plus" })
+                            )
+                        )
+                    ),
                     _react2.default.createElement(
                         "h3",
                         null,
@@ -14241,27 +14263,8 @@ var DrugDetail = function (_React$Component) {
                             "span",
                             { className: "text-muted" },
                             "drug.productGroup.name"
-                        ),
-                        _react2.default.createElement(
-                            "button",
-                            { type: "button", className: "btn btn-xs btn-like", onClick: function onClick() {
-                                    return _this3.addToTakingList(drug.id, event);
-                                } },
-                            _react2.default.createElement("span", { className: "glyphicon glyphicon-heart" })
-                        ),
-                        _react2.default.createElement(
-                            "button",
-                            { type: "button", className: "btn btn-xs btn-add", onClick: function onClick() {
-                                    return _this3.addToRememberList(drug.id, event);
-                                } },
-                            _react2.default.createElement("span", { className: "glyphicon glyphicon-plus" })
                         )
                     )
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "row drug-features col-md-12 miniature" },
-                    this.renderDrugFeatures(drug)
                 ),
                 _react2.default.createElement(
                     "div",
@@ -14269,7 +14272,12 @@ var DrugDetail = function (_React$Component) {
                     _react2.default.createElement(
                         "div",
                         { className: "col-md-3" },
-                        _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "{drug.name}", src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg" })
+                        _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "{drug.name}", src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg" }),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "drug-features margin-s" },
+                            this.renderDrugFeatures(drug)
+                        )
                     ),
                     _react2.default.createElement(
                         "div",
@@ -14587,7 +14595,7 @@ var DrugList = function (_React$Component) {
                     _react2.default.createElement(
                         "div",
                         { className: "action-pattern col-sm-1 col-md-1 col-lg-1" },
-                        _react2.default.createElement(
+                        _User2.default.isAuthenticated() && _react2.default.createElement(
                             "ul",
                             null,
                             _react2.default.createElement(

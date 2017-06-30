@@ -192,23 +192,31 @@ class DrugDetail extends React.Component {
         			<div className='btn-toolbar pull-right'>
         				<div className='btn-group'></div>
         			</div>
-        			<h3>
-        				{drug.name} {drug.productGroup && <span className="text-muted">drug.productGroup.name</span> }
-	    				<button type="button" className="btn btn-xs btn-like" onClick={() => this.addToTakingList(drug.id, event)}>
-						<span className="glyphicon glyphicon-heart"></span>
-					</button>
-					
-        				<button type="button" className="btn btn-xs btn-add" onClick={() => this.addToRememberList(drug.id, event)}>
-        					<span className="glyphicon glyphicon-plus"></span>
-        				</button>
-        			</h3>
-        		</div>
-        		<div className="row drug-features col-md-12 miniature">
-					{this.renderDrugFeatures(drug)}
+          			
+        			{User.isAuthenticated()
+        				&&
+	        			<div className='btn-toolbar pull-right'>
+		        		    <div className='btn-group'>
+			    				<button type="button" className="btn btn-like" onClick={() => this.addToTakingList(drug.id, event)}>
+								<span className="glyphicon glyphicon-heart"></span>
+							</button>
+							
+		        				<button type="button" className="btn btn-add" onClick={() => this.addToRememberList(drug.id, event)}>
+		        					<span className="glyphicon glyphicon-plus"></span>
+		        				</button>
+		        		    </div>
+		        		  </div>	
+	        			}
+        			
+        			<h3>{drug.name} {drug.productGroup && <span className="text-muted">drug.productGroup.name</span> }</h3>
+  
         		</div>
         		<div className="row featurette">
         			<div className="col-md-3">
         				<img className="featurette-image img-responsive center-block" alt="{drug.name}" src="http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg"></img>
+                		<div className="drug-features margin-s">
+	    					{this.renderDrugFeatures(drug)}
+	            		</div>
         			</div>
         			<div className="col-md-6">
         				{ User.isAuthenticated() && drug.personalizedInformation && <p>{drug.personalizedInformation.replace("%User.firstname%", User.firstname).replace("%User.lastname%", User.lastname)}</p> }
