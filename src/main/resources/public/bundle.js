@@ -14786,6 +14786,7 @@ var DrugList = function (_React$Component) {
             _axios2.default.get('/drug/list/all').then(function (_ref) {
                 var data = _ref.data;
 
+
                 _this2.setState({
                     drugs: data.value
                 });
@@ -14898,7 +14899,7 @@ var DrugList = function (_React$Component) {
 
             var drugs = this.state.drugs;
 
-            if (drugs) {
+            if (!drugs) {
                 return _react2.default.createElement(
                     "div",
                     { className: "col-sm-12 col-md-12 col-lg-12" },

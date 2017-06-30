@@ -16,6 +16,7 @@ class DrugList extends React.Component {
     componentWillMount() {
         axios.get('/drug/list/all')
             .then(({data}) => {
+            	
                 this.setState({
                     drugs: data.value
                 });
@@ -94,7 +95,7 @@ class DrugList extends React.Component {
     	
         const drugs = this.state.drugs;
         
-        if (drugs) {
+        if (!drugs) {
             return (
 	            	<div className="col-sm-12 col-md-12 col-lg-12">
 	            		loading...
