@@ -3,7 +3,6 @@ import React from "react";
 
 import {Link} from "react-router-dom";
 import {translate} from "react-i18next";
-import { toast } from 'react-toastify';
 
 // See https://facebook.github.io/react/docs/forms.html for documentation about forms.
 class Register extends React.Component {
@@ -86,12 +85,11 @@ class Register extends React.Component {
 	            	switch (status) {
 	                case 200:
 	                    // Redirect to front page.
-		    	            toast(<div>Registration Successfull</div>);
+		    	            console.log("Registration Successfull");
 		    	            	this.props.history.push("/user/login");
 		    	            	break;
 	                case 409:
 	                		console.log("username already in use");
-	            			toast(<Greet name="username already in use"/>);
 	                    	break;
 	            	
 	            }
