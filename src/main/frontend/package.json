@@ -1,9 +1,8 @@
 {
-  "name": "webengineering-SS2017",
+  "name": "epill",
   "version": "1.0.0",
-  "description": "Demo project for webengineering 2017",
+  "description": "epill",
   "main": "index.js",
-  "repository": "https://github.com/micromata/webengineering-2017",
   "license": "Apache-2.0",
   "scripts": {
     "start": "node ./node_modules/.bin/webpack -w"
@@ -21,8 +20,6 @@
   "dependencies": {
     "axios": "^0.16.2",
     "babel-preset-stage-1": "6.24.1",
-    "cssnano": "^3.8.0",
-    "cssnano-cli": "^1.0.5",
     "i18next": "^8.4.2",
     "i18next-xhr-backend": "^1.4.2",
     "react": "15.5.4",
