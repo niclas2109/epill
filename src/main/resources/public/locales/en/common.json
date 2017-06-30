@@ -17,5 +17,6 @@
   "userData"	: "your data",
   "userList"	: "all users",
   "save"		: "save",
-  "userCockpitDescr"	: "Hello {User.firstname} {User.lastname}, here your can change your account settings."
+  "userCockpitDescr"	: "Hello {User.firstname} {User.lastname}, here your can change your account settings.",
+  "searchDrug"	: "search for a drug..."
 }

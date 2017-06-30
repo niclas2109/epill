@@ -18,6 +18,8 @@ span.enumeration {
 	padding-left: 0px;
 }
 
+a.wide { display : block }
+
 .checkbox-grid li {
     display: block;
     float: left;

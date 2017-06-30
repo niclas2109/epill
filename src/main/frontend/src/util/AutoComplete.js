@@ -10,10 +10,20 @@ class UserMenue extends React.Component {
 	    this.state = {
 	    		drugs	: [],
 	    		exp		: '',
+	    		selectedValue	: '',
 	    		show		: false
 	    }
 
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.handleExpressionChange = this.handleExpressionChange.bind(this);
+        this.handleSelectedValueChange = this.handleSelectedValueChange.bind(this);
+        this.hide = this.hide.bind(this);
+        this.show = this.show.bind(this);
+	  }
+	  
+	  handleSubmit(event) {
+		  event.preventDefault();
+		  
 	  }
 	  
 	  handleExpressionChange(event) {
@@ -29,35 +39,56 @@ class UserMenue extends React.Component {
 	        });
 	  }
 	  
+	  handleSelectedValueChange(drug, event) {
+		  this.state.selectedValue = drug.name;
+		  this.state.exp = this.state.selectedValue;
+		  this.setState(this.state);
+	  }
+	  
+	  
+	  show(event) {
+		  this.state.show = true;
+		  this.setState(this.state);
+	  }
+	  
 	  hide(event) {
-
+		  this.state.show = false;
+		  this.setState(this.state);
 	  }
 	  
 	  renderResults(drugs) {
-			return drugs.map(drug => <li key={drug.id}><Link to={`/drug/${drug.id}`}>{drug.name}</Link></li> );
+		  if(!drugs)
+			  return null;
+		
+		  return drugs.map(drug => <li key={drug.id} onMouseOver={() => this.handleSelectedValueChange(drug) } onClick={ this.hide }><Link to={`/drug/${drug.id}`} className="wide">{drug.name}</Link></li> );
 	  }
 
+	  
 	  render() {
 	    const {t} = this.props;
 	    const drugs	= this.state.drugs;
 	    const show	= this.state.show;
+	    const exp	= this.state.exp;
 
 	    return (
 	    		<div>
-		    		<form className="navbar-form navbar-left">
+		    		<form className="navbar-form navbar-left" onSubmit={this.handleSubmit}>
 		    			<div className="col-sm-12 col-md-12 col-lg-12">
 		    				<div className="row">
-		    					<input type="text" value={this.state.password} onChange={this.handleExpressionChange} name="search" className="form-control" placeholder="search drug" autoComplete="off" autoCorrect="off" autoCapitalize="off" />
+		    					<input type="text" value={this.state.exp} onChange={this.handleExpressionChange} name="search" className="form-control"
+		    						placeholder={ t("searchDrug") } autoComplete="off" autoCorrect="off" autoCapitalize="off" />
 		    					<button className="btn btn-outline-success btn-search" type="submit">
 		    						<span className="glyphicon glyphicon-search"></span>
 		    					</button>
 		    				</div>
-		    				{show && this.state.exp.length > 0 && <div className="row">
-		    					<ul className="ui-autocomplete">
-    								{this.renderResults(drugs)}
-		    						{drugs.length == 0 && <li className="no-results">leider keine passenden Ergebnisse gefunden</li> }
-		    					</ul>
-		    				</div> }
+		    				{show && exp.length > 0 &&
+		    					<div className="row">
+			    					<ul className="ui-autocomplete">
+	    								{this.renderResults(drugs)}
+			    						{drugs.length == 0 && <li className="no-results">leider keine passenden Ergebnisse gefunden</li> }
+			    					</ul>
+			    				</div>
+		    				}
 		    			</div>
 		    		</form>
 		    	</div>
