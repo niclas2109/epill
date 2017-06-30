@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 
+import Accordion from "../util/Accordion";
 import User from "../util/User";
 
 class DrugDetail extends React.Component {
@@ -12,7 +13,6 @@ class DrugDetail extends React.Component {
     }
 
     componentWillMount() {
-    		console.log("load");
         axios.get(`/drug/${this.props.match.params.id}/de`)
             .then(({data}) => {
                 this.setState({
@@ -87,31 +87,18 @@ class DrugDetail extends React.Component {
     }
 
     renderSectionList(drug) {
-    	if(!drug.packagingSection) {
+    		if(!drug.packagingSection) {
 			return;
 		}
-
-    	return drug.packagingSection.map((section => {
-            return (	
-            	<div className="panel panel-default" key={section.id}>
-            		<div className="panel-heading">
-            			<h4 id="packaging-heading-section.topic.id" className="panel-title">
-            				<a>{section.topic.title}</a>
-            			</h4>
-            		</div>
-            		<div>
-            			<div className="panel-body" dangerouslySetInnerHTML={this.createMarkup(section.text)} />
-            		</div>
-            	</div>
-            );
+    		
+    		return drug.packagingSection.map((section => {
+            return (	<Accordion section={section} key={section.id} /> );
         }));
     }
     
-    
-    
-    
     render() {
         const drug = this.state.drug;
+        
         if (!drug) {
             // Do not show anything while loading.
             return (
@@ -150,9 +137,7 @@ class DrugDetail extends React.Component {
         				<img className="featurette-image img-responsive center-block" alt="{drug.name}" src="http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg"></img>
         			</div>
         			<div className="col-md-6">
-        				<p>
-        					{drug.personalizedInformation}
-        				</p>
+        				{ User.isAuthenticated() && drug.personalizedInformation && <p>{drug.personalizedInformation.replace("%User.firstname%", User.firstname).replace("%User.lastname%", User.lastname)}</p> }
       
         				{this.renderDisease(drug)}
         				

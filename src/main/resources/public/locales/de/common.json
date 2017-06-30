@@ -20,5 +20,13 @@
   "userCockpitDescr"	: "Hallo %User.firstname% %User.lastname%, hier kannst du Einstellungen vornehmen.",
   "searchDrug"	: "Suche nach einem Medikament...",
   "address"		: "Anrede",
-  "dateOfBirth"	: "Geburtsdatum"
+  "dateOfBirth"	: "Geburtsdatum",
+  "about"		: "Über Uns",
+  "privacy"		: "Privatsphäre",
+  "greetingMorning"	: "Guten Morgen %User.firstname%,",
+  "greetingNoon"		: "Guten Tag %User.firstname%,",
+  "greetingHighNoon"	: "Hallo %User.firstname%,",
+  "greetingEvening"	: "Guten Abend %User.firstname%,",
+  "greetingNight"	: "Du bist ja noch wach, %User.firstname%!"
+  
 }

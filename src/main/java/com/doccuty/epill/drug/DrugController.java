@@ -227,9 +227,7 @@ public class DrugController {
 		map.withFilter(Filter.regard(Deep.create(5)));
 	
 	    	Drug drug = service.findDrugById(id);
-	
-	    	drug.setPersonalizedInformation("Lieber %firstname% %lastname%, das ist deine personalisierte Information.");
-	    	
+
 	    	JsonObject json = new JsonObject();
 			json.add("value", map.toJsonObject(drug));
 

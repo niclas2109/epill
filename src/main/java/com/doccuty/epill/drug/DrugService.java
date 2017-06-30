@@ -45,6 +45,10 @@ public class DrugService {
 			invocation.withDrug(drug).withUser(user);
 			
 			user = userService.saveItemInvocation(invocation);
+			
+			//TODO: make dynamically
+			
+	    		drug.setPersonalizedInformation("Lieber %User.firstname% %User.lastname%, das ist deine personalisierte Information.");
 		}
 
 		return drug;

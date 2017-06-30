@@ -24,7 +24,7 @@ class About extends React.Component {
         	    	<div className='btn-toolbar pull-right'>
         	            <div className='btn-group'></div>
         	        </div>
-        	        <h3>About</h3>
+        	        <h3>{t("about")}</h3>
         	    </div>
         		<div className="row featurette">
         			<div className="col-md-7">
