@@ -36,10 +36,10 @@ public class AuthenticationService {
      */
     public UserToken login(String username, String password) {
     	
-        User user = repository.findByUsername(username);
+        SimpleUser user = repository.findByUsername(username);
 
         if(user == null) {
-        	return null;
+        		return null;
         }
 
         LoginAttempt loginAttempt = new LoginAttempt();
@@ -64,7 +64,7 @@ public class AuthenticationService {
         
         
         UserToken userToken = new UserToken();
-        userToken.setUser(new SimpleUser(user));
+        userToken.setUser(user);
         userToken.setToken(token);
 
         
