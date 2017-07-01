@@ -873,7 +873,7 @@ import com.doccuty.epill.model.Disease;
     * <pre>
     *              one                       many
     * Drug	 ----------------------------------- User
-    *              country                   user
+    *              takingDrug                   user
     * </pre>
     */
    
@@ -939,5 +939,78 @@ import com.doccuty.epill.model.Disease;
       User value = new User();
       withUser(value);
       return value;
+   }
+   
+   
+   /********************************************************************
+    * <pre>
+    *              one                       many
+    * Drug	 ----------------------------------- User
+    *              takingDrug                   user
+    * </pre>
+    */
+   
+   public static final String PROPERTY_USERREMEMBERING = "userRemembering";
+
+   @ManyToMany(cascade=CascadeType.ALL, mappedBy="rememberedDrug")
+   private Set<User> userRemembering = null;
+   
+   public Set<User> getUserRemembering()
+   {
+      if (this.userRemembering == null)
+      {
+         return UserSet.EMPTY_SET;
+      }
+   
+      return this.userRemembering;
+   }
+
+   public Drug withUserRemembering(User... value)
+   {
+      if(value==null){
+         return this;
+      }
+      for (User item : value)
+      {
+         if (item != null)
+         {
+            if (this.userRemembering == null)
+            {
+               this.userRemembering = new UserSet();
+            }
+            
+            boolean changed = this.userRemembering.add (item);
+
+            if (changed)
+            {
+               item.withRememberedDrug(this);
+               firePropertyChange(PROPERTY_USERREMEMBERING, null, item);
+            }
+         }
+      }
+      return this;
    } 
+
+   public Drug withoutUserRemembering(User... value)
+   {
+      for (User item : value)
+      {
+         if ((this.userRemembering != null) && (item != null))
+         {
+            if (this.userRemembering.remove(item))
+            {
+               item.withoutRememberedDrug(this);
+               firePropertyChange(PROPERTY_USERREMEMBERING, item, null);
+            }
+         }
+      }
+      return this;
+   }
+
+   public User createUserRemembering()
+   {
+      User value = new User();
+      withUserRemembering(value);
+      return value;
+   }
 }

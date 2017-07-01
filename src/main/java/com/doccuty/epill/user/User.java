@@ -349,7 +349,7 @@ import com.doccuty.epill.model.DrugFeature;
 
             if (changed)
             {
-               item.withUser(this);
+               item.withUserRemembering(this);
                firePropertyChange(PROPERTY_REMEMBEREDDRUG, null, item);
             }
          }
@@ -365,7 +365,7 @@ import com.doccuty.epill.model.DrugFeature;
          {
             if (this.rememberedDrug.remove(item))
             {
-               item.withoutUser(this);
+               item.withoutUserRemembering(this);
                firePropertyChange(PROPERTY_REMEMBEREDDRUG, item, null);
             }
          }
