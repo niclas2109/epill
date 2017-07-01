@@ -15549,7 +15549,7 @@ var UserRememberDrugList = function (_React$Component) {
 								value: function componentWillMount() {
 												var _this2 = this;
 
-												_axios2.default.get('/drug/list/all').then(function (_ref) {
+												_axios2.default.get('/drug/list/remember').then(function (_ref) {
 																var data = _ref.data;
 
 																_this2.setState({
@@ -15752,7 +15752,7 @@ var UserRememberDrugList = function (_React$Component) {
 																																				{ type: "button", className: "btn btn-xs btn-like", onClick: function onClick() {
 																																												return _this4.removeFromTakingList(drug.id, event);
 																																								} },
-																																				_react2.default.createElement("span", { className: "glyphicon glyphicon-trash" })
+																																				_react2.default.createElement("span", { className: "glyphicon glyphicon-heart" })
 																																)
 																												),
 																												_react2.default.createElement(
@@ -15763,7 +15763,7 @@ var UserRememberDrugList = function (_React$Component) {
 																																				{ type: "button", className: "btn btn-xs btn-add", onClick: function onClick() {
 																																												return _this4.addToRememberList(drug.id, event);
 																																								} },
-																																				_react2.default.createElement("span", { className: "glyphicon glyphicon-plus" })
+																																				_react2.default.createElement("span", { className: "glyphicon glyphicon-minus" })
 																																)
 																												),
 																												_react2.default.createElement(
@@ -15901,7 +15901,7 @@ var UserTakingDrugList = function (_React$Component) {
 								value: function componentWillMount() {
 												var _this2 = this;
 
-												_axios2.default.get('/drug/list/all').then(function (_ref) {
+												_axios2.default.get('/drug/list/taking').then(function (_ref) {
 																var data = _ref.data;
 
 																_this2.setState({

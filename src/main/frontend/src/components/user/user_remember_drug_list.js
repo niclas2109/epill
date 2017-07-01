@@ -16,7 +16,7 @@ class UserRememberDrugList extends React.Component {
 
     // This function is called before render() to initialize its state.
     componentWillMount() {
-        axios.get('/drug/list/all')
+        axios.get('/drug/list/remember')
             .then(({data}) => {
                 this.setState({
                     drugs: data.value
@@ -166,12 +166,12 @@ class UserRememberDrugList extends React.Component {
 	        			<ul>
 	        				<li>
 	        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.removeFromTakingList(drug.id, event)}>
-	        						<span className="glyphicon glyphicon-trash"></span>
+	        						<span className="glyphicon glyphicon-heart"></span>
 	        					</button>
 	        				</li>
 	        				<li>
 	        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.addToRememberList(drug.id, event)}>
-	        						<span className="glyphicon glyphicon-plus"></span>
+	        						<span className="glyphicon glyphicon-minus"></span>
 	        					</button>
 	        				</li>
 	        				<li>

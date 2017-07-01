@@ -16,7 +16,7 @@ class UserTakingDrugList extends React.Component {
 
     // This function is called before render() to initialize its state.
     componentWillMount() {
-        axios.get('/drug/list/all')
+        axios.get('/drug/list/taking')
             .then(({data}) => {
                 this.setState({
                     drugs: data.value

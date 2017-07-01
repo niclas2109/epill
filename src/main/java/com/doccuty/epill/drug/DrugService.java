@@ -74,7 +74,11 @@ public class DrugService {
 		return adverseEffects;
 	}
 
-	public List<Drug> getAllUserFavorites(SimpleUser user) {
-		return repository.findUserFavorites();
+	public List<Drug> findUserDrugsTaking(SimpleUser user) {
+		return repository.findUserDrugsTaking(user.getId());
+	}
+	
+	public List<Drug> findUserDrugsRemembered(SimpleUser user) {
+		return repository.findUserDrugsRemembered(user.getId());
 	}
 }

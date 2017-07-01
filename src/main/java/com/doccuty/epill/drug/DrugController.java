@@ -142,7 +142,7 @@ public class DrugController {
      * @return
      */
 
-    @RequestMapping(value = "/taking", method = RequestMethod.GET)
+    @RequestMapping(value = "/list/taking", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> getUserFavorites() {
     	
 		// A pragmatic approach to security which does not use much
@@ -158,7 +158,7 @@ public class DrugController {
 		IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(2)));
 		
-        List<Drug> set = service.getAllUserFavorites(userService.getCurrentUser());
+        List<Drug> set = service.findUserDrugsTaking(userService.getCurrentUser());
     	
 	    	JsonObject json = new JsonObject();
 	    	JsonArray drugArray = new JsonArray();
@@ -217,7 +217,84 @@ public class DrugController {
     }
 
     
+    /**
+     * retrieve drugs a user has marked as frequently taking
+     * @return
+     */
 
+    @RequestMapping(value = "/list/remember", method = RequestMethod.GET)
+    public ResponseEntity<JsonObject> getUserDrugsRemembered() {
+    	
+		// A pragmatic approach to security which does not use much
+		// framework-specific magic. While other approaches
+		// with annotations, etc. are possible they are much more complex while
+		// this is quite easy to understand and
+		// extend.
+
+		if (userService.isAnonymous()) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}  
+		
+		IdMap map = DrugCreator.createIdMap("");
+		map.withFilter(Filter.regard(Deep.create(2)));
+		
+        List<Drug> set = service.findUserDrugsRemembered(userService.getCurrentUser());
+    	
+	    	JsonObject json = new JsonObject();
+	    	JsonArray drugArray = new JsonArray();
+	    	
+	    	for(Drug drug : set) {
+	    		drugArray.add(map.toJsonObject(drug));
+	    	}
+    	
+		json.add("value", drugArray);
+
+		return new ResponseEntity<>(json, HttpStatus.OK);
+    }
+    
+    /**
+     * handling drugs a user is frequently taking
+     * @param drug
+     * @return
+     */
+    
+    @RequestMapping(value = "/remember/add", method = RequestMethod.POST)
+    public ResponseEntity<Object> addDrugToRememberList(@RequestBody Drug drug) {
+
+		// A pragmatic approach to security which does not use much
+		// framework-specific magic. While other approaches
+		// with annotations, etc. are possible they are much more complex while
+		// this is quite easy to understand and
+		// extend.
+		if (userService.isAnonymous()) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+		
+		if(userService.addDrugToUserFavorites(drug)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    
+    @RequestMapping(value = "/remember/remove", method = RequestMethod.POST)
+    public ResponseEntity<Object> removeDrugFromRememberList(@RequestBody Drug drug) {
+
+		// A pragmatic approach to security which does not use much
+		// framework-specific magic. While other approaches
+		// with annotations, etc. are possible they are much more complex while
+		// this is quite easy to understand and
+		// extend.
+		if (userService.isAnonymous()) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+		
+		if(userService.removeDrugFromUserFavorites(drug)) {
+			return new ResponseEntity<>(HttpStatus.OK);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
     
     
     @RequestMapping(value={"{id}/{lang}"}, method = RequestMethod.GET)
