@@ -14406,7 +14406,7 @@ var DrugList = function (_React$Component) {
 
                 switch (status) {
                     case 200:
-                        console.log(data, "added");
+                        console.log(data, "added to taking");
                         break;
                     case 400:
                         console.log(data, "not available");
@@ -14431,7 +14431,7 @@ var DrugList = function (_React$Component) {
 
                 switch (status) {
                     case 200:
-                        console.log(data, "added");
+                        console.log(data, "removed from taking");
                         break;
                     case 400:
                         console.log(data, "not available");
@@ -14456,7 +14456,7 @@ var DrugList = function (_React$Component) {
 
                 switch (status) {
                     case 200:
-                        console.log(data, "added");
+                        console.log(data, "added to remember list");
                         break;
                     case 400:
                         console.log(data, "not available");
@@ -15561,8 +15561,10 @@ var UserRememberDrugList = function (_React$Component) {
 								//=============================
 
 				}, {
-								key: "removeFromTakingList",
-								value: function removeFromTakingList(id) {
+								key: "removeFromRememberedList",
+								value: function removeFromRememberedList(id) {
+												var _this3 = this;
+
 												_axios2.default.post('/drug/remember/remove', { id: id }, {
 																validateStatus: function validateStatus(status) {
 																				return status >= 200 && status < 300 || status == 400 || status == 401;
@@ -15574,7 +15576,10 @@ var UserRememberDrugList = function (_React$Component) {
 
 																switch (status) {
 																				case 200:
-																								console.log(data, "added");
+																								_this3.state.drugs = _this3.state.drugs.filter(function (drug) {
+																												return drug.id !== id;
+																								});
+																								_this3.setState(_this3.state);
 																								break;
 																				case 400:
 																								console.log(data, "not available");
@@ -15586,8 +15591,8 @@ var UserRememberDrugList = function (_React$Component) {
 												});
 								}
 				}, {
-								key: "addToRememberList",
-								value: function addToRememberList(id) {
+								key: "addToTakingList",
+								value: function addToTakingList(id) {
 												_axios2.default.post('/drug/taking/add', { id: id }, {
 																validateStatus: function validateStatus(status) {
 																				return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
@@ -15616,16 +15621,16 @@ var UserRememberDrugList = function (_React$Component) {
 				}, {
 								key: "deleteDrug",
 								value: function deleteDrug(id) {
-												var _this3 = this;
+												var _this4 = this;
 
 												// ES6 string interpolation (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
 												// No error handling for now, e.g. if the user is not authenticated.
 												_axios2.default.delete("/drugs/delete/" + id).then(function (data) {
 																// Remove post from list of posts.
-																var posts = _this3.state.posts.filter(function (e) {
+																var posts = _this4.state.posts.filter(function (e) {
 																				return e.id != id;
 																});
-																_this3.setState({
+																_this4.setState({
 																				drugs: drugs
 																});
 												});
@@ -15691,7 +15696,7 @@ var UserRememberDrugList = function (_React$Component) {
 				}, {
 								key: "renderDrugs",
 								value: function renderDrugs(drugs) {
-												var _this4 = this;
+												var _this5 = this;
 
 												var t = this.props.t;
 
@@ -15729,9 +15734,9 @@ var UserRememberDrugList = function (_React$Component) {
 																																drug.name
 																												)
 																								),
-																								_this4.renderDrugFeatures(drug),
-																								_this4.renderDisease(drug),
-																								_this4.renderActiveSubstance(drug),
+																								_this5.renderDrugFeatures(drug),
+																								_this5.renderDisease(drug),
+																								_this5.renderActiveSubstance(drug),
 																								drug.year && _react2.default.createElement(
 																												"p",
 																												null,
@@ -15750,7 +15755,7 @@ var UserRememberDrugList = function (_React$Component) {
 																																_react2.default.createElement(
 																																				"button",
 																																				{ type: "button", className: "btn btn-xs btn-like", onClick: function onClick() {
-																																												return _this4.removeFromTakingList(drug.id, event);
+																																												return _this5.addToTakingList(drug.id, event);
 																																								} },
 																																				_react2.default.createElement("span", { className: "glyphicon glyphicon-heart" })
 																																)
@@ -15761,7 +15766,7 @@ var UserRememberDrugList = function (_React$Component) {
 																																_react2.default.createElement(
 																																				"button",
 																																				{ type: "button", className: "btn btn-xs btn-add", onClick: function onClick() {
-																																												return _this4.addToRememberList(drug.id, event);
+																																												return _this5.removeFromRememberedList(drug.id, event);
 																																								} },
 																																				_react2.default.createElement("span", { className: "glyphicon glyphicon-minus" })
 																																)
@@ -15913,40 +15918,15 @@ var UserTakingDrugList = function (_React$Component) {
 								//=============================
 
 				}, {
-								key: "removeFromTakingList",
-								value: function removeFromTakingList(id) {
-												_axios2.default.post('/drug/taking/remove', { id: id }, {
+								key: "addToTakingList",
+								value: function addToTakingList(id) {
+												_axios2.default.post('/drug/taking/add', { id: id }, {
 																validateStatus: function validateStatus(status) {
-																				return status >= 200 && status < 300 || status == 400 || status == 401;
+																				return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
 																}
 												}).then(function (_ref2) {
 																var data = _ref2.data,
 																    status = _ref2.status;
-
-
-																switch (status) {
-																				case 200:
-																								console.log(data, "added");
-																								break;
-																				case 400:
-																								console.log(data, "not available");
-																								break;
-																				case 401:
-																								console.log(data, "not permitted");
-																								break;
-																}
-												});
-								}
-				}, {
-								key: "addToRememberList",
-								value: function addToRememberList(id) {
-												_axios2.default.post('/drug/remember/add', { id: id }, {
-																validateStatus: function validateStatus(status) {
-																				return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
-																}
-												}).then(function (_ref3) {
-																var data = _ref3.data,
-																    status = _ref3.status;
 
 
 																switch (status) {
@@ -15966,18 +15946,106 @@ var UserTakingDrugList = function (_React$Component) {
 												});
 								}
 				}, {
+								key: "removeFromTakingList",
+								value: function removeFromTakingList(id) {
+												var _this3 = this;
+
+												_axios2.default.post('/drug/taking/remove', { id: id }, {
+																validateStatus: function validateStatus(status) {
+																				return status >= 200 && status < 300 || status == 400 || status == 401;
+																}
+												}).then(function (_ref3) {
+																var data = _ref3.data,
+																    status = _ref3.status;
+
+
+																switch (status) {
+																				case 200:
+																								_this3.state.drugs = _this3.state.drugs.filter(function (drug) {
+																												return drug.id !== id;
+																								});
+																								_this3.setState(_this3.state);
+																								break;
+																				case 400:
+																								console.log(data, "not available");
+																								break;
+																				case 401:
+																								console.log(data, "not permitted");
+																								break;
+																}
+												});
+								}
+				}, {
+								key: "addToRememberList",
+								value: function addToRememberList(id) {
+												_axios2.default.post('/drug/remember/add', { id: id }, {
+																validateStatus: function validateStatus(status) {
+																				return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
+																}
+												}).then(function (_ref4) {
+																var data = _ref4.data,
+																    status = _ref4.status;
+
+
+																switch (status) {
+																				case 200:
+																								console.log(data, "added");
+																								break;
+																				case 400:
+																								console.log(data, "not available");
+																								break;
+																				case 401:
+																								console.log(data, "not permitted");
+																								break;
+																				case 405:
+																								console.log(data, "Method not allowed");
+																								break;
+																}
+												});
+								}
+				}, {
+								key: "removeFromRememberedList",
+								value: function removeFromRememberedList(id) {
+												var _this4 = this;
+
+												_axios2.default.post('/drug/remember/remove', { id: id }, {
+																validateStatus: function validateStatus(status) {
+																				return status >= 200 && status < 300 || status == 400 || status == 401;
+																}
+												}).then(function (_ref5) {
+																var data = _ref5.data,
+																    status = _ref5.status;
+
+
+																switch (status) {
+																				case 200:
+																								_this4.state.drugs = _this4.state.drugs.filter(function (drug) {
+																												return drug.id !== id;
+																								});
+																								_this4.setState(_this4.state);
+																								break;
+																				case 400:
+																								console.log(data, "not available");
+																								break;
+																				case 401:
+																								console.log(data, "not permitted");
+																								break;
+																}
+												});
+								}
+				}, {
 								key: "deleteDrug",
 								value: function deleteDrug(id) {
-												var _this3 = this;
+												var _this5 = this;
 
 												// ES6 string interpolation (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
 												// No error handling for now, e.g. if the user is not authenticated.
 												_axios2.default.delete("/drugs/delete/" + id).then(function (data) {
 																// Remove post from list of posts.
-																var posts = _this3.state.posts.filter(function (e) {
+																var posts = _this5.state.posts.filter(function (e) {
 																				return e.id != id;
 																});
-																_this3.setState({
+																_this5.setState({
 																				drugs: drugs
 																});
 												});
@@ -16043,7 +16111,7 @@ var UserTakingDrugList = function (_React$Component) {
 				}, {
 								key: "renderDrugs",
 								value: function renderDrugs(drugs) {
-												var _this4 = this;
+												var _this6 = this;
 
 												var t = this.props.t;
 
@@ -16081,9 +16149,9 @@ var UserTakingDrugList = function (_React$Component) {
 																																drug.name
 																												)
 																								),
-																								_this4.renderDrugFeatures(drug),
-																								_this4.renderDisease(drug),
-																								_this4.renderActiveSubstance(drug),
+																								_this6.renderDrugFeatures(drug),
+																								_this6.renderDisease(drug),
+																								_this6.renderActiveSubstance(drug),
 																								drug.year && _react2.default.createElement(
 																												"p",
 																												null,
@@ -16102,7 +16170,7 @@ var UserTakingDrugList = function (_React$Component) {
 																																_react2.default.createElement(
 																																				"button",
 																																				{ type: "button", className: "btn btn-xs btn-like", onClick: function onClick() {
-																																												return _this4.removeFromTakingList(drug.id, event);
+																																												return _this6.removeFromTakingList(drug.id, event);
 																																								} },
 																																				_react2.default.createElement("span", { className: "glyphicon glyphicon-trash" })
 																																)
@@ -16113,7 +16181,7 @@ var UserTakingDrugList = function (_React$Component) {
 																																_react2.default.createElement(
 																																				"button",
 																																				{ type: "button", className: "btn btn-xs btn-add", onClick: function onClick() {
-																																												return _this4.addToRememberList(drug.id, event);
+																																												return _this6.addToRememberList(drug.id, event);
 																																								} },
 																																				_react2.default.createElement("span", { className: "glyphicon glyphicon-plus" })
 																																)

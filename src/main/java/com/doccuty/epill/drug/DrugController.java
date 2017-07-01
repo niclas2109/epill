@@ -190,7 +190,7 @@ public class DrugController {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		
-		if(userService.addDrugToUserFavorites(drug)) {
+		if(userService.addDrugToUserTakingList(drug)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
@@ -209,7 +209,7 @@ public class DrugController {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		
-		if(userService.removeDrugFromUserFavorites(drug)) {
+		if(userService.removeDrugFromUserTakingList(drug)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
@@ -270,7 +270,7 @@ public class DrugController {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		
-		if(userService.addDrugToUserFavorites(drug)) {
+		if(userService.addDrugToUserRememberList(drug)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		
@@ -289,7 +289,7 @@ public class DrugController {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 		
-		if(userService.removeDrugFromUserFavorites(drug)) {
+		if(userService.removeDrugFromUserRememberList(drug)) {
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		

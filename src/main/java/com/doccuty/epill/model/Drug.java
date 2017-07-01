@@ -879,7 +879,7 @@ import com.doccuty.epill.model.Disease;
    
    public static final String PROPERTY_USER = "user";
 
-   @ManyToMany(cascade=CascadeType.ALL, mappedBy="preferredDrug")
+   @ManyToMany(cascade=CascadeType.ALL, mappedBy="takingDrug")
    private Set<User> user = null;
    
    public Set<User> getUser()

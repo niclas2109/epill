@@ -26,10 +26,10 @@ class UserTakingDrugList extends React.Component {
 
     //=============================
     
-    removeFromTakingList(id) {
-	 	axios.post('/drug/taking/remove', { id : id }, {
+    addToTakingList(id) {
+	 	axios.post('/drug/taking/add', { id : id }, {
             validateStatus: (status) => {
-                return (status >= 200 && status < 300) || status == 400 || status == 401
+                return (status >= 200 && status < 300) || status == 400 || status == 401 || status == 405
             }
  		})
 	     .then(({data, status}) => {
@@ -44,9 +44,36 @@ class UserTakingDrugList extends React.Component {
 	             case 401:
 	             	console.log(data, "not permitted");
 	                	break;
+	             case 405:
+		            console.log(data, "Method not allowed");
+		            break;
+	         }
+	     });
+    }
+    
+    removeFromTakingList(id) {
+	 	axios.post('/drug/taking/remove', { id : id }, {
+            validateStatus: (status) => {
+                return (status >= 200 && status < 300) || status == 400 || status == 401
+            }
+ 		})
+	     .then(({data, status}) => {
+	    	 
+	         switch (status) {
+	             case 200:
+	                 this.state.drugs = this.state.drugs.filter(drug => drug.id !== id);
+	                 this.setState(this.state);
+	                 break;
+	             case 400:
+	              	console.log(data, "not available");
+	                 break;
+	             case 401:
+	             	console.log(data, "not permitted");
+	                	break;
 	         }
 	     });
 	}
+    
     
     addToRememberList(id) {
 	 	axios.post('/drug/remember/add', { id : id }, {
@@ -73,6 +100,29 @@ class UserTakingDrugList extends React.Component {
 	     });
     }
     
+    
+    removeFromRememberedList(id) {
+	 	axios.post('/drug/remember/remove', { id : id }, {
+            validateStatus: (status) => {
+                return (status >= 200 && status < 300) || status == 400 || status == 401
+            }
+ 		})
+	     .then(({data, status}) => {
+	    	 
+	         switch (status) {
+	             case 200:
+	                 this.state.drugs = this.state.drugs.filter(drug => drug.id !== id);
+	                 this.setState(this.state);
+	                 break;
+	             case 400:
+	              	console.log(data, "not available");
+	                 break;
+	             case 401:
+	             	console.log(data, "not permitted");
+	                	break;
+	         }
+	     });
+	}
     
     deleteDrug(id) {
         // ES6 string interpolation (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)

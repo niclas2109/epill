@@ -26,7 +26,7 @@ class UserRememberDrugList extends React.Component {
 
     //=============================
     
-    removeFromTakingList(id) {
+    removeFromRememberedList(id) {
 	 	axios.post('/drug/remember/remove', { id : id }, {
             validateStatus: (status) => {
                 return (status >= 200 && status < 300) || status == 400 || status == 401
@@ -36,7 +36,8 @@ class UserRememberDrugList extends React.Component {
 	    	 
 	         switch (status) {
 	             case 200:
-	                 console.log(data, "added");
+	                 this.state.drugs = this.state.drugs.filter(drug => drug.id !== id);
+	                 this.setState(this.state);
 	                 break;
 	             case 400:
 	              	console.log(data, "not available");
@@ -48,7 +49,7 @@ class UserRememberDrugList extends React.Component {
 	     });
 	}
     
-    addToRememberList(id) {
+    addToTakingList(id) {
 	 	axios.post('/drug/taking/add', { id : id }, {
             validateStatus: (status) => {
                 return (status >= 200 && status < 300) || status == 400 || status == 401 || status == 405
@@ -165,12 +166,12 @@ class UserRememberDrugList extends React.Component {
 	        		{User.isAuthenticated() &&
 	        			<ul>
 	        				<li>
-	        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.removeFromTakingList(drug.id, event)}>
+	        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.addToTakingList(drug.id, event)}>
 	        						<span className="glyphicon glyphicon-heart"></span>
 	        					</button>
 	        				</li>
 	        				<li>
-	        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.addToRememberList(drug.id, event)}>
+	        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.removeFromRememberedList(drug.id, event)}>
 	        						<span className="glyphicon glyphicon-minus"></span>
 	        					</button>
 	        				</li>

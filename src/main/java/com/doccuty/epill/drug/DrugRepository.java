@@ -25,9 +25,9 @@ public interface DrugRepository extends JpaRepository<Drug, Long> {
 			+ "FROM Drug drug WHERE drug.name LIKE %:value%")
 	List<Drug> findByNameMinimized(@Param(value = "value") String value);
 
-	@Query("SELECT drug FROM Drug drug WHERE drug.id = :id")
+	@Query("SELECT user.takingDrug FROM User user WHERE user.id = :id)")
 	List<Drug> findUserDrugsTaking(@Param(value = "id") long id);
 
-	@Query("SELECT drug FROM Drug drug WHERE drug.id = :id")
+	@Query("SELECT user.rememberedDrug FROM User user WHERE user.id = :id)")
 	List<Drug> findUserDrugsRemembered(@Param(value = "id") long id);
 }

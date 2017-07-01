@@ -254,16 +254,14 @@ public class UserService {
 	public List<Gender> getAllGender() {
 		return genderRepository.findAll();
 	}
-
-	
 	
 	/**
-	 * add a drug to user favorites
+	 * add a drug to user remember list
 	 * @param drug
 	 * @param user
 	 */
 	
-	public boolean addDrugToUserFavorites(Drug drug) {
+	public boolean addDrugToUserTakingList(Drug drug) {
 
 		drug = drugRepository.findOne(drug.getId());
 
@@ -281,6 +279,55 @@ public class UserService {
 		return true;
 	}
 	
+	/**
+	 * add a drug to user remember list
+	 * @param drug
+	 * @param user
+	 */
+	
+	public boolean removeDrugFromUserTakingList(Drug drug) {
+
+		drug = drugRepository.findOne(drug.getId());
+
+		if(drug == null)
+			return false;
+		
+		User user = repository.findOne(getCurrentUser().getId());
+		if(user == null)
+			return false;
+		
+		user.withoutTakingDrug(drug);
+
+		repository.save(user);
+		
+		return true;
+	}
+	
+	
+	/**
+	 * add a drug to user remember list
+	 * @param drug
+	 * @param user
+	 */
+	
+	public boolean addDrugToUserRememberList(Drug drug) {
+
+		drug = drugRepository.findOne(drug.getId());
+
+		if(drug == null)
+			return false;
+		
+		User user = repository.findOne(getCurrentUser().getId());
+		if(user == null)
+			return false;
+		
+		user.withRememberedDrug(drug);
+
+		repository.save(user);
+		
+		return true;
+	}
+	
 	
 	/**
 	 * remove a drug from user favorites
@@ -288,7 +335,7 @@ public class UserService {
 	 * @param user
 	 */
 	
-	public boolean removeDrugFromUserFavorites(Drug drug) {
+	public boolean removeDrugFromUserRememberList(Drug drug) {
 
 		drug = drugRepository.findOne(drug.getId());
 
@@ -300,13 +347,14 @@ public class UserService {
 		if(user == null)
 			return false;
 		
-		user.withoutTakingDrug(drug);
+		user.withoutRememberedDrug(drug);
 
 		repository.save(user);
 		
 		return true;
 	}
 
+	
 	
 	public User saveItemInvocation(ItemInvocation click) {
 		User user = repository.findOne(click.getUser().getId());

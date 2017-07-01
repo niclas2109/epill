@@ -36,7 +36,7 @@ class DrugList extends React.Component {
         	 
              switch (status) {
                  case 200:
-                     console.log(data, "added");
+                     console.log(data, "added to taking");
                      break;
                  case 400:
                   	console.log(data, "not available");
@@ -58,7 +58,7 @@ class DrugList extends React.Component {
 	    	 
 	         switch (status) {
 	             case 200:
-	                 console.log(data, "added");
+	                 console.log(data, "removed from taking");
 	                 break;
 	             case 400:
 	              	console.log(data, "not available");
@@ -80,7 +80,7 @@ class DrugList extends React.Component {
 	    	 
 	         switch (status) {
 	             case 200:
-	                 console.log(data, "added");
+	                 console.log(data, "added to remember list");
 	                 break;
 	             case 400:
 	              	console.log(data, "not available");

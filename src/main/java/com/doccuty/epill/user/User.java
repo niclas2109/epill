@@ -234,29 +234,28 @@ import com.doccuty.epill.model.DrugFeature;
    } 
 
    
-   
    /********************************************************************
     * <pre>
     *              many                       many
     * User ----------------------------------- Drug
-    *              user                   preferredDrug
+    *              user                   takingDrug
     * </pre>
     */
    
-   public static final String PROPERTY_PREFERREDDRUG = "preferredDrug";
+   public static final String PROPERTY_TAKINGDRUG = "takingDrug";
 
    @ManyToMany(cascade=CascadeType.ALL)  
-   @JoinTable(name="user_drug", joinColumns=@JoinColumn(name="iduser"), inverseJoinColumns=@JoinColumn(name="iddrug"))
-   private Set<Drug> preferredDrug = null;
+   @JoinTable(name="user_drug_taking", joinColumns=@JoinColumn(name="iduser"), inverseJoinColumns=@JoinColumn(name="iddrug"))
+   private Set<Drug> takingDrug = null;
 
    public Set<Drug> getTakingDrug()
    {
-      if (this.preferredDrug == null)
+      if (this.takingDrug == null)
       {
          return DrugSet.EMPTY_SET;
       }
    
-      return this.preferredDrug;
+      return this.takingDrug;
    }
 
    public User withTakingDrug(Drug... value)
@@ -268,17 +267,17 @@ import com.doccuty.epill.model.DrugFeature;
       {
          if (item != null)
          {
-            if (this.preferredDrug == null)
+            if (this.takingDrug == null)
             {
-               this.preferredDrug = new DrugSet();
+               this.takingDrug = new DrugSet();
             }
             
-            boolean changed = this.preferredDrug.add (item);
+            boolean changed = this.takingDrug.add (item);
 
             if (changed)
             {
                item.withUser(this);
-               firePropertyChange(PROPERTY_PREFERREDDRUG, null, item);
+               firePropertyChange(PROPERTY_TAKINGDRUG, null, item);
             }
          }
       }
@@ -289,22 +288,95 @@ import com.doccuty.epill.model.DrugFeature;
    {
       for (Drug item : value)
       {
-         if ((this.preferredDrugFeature != null) && (item != null))
+         if ((this.takingDrug != null) && (item != null))
          {
-            if (this.preferredDrugFeature.remove(item))
+            if (this.takingDrug.remove(item))
             {
                item.withoutUser(this);
-               firePropertyChange(PROPERTY_PREFERREDDRUG, item, null);
+               firePropertyChange(PROPERTY_TAKINGDRUG, item, null);
             }
          }
       }
       return this;
    }
 
-   public Drug createPreferredDrug()
+   public Drug createTakingDrug()
    {
 	  Drug value = new Drug();
       withTakingDrug(value);
+      return value;
+   } 
+   
+   /********************************************************************
+    * <pre>
+    *              many                       many
+    * User ----------------------------------- Drug
+    *              user                   rememberedDrug
+    * </pre>
+    */
+   
+   public static final String PROPERTY_REMEMBEREDDRUG = "rememberedDrug";
+
+   @ManyToMany(cascade=CascadeType.ALL)  
+   @JoinTable(name="user_drug_remember", joinColumns=@JoinColumn(name="iduser"), inverseJoinColumns=@JoinColumn(name="iddrug"))
+   private Set<Drug> rememberedDrug = null;
+
+   public Set<Drug> geRememberedDrug()
+   {
+      if (this.rememberedDrug == null)
+      {
+         return DrugSet.EMPTY_SET;
+      }
+   
+      return this.rememberedDrug;
+   }
+
+   public User withRememberedDrug(Drug... value)
+   {
+      if(value==null){
+         return this;
+      }
+      for (Drug item : value)
+      {
+         if (item != null)
+         {
+            if (this.rememberedDrug == null)
+            {
+               this.rememberedDrug = new DrugSet();
+            }
+            
+            boolean changed = this.rememberedDrug.add (item);
+
+            if (changed)
+            {
+               item.withUser(this);
+               firePropertyChange(PROPERTY_REMEMBEREDDRUG, null, item);
+            }
+         }
+      }
+      return this;
+   } 
+
+   public User withoutRememberedDrug(Drug... value)
+   {
+      for (Drug item : value)
+      {
+         if ((this.rememberedDrug != null) && (item != null))
+         {
+            if (this.rememberedDrug.remove(item))
+            {
+               item.withoutUser(this);
+               firePropertyChange(PROPERTY_REMEMBEREDDRUG, item, null);
+            }
+         }
+      }
+      return this;
+   }
+
+   public Drug createRememberedDrug()
+   {
+	  Drug value = new Drug();
+      withRememberedDrug(value);
       return value;
    } 
    
