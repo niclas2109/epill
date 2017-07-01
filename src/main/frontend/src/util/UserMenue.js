@@ -33,7 +33,7 @@ class UserMenue extends React.Component {
 								{show &&
 									<ul className="dropdown-menu">
 										<li><Link to="/drug/taking">{t('userDrugs')}</Link></li>
-										<li><Link to="/compare">{t('rememberedDrugs')}</Link></li>
+										<li><Link to="/drug/remember">{t('rememberedDrugs')}</Link></li>
 										<li><Link to="/user/settings">{t('userSettings')}</Link></li>
 										<li><Link to="/user/data">{t('userData')}</Link></li>
 										<li><Link to="/user/list">{t('userList')}</Link></li>

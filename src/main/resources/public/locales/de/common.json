@@ -31,5 +31,7 @@
   "greetingNight"	: "Du bist ja noch wach, %User.firstname%!",
   "drugsTaking"		: "Deine aktuelle Medikamentierung",
   "drugTakingListAllDescriptionText"	: "%User.firstname%, hier findest du eine Übersicht über alle Medikamente, die du nach deinen Angaben aktuell einnimmst. Du kannst neue Medikamente hinzufügen und gelistete aus der Liste entfernen.",
+  "drugsRemember"		: "Gemerkte Medikamentierung",
+  "drugRememberListDescriptionText"	: "%User.firstname%, hier findest du eine Übersicht über alle Medikamente, die du dir merken möchtest. Du kannst neue Medikamente hinzufügen und gelistete aus der Liste entfernen.",
   "emptyList"	: "Leere Liste"
 }
