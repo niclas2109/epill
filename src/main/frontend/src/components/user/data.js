@@ -162,22 +162,25 @@ class UserData extends React.Component {
 					<fieldset>
 						<p><b>Detailierungsgrad der Ansicht</b></p>
 						<ul className="list-inline">
-							<li className="col-lg-4 col-md-4 col-xs-4">
+							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
 								<label htmlFor="settings-detail-min" className="checkbox-inline">
 									<input type="radio" value="1" id="settings-detail-min" name="levelOfDetail" checked={this.state.levelOfDetail == 1} onChange={this.handleChangeLevelOfDetail} />
 									minimal
+									<p>kein Hilfe</p>
 								</label>
 							</li>
-							<li className="col-lg-4 col-md-4 col-xs-4">
+							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
 								<label htmlFor="settings-detail-default" className="checkbox-inline">
 									<input type="radio" value="2" id="settings-detail-default" name="levelOfDetail" checked={this.state.levelOfDetail == 2} onChange={this.handleChangeLevelOfDetail} />
 									standard
+									<p>Hilfe</p>
 								</label>
 							</li>
-							<li className="col-lg-4 col-md-4 col-xs-4">
+							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
 								<label htmlFor="settings-detail-max" className="checkbox-inline">
 									<input type="radio" value="3" id="settings-detail-max" name="levelOfDetail" checked={this.state.levelOfDetail == 3} onChange={this.handleChangeLevelOfDetail} />
 									maximal
+									<p>Viel Hilfe</p>
 								</label>
 							</li>
 						</ul>
@@ -185,19 +188,19 @@ class UserData extends React.Component {
 					<fieldset>
 					<p><b>Gewünschte Schriftgröße</b></p>
 					<ul className="list-inline">
-						<li className="col-lg-4 col-md-4 col-xs-4">
+						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
 							<label htmlFor="settings-preferred-font-size-min" className="checkbox-inline">
 								<input type="radio" value="10" id="settings-preferred-font-size-min" name="preferredFontSize" checked={this.state.preferredFontSize == 10} onChange={this.handleChangePreferredFontSize} />
 								<span className="small-text">AAA</span>
 							</label>
 						</li>
-						<li className="col-lg-4 col-md-4 col-xs-4">
+						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
 							<label htmlFor="settings-preferred-font-size-default" className="checkbox-inline">
 								<input type="radio" value="12" id="settings-preferred-font-size-default" name="preferredFontSize" checked={this.state.preferredFontSize == 12} onChange={this.handleChangePreferredFontSize} />
 								<span className="medium-text">AAA</span>
 							</label>
 						</li>
-						<li className="col-lg-4 col-md-4 col-xs-4">
+						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
 							<label htmlFor="settings-preferred-font-size-max" className="checkbox-inline">
 								<input type="radio" value="14" id="settings-preferred-font-size-max" name="preferredFontSize" checked={this.state.preferredFontSize == 14} onChange={this.handleChangePreferredFontSize} />
 								<span className="big-text">AAA</span>

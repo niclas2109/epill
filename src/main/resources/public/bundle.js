@@ -15369,32 +15369,47 @@ var UserData = function (_React$Component) {
 							{ className: "list-inline" },
 							_react2.default.createElement(
 								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4" },
+								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
 								_react2.default.createElement(
 									"label",
 									{ htmlFor: "settings-detail-min", className: "checkbox-inline" },
 									_react2.default.createElement("input", { type: "radio", value: "1", id: "settings-detail-min", name: "levelOfDetail", checked: this.state.levelOfDetail == 1, onChange: this.handleChangeLevelOfDetail }),
-									"minimal"
+									"minimal",
+									_react2.default.createElement(
+										"p",
+										null,
+										"kein Hilfe"
+									)
 								)
 							),
 							_react2.default.createElement(
 								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4" },
+								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
 								_react2.default.createElement(
 									"label",
 									{ htmlFor: "settings-detail-default", className: "checkbox-inline" },
 									_react2.default.createElement("input", { type: "radio", value: "2", id: "settings-detail-default", name: "levelOfDetail", checked: this.state.levelOfDetail == 2, onChange: this.handleChangeLevelOfDetail }),
-									"standard"
+									"standard",
+									_react2.default.createElement(
+										"p",
+										null,
+										"Hilfe"
+									)
 								)
 							),
 							_react2.default.createElement(
 								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4" },
+								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
 								_react2.default.createElement(
 									"label",
 									{ htmlFor: "settings-detail-max", className: "checkbox-inline" },
 									_react2.default.createElement("input", { type: "radio", value: "3", id: "settings-detail-max", name: "levelOfDetail", checked: this.state.levelOfDetail == 3, onChange: this.handleChangeLevelOfDetail }),
-									"maximal"
+									"maximal",
+									_react2.default.createElement(
+										"p",
+										null,
+										"Viel Hilfe"
+									)
 								)
 							)
 						)
@@ -15416,7 +15431,7 @@ var UserData = function (_React$Component) {
 							{ className: "list-inline" },
 							_react2.default.createElement(
 								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4" },
+								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
 								_react2.default.createElement(
 									"label",
 									{ htmlFor: "settings-preferred-font-size-min", className: "checkbox-inline" },
@@ -15430,7 +15445,7 @@ var UserData = function (_React$Component) {
 							),
 							_react2.default.createElement(
 								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4" },
+								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
 								_react2.default.createElement(
 									"label",
 									{ htmlFor: "settings-preferred-font-size-default", className: "checkbox-inline" },
@@ -15444,7 +15459,7 @@ var UserData = function (_React$Component) {
 							),
 							_react2.default.createElement(
 								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4" },
+								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
 								_react2.default.createElement(
 									"label",
 									{ htmlFor: "settings-preferred-font-size-max", className: "checkbox-inline" },
