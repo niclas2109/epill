@@ -74,9 +74,9 @@ public class UserServiceTest {
 	
 	    	assertNotNull("User found by id", user);
 	
-	    	user = userService.findByUsername(username);
+	    	SimpleUser userSimple = userService.findByUsername(username);
 	
-	    	assertNotNull("User found by username", user);
+	    	assertNotNull("User found by username", userSimple);
 	    	
 	}
     
