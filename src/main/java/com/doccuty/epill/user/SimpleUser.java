@@ -67,6 +67,15 @@ public class SimpleUser implements SendableEntity {
 		this.firstname	= firstname;
 		this.lastname	= lastname;
 	}
+	
+	public SimpleUser(long id, String firstname, String lastname, String username, String password, String salt) {
+		this.id			= id;
+		this.firstname	= firstname;
+		this.lastname	= lastname;
+		this.username	= username;
+		this.password	= password;
+		this.salt		= salt;
+	}
 
 	public SimpleUser(User user) {
 		this.id = user.getId();

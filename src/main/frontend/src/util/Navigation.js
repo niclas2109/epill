@@ -21,6 +21,8 @@ import UserList from "./../components/user/list";
 import UserTakingDrugList from "./../components/user/user_taking_drug_list.js";
 import UserRememberDrugList from "./../components/user/user_remember_drug_list.js";
 
+import { ToastContainer } from 'react-toastify';
+
 class Navigation extends React.Component {
 	  constructor(props) {
 	    super(props);
@@ -110,7 +112,9 @@ class Navigation extends React.Component {
 		                        <Route path="/" component={Home} />
 		                    </Switch>
 	                    </div>
-	                    
+
+	            		<ToastContainer />
+	            		
 	            	    <footer className="footer">
 		    	    			<div className="container">
 		    	    				<div className="row bottom-rule">
@@ -129,8 +133,8 @@ class Navigation extends React.Component {
 		    	    					<div className="col-sm-5 footer-section">
 		    	    						<ul className="list-inline">
 		    	    							<li className="text-uppercase">ePill:</li>
-		    	    							<li><a href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/team.html" target="blank">Team</a></li>
-		    	    							<li><a href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/research.html" target="blank">Articles</a></li>
+		    	    							<li><a href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/team.html" target="blank">{t("team")}</a></li>
+		    	    							<li><a href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/research.html" target="blank">{t("articles")}</a></li>
 		    	    							<li><a href="#!/about">Why Register?</a></li>
 		    	    						</ul>
 		    	    						<ul className="list-inline">

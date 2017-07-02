@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
 
+import { toast } from 'react-toastify';
+
 import Accordion from "../util/Accordion";
 import User from "../util/User";
 
@@ -23,6 +25,7 @@ class DrugDetail extends React.Component {
     
     //=============================
     
+    
     addToTakingList(id) {
     	 	axios.post('/drug/taking/add', { id : id }, {
 	            validateStatus: (status) => {
@@ -30,13 +33,17 @@ class DrugDetail extends React.Component {
 	            }
      		})
          .then(({data, status}) => {
-        	 
+             const {t} = this.props;
+             const options = {
+             	    position: toast.POSITION.BOTTOM_CENTER
+             };
+             
              switch (status) {
                  case 200:
-                     console.log(data, "added");
+                     toast.success(t('addToTakingListSuccess'), options);
                      break;
                  case 400:
-                  	console.log(data, "not available");
+                  	toast.error(t('addToTakingListFailed'), options);
                      break;
                  case 401:
                  	console.log(data, "not permitted");
@@ -52,13 +59,17 @@ class DrugDetail extends React.Component {
             }
  		})
 	     .then(({data, status}) => {
-	    	 
+             const {t} = this.props;
+             const options = {
+             	    position: toast.POSITION.BOTTOM_CENTER
+             };
+             
 	         switch (status) {
 	             case 200:
-	                 console.log(data, "added");
+                     toast.success(t('removeFromTakingListSuccess'), options);
 	                 break;
 	             case 400:
-	              	console.log(data, "not available");
+                     toast.error(t('removeFromTakingListFailed'), options);
 	                 break;
 	             case 401:
 	             	console.log(data, "not permitted");
@@ -74,14 +85,18 @@ class DrugDetail extends React.Component {
             }
  		})
 	     .then(({data, status}) => {
-	    	 
+             const {t} = this.props;
+             const options = {
+             	    position: toast.POSITION.BOTTOM_CENTER
+             };
+             
 	         switch (status) {
 	             case 200:
-	                 console.log(data, "added");
+	                 toast.success(t('addToRememberListSuccess'), options);
 	                 break;
 	             case 400:
-	              	console.log(data, "not available");
-	                 break;
+	            	 	toast.error(t('addToRememberListFailed'), options);
+	            	 	break;
 	             case 401:
 	             	console.log(data, "not permitted");
 	                	break;
@@ -91,7 +106,35 @@ class DrugDetail extends React.Component {
 	         }
 	     });
     }
- 
+    
+    removeFromRememberList(id) {
+	 	axios.post('/drug/remember/remove', { id : id }, {
+            validateStatus: (status) => {
+                return (status >= 200 && status < 300) || status == 400 || status == 401 || status == 405
+            }
+ 		})
+	     .then(({data, status}) => {
+             const {t} = this.props;
+             const options = {
+             	    position: toast.POSITION.BOTTOM_CENTER
+             };
+             
+	         switch (status) {
+	             case 200:
+	                 toast.success(t('removeFromRememberListSuccess'), options);
+	                 break;
+	             case 400:
+	            	 	toast.error(t('removeFromRememberListFailed'), options);
+	            	 	break;
+	             case 401:
+	             	console.log(data, "not permitted");
+	                	break;
+	             case 405:
+		            console.log(data, "Method not allowed");
+		            break;
+	         }
+	     });
+    }
     
     
     //=============================
@@ -197,12 +240,12 @@ class DrugDetail extends React.Component {
         				&&
 	        			<div className='btn-toolbar pull-right'>
 		        		    <div className='btn-group'>
-			    				<button type="button" className="btn btn-like" onClick={() => this.addToTakingList(drug.id, event)}>
-								<span className="glyphicon glyphicon-heart"></span>
+			    				<button type="button" className="btn btn-like" onClick={() => this.addToTakingList(drug.id)}>
+								<span className="glyphicon glyphicon-heart white"></span>
 							</button>
 							
-		        				<button type="button" className="btn btn-add" onClick={() => this.addToRememberList(drug.id, event)}>
-		        					<span className="glyphicon glyphicon-plus"></span>
+		        				<button type="button" className="btn btn-add" onClick={() => this.addToRememberList(drug.id)}>
+		        					<span className="glyphicon glyphicon-plus white"></span>
 		        				</button>
 		        		    </div>
 		        		  </div>	

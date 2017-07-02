@@ -5,6 +5,8 @@ import {Link} from "react-router-dom";
 import {withCookies} from "react-cookie";
 import {translate} from "react-i18next";
 
+import { toast } from 'react-toastify';
+
 import User from "../util/User";
 
 class Authentication extends React.Component {
@@ -50,6 +52,12 @@ class Authentication extends React.Component {
                 this.state.sending = false;
                 this.setState(this.state);
                 
+                const {t} = this.props;
+                
+                const options = {
+                	    position: toast.POSITION.BOTTOM_CENTER
+                	};
+                
                 switch (status) {
                     case 200:
                         User.setCookieCredentials(data);
@@ -68,6 +76,7 @@ class Authentication extends React.Component {
 
                     case 401:
                     		this.setState({error: true});
+                    		toast.error(t('loginFailed'), options);
                         	break;
                 }
             });

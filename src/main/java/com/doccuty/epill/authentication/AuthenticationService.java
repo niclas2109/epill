@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.doccuty.epill.model.LoginAttempt;
 import com.doccuty.epill.user.SimpleUser;
+import com.doccuty.epill.user.SimpleUserRepository;
 import com.doccuty.epill.user.User;
 import com.doccuty.epill.user.UserRepository;
 import com.doccuty.epill.user.UserToken;
@@ -20,7 +21,7 @@ public class AuthenticationService {
     private static final Logger LOG = LoggerFactory.getLogger(AuthenticationService.class);
 
     @Autowired
-    private UserRepository repository;
+    private SimpleUserRepository<SimpleUser> repository;
 
     @Autowired
     private LoginAttemptRepository loginAttemptRepository;
@@ -48,10 +49,8 @@ public class AuthenticationService {
         String hashedPassword = hashPassword(user.getSalt(), password);
 
         if (!hashedPassword.equals(user.getPassword())) {
-        	
-        	loginAttempt.withSuccess(false);
-        	loginAttemptRepository.save(loginAttempt);
-        	
+        		loginAttempt.withSuccess(false);
+        		loginAttemptRepository.save(loginAttempt);
             LOG.info("User unable to login. user={}", username);
             return null;
         }
@@ -67,11 +66,9 @@ public class AuthenticationService {
         userToken.setUser(user);
         userToken.setToken(token);
 
-        
-    	loginAttempt.withSuccess(true);
-    	loginAttemptRepository.save(loginAttempt);
+    		loginAttempt.withSuccess(true);
+    		loginAttemptRepository.save(loginAttempt);
     	
-        
         return userToken;
     }
 

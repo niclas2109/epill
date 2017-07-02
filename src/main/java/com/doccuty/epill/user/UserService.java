@@ -56,7 +56,7 @@ public class UserService {
 		return (List<User>) repository.findAll();
 	}
 
-	public User findByUsername(String username) {
+	public SimpleUser findByUsername(String username) {
 		return repository.findByUsername(username);
 	}
 

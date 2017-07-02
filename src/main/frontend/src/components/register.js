@@ -3,6 +3,7 @@ import React from "react";
 
 import {Link} from "react-router-dom";
 import {translate} from "react-i18next";
+import { toast } from 'react-toastify';
 
 // See https://facebook.github.io/react/docs/forms.html for documentation about forms.
 class Register extends React.Component {
@@ -57,12 +58,17 @@ class Register extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         
+        const {t} = this.props;
+        const options = {
+        	    position: toast.POSITION.BOTTOM_CENTER
+        };
+        
         if(this.state.firstname.length == 0 || this.state.lastname.length == 0 || this.state.username.length == 0 || this.state.password == 0) {
         		return;
         }
         
         if(this.state.password != this.state.passwordRepeat) {
-        		console.log("differing password");
+        		toast.error(t('passwordsDifferent'), options);
 	        	return;
         }
         this.state.sending = true;
@@ -88,12 +94,11 @@ class Register extends React.Component {
 	            
 	            	switch (status) {
 	                case 200:
-	                    // Redirect to front page.
-		    	            console.log("Registration Successfull");
+            				toast.success(t('registrationSuccess'), options);
 		    	            	this.props.history.push("/user/login");
 		    	            	break;
 	                case 409:
-	                		console.log("username already in use");
+                			toast.error(t('usernameUsed'), options);
 	                    	break;
 	            } 	
             	});

@@ -38,5 +38,16 @@
   "qrticles"		: "articles",
   "team"			: "team",
   "customerCare"	: "customer care",
-  "imprint"		: "imprint"
+  "imprint"		: "imprint",
+  "removeFromRememberListSuccess"	: "Das Medikament wurde aus der Merkliste gelöscht.",
+  "removeFromRememberListFailed"		: "Das Medikament konnte nicht aus der Merkliste gelöscht werden.",
+  "addToRememberListSuccess"			: "Das Medikament wurde zu deiner Merkliste hinzugefügt.",
+  "addToRememberListFailed"			: "Das Medikament konnte deiner Merkliste nicht hinzugefügt werden.",
+  "removeFromTakingListSuccess"		: "Das Medikament wurde aus deiner aktuellen Medikamentierung gelöscht.",
+  "removeFromTakingListFailed"		: "Das Medikament konnte nicht aus deiner aktuellen Medikamentierung gelöscht werden.",
+  "addToTakingListSuccess"			: "Das Medikament wurde deiner aktuellen Medikamentierung hinzugefügt.",
+  "addToTakingListFailed"			: "Das Medikament konnte deiner aktuellen Medikamentierung nicht hinzugefügt werden.",
+  "usernameUsed"						: "Your username is already in use!",
+  "passwordsDifferent"				: "Your passwords are different!",
+  "registrationSuccess"				: "Your Registration was successful!"
 }

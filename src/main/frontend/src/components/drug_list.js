@@ -3,6 +3,7 @@ import React from "react";
 
 import {Link} from "react-router-dom";
 import {translate} from "react-i18next";
+import { toast } from 'react-toastify';
 
 import User from "./../util/User";
 
@@ -33,13 +34,17 @@ class DrugList extends React.Component {
 	            }
      		})
          .then(({data, status}) => {
-        	 
+             const {t} = this.props;
+             const options = {
+             	    position: toast.POSITION.BOTTOM_CENTER
+             };
+             
              switch (status) {
                  case 200:
-                     console.log(data, "added to taking");
+                     toast.success(t('addToTakingListSuccess'), options);
                      break;
                  case 400:
-                  	console.log(data, "not available");
+                  	toast.error(t('addToTakingListFailed'), options);
                      break;
                  case 401:
                  	console.log(data, "not permitted");
@@ -55,13 +60,17 @@ class DrugList extends React.Component {
             }
  		})
 	     .then(({data, status}) => {
-	    	 
+             const {t} = this.props;
+             const options = {
+             	    position: toast.POSITION.BOTTOM_CENTER
+             };
+             
 	         switch (status) {
 	             case 200:
-	                 console.log(data, "removed from taking");
+                     toast.success(t('removeFromTakingListSuccess'), options);
 	                 break;
 	             case 400:
-	              	console.log(data, "not available");
+                     toast.error(t('removeFromTakingListFailed'), options);
 	                 break;
 	             case 401:
 	             	console.log(data, "not permitted");
@@ -77,14 +86,47 @@ class DrugList extends React.Component {
             }
  		})
 	     .then(({data, status}) => {
-	    	 
+             const {t} = this.props;
+             const options = {
+             	    position: toast.POSITION.BOTTOM_CENTER
+             };
+             
 	         switch (status) {
 	             case 200:
-	                 console.log(data, "added to remember list");
+	                 toast.success(t('addToRememberListSuccess'), options);
 	                 break;
 	             case 400:
-	              	console.log(data, "not available");
+	            	 	toast.error(t('addToRememberListFailed'), options);
+	            	 	break;
+	             case 401:
+	             	console.log(data, "not permitted");
+	                	break;
+	             case 405:
+		            console.log(data, "Method not allowed");
+		            break;
+	         }
+	     });
+    }
+    
+    removeFromRememberList(id) {
+	 	axios.post('/drug/remember/remove', { id : id }, {
+            validateStatus: (status) => {
+                return (status >= 200 && status < 300) || status == 400 || status == 401 || status == 405
+            }
+ 		})
+	     .then(({data, status}) => {
+             const {t} = this.props;
+             const options = {
+             	    position: toast.POSITION.BOTTOM_CENTER
+             };
+             
+	         switch (status) {
+	             case 200:
+	                 toast.success(t('removeFromRememberListSuccess'), options);
 	                 break;
+	             case 400:
+	            	 	toast.error(t('removeFromRememberListFailed'), options);
+	            	 	break;
 	             case 401:
 	             	console.log(data, "not permitted");
 	                	break;
@@ -186,20 +228,20 @@ class DrugList extends React.Component {
 	        			<ul>
 	        				<li>
 	        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.addToTakingList(drug.id, event)}>
-	        						<span className="glyphicon glyphicon-heart"></span>
+	        						<span className="glyphicon glyphicon-heart white"></span>
 	        					</button>
 	        				</li>
 	        				<li>
 	        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.addToRememberList(drug.id, event)}>
-	        						<span className="glyphicon glyphicon-plus"></span>
+	        						<span className="glyphicon glyphicon-plus white"></span>
 	        					</button>
 	        				</li>
 	        				<li>
-		        				<Link to={`/drug/${drug.id}`}>
-		        					<button type="button" className="btn btn-xs btn-open">
-		        						<span className="glyphicon glyphicon-eye-open"></span>
-		        					</button>
-		        				</Link>
+		        				<button type="button" className="btn btn-xs btn-open">
+			        				<Link to={`/drug/${drug.id}`}>
+		        						<span className="glyphicon glyphicon-eye-open white"></span>
+				        			</Link>
+		        				</button>
 	        				</li>
 	        			</ul>
 	        		}
