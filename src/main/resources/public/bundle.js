@@ -14750,7 +14750,7 @@ var Home = function (_React$Component) {
                             _react2.default.createElement(
                                 "h2",
                                 null,
-                                "ePill"
+                                t("projectName")
                             ),
                             _react2.default.createElement(
                                 "p",
@@ -14774,7 +14774,7 @@ var Home = function (_React$Component) {
                             _react2.default.createElement(
                                 "h2",
                                 null,
-                                "team"
+                                t("Team")
                             ),
                             _react2.default.createElement(
                                 "p",
@@ -14798,7 +14798,7 @@ var Home = function (_React$Component) {
                             _react2.default.createElement(
                                 "h2",
                                 null,
-                                "articles"
+                                t("articles")
                             ),
                             _react2.default.createElement(
                                 "p",
@@ -15104,7 +15104,7 @@ exports.default = (0, _reactI18next.translate)()(Register);
 
 
 Object.defineProperty(exports, "__esModule", {
-   value: true
+	value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -15133,211 +15133,350 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-// See https://facebook.github.io/react/docs/forms.html for documentation about forms.
+// See https://facebook.github.io/react/docs/forms.html for documentation about
+// forms.
 var UserData = function (_React$Component) {
-   _inherits(UserData, _React$Component);
+	_inherits(UserData, _React$Component);
 
-   function UserData(props) {
-      _classCallCheck(this, UserData);
+	function UserData(props) {
+		_classCallCheck(this, UserData);
 
-      var _this = _possibleConstructorReturn(this, (UserData.__proto__ || Object.getPrototypeOf(UserData)).call(this, props));
+		var _this = _possibleConstructorReturn(this, (UserData.__proto__ || Object.getPrototypeOf(UserData)).call(this, props));
 
-      _this.state = {
-         firstname: '',
-         lastname: '',
-         dateOfBirth: '',
-         sending: false
-      };
+		_this.state = {
+			firstname: '',
+			lastname: '',
+			dateOfBirth: '',
+			email: '',
+			sending: false,
+			levelOfDetail: 1,
+			preferredFontSize: 12
+		};
 
-      _this.handleFirstnameChange = _this.handleFirstnameChange.bind(_this);
-      _this.handleLastnameChange = _this.handleLastnameChange.bind(_this);
+		_this.handleFirstnameChange = _this.handleFirstnameChange.bind(_this);
+		_this.handleLastnameChange = _this.handleLastnameChange.bind(_this);
 
-      _this.handleDateOfBirthChange = _this.handleDateOfBirthChange.bind(_this);
+		_this.handleDateOfBirthChange = _this.handleDateOfBirthChange.bind(_this);
 
-      _this.handleSubmit = _this.handleSubmit.bind(_this);
-      return _this;
-   }
+		_this.handleEmailChange = _this.handleEmailChange.bind(_this);
 
-   _createClass(UserData, [{
-      key: "componentWillMount",
-      value: function componentWillMount() {
-         var _this2 = this;
+		_this.handleChangeLevelOfDetail = _this.handleChangeLevelOfDetail.bind(_this);
+		_this.handleChangePreferredFontSize = _this.handleChangePreferredFontSize.bind(_this);
 
-         if (!_User2.default.isAuthenticated()) return;
+		_this.handleSubmit = _this.handleSubmit.bind(_this);
+		return _this;
+	}
 
-         _axios2.default.get("/user/" + _User2.default.id).then(function (_ref) {
-            var data = _ref.data;
+	_createClass(UserData, [{
+		key: "componentWillMount",
+		value: function componentWillMount() {
+			var _this2 = this;
 
+			if (!_User2.default.isAuthenticated()) return;
 
-            _this2.setState({
-               firstname: data.value.firstname,
-               lastname: data.value.lastname,
-               dateOfBirth: data.value.dateOfBirth,
-               username: data.value.username,
-               gender: data.value.gender
-            });
-         });
-      }
-   }, {
-      key: "handleFirstnameChange",
-      value: function handleFirstnameChange(event) {
-         var s = this.state;
-         s.firstname = event.target.value;
-         this.setState(s);
-      }
-   }, {
-      key: "handleLastnameChange",
-      value: function handleLastnameChange(event) {
-         var s = this.state;
-         s.lastname = event.target.value;
-         this.setState(this.state);
-      }
-   }, {
-      key: "handleDateOfBirthChange",
-      value: function handleDateOfBirthChange(event) {
-         var s = this.state;
-         s.dateOfBirth = event.target.value;
-         this.setState(s);
-      }
-   }, {
-      key: "handleUsernameChange",
-      value: function handleUsernameChange(event) {
-         var s = this.state;
-         s.username = event.target.value;
-         this.setState(s);
-      }
-   }, {
-      key: "handleSubmit",
-      value: function handleSubmit(event) {
-         var _this3 = this;
+			_axios2.default.get("/user/" + _User2.default.id).then(function (_ref) {
+				var data = _ref.data;
 
-         event.preventDefault();
+				_this2.setState({
+					firstname: data.value.firstname,
+					lastname: data.value.lastname,
+					email: data.value.email,
+					dateOfBirth: data.value.dateOfBirth,
+					username: data.value.username,
+					levelOfDetail: data.value.levelOfDetail,
+					preferredFontSize: data.value.preferredFontSize
+				});
+			});
+		}
+	}, {
+		key: "handleFirstnameChange",
+		value: function handleFirstnameChange(event) {
+			this.state.firstname = event.target.value;
+			this.setState(this.state);
+		}
+	}, {
+		key: "handleLastnameChange",
+		value: function handleLastnameChange(event) {
+			this.state.lastname = event.target.value;
+			this.setState(this.state);
+		}
+	}, {
+		key: "handleDateOfBirthChange",
+		value: function handleDateOfBirthChange(event) {
+			this.state.dateOfBirth = event.target.value;
+			this.setState(this.state);
+		}
+	}, {
+		key: "handleUsernameChange",
+		value: function handleUsernameChange(event) {
+			this.state.username = event.target.value;
+			this.setState(this.state);
+		}
+	}, {
+		key: "handleChangeLevelOfDetail",
+		value: function handleChangeLevelOfDetail(event) {
+			this.state.levelOfDetail = event.target.value;
+			this.setState(this.state);
+		}
+	}, {
+		key: "handleChangePreferredFontSize",
+		value: function handleChangePreferredFontSize(event) {
+			this.state.preferredFontSize = event.target.value;
+			this.setState(this.state);
+		}
+	}, {
+		key: "handleEmailChange",
+		value: function handleEmailChange(event) {
+			this.state.email = event.target.value;
+			this.setState(this.state);
+		}
+	}, {
+		key: "handleSubmit",
+		value: function handleSubmit(event) {
+			var _this3 = this;
 
-         if (this.state.sending) return;
+			event.preventDefault();
 
-         this.state.sending = true;
+			if (this.state.sending) return;
 
-         this.setState(this.state);
+			this.state.sending = true;
+			this.setState(this.state);
 
-         _axios2.default.post('/user/update', {
-            firstname: this.state.firstname,
-            lastname: this.state.lastname,
-            dateOfBirth: this.state.dateOfBirth
-         }).then(function (data) {
-            console.log(data);
+			_axios2.default.post('/user/update', {
+				firstname: this.state.firstname,
+				lastname: this.state.lastname,
+				dateOfBirth: this.state.dateOfBirth,
+				levelOfDetail: this.state.levelOfDetail,
+				preferredFontSize: this.state.preferredFontSize
+			}).then(function (data) {
+				_this3.state.sending = false;
+				_this3.setState(_this3.state);
+			});
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			var t = this.props.t;
 
-            _this3.state.sending = false;
-            _this3.setState(_this3.state);
-         });
-      }
-   }, {
-      key: "render",
-      value: function render() {
-         var t = this.props.t;
+			var firstname = _User2.default.firstname;
+			var lastname = _User2.default.lastname;
 
-         var firstname = _User2.default.firstname;
-         var lastname = _User2.default.lastname;
+			return _react2.default.createElement(
+				"div",
+				{ className: "container marketing no-banner" },
+				_react2.default.createElement(
+					"div",
+					{ className: "page-header" },
+					_react2.default.createElement(
+						"h3",
+						null,
+						t("userData")
+					)
+				),
+				_react2.default.createElement(
+					"p",
+					{ className: "text-box" },
+					t("userCockpitDescr").replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
+				),
+				_react2.default.createElement(
+					"form",
+					{ onSubmit: this.handleSubmit },
+					_react2.default.createElement(
+						"fieldset",
+						null,
+						_react2.default.createElement(
+							"div",
+							{ className: "form-group col-lg-2 col-md-2" },
+							_react2.default.createElement(
+								"label",
+								{ htmlFor: "address" },
+								t('address')
+							),
+							_react2.default.createElement(
+								"select",
+								null,
+								_react2.default.createElement(
+									"option",
+									null,
+									"Herr"
+								),
+								_react2.default.createElement(
+									"option",
+									null,
+									"Frau"
+								)
+							)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "form-group col-lg-5 col-md-5" },
+							_react2.default.createElement(
+								"label",
+								{ htmlFor: "firstname" },
+								t('firstname')
+							),
+							_react2.default.createElement("input", { type: "text", name: "firstname", id: "firstname", className: "form-control", value: this.state.firstname, onChange: this.handleFirstnameChange })
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "form-group col-lg-5 col-md-5" },
+							_react2.default.createElement(
+								"label",
+								{ htmlFor: "lastname" },
+								t('lastname')
+							),
+							_react2.default.createElement("input", { type: "text", name: "lastname", id: "lastname", className: "form-control", value: this.state.lastname, onChange: this.handleLastnameChange })
+						)
+					),
+					_react2.default.createElement(
+						"fieldset",
+						null,
+						_react2.default.createElement(
+							"div",
+							{ className: "form-group col-lg-5 col-md-5" },
+							_react2.default.createElement(
+								"label",
+								{ htmlFor: "dateOfBirth" },
+								t('dateOfBirth')
+							),
+							_react2.default.createElement("input", { type: "text", name: "dateOfBirth", id: "dateOfBirth", className: "form-control", value: this.state.dateOfBirth, onChange: this.handleDateOfBirthChange })
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "form-group col-lg-5 col-md-5" },
+							_react2.default.createElement(
+								"label",
+								{ htmlFor: "email" },
+								t('email')
+							),
+							_react2.default.createElement("input", { type: "text", name: "email", id: "email", className: "form-control", value: this.state.email, onChange: this.handleEmailChange })
+						)
+					),
+					_react2.default.createElement(
+						"fieldset",
+						null,
+						_react2.default.createElement(
+							"p",
+							null,
+							_react2.default.createElement(
+								"b",
+								null,
+								"Detailierungsgrad der Ansicht"
+							)
+						),
+						_react2.default.createElement(
+							"ul",
+							{ className: "list-inline" },
+							_react2.default.createElement(
+								"li",
+								{ className: "col-lg-4 col-md-4 col-xs-4" },
+								_react2.default.createElement(
+									"label",
+									{ htmlFor: "settings-detail-min", className: "checkbox-inline" },
+									_react2.default.createElement("input", { type: "radio", value: "1", id: "settings-detail-min", name: "levelOfDetail", checked: this.state.levelOfDetail == 1, onChange: this.handleChangeLevelOfDetail }),
+									"minimal"
+								)
+							),
+							_react2.default.createElement(
+								"li",
+								{ className: "col-lg-4 col-md-4 col-xs-4" },
+								_react2.default.createElement(
+									"label",
+									{ htmlFor: "settings-detail-default", className: "checkbox-inline" },
+									_react2.default.createElement("input", { type: "radio", value: "2", id: "settings-detail-default", name: "levelOfDetail", checked: this.state.levelOfDetail == 2, onChange: this.handleChangeLevelOfDetail }),
+									"standard"
+								)
+							),
+							_react2.default.createElement(
+								"li",
+								{ className: "col-lg-4 col-md-4 col-xs-4" },
+								_react2.default.createElement(
+									"label",
+									{ htmlFor: "settings-detail-max", className: "checkbox-inline" },
+									_react2.default.createElement("input", { type: "radio", value: "3", id: "settings-detail-max", name: "levelOfDetail", checked: this.state.levelOfDetail == 3, onChange: this.handleChangeLevelOfDetail }),
+									"maximal"
+								)
+							)
+						)
+					),
+					_react2.default.createElement(
+						"fieldset",
+						null,
+						_react2.default.createElement(
+							"p",
+							null,
+							_react2.default.createElement(
+								"b",
+								null,
+								"Gew\xFCnschte Schriftgr\xF6\xDFe"
+							)
+						),
+						_react2.default.createElement(
+							"ul",
+							{ className: "list-inline" },
+							_react2.default.createElement(
+								"li",
+								{ className: "col-lg-4 col-md-4 col-xs-4" },
+								_react2.default.createElement(
+									"label",
+									{ htmlFor: "settings-preferred-font-size-min", className: "checkbox-inline" },
+									_react2.default.createElement("input", { type: "radio", value: "10", id: "settings-preferred-font-size-min", name: "preferredFontSize", checked: this.state.preferredFontSize == 10, onChange: this.handleChangePreferredFontSize }),
+									_react2.default.createElement(
+										"span",
+										{ className: "small-text" },
+										"AAA"
+									)
+								)
+							),
+							_react2.default.createElement(
+								"li",
+								{ className: "col-lg-4 col-md-4 col-xs-4" },
+								_react2.default.createElement(
+									"label",
+									{ htmlFor: "settings-preferred-font-size-default", className: "checkbox-inline" },
+									_react2.default.createElement("input", { type: "radio", value: "12", id: "settings-preferred-font-size-default", name: "preferredFontSize", checked: this.state.preferredFontSize == 12, onChange: this.handleChangePreferredFontSize }),
+									_react2.default.createElement(
+										"span",
+										{ className: "medium-text" },
+										"AAA"
+									)
+								)
+							),
+							_react2.default.createElement(
+								"li",
+								{ className: "col-lg-4 col-md-4 col-xs-4" },
+								_react2.default.createElement(
+									"label",
+									{ htmlFor: "settings-preferred-font-size-max", className: "checkbox-inline" },
+									_react2.default.createElement("input", { type: "radio", value: "14", id: "settings-preferred-font-size-max", name: "preferredFontSize", checked: this.state.preferredFontSize == 14, onChange: this.handleChangePreferredFontSize }),
+									_react2.default.createElement(
+										"span",
+										{ className: "big-text" },
+										"AAA"
+									)
+								)
+							)
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "form-actions" },
+						!this.state.sending ? _react2.default.createElement(
+							"button",
+							{ type: "submit", className: "btn btn-primary" },
+							t('save')
+						) : _react2.default.createElement(
+							"button",
+							{ className: "btn btn-default" },
+							_react2.default.createElement("img", { src: "data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" })
+						)
+					)
+				)
+			);
+		}
+	}]);
 
-         return _react2.default.createElement(
-            "div",
-            { className: "container marketing no-banner" },
-            _react2.default.createElement(
-               "div",
-               { className: "page-header" },
-               _react2.default.createElement(
-                  "h3",
-                  null,
-                  t("userData")
-               )
-            ),
-            _react2.default.createElement(
-               "p",
-               { className: "text-box" },
-               t("userCockpitDescr").replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
-            ),
-            _react2.default.createElement(
-               "form",
-               { onSubmit: this.handleSubmit },
-               _react2.default.createElement(
-                  "fieldset",
-                  null,
-                  _react2.default.createElement(
-                     "div",
-                     { className: "form-group col-lg-2 col-md-2" },
-                     _react2.default.createElement(
-                        "label",
-                        { htmlFor: "address" },
-                        t('address')
-                     ),
-                     _react2.default.createElement(
-                        "select",
-                        null,
-                        _react2.default.createElement(
-                           "option",
-                           null,
-                           "Herr"
-                        ),
-                        _react2.default.createElement(
-                           "option",
-                           null,
-                           "Frau"
-                        )
-                     )
-                  ),
-                  _react2.default.createElement(
-                     "div",
-                     { className: "form-group col-lg-5 col-md-5" },
-                     _react2.default.createElement(
-                        "label",
-                        { htmlFor: "firstname" },
-                        t('firstname')
-                     ),
-                     _react2.default.createElement("input", { type: "text", name: "firstname", id: "firstname", className: "form-control", value: this.state.firstname, onChange: this.handleFirstnameChange })
-                  ),
-                  _react2.default.createElement(
-                     "div",
-                     { className: "form-group col-lg-5 col-md-5" },
-                     _react2.default.createElement(
-                        "label",
-                        { htmlFor: "lastname" },
-                        t('lastname')
-                     ),
-                     _react2.default.createElement("input", { type: "text", name: "lastname", id: "lastname", className: "form-control", value: this.state.lastname, onChange: this.handleLastnameChange })
-                  )
-               ),
-               _react2.default.createElement(
-                  "fieldset",
-                  null,
-                  _react2.default.createElement(
-                     "div",
-                     { className: "form-group col-lg-5 col-md-5" },
-                     _react2.default.createElement(
-                        "label",
-                        { htmlFor: "dateOfBirth" },
-                        t('dateOfBirth')
-                     ),
-                     _react2.default.createElement("input", { type: "text", name: "dateOfBirth", id: "dateOfBirth", className: "form-control", value: this.state.dateOfBirth, onChange: this.handleDateOfBirthChange })
-                  )
-               ),
-               _react2.default.createElement(
-                  "div",
-                  { className: "form-actions" },
-                  !this.state.sending ? _react2.default.createElement(
-                     "button",
-                     { type: "submit", className: "btn btn-primary" },
-                     t('save')
-                  ) : _react2.default.createElement(
-                     "button",
-                     { className: "btn btn-default" },
-                     _react2.default.createElement("img", { src: "data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" })
-                  )
-               )
-            )
-         );
-      }
-   }]);
-
-   return UserData;
+	return UserData;
 }(_react2.default.Component);
 
 exports.default = (0, _reactI18next.translate)()(UserData);
@@ -16963,7 +17102,7 @@ var Navigation = function (_React$Component) {
 											_react2.default.createElement(
 												"a",
 												{ href: "#" },
-												"Customer Care"
+												t("customerCare")
 											)
 										),
 										_react2.default.createElement(
@@ -16981,7 +17120,7 @@ var Navigation = function (_React$Component) {
 											_react2.default.createElement(
 												"a",
 												{ href: "#" },
-												"Impressum"
+												t("imprint")
 											)
 										)
 									)

@@ -44,6 +44,12 @@ a.wide { display : block }
 	margin-top: -8px;
 }
 
+.small-text { font-size: 10pt; }
+
+.medium-text { font-size: 12pt; }
+
+.big-text { font-size: 14pt; }
+
 /* */
 .drug-features {
 	

@@ -151,9 +151,9 @@ class Navigation extends React.Component {
 		    	    					<div className="col-sm-12">
 		    	    						<nav className="navbar navbar-default navbar-footer">
 		    	    							<ul className="nav navbar-nav">
-		    	    								<li><a href="#">Customer Care</a></li>
+		    	    								<li><a href="#">{t("customerCare")}</a></li>
 		    	    								<li><a href="#">News</a></li>
-		    	    								<li><a href="#">Impressum</a></li>
+		    	    								<li><a href="#">{t("imprint")}</a></li>
 		    	    							</ul>
 		    	    						</nav>
 		    	    					</div>

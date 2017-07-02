@@ -22,12 +22,14 @@
 package com.doccuty.epill.model.util;
 
 import java.util.HashSet;
+
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.Interaction;
 import java.util.Collection;
 import de.uniks.networkparser.list.NumberList;
 import de.uniks.networkparser.list.ObjectSet;
 import com.doccuty.epill.model.util.DrugSet;
-import com.doccuty.epill.model.Drug;
+
 import java.util.Collections;
 
 public class InteractionSet extends HashSet<Interaction>

@@ -9,8 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.doccuty.epill.model.Drug;
-
 @Repository
 @Transactional
 public interface DrugRepository extends JpaRepository<Drug, Long> {

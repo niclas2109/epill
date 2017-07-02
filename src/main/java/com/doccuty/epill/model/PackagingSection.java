@@ -40,8 +40,9 @@ import javax.persistence.Table;
 import java.beans.PropertyChangeListener;
 import com.doccuty.epill.model.PackagingTopic;
 import de.uniks.networkparser.EntityUtil;
-import com.doccuty.epill.model.Drug;
+
 import com.doccuty.epill.model.util.ItemInvocationSet;
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.ItemInvocation;
 
 /**

@@ -34,6 +34,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.doccuty.epill.drug.Drug;
+
 import java.beans.PropertyChangeListener;
 import de.uniks.networkparser.EntityUtil;
    /**

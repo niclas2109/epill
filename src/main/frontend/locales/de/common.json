@@ -1,5 +1,6 @@
 {
-  "firstname"	: "Vorname",
+	"projectName"	: "ePill",
+	"firstname"	: "Vorname",
   "lastname"	: "Nachname",
   "username"	: "Benutzername",	  
   "password"	: "Passwort",
@@ -33,5 +34,9 @@
   "drugTakingListAllDescriptionText"	: "%User.firstname%, hier findest du eine Übersicht über alle Medikamente, die du nach deinen Angaben aktuell einnimmst. Du kannst neue Medikamente hinzufügen und gelistete aus der Liste entfernen.",
   "drugsRemember"		: "Gemerkte Medikamentierung",
   "drugRememberListDescriptionText"	: "%User.firstname%, hier findest du eine Übersicht über alle Medikamente, die du dir merken möchtest. Du kannst neue Medikamente hinzufügen und gelistete aus der Liste entfernen.",
-  "emptyList"	: "Leere Liste"
+  "emptyList"	: "Leere Liste",
+  "qrticles"		: "Artikel",
+  "team"			: "Team",
+  "customerCare"	: "Kundendient",
+  "imprint"		: "impressum"
 }

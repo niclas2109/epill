@@ -22,9 +22,10 @@
 package com.doccuty.epill.model.util;
 
 import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
+
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.AdverseEffect;
 import de.uniks.networkparser.IdMap;
-import com.doccuty.epill.model.Drug;
 
 public class AdverseEffectCreator implements SendableEntityCreatorNoIndex
 {

@@ -26,7 +26,7 @@ import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
 import com.doccuty.epill.model.PackagingSection;
 import de.uniks.networkparser.IdMap;
 import com.doccuty.epill.model.PackagingTopic;
-import com.doccuty.epill.model.Drug;
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.ItemInvocation;
 
 public class PackagingSectionCreator implements SendableEntityCreatorNoIndex

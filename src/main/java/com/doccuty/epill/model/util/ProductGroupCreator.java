@@ -22,9 +22,10 @@
 package com.doccuty.epill.model.util;
 
 import de.uniks.networkparser.interfaces.SendableEntityCreator;
+
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.ProductGroup;
 import de.uniks.networkparser.IdMap;
-import com.doccuty.epill.model.Drug;
 
 public class ProductGroupCreator implements SendableEntityCreator
 {

@@ -19,7 +19,7 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
  */
    
-package com.doccuty.epill.model;
+package com.doccuty.epill.drug;
 
 import de.uniks.networkparser.interfaces.SendableEntity;
 import java.beans.PropertyChangeSupport;
@@ -40,6 +40,8 @@ import javax.persistence.Transient;
 
 import java.beans.PropertyChangeListener;
 import de.uniks.networkparser.EntityUtil;
+
+import com.doccuty.epill.model.Image;
 import com.doccuty.epill.model.ProductGroup;
    /**
     * 

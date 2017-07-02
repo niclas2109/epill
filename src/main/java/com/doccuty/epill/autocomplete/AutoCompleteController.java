@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.drug.DrugService;
 import com.doccuty.epill.model.Disease;
-import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.util.DiseaseCreator;
 import com.doccuty.epill.user.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;

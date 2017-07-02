@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.DrugFeature;
 
 public interface DrugFeatureRepository extends JpaRepository<DrugFeature, Long> {

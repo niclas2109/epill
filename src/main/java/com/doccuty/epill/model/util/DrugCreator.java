@@ -24,12 +24,12 @@ package com.doccuty.epill.model.util;
 import de.uniks.networkparser.interfaces.SendableEntityCreator;
 import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
 
-import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.DrugFeature;
 import com.doccuty.epill.model.Image;
 
 import de.uniks.networkparser.IdMap;
 import com.doccuty.epill.model.PackagingSection;
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.ActiveSubstance;
 import com.doccuty.epill.model.ProductGroup;
 import com.doccuty.epill.model.IndicationGroup;

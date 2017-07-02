@@ -28,8 +28,8 @@ import de.uniks.networkparser.list.NumberList;
 import de.uniks.networkparser.list.ObjectSet;
 import java.util.Collections;
 import com.doccuty.epill.model.util.DrugSet;
-import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.util.IntakeInformationSet;
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.IntakeInformation;
 
 public class PharmaceuticalFormSet extends HashSet<PharmaceuticalForm>

@@ -33,6 +33,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import com.doccuty.epill.model.util.PackagingTopicSet;
 import com.doccuty.epill.model.PackagingTopic;
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.language.Language;
 import com.doccuty.epill.model.Country;
 import com.doccuty.epill.model.Gender;
@@ -44,7 +45,6 @@ import com.doccuty.epill.model.util.DiseaseSet;
 import com.doccuty.epill.model.util.DrugFeatureSet;
 import com.doccuty.epill.model.util.DrugSet;
 import com.doccuty.epill.model.Disease;
-import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.DrugFeature;
    /**
     * 

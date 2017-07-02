@@ -36,8 +36,9 @@ import javax.persistence.Table;
 
 import java.beans.PropertyChangeListener;
 import de.uniks.networkparser.EntityUtil;
+
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.util.DrugSet;
-import com.doccuty.epill.model.Drug;
    /**
     * 
     * @see <a href='../../../../../../../src/test/java/com/doccuty/epill/model/SDMLib/ModelCreator.java'>ModelCreator.java</a>

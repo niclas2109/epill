@@ -22,13 +22,14 @@
 package com.doccuty.epill.model.util;
 
 import java.util.HashSet;
+
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.IndicationGroup;
 import java.util.Collection;
 import de.uniks.networkparser.list.NumberList;
 import de.uniks.networkparser.list.ObjectSet;
 import java.util.Collections;
 import com.doccuty.epill.model.util.DrugSet;
-import com.doccuty.epill.model.Drug;
 
 public class IndicationGroupSet extends HashSet<IndicationGroup>
 {

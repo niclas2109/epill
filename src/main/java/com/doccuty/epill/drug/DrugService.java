@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.DrugFeature;
 import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.user.SimpleUser;

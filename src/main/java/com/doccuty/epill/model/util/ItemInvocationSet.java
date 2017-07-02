@@ -22,6 +22,8 @@
 package com.doccuty.epill.model.util;
 
 import java.util.HashSet;
+
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.ItemInvocation;
 import java.util.Collection;
 import java.util.Date;
@@ -29,7 +31,6 @@ import java.util.Date;
 import de.uniks.networkparser.list.NumberList;
 import de.uniks.networkparser.list.ObjectSet;
 import com.doccuty.epill.model.util.DrugSet;
-import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.util.PackagingSectionSet;
 import com.doccuty.epill.model.PackagingSection;
 import com.doccuty.epill.model.util.UserSet;

@@ -38,7 +38,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.beans.PropertyChangeListener;
-import com.doccuty.epill.model.Drug;
+
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.PackagingSection;
 import com.doccuty.epill.user.User;
    /**

@@ -35,6 +35,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.util.DrugSet;
 import com.doccuty.epill.model.util.UserSet;
 import com.doccuty.epill.user.User;

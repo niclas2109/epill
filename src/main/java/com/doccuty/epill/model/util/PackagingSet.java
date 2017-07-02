@@ -23,7 +23,7 @@ package com.doccuty.epill.model.util;
 
 import java.util.HashSet;
 
-import com.doccuty.epill.model.Drug;
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.Packaging;
 import java.util.Collection;
 import de.uniks.networkparser.list.NumberList;

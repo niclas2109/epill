@@ -23,7 +23,7 @@ package com.doccuty.epill.model.util;
 
 import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
 
-import com.doccuty.epill.model.Drug;
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.Packaging;
 import de.uniks.networkparser.IdMap;
 

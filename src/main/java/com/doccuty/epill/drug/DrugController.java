@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.doccuty.epill.model.Drug;
 import com.doccuty.epill.model.DrugFeature;
 import com.doccuty.epill.model.util.DrugCreator;
 import com.doccuty.epill.user.UserService;

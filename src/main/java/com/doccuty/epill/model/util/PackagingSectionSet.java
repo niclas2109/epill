@@ -28,9 +28,10 @@ import de.uniks.networkparser.list.NumberList;
 import com.doccuty.epill.model.PackagingTopic;
 import de.uniks.networkparser.list.ObjectSet;
 import com.doccuty.epill.model.util.DrugSet;
-import com.doccuty.epill.model.Drug;
+
 import java.util.Collections;
 import com.doccuty.epill.model.util.ItemInvocationSet;
+import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.ItemInvocation;
 
 public class PackagingSectionSet extends HashSet<PackagingSection>

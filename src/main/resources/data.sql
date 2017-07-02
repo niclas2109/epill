@@ -73,8 +73,7 @@ INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstna
 -- Dumping data for table `user_`
 --
 
---INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
-
+INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
 
 
 
