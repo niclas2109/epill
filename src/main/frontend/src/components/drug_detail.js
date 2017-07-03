@@ -4,8 +4,8 @@ import React from "react";
 import { toast } from 'react-toastify';
 import {translate} from "react-i18next";
 
-import Accordion from "../util/Accordion";
-import User from "../util/User";
+import Accordion from "./accordion";
+import User from "./../util/User";
 
 class DrugDetail extends React.Component {
     constructor(props) {

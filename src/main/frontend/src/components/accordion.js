@@ -1,6 +1,6 @@
 import React from "react";
 
-import User from "./User";
+import User from "./../util/User";
 
 import {Link} from "react-router-dom";
 import {translate} from "react-i18next";

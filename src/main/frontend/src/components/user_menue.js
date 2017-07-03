@@ -1,9 +1,9 @@
 import React from "react";
 
-import User from "./User";
-
 import {Link} from "react-router-dom";
 import {translate} from "react-i18next";
+
+import User from "./../util/User";
 
 class UserMenue extends React.Component {
 	  constructor(props) {
