@@ -105,10 +105,16 @@ public class InteractionCreator implements SendableEntityCreatorNoIndex
 
       if (Interaction.PROPERTY_DRUG.equalsIgnoreCase(attrName))
       {
-         ((Interaction) target).setDrug((Drug) value);
+         ((Interaction) target).withDrug((Drug) value);
          return true;
       }
-
+      
+      if ((Interaction.PROPERTY_DRUG + SendableEntityCreatorNoIndex.REMOVE).equalsIgnoreCase(attrName))
+      {
+         ((Interaction) target).withoutDrug((Drug) value);
+         return true;
+      }
+      
       if (Interaction.PROPERTY_INTERACTIONDRUG.equalsIgnoreCase(attrName))
       {
          ((Interaction) target).withInteractionDrug((Drug) value);

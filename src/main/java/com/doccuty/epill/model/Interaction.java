@@ -103,7 +103,7 @@ import com.doccuty.epill.model.util.DrugSet;
    
    public void removeYou()
    {
-      setDrug(null);
+	  withoutDrug(this.getDrug().toArray(new Drug[this.getDrug().size()]));
       withoutInteractionDrug(this.getInteractionDrug().toArray(new Drug[this.getInteractionDrug().size()]));
       firePropertyChange("REMOVE_YOU", this, null);
    }
@@ -181,56 +181,70 @@ import com.doccuty.epill.model.util.DrugSet;
    
    /********************************************************************
     * <pre>
-    *              many                       one
+    *              many                       many
     * Interaction ----------------------------------- Drug
     *              interaction                   drug
     * </pre>
+    * actual drug origin
     */
    
    public static final String PROPERTY_DRUG = "drug";
 
-   @ManyToOne(cascade=CascadeType.ALL)
-   @JoinColumn(name="iddrug")
-   private Drug drug = null;
+   @ManyToMany(cascade=CascadeType.ALL)  
+   @JoinTable(name="drug_interaction", joinColumns=@JoinColumn(name="idinteraction"), inverseJoinColumns=@JoinColumn(name="iddrug"))
+   private Set<Drug> drug = null;
 
-   public Drug getDrug()
+   public Set<Drug> getDrug()
    {
+      if (this.drug == null)
+      {
+         return DrugSet.EMPTY_SET;
+      }
+   
       return this.drug;
    }
 
-   public boolean setDrug(Drug value)
+   public Interaction withDrug(Drug... value)
    {
-      boolean changed = false;
-      
-      if (this.drug != value)
-      {
-         Drug oldValue = this.drug;
-         
-         if (this.drug != null)
-         {
-            this.drug = null;
-            oldValue.withoutInteraction(this);
-         }
-         
-         this.drug = value;
-         
-         if (value != null)
-         {
-            value.withInteraction(this);
-         }
-         
-         firePropertyChange(PROPERTY_DRUG, oldValue, value);
-         changed = true;
+      if(value==null){
+         return this;
       }
-      
-      return changed;
-   }
+      for (Drug item : value)
+      {
+         if (item != null)
+         {
+            if (this.drug == null)
+            {
+               this.drug = new DrugSet();
+            }
+            
+            boolean changed = this.drug.add (item);
 
-   public Interaction withDrug(Drug value)
-   {
-      setDrug(value);
+            if (changed)
+            {
+               item.withInteraction(this);
+               firePropertyChange(PROPERTY_DRUG, null, item);
+            }
+         }
+      }
       return this;
    } 
+
+   public Interaction withoutDrug(Drug... value)
+   {
+      for (Drug item : value)
+      {
+         if ((this.drug != null) && (item != null))
+         {
+            if (this.drug.remove(item))
+            {
+               item.withoutInteraction(this);
+               firePropertyChange(PROPERTY_DRUG, item, null);
+            }
+         }
+      }
+      return this;
+   }
 
    public Drug createDrug()
    {

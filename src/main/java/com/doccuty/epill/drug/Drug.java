@@ -56,10 +56,6 @@ import com.doccuty.epill.model.util.DrugFeatureSet;
 import com.doccuty.epill.model.util.DrugSet;
 import com.doccuty.epill.model.Disease;
 import com.doccuty.epill.model.DrugFeature;
-   /**
-    * 
-    * @see <a href='../../../../../../../src/test/java/com/doccuty/epill/model/SDMLib/ModelCreator.java'>ModelCreator.java</a>
- */
 
 @Entity  
 @Table(name = "drug")  
@@ -662,7 +658,7 @@ import com.doccuty.epill.model.DrugFeature;
    
    public static final String PROPERTY_INTERACTION = "interaction";
 
-   @OneToMany(cascade=CascadeType.ALL, mappedBy="drug")
+   @ManyToMany(cascade=CascadeType.ALL, mappedBy="drug")
    private Set<Interaction> interaction = null;
 
    public Set<Interaction> getInteraction()
@@ -709,7 +705,7 @@ import com.doccuty.epill.model.DrugFeature;
          {
             if (this.interaction.remove(item))
             {
-               item.setDrug(null);
+               item.withoutDrug(this);
                firePropertyChange(PROPERTY_INTERACTION, item, null);
             }
          }
