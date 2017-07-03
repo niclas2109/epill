@@ -47,31 +47,19 @@ class Navigation extends React.Component {
 		            			<nav className="navbar navbar-inverse navbar-static-top">
 		            				<div className="container">
 		            					<div className="navbar-header">
-		            						<button type="button" className="navbar-toggle collapsed" onClick={this.toggleShow}>
-		            							<span className="icon-bar"></span>
-		            							<span className="icon-bar"></span>
-		            							<span className="icon-bar"></span>
-		            						</button>
+		            						<button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+	            							<span className="icon-bar"></span>
+	            							<span className="icon-bar"></span>
+	            							<span className="icon-bar"></span>
+	            						</button>
 		            						<Link to="/" className="navbar-brand">
 		            						 	<img src="/assets/images/logo_v.svg" className="logo"></img>
 		            						 </Link>
 		            					</div>
-		            					{show &&
-		            						<div className="navbar-collapse" id="bs-example-navbar-collapse-1">
-			            						<ul className="nav navbar-nav">
-			            							<li><Link to="/about">{t("about")}</Link></li>
-			            							<li><Link to="/drug/list">{t("drugs")}</Link></li>
-			            						</ul>
-			            	
-			            						<AutoComplete />
-			            	
-			            						<UserMenue />
-			            					</div>
-		            					}
-	            						<div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		            					<div id="navbar" className="collapse navbar-collapse">
 		            						<ul className="nav navbar-nav">
-		            							<li><Link to="/about">{t("about")}</Link></li>
-		            							<li><Link to="/drug/list">{t("drugs")}</Link></li>
+		            							<li data-toggle="collapse" data-target=".nav-collapse"><Link to="/about">{t("about")}</Link></li>
+		            							<li data-toggle="collapse" data-target=".nav-collapse"><Link to="/drug/list">{t("drugs")}</Link></li>
 		            						</ul>
 		            	
 		            						<AutoComplete />

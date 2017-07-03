@@ -16429,7 +16429,7 @@ var Navigation = function (_React$Component) {
 									{ className: "navbar-header" },
 									_react2.default.createElement(
 										"button",
-										{ type: "button", className: "navbar-toggle collapsed", onClick: this.toggleShow },
+										{ type: "button", className: "navbar-toggle collapsed", "data-toggle": "collapse", "data-target": "#navbar" },
 										_react2.default.createElement("span", { className: "icon-bar" }),
 										_react2.default.createElement("span", { className: "icon-bar" }),
 										_react2.default.createElement("span", { className: "icon-bar" })
@@ -16440,43 +16440,15 @@ var Navigation = function (_React$Component) {
 										_react2.default.createElement("img", { src: "/assets/images/logo_v.svg", className: "logo" })
 									)
 								),
-								show && _react2.default.createElement(
-									"div",
-									{ className: "navbar-collapse", id: "bs-example-navbar-collapse-1" },
-									_react2.default.createElement(
-										"ul",
-										{ className: "nav navbar-nav" },
-										_react2.default.createElement(
-											"li",
-											null,
-											_react2.default.createElement(
-												_reactRouterDom.Link,
-												{ to: "/about" },
-												t("about")
-											)
-										),
-										_react2.default.createElement(
-											"li",
-											null,
-											_react2.default.createElement(
-												_reactRouterDom.Link,
-												{ to: "/drug/list" },
-												t("drugs")
-											)
-										)
-									),
-									_react2.default.createElement(_AutoComplete2.default, null),
-									_react2.default.createElement(_UserMenue2.default, null)
-								),
 								_react2.default.createElement(
 									"div",
-									{ className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1" },
+									{ id: "navbar", className: "collapse navbar-collapse" },
 									_react2.default.createElement(
 										"ul",
 										{ className: "nav navbar-nav" },
 										_react2.default.createElement(
 											"li",
-											null,
+											{ "data-toggle": "collapse", "data-target": ".nav-collapse" },
 											_react2.default.createElement(
 												_reactRouterDom.Link,
 												{ to: "/about" },
@@ -16485,7 +16457,7 @@ var Navigation = function (_React$Component) {
 										),
 										_react2.default.createElement(
 											"li",
-											null,
+											{ "data-toggle": "collapse", "data-target": ".nav-collapse" },
 											_react2.default.createElement(
 												_reactRouterDom.Link,
 												{ to: "/drug/list" },
