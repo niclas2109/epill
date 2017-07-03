@@ -10,21 +10,61 @@ import User from "./../util/User";
 class DrugList extends React.Component {
     constructor(props) {
         super();
+
         this.state = {
-        		drugs: []
+        		drugs	: [],
+        		cmd		: ''
         }
     }
 
-    // This function is called before render() to initialize its state.
-    componentWillMount() {
-        axios.get('/drug/list/all')
+    setCmd() {
+        
+		var path= this.props.location.pathname.split('/');
+		var cmd	= path[path.length-1];
+        
+		this.state.cmd = cmd;
+		this.setState(this.state);
+		
+		switch(this.state.cmd) {
+		case 'taking':
+	        axios.get('/drug/list/taking')
             .then(({data}) => {
                 this.setState({
                     drugs: data.value
                 });
             });
+			break;
+		case 'remember':
+	        axios.get('/drug/list/remember')
+            .then(({data}) => {
+                this.setState({
+                    drugs: data.value
+                });
+            });
+			break;
+		default:
+	        axios.get('/drug/list/all')
+            .then(({data}) => {
+                this.setState({
+                    drugs: data.value
+                });
+            });
+			break;
+				
+		}
     }
-
+    
+    
+    // This function is called before render() to initialize its state.
+    componentWillMount() {
+    		this.setCmd();
+    }
+    
+    componentWillReceiveProps(props){
+    		this.props = props;
+        this.setCmd();
+     }
+    
     //=============================
     
     addToTakingList(id) {
@@ -227,12 +267,12 @@ class DrugList extends React.Component {
 	        		{User.isAuthenticated() &&
 	        			<ul>
 	        				<li>
-	        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.addToTakingList(drug.id, event)}>
+	        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.addToTakingList(drug.id)}>
 	        						<span className="glyphicon glyphicon-heart white"></span>
 	        					</button>
 	        				</li>
 	        				<li>
-	        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.addToRememberList(drug.id, event)}>
+	        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.addToRememberList(drug.id)}>
 	        						<span className="glyphicon glyphicon-plus white"></span>
 	        					</button>
 	        				</li>
@@ -266,7 +306,9 @@ class DrugList extends React.Component {
 					</div>
 					{User.isAuthenticated() &&
 		                <div className="text-box">
-		                		{t('drugListAllDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
+							{this.state.cmd == "taking" && t('drugTakingListDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
+							{this.state.cmd == "remember" && t('drugRememberListDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
+		                		{this.state.cmd == "list" && t('drugListAllDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
 		                </div>
 					}
 	                <div className="row">

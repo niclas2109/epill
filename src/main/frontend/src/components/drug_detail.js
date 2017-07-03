@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 
 import { toast } from 'react-toastify';
+import {translate} from "react-i18next";
 
 import Accordion from "../util/Accordion";
 import User from "../util/User";
@@ -14,14 +15,23 @@ class DrugDetail extends React.Component {
         }
     }
 
-    componentWillMount() {
+    init() {
         axios.get(`/drug/${this.props.match.params.id}/de`)
-            .then(({data}) => {
-                this.setState({
-                    drug: data.value
-                });
+        .then(({data}) => {
+            this.setState({
+                drug: data.value
             });
+        });
     }
+    
+    componentWillMount() {
+		this.init();
+    }
+    
+    componentWillReceiveProps(props){
+    		this.props = props;
+        this.init();
+     }
     
     //=============================
     
@@ -291,4 +301,4 @@ class DrugDetail extends React.Component {
     }
 }
 
-export default DrugDetail;
+export default translate()(DrugDetail);

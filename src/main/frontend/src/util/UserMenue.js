@@ -36,7 +36,6 @@ class UserMenue extends React.Component {
 										<li><Link to="/drug/remember">{t('rememberedDrugs')}</Link></li>
 										<li><Link to="/user/settings">{t('userSettings')}</Link></li>
 										<li><Link to="/user/data">{t('userData')}</Link></li>
-										<li><Link to="/user/list">{t('userList')}</Link></li>
 										<li><Link to="/user/login">{t('logout')}</Link></li>
 									</ul> }
 							</li>

@@ -17,9 +17,6 @@ import DrugDetail from "./../components/drug_detail";
 
 import UserData from "./../components/user/data";
 import UserSettings from "./../components/user/settings";
-import UserList from "./../components/user/list";
-import UserTakingDrugList from "./../components/user/user_taking_drug_list.js";
-import UserRememberDrugList from "./../components/user/user_remember_drug_list.js";
 
 import { ToastContainer } from 'react-toastify';
 
@@ -94,8 +91,8 @@ class Navigation extends React.Component {
 		
 		                        {/* Drug handling */}
 		                        <Route path="/drug/list" component={DrugList}/>
-		                        <Route path="/drug/taking" component={UserTakingDrugList}/>
-		                        <Route path="/drug/remember" component={UserRememberDrugList} />
+		                        <Route path="/drug/taking" component={DrugList}/>
+		                        <Route path="/drug/remember" component={DrugList} />
 		                        <Route path="/drug/:id" component={DrugDetail}/>
 	
 		                        {/* User sites */}
@@ -103,7 +100,6 @@ class Navigation extends React.Component {
 		                        <Route path="/user/takenDrugs" component={DrugList}/>
 		                        <Route path="/user/data" component={UserData}/>
 		                        <Route path="/user/settings" component={UserSettings}/>
-		                        <Route path="/user/list" component={UserList}/>
 		                        
 		                        {/* Information sites */}
 		                        <Route path="/about" component={About} />
