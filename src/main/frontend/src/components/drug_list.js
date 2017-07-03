@@ -12,9 +12,16 @@ class DrugList extends React.Component {
         super();
 
         this.state = {
-        		drugs	: [],
-        		cmd		: ''
+        		drugs		: [],
+        		interactions	: '',
+        		cmd			: ''
         }
+        
+        this.checkForInteractions	= this.checkForInteractions.bind(this);
+        this.addToRememberList		= this.addToRememberList.bind(this);
+        this.removeFromRememberList	= this.removeFromRememberList.bind(this);
+        this.addToTakingList			= this.addToTakingList.bind(this);
+        this.removeFromTakingList	= this.removeFromTakingList.bind(this);
     }
 
     setCmd() {
@@ -23,34 +30,33 @@ class DrugList extends React.Component {
 		var cmd	= path[path.length-1];
         
 		this.state.cmd = cmd;
+		this.state.interactions = '';
 		this.setState(this.state);
 		
 		switch(this.state.cmd) {
-		case 'taking':
-	        axios.get('/drug/list/taking')
-            .then(({data}) => {
-                this.setState({
-                    drugs: data.value
-                });
-            });
-			break;
-		case 'remember':
-	        axios.get('/drug/list/remember')
-            .then(({data}) => {
-                this.setState({
-                    drugs: data.value
-                });
-            });
-			break;
-		default:
-	        axios.get('/drug/list/all')
-            .then(({data}) => {
-                this.setState({
-                    drugs: data.value
-                });
-            });
-			break;
-				
+			case 'taking':
+		        axios.get('/drug/list/taking')
+	            .then(({data}) => {
+	            		this.state.drugs = data.value;
+	            		this.setState(this.state);
+			        this.checkForInteractions();
+	            });
+				break;
+			case 'remember':
+		        axios.get('/drug/list/remember')
+	            .then(({data}) => {
+		        		this.state.drugs = data.value;
+		        		this.setState(this.state);
+		            this.checkForInteractions();
+	            });
+				break;
+			default:
+		        axios.get('/drug/list/all')
+	            .then(({data}) => {
+		        		this.state.drugs = data.value;
+		        		this.setState(this.state);
+	            });
+				break;		
 		}
     }
     
@@ -64,6 +70,9 @@ class DrugList extends React.Component {
     		this.props = props;
         this.setCmd();
      }
+    
+
+	createMarkup(text) { return {__html: text}; };
     
     //=============================
     
@@ -108,6 +117,7 @@ class DrugList extends React.Component {
 	         switch (status) {
 	             case 200:
                      toast.success(t('removeFromTakingListSuccess'), options);
+	                 this.checkForInteractions();
 	                 break;
 	             case 400:
                      toast.error(t('removeFromTakingListFailed'), options);
@@ -163,6 +173,7 @@ class DrugList extends React.Component {
 	         switch (status) {
 	             case 200:
 	                 toast.success(t('removeFromRememberListSuccess'), options);
+	                 this.checkForInteractions();
 	                 break;
 	             case 400:
 	            	 	toast.error(t('removeFromRememberListFailed'), options);
@@ -192,6 +203,12 @@ class DrugList extends React.Component {
     }
 
     
+    checkForInteractions() {
+        axios.get('/drug/interactions').then(({data}) => {
+	    		this.state.interactions = data.value;
+	    		this.setState(this.state);
+        });
+    }
     
     //=============================
     
@@ -297,20 +314,42 @@ class DrugList extends React.Component {
         const firstname = User.firstname;
         const lastname = User.lastname;
 
-        const drugs = this.state.drugs;
+        const drugs			= this.state.drugs;
+        const interactions	= this.state.interactions;
 
+        
+        var title = null;
+        
+        switch(this.state.cmd) {
+        		case 'taking':
+        			title = t('drugTakingListDescriptionText');
+        			break;
+	        case 'remember':
+	    			title = t('drugRememberListDescriptionText');
+	    			break;
+	    		default:
+	    			title = t('drugListAllDescriptionText');
+	    			break;
+        }
+        
         return (
 	        	<div className="container no-banner">
 		    		<div className='page-header'>
-						<h3>{t('drugs')}</h3>
-					</div>
+		    			<b>{t('drugs')}</b>
+				</div>
 					{User.isAuthenticated() &&
 		                <div className="text-box">
-							{this.state.cmd == "taking" && t('drugTakingListDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
-							{this.state.cmd == "remember" && t('drugRememberListDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
-		                		{this.state.cmd == "list" && t('drugListAllDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
+							{title.replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
 		                </div>
 					}
+					
+					{drugs.length > 1 && User.isAuthenticated() && interactions.length > 0 &&
+						<div className="alert alert-danger">
+							<h5>{t("interaction")}</h5>
+							<span dangerouslySetInnerHTML={this.createMarkup(interactions)} />
+		                </div>
+					}
+    
 	                <div className="row">
 		                <ul className="drug-list">
 		                    {this.renderDrugs(drugs)}

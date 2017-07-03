@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.doccuty.epill.model.DrugFeature;
+import com.doccuty.epill.model.Interaction;
 import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.user.SimpleUser;
 import com.doccuty.epill.user.User;
@@ -65,15 +66,27 @@ public class DrugService {
 		return featureRepository.findAllSimple();
 	}
 
-	public String checkUserDrugsForAdverseEffects() {
-		User user = userService.getCurrentUser();
+	public String checkUserDrugsInteractions() {
+
+		StringBuilder interactionText = new StringBuilder();
 		
-		String adverseEffects = "adverse effects";
+		List<Drug> list = this.findUserDrugsTaking();
 		
-		return adverseEffects;
+		for(Drug drug : list) {
+			for(Interaction interaction : drug.getInteraction()) {
+				for(Drug drugCompare : list) {
+					if(interaction.getInteractionDrug().contains(drugCompare)) {
+						interactionText.append("<p>"+drug.getName()+" - "+drugCompare.getName()+":<br />"+interaction.getInteraction()+"</p>");
+					}
+				}
+			}
+		}
+		
+		return interactionText.toString();
 	}
 
-	public List<Drug> findUserDrugsTaking(SimpleUser user) {
+	public List<Drug> findUserDrugsTaking() {
+		SimpleUser user = userService.getCurrentUser();
 		return repository.findUserDrugsTaking(user.getId());
 	}
 	

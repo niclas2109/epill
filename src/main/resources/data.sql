@@ -14,6 +14,7 @@ DELETE FROM user_preferred_topic;
 DELETE FROM user_disease;
 DELETE FROM user_drug_feature;
 DELETE FROM user_query;
+DELETE FROM interaction_drug;
 
 DELETE FROM tag;
 DELETE FROM adverse_effect;
@@ -26,6 +27,7 @@ DELETE FROM disease;
 DELETE FROM item_invocation;
 DELETE FROM user_drug_taking;
 DELETE FROM user_drug_remember;
+DELETE FROM interaction;
 DELETE FROM drug;
 DELETE FROM drug_simple;
 DELETE FROM user_;
@@ -285,12 +287,20 @@ INSERT INTO drug_pharmaceutical_form (iddrug, idpharmaceutical_form) VALUES (7,1
 INSERT INTO drug_pharmaceutical_form (iddrug, idpharmaceutical_form) VALUES (10,1);
 INSERT INTO drug_pharmaceutical_form (iddrug, idpharmaceutical_form) VALUES (3,2);
 
+--
+-- Dumping data for table `interaction`
+--
+
+INSERT INTO interaction (id, interaction, iddrug) VALUES (1, 'Kann zu Durchfall führen', 1);
+INSERT INTO interaction (id, interaction, iddrug) VALUES (2, 'Kann sehr ermüdend wirken', 1);
 
 
 --
 -- Dumping data for table `interaction_drug`
 --
 
+INSERT INTO interaction_drug (idinteraction, iddrug) VALUES (1, 2), (1, 3), (1, 5);
+INSERT INTO interaction_drug (idinteraction, iddrug) VALUES (2, 3);
 
 --
 -- Dumping data for table `item_invocation`

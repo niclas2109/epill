@@ -14351,13 +14351,6 @@ var DrugDetail = function (_React$Component) {
         //=============================
 
 
-        // for html conversion
-
-    }, {
-        key: "createMarkup",
-        value: function createMarkup(text) {
-            return { __html: text };
-        }
     }, {
         key: "renderDrugFeatures",
         value: function renderDrugFeatures(drug) {
@@ -14598,7 +14591,7 @@ exports.default = (0, _reactI18next.translate)()(DrugDetail);
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -14630,420 +14623,469 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var DrugList = function (_React$Component) {
-    _inherits(DrugList, _React$Component);
+  _inherits(DrugList, _React$Component);
 
-    function DrugList(props) {
-        _classCallCheck(this, DrugList);
+  function DrugList(props) {
+    _classCallCheck(this, DrugList);
 
-        var _this = _possibleConstructorReturn(this, (DrugList.__proto__ || Object.getPrototypeOf(DrugList)).call(this));
+    var _this = _possibleConstructorReturn(this, (DrugList.__proto__ || Object.getPrototypeOf(DrugList)).call(this));
 
-        _this.state = {
-            drugs: [],
-            cmd: ''
-        };
-        return _this;
+    _this.state = {
+      drugs: [],
+      interactions: '',
+      cmd: ''
+    };
+
+    _this.checkForInteractions = _this.checkForInteractions.bind(_this);
+    _this.addToRememberList = _this.addToRememberList.bind(_this);
+    _this.removeFromRememberList = _this.removeFromRememberList.bind(_this);
+    _this.addToTakingList = _this.addToTakingList.bind(_this);
+    _this.removeFromTakingList = _this.removeFromTakingList.bind(_this);
+    return _this;
+  }
+
+  _createClass(DrugList, [{
+    key: "setCmd",
+    value: function setCmd() {
+      var _this2 = this;
+
+      var path = this.props.location.pathname.split('/');
+      var cmd = path[path.length - 1];
+
+      this.state.cmd = cmd;
+      this.state.interactions = '';
+      this.setState(this.state);
+
+      switch (this.state.cmd) {
+        case 'taking':
+          _axios2.default.get('/drug/list/taking').then(function (_ref) {
+            var data = _ref.data;
+
+            _this2.state.drugs = data.value;
+            _this2.setState(_this2.state);
+            _this2.checkForInteractions();
+          });
+          break;
+        case 'remember':
+          _axios2.default.get('/drug/list/remember').then(function (_ref2) {
+            var data = _ref2.data;
+
+            _this2.state.drugs = data.value;
+            _this2.setState(_this2.state);
+            _this2.checkForInteractions();
+          });
+          break;
+        default:
+          _axios2.default.get('/drug/list/all').then(function (_ref3) {
+            var data = _ref3.data;
+
+            _this2.state.drugs = data.value;
+            _this2.setState(_this2.state);
+          });
+          break;
+      }
     }
 
-    _createClass(DrugList, [{
-        key: "setCmd",
-        value: function setCmd() {
-            var _this2 = this;
+    // This function is called before render() to initialize its state.
 
-            var path = this.props.location.pathname.split('/');
-            var cmd = path[path.length - 1];
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      this.setCmd();
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(props) {
+      this.props = props;
+      this.setCmd();
+    }
+  }, {
+    key: "createMarkup",
+    value: function createMarkup(text) {
+      return { __html: text };
+    }
+  }, {
+    key: "addToTakingList",
 
-            this.state.cmd = cmd;
-            this.setState(this.state);
 
-            switch (this.state.cmd) {
-                case 'taking':
-                    _axios2.default.get('/drug/list/taking').then(function (_ref) {
-                        var data = _ref.data;
+    //=============================
 
-                        _this2.setState({
-                            drugs: data.value
-                        });
-                    });
-                    break;
-                case 'remember':
-                    _axios2.default.get('/drug/list/remember').then(function (_ref2) {
-                        var data = _ref2.data;
+    value: function addToTakingList(id) {
+      var _this3 = this;
 
-                        _this2.setState({
-                            drugs: data.value
-                        });
-                    });
-                    break;
-                default:
-                    _axios2.default.get('/drug/list/all').then(function (_ref3) {
-                        var data = _ref3.data;
-
-                        _this2.setState({
-                            drugs: data.value
-                        });
-                    });
-                    break;
-
-            }
+      _axios2.default.post('/drug/taking/add', { id: id }, {
+        validateStatus: function validateStatus(status) {
+          return status >= 200 && status < 300 || status == 400 || status == 401;
         }
+      }).then(function (_ref4) {
+        var data = _ref4.data,
+            status = _ref4.status;
+        var t = _this3.props.t;
 
-        // This function is called before render() to initialize its state.
+        var options = {
+          position: _reactToastify.toast.POSITION.BOTTOM_CENTER
+        };
 
-    }, {
-        key: "componentWillMount",
-        value: function componentWillMount() {
-            this.setCmd();
+        switch (status) {
+          case 200:
+            _reactToastify.toast.success(t('addToTakingListSuccess'), options);
+            break;
+          case 400:
+            _reactToastify.toast.error(t('addToTakingListFailed'), options);
+            break;
+          case 401:
+            console.log(data, "not permitted");
+            break;
         }
-    }, {
-        key: "componentWillReceiveProps",
-        value: function componentWillReceiveProps(props) {
-            this.props = props;
-            this.setCmd();
+      });
+    }
+  }, {
+    key: "removeFromTakingList",
+    value: function removeFromTakingList(id) {
+      var _this4 = this;
+
+      _axios2.default.post('/drug/taking/remove', { id: id }, {
+        validateStatus: function validateStatus(status) {
+          return status >= 200 && status < 300 || status == 400 || status == 401;
         }
+      }).then(function (_ref5) {
+        var data = _ref5.data,
+            status = _ref5.status;
+        var t = _this4.props.t;
 
-        //=============================
+        var options = {
+          position: _reactToastify.toast.POSITION.BOTTOM_CENTER
+        };
 
-    }, {
-        key: "addToTakingList",
-        value: function addToTakingList(id) {
-            var _this3 = this;
-
-            _axios2.default.post('/drug/taking/add', { id: id }, {
-                validateStatus: function validateStatus(status) {
-                    return status >= 200 && status < 300 || status == 400 || status == 401;
-                }
-            }).then(function (_ref4) {
-                var data = _ref4.data,
-                    status = _ref4.status;
-                var t = _this3.props.t;
-
-                var options = {
-                    position: _reactToastify.toast.POSITION.BOTTOM_CENTER
-                };
-
-                switch (status) {
-                    case 200:
-                        _reactToastify.toast.success(t('addToTakingListSuccess'), options);
-                        break;
-                    case 400:
-                        _reactToastify.toast.error(t('addToTakingListFailed'), options);
-                        break;
-                    case 401:
-                        console.log(data, "not permitted");
-                        break;
-                }
-            });
+        switch (status) {
+          case 200:
+            _reactToastify.toast.success(t('removeFromTakingListSuccess'), options);
+            _this4.checkForInteractions();
+            break;
+          case 400:
+            _reactToastify.toast.error(t('removeFromTakingListFailed'), options);
+            break;
+          case 401:
+            console.log(data, "not permitted");
+            break;
         }
-    }, {
-        key: "removeFromTakingList",
-        value: function removeFromTakingList(id) {
-            var _this4 = this;
+      });
+    }
+  }, {
+    key: "addToRememberList",
+    value: function addToRememberList(id) {
+      var _this5 = this;
 
-            _axios2.default.post('/drug/taking/remove', { id: id }, {
-                validateStatus: function validateStatus(status) {
-                    return status >= 200 && status < 300 || status == 400 || status == 401;
-                }
-            }).then(function (_ref5) {
-                var data = _ref5.data,
-                    status = _ref5.status;
-                var t = _this4.props.t;
-
-                var options = {
-                    position: _reactToastify.toast.POSITION.BOTTOM_CENTER
-                };
-
-                switch (status) {
-                    case 200:
-                        _reactToastify.toast.success(t('removeFromTakingListSuccess'), options);
-                        break;
-                    case 400:
-                        _reactToastify.toast.error(t('removeFromTakingListFailed'), options);
-                        break;
-                    case 401:
-                        console.log(data, "not permitted");
-                        break;
-                }
-            });
+      _axios2.default.post('/drug/remember/add', { id: id }, {
+        validateStatus: function validateStatus(status) {
+          return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
         }
-    }, {
-        key: "addToRememberList",
-        value: function addToRememberList(id) {
-            var _this5 = this;
+      }).then(function (_ref6) {
+        var data = _ref6.data,
+            status = _ref6.status;
+        var t = _this5.props.t;
 
-            _axios2.default.post('/drug/remember/add', { id: id }, {
-                validateStatus: function validateStatus(status) {
-                    return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
-                }
-            }).then(function (_ref6) {
-                var data = _ref6.data,
-                    status = _ref6.status;
-                var t = _this5.props.t;
+        var options = {
+          position: _reactToastify.toast.POSITION.BOTTOM_CENTER
+        };
 
-                var options = {
-                    position: _reactToastify.toast.POSITION.BOTTOM_CENTER
-                };
-
-                switch (status) {
-                    case 200:
-                        _reactToastify.toast.success(t('addToRememberListSuccess'), options);
-                        break;
-                    case 400:
-                        _reactToastify.toast.error(t('addToRememberListFailed'), options);
-                        break;
-                    case 401:
-                        console.log(data, "not permitted");
-                        break;
-                    case 405:
-                        console.log(data, "Method not allowed");
-                        break;
-                }
-            });
+        switch (status) {
+          case 200:
+            _reactToastify.toast.success(t('addToRememberListSuccess'), options);
+            break;
+          case 400:
+            _reactToastify.toast.error(t('addToRememberListFailed'), options);
+            break;
+          case 401:
+            console.log(data, "not permitted");
+            break;
+          case 405:
+            console.log(data, "Method not allowed");
+            break;
         }
-    }, {
-        key: "removeFromRememberList",
-        value: function removeFromRememberList(id) {
-            var _this6 = this;
+      });
+    }
+  }, {
+    key: "removeFromRememberList",
+    value: function removeFromRememberList(id) {
+      var _this6 = this;
 
-            _axios2.default.post('/drug/remember/remove', { id: id }, {
-                validateStatus: function validateStatus(status) {
-                    return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
-                }
-            }).then(function (_ref7) {
-                var data = _ref7.data,
-                    status = _ref7.status;
-                var t = _this6.props.t;
-
-                var options = {
-                    position: _reactToastify.toast.POSITION.BOTTOM_CENTER
-                };
-
-                switch (status) {
-                    case 200:
-                        _reactToastify.toast.success(t('removeFromRememberListSuccess'), options);
-                        break;
-                    case 400:
-                        _reactToastify.toast.error(t('removeFromRememberListFailed'), options);
-                        break;
-                    case 401:
-                        console.log(data, "not permitted");
-                        break;
-                    case 405:
-                        console.log(data, "Method not allowed");
-                        break;
-                }
-            });
+      _axios2.default.post('/drug/remember/remove', { id: id }, {
+        validateStatus: function validateStatus(status) {
+          return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
         }
-    }, {
-        key: "deleteDrug",
-        value: function deleteDrug(id) {
-            var _this7 = this;
+      }).then(function (_ref7) {
+        var data = _ref7.data,
+            status = _ref7.status;
+        var t = _this6.props.t;
 
-            // ES6 string interpolation (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
-            // No error handling for now, e.g. if the user is not authenticated.
-            _axios2.default.delete("/drugs/delete/" + id).then(function (data) {
-                // Remove post from list of posts.
-                var posts = _this7.state.posts.filter(function (e) {
-                    return e.id != id;
-                });
-                _this7.setState({
-                    drugs: drugs
-                });
-            });
+        var options = {
+          position: _reactToastify.toast.POSITION.BOTTOM_CENTER
+        };
+
+        switch (status) {
+          case 200:
+            _reactToastify.toast.success(t('removeFromRememberListSuccess'), options);
+            _this6.checkForInteractions();
+            break;
+          case 400:
+            _reactToastify.toast.error(t('removeFromRememberListFailed'), options);
+            break;
+          case 401:
+            console.log(data, "not permitted");
+            break;
+          case 405:
+            console.log(data, "Method not allowed");
+            break;
         }
+      });
+    }
+  }, {
+    key: "deleteDrug",
+    value: function deleteDrug(id) {
+      var _this7 = this;
 
-        //=============================
+      // ES6 string interpolation (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
+      // No error handling for now, e.g. if the user is not authenticated.
+      _axios2.default.delete("/drugs/delete/" + id).then(function (data) {
+        // Remove post from list of posts.
+        var posts = _this7.state.posts.filter(function (e) {
+          return e.id != id;
+        });
+        _this7.setState({
+          drugs: drugs
+        });
+      });
+    }
+  }, {
+    key: "checkForInteractions",
+    value: function checkForInteractions() {
+      var _this8 = this;
 
-    }, {
-        key: "renderDrugFeatures",
-        value: function renderDrugFeatures(drug) {
-            if (!drug.drugFeature) {
-                return;
-            }
+      _axios2.default.get('/drug/interactions').then(function (_ref8) {
+        var data = _ref8.data;
 
-            return _react2.default.createElement(
-                "p",
-                { className: "drug-features" },
-                drug.drugFeature.map(function (feature) {
-                    return _react2.default.createElement("img", { key: feature.id, src: "./../../assets/icons/" + feature.id + ".svg", className: "drug-feature-icon", alt: feature.drugFeature, title: feature.drugFeature });
-                })
-            );
-        }
-    }, {
-        key: "renderDisease",
-        value: function renderDisease(drug) {
-            if (!drug.disease) {
-                return;
-            }
+        _this8.state.interactions = data.value;
+        _this8.setState(_this8.state);
+      });
+    }
 
-            return _react2.default.createElement(
-                "p",
+    //=============================
+
+  }, {
+    key: "renderDrugFeatures",
+    value: function renderDrugFeatures(drug) {
+      if (!drug.drugFeature) {
+        return;
+      }
+
+      return _react2.default.createElement(
+        "p",
+        { className: "drug-features" },
+        drug.drugFeature.map(function (feature) {
+          return _react2.default.createElement("img", { key: feature.id, src: "./../../assets/icons/" + feature.id + ".svg", className: "drug-feature-icon", alt: feature.drugFeature, title: feature.drugFeature });
+        })
+      );
+    }
+  }, {
+    key: "renderDisease",
+    value: function renderDisease(drug) {
+      if (!drug.disease) {
+        return;
+      }
+
+      return _react2.default.createElement(
+        "p",
+        null,
+        " U. a. verwendet bei:",
+        drug.disease.map(function (packaging) {
+          return _react2.default.createElement(
+            "span",
+            { key: disease.id },
+            disease.name
+          );
+        })
+      );
+    }
+  }, {
+    key: "renderActiveSubstance",
+    value: function renderActiveSubstance(drug) {
+      if (!drug.activeSubstance) {
+        return;
+      }
+
+      return _react2.default.createElement(
+        "p",
+        null,
+        " Wirkstoff(e):",
+        drug.activeSubstance.map(function (substance) {
+          return _react2.default.createElement(
+            "span",
+            { key: substance.id },
+            substance.name
+          );
+        })
+      );
+    }
+  }, {
+    key: "renderDrugs",
+    value: function renderDrugs(drugs) {
+      var _this9 = this;
+
+      if (drugs.length == 0) {
+        return _react2.default.createElement(
+          "div",
+          { className: "col-sm-12 col-md-12 col-lg-12" },
+          "loading..."
+        );
+      }
+
+      return drugs.map(function (drug) {
+        return _react2.default.createElement(
+          "li",
+          { className: "col-sm-12 col-md-12 col-lg-12", key: drug.id },
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: "/drug/" + drug.id },
+            _react2.default.createElement(
+              "div",
+              { className: "image-container col-sm-2 col-md-2 col-lg-2" },
+              _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "{drug.name}", src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg" })
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "info col-sm-9 col-md-9 col-lg-9" },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: "/drug/" + drug.id },
+              _react2.default.createElement(
+                "h4",
                 null,
-                " U. a. verwendet bei:",
-                drug.disease.map(function (packaging) {
-                    return _react2.default.createElement(
-                        "span",
-                        { key: disease.id },
-                        disease.name
-                    );
-                })
-            );
-        }
-    }, {
-        key: "renderActiveSubstance",
-        value: function renderActiveSubstance(drug) {
-            if (!drug.activeSubstance) {
-                return;
-            }
-
-            return _react2.default.createElement(
-                "p",
+                drug.name
+              )
+            ),
+            _this9.renderDrugFeatures(drug),
+            _this9.renderDisease(drug),
+            _this9.renderActiveSubstance(drug),
+            drug.year && _react2.default.createElement(
+              "p",
+              null,
+              "new Date(drug.year).toISOString()"
+            )
+          ),
+          _react2.default.createElement(
+            "div",
+            { className: "action-pattern col-sm-1 col-md-1 col-lg-1" },
+            _User2.default.isAuthenticated() && _react2.default.createElement(
+              "ul",
+              null,
+              _react2.default.createElement(
+                "li",
                 null,
-                " Wirkstoff(e):",
-                drug.activeSubstance.map(function (substance) {
-                    return _react2.default.createElement(
-                        "span",
-                        { key: substance.id },
-                        substance.name
-                    );
-                })
-            );
-        }
-    }, {
-        key: "renderDrugs",
-        value: function renderDrugs(drugs) {
-            var _this8 = this;
-
-            if (drugs.length == 0) {
-                return _react2.default.createElement(
-                    "div",
-                    { className: "col-sm-12 col-md-12 col-lg-12" },
-                    "loading..."
-                );
-            }
-
-            return drugs.map(function (drug) {
-                return _react2.default.createElement(
-                    "li",
-                    { className: "col-sm-12 col-md-12 col-lg-12", key: drug.id },
-                    _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        { to: "/drug/" + drug.id },
-                        _react2.default.createElement(
-                            "div",
-                            { className: "image-container col-sm-2 col-md-2 col-lg-2" },
-                            _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "{drug.name}", src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg" })
-                        )
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "info col-sm-9 col-md-9 col-lg-9" },
-                        _react2.default.createElement(
-                            _reactRouterDom.Link,
-                            { to: "/drug/" + drug.id },
-                            _react2.default.createElement(
-                                "h4",
-                                null,
-                                drug.name
-                            )
-                        ),
-                        _this8.renderDrugFeatures(drug),
-                        _this8.renderDisease(drug),
-                        _this8.renderActiveSubstance(drug),
-                        drug.year && _react2.default.createElement(
-                            "p",
-                            null,
-                            "new Date(drug.year).toISOString()"
-                        )
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "action-pattern col-sm-1 col-md-1 col-lg-1" },
-                        _User2.default.isAuthenticated() && _react2.default.createElement(
-                            "ul",
-                            null,
-                            _react2.default.createElement(
-                                "li",
-                                null,
-                                _react2.default.createElement(
-                                    "button",
-                                    { type: "button", className: "btn btn-xs btn-like", onClick: function onClick() {
-                                            return _this8.addToTakingList(drug.id);
-                                        } },
-                                    _react2.default.createElement("span", { className: "glyphicon glyphicon-heart white" })
-                                )
-                            ),
-                            _react2.default.createElement(
-                                "li",
-                                null,
-                                _react2.default.createElement(
-                                    "button",
-                                    { type: "button", className: "btn btn-xs btn-add", onClick: function onClick() {
-                                            return _this8.addToRememberList(drug.id);
-                                        } },
-                                    _react2.default.createElement("span", { className: "glyphicon glyphicon-plus white" })
-                                )
-                            ),
-                            _react2.default.createElement(
-                                "li",
-                                null,
-                                _react2.default.createElement(
-                                    "button",
-                                    { type: "button", className: "btn btn-xs btn-open" },
-                                    _react2.default.createElement(
-                                        _reactRouterDom.Link,
-                                        { to: "/drug/" + drug.id },
-                                        _react2.default.createElement("span", { className: "glyphicon glyphicon-eye-open white" })
-                                    )
-                                )
-                            )
-                        )
-                    )
-                );
-            });
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            var t = this.props.t;
-
-            var firstname = _User2.default.firstname;
-            var lastname = _User2.default.lastname;
-
-            var drugs = this.state.drugs;
-
-            return _react2.default.createElement(
-                "div",
-                { className: "container no-banner" },
                 _react2.default.createElement(
-                    "div",
-                    { className: "page-header" },
-                    _react2.default.createElement(
-                        "h3",
-                        null,
-                        t('drugs')
-                    )
-                ),
-                _User2.default.isAuthenticated() && _react2.default.createElement(
-                    "div",
-                    { className: "text-box" },
-                    this.state.cmd == "taking" && t('drugTakingListDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname),
-                    this.state.cmd == "remember" && t('drugRememberListDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname),
-                    this.state.cmd == "list" && t('drugListAllDescriptionText').replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
-                ),
-                _react2.default.createElement(
-                    "div",
-                    { className: "row" },
-                    _react2.default.createElement(
-                        "ul",
-                        { className: "drug-list" },
-                        this.renderDrugs(drugs)
-                    )
+                  "button",
+                  { type: "button", className: "btn btn-xs btn-like", onClick: function onClick() {
+                      return _this9.addToTakingList(drug.id);
+                    } },
+                  _react2.default.createElement("span", { className: "glyphicon glyphicon-heart white" })
                 )
-            );
-        }
-    }]);
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "button",
+                  { type: "button", className: "btn btn-xs btn-add", onClick: function onClick() {
+                      return _this9.addToRememberList(drug.id);
+                    } },
+                  _react2.default.createElement("span", { className: "glyphicon glyphicon-plus white" })
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "button",
+                  { type: "button", className: "btn btn-xs btn-open" },
+                  _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: "/drug/" + drug.id },
+                    _react2.default.createElement("span", { className: "glyphicon glyphicon-eye-open white" })
+                  )
+                )
+              )
+            )
+          )
+        );
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var t = this.props.t;
 
-    return DrugList;
+      var firstname = _User2.default.firstname;
+      var lastname = _User2.default.lastname;
+
+      var drugs = this.state.drugs;
+      var interactions = this.state.interactions;
+
+      var title = null;
+
+      switch (this.state.cmd) {
+        case 'taking':
+          title = t('drugTakingListDescriptionText');
+          break;
+        case 'remember':
+          title = t('drugRememberListDescriptionText');
+          break;
+        default:
+          title = t('drugListAllDescriptionText');
+          break;
+      }
+
+      return _react2.default.createElement(
+        "div",
+        { className: "container no-banner" },
+        _react2.default.createElement(
+          "div",
+          { className: "page-header" },
+          _react2.default.createElement(
+            "b",
+            null,
+            t('drugs')
+          )
+        ),
+        _User2.default.isAuthenticated() && _react2.default.createElement(
+          "div",
+          { className: "text-box" },
+          title.replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
+        ),
+        drugs.length > 1 && _User2.default.isAuthenticated() && interactions.length > 0 && _react2.default.createElement(
+          "div",
+          { className: "alert alert-danger" },
+          _react2.default.createElement(
+            "h5",
+            null,
+            t("interaction")
+          ),
+          _react2.default.createElement("span", { dangerouslySetInnerHTML: this.createMarkup(interactions) })
+        ),
+        _react2.default.createElement(
+          "div",
+          { className: "row" },
+          _react2.default.createElement(
+            "ul",
+            { className: "drug-list" },
+            this.renderDrugs(drugs)
+          )
+        )
+      );
+    }
+  }]);
+
+  return DrugList;
 }(_react2.default.Component);
 
 exports.default = (0, _reactI18next.translate)()(DrugList);

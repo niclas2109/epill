@@ -1,7 +1,6 @@
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/CountrySet.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/language/Language.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/language/LanguageRepository.java
-/Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/Drug.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/drug/DrugService.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/DrugFeatureCreator.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/ProductGroupCreator.java
@@ -61,7 +60,6 @@
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/Gender.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/IndicationGroup.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/ProductGroup.java
-/Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/SimpleDrug.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/IndicationGroupSet.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/UserQuerySet.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/PackagingTopic.java
@@ -99,6 +97,7 @@
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/ImageCreator.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/IntakeInformationSet.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/authentication/AuthenticationService.java
+/Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/drug/SimpleDrug.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/Image.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/InteractionSet.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/ActiveSubstance.java
@@ -112,4 +111,5 @@
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/DrugCreator.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/drug/DrugController.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/Disease.java
+/Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/drug/Drug.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/PackagingSectionSet.java

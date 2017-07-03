@@ -150,10 +150,6 @@ class DrugDetail extends React.Component {
     //=============================
     
     
-    // for html conversion
-	createMarkup(text) { return {__html: text}; };
-    
-
     renderDrugFeatures(drug) {
 		
 		if(!drug.drugFeature)

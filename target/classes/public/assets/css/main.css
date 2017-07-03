@@ -24,6 +24,7 @@ span.enumeration {
 
 a.wide { display : block }
 
+.white { color:#fff; }
 
 .checkbox-grid li {
     display: block;
@@ -43,6 +44,12 @@ a.wide { display : block }
 	width:100%;
 	margin-top: -8px;
 }
+
+.small-text { font-size: 10pt; }
+
+.medium-text { font-size: 12pt; }
+
+.big-text { font-size: 14pt; }
 
 /* */
 .drug-features {

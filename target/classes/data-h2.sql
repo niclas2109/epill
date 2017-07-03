@@ -3,7 +3,7 @@
 -- for explanation. This is a cool spring feature :-).
 
 
--- Delete all.
+-- DELETE FROM all.
 
 DELETE FROM drug_active_substance;
 DELETE FROM drug_pharmaceutical_form;
@@ -14,6 +14,7 @@ DELETE FROM user_preferred_topic;
 DELETE FROM user_disease;
 DELETE FROM user_drug_feature;
 DELETE FROM user_query;
+DELETE FROM interaction_drug;
 
 DELETE FROM tag;
 DELETE FROM adverse_effect;
@@ -24,7 +25,9 @@ DELETE FROM drug_feature;
 DELETE FROM pharmaceutical_form;
 DELETE FROM disease;
 DELETE FROM item_invocation;
-DELETE FROM user_drug;
+DELETE FROM user_drug_taking;
+DELETE FROM user_drug_remember;
+DELETE FROM interaction;
 DELETE FROM drug;
 DELETE FROM drug_simple;
 DELETE FROM user_;
@@ -60,7 +63,6 @@ INSERT INTO language (id, language) VALUES (1,'Deutsch');
 INSERT INTO country (id, name) VALUES (1,'Deutschland');
 
 
-
 --
 -- Dumping data for table `user_simple`
 --
@@ -68,7 +70,7 @@ INSERT INTO country (id, name) VALUES (1,'Deutschland');
 
 INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstname, lastname, level_of_detail, password, preferred_font_size, salt, username)
 	VALUES
-	(1,'2017-06-27','2017-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser',3,'a53c6f59e0cffc2a08a8d6086fd611024a53b4e123813dc60a08964a49db760eb2aa26778677e3b835175be8ffce2d58b51eebf2854d9f283174956f370d210c',12,'[B@22373b1f','nic');
+	(1,'2017-06-27','2017-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser',3,'89794011ed99bae7b5062920bffbef2a334dca75628975cd9cce51ba9691b12843beaed302416bdee221796816346fdeb618903cfa887945174237c92dc2dd2a',12,'[B@63ba2cf8','nic');
 
 --
 -- Dumping data for table `user_`
@@ -225,7 +227,6 @@ INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (9,'vegan',NULL);
 INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (10,'lactosefrei',NULL);
 
 
-
 --
 -- Dumping data for table `drug_active_substance`
 --
@@ -286,12 +287,20 @@ INSERT INTO drug_pharmaceutical_form (iddrug, idpharmaceutical_form) VALUES (7,1
 INSERT INTO drug_pharmaceutical_form (iddrug, idpharmaceutical_form) VALUES (10,1);
 INSERT INTO drug_pharmaceutical_form (iddrug, idpharmaceutical_form) VALUES (3,2);
 
+--
+-- Dumping data for table `interaction`
+--
+
+INSERT INTO interaction (id, interaction, iddrug) VALUES (1, 'Kann zu Durchfall führen', 1);
+INSERT INTO interaction (id, interaction, iddrug) VALUES (2, 'Kann sehr ermüdend wirken', 1);
 
 
 --
 -- Dumping data for table `interaction_drug`
 --
 
+INSERT INTO interaction_drug (idinteraction, iddrug) VALUES (1, 2), (1, 3), (1, 5);
+INSERT INTO interaction_drug (idinteraction, iddrug) VALUES (2, 3);
 
 --
 -- Dumping data for table `item_invocation`

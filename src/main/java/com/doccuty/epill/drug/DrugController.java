@@ -122,14 +122,23 @@ public class DrugController {
      * @return
      */
 
-    @RequestMapping(value = "/adverseEffects", method = RequestMethod.GET)
+    @RequestMapping(value = "/interactions", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> checkForAdverseEffects() {
+		// A pragmatic approach to security which does not use much
+		// framework-specific magic. While other approaches
+		// with annotations, etc. are possible they are much more complex while
+		// this is quite easy to understand and
+		// extend.
+
+		if (userService.isAnonymous()) {
+			//return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}  
 		
 		IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(1)));
 
 		JsonObject json = new JsonObject();
-		json.add("value", service.checkUserDrugsForAdverseEffects());
+		json.add("value", service.checkUserDrugsInteractions());
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }
@@ -157,7 +166,7 @@ public class DrugController {
 		IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(2)));
 		
-        List<Drug> set = service.findUserDrugsTaking(userService.getCurrentUser());
+        List<Drug> set = service.findUserDrugsTaking();
     	
 	    	JsonObject json = new JsonObject();
 	    	JsonArray drugArray = new JsonArray();
