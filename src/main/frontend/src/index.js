@@ -10,8 +10,8 @@ import i18n from "./i18n";
 
 import User from "./util/User";
 
-import Navigation from "./components/Navigation";
-import Footer from "./components/Footer";
+import Navigation from "./components/navigation";
+import Footer from "./components/footer";
 
 import Home from "./components/home";
 import About from "./components/about";
