@@ -317,29 +317,32 @@ class DrugList extends React.Component {
         const drugs			= this.state.drugs;
         const interactions	= this.state.interactions;
 
-        
+
         var title = null;
+        var description = null;
         
         switch(this.state.cmd) {
         		case 'taking':
-        			title = t('drugTakingListDescriptionText');
+	    			title = t('userDrugs');
+        			description = t('drugTakingListDescriptionText');
         			break;
 	        case 'remember':
-	    			title = t('drugRememberListDescriptionText');
-	    			break;
+	    			title = t('rememberedDrugs');
+	    			description = t('drugRememberListDescriptionText');
 	    		default:
-	    			title = t('drugListAllDescriptionText');
+	    			title = t('drugs');
+	    			description = t('drugListAllDescriptionText');
 	    			break;
         }
         
         return (
 	        	<div className="container no-banner">
 		    		<div className='page-header'>
-		    			<b>{t('drugs')}</b>
+		    			<h3>{title}</h3>
 				</div>
 					{User.isAuthenticated() &&
 		                <div className="text-box">
-							{title.replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
+							{description.replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
 		                </div>
 					}
 					

@@ -15032,16 +15032,19 @@ var DrugList = function (_React$Component) {
       var interactions = this.state.interactions;
 
       var title = null;
+      var description = null;
 
       switch (this.state.cmd) {
         case 'taking':
-          title = t('drugTakingListDescriptionText');
+          title = t('userDrugs');
+          description = t('drugTakingListDescriptionText');
           break;
         case 'remember':
-          title = t('drugRememberListDescriptionText');
-          break;
+          title = t('rememberedDrugs');
+          description = t('drugRememberListDescriptionText');
         default:
-          title = t('drugListAllDescriptionText');
+          title = t('drugs');
+          description = t('drugListAllDescriptionText');
           break;
       }
 
@@ -15052,15 +15055,15 @@ var DrugList = function (_React$Component) {
           "div",
           { className: "page-header" },
           _react2.default.createElement(
-            "b",
+            "h3",
             null,
-            t('drugs')
+            title
           )
         ),
         _User2.default.isAuthenticated() && _react2.default.createElement(
           "div",
           { className: "text-box" },
-          title.replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
+          description.replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
         ),
         drugs.length > 1 && _User2.default.isAuthenticated() && interactions.length > 0 && _react2.default.createElement(
           "div",
