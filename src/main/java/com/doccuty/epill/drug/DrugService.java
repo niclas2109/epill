@@ -76,7 +76,7 @@ public class DrugService {
 			for(Interaction interaction : drug.getInteraction()) {
 				for(Drug drugCompare : list) {
 					if(interaction.getInteractionDrug().contains(drugCompare)) {
-						interactionText.append("<p>"+drug.getName()+" - "+drugCompare.getName()+":<br />"+interaction.getInteraction()+"</p>");
+						interactionText.append("<p>"+drug.getName()+"</p> - "+drugCompare.getName()+": "+interaction.getInteraction()+"</p>");
 					}
 				}
 			}

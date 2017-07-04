@@ -1,8 +1,8 @@
 import axios from "axios";
 import React from "react";
 
-import { toast } from 'react-toastify';
 import {translate} from "react-i18next";
+import { toast } from 'react-toastify';
 
 import Accordion from "./accordion";
 import User from "./../util/User";

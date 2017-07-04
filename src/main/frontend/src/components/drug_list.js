@@ -5,6 +5,8 @@ import {Link} from "react-router-dom";
 import {translate} from "react-i18next";
 import { toast } from 'react-toastify';
 
+import EmptyList from "./empty_list";
+import Loading from "./loading";
 import User from "./../util/User";
 
 class DrugList extends React.Component {
@@ -14,7 +16,8 @@ class DrugList extends React.Component {
         this.state = {
         		drugs		: [],
         		interactions	: '',
-        		cmd			: ''
+        		cmd			: '',
+        		loading		: false
         }
         
         this.checkForInteractions	= this.checkForInteractions.bind(this);
@@ -31,6 +34,7 @@ class DrugList extends React.Component {
         
 		this.state.cmd = cmd;
 		this.state.interactions = '';
+		this.state.loading	= true;
 		this.setState(this.state);
 		
 		switch(this.state.cmd) {
@@ -38,6 +42,7 @@ class DrugList extends React.Component {
 		        axios.get('/drug/list/taking')
 	            .then(({data}) => {
 	            		this.state.drugs = data.value;
+	            		this.state.loading	= false;
 	            		this.setState(this.state);
 			        this.checkForInteractions();
 	            });
@@ -46,6 +51,7 @@ class DrugList extends React.Component {
 		        axios.get('/drug/list/remember')
 	            .then(({data}) => {
 		        		this.state.drugs = data.value;
+	            		this.state.loading	= false;
 		        		this.setState(this.state);
 		            this.checkForInteractions();
 	            });
@@ -54,6 +60,7 @@ class DrugList extends React.Component {
 		        axios.get('/drug/list/all')
 	            .then(({data}) => {
 		        		this.state.drugs = data.value;
+	            		this.state.loading	= false;
 		        		this.setState(this.state);
 	            });
 				break;		
@@ -250,15 +257,6 @@ class DrugList extends React.Component {
     
     
     renderDrugs(drugs) {
-
-        if (drugs.length == 0) {
-            return (
-	            	<div className="col-sm-12 col-md-12 col-lg-12">
-	            		loading...
-            		</div>
-            );
-        }
-    	
         return drugs.map((drug => {
             return (
                <li className="col-sm-12 col-md-12 col-lg-12" key={drug.id}>
@@ -354,9 +352,13 @@ class DrugList extends React.Component {
 					}
     
 	                <div className="row">
-		                <ul className="drug-list">
-		                    {this.renderDrugs(drugs)}
-		                </ul>
+            				{this.state.loading && <Loading /> }
+            				{!this.state.loading && drugs && drugs.length == 0 && <EmptyList /> }
+	                		{!this.state.loading && drugs && drugs.length > 0 &&
+			                <ul className="drug-list">
+			                    {this.renderDrugs(drugs)}
+			                </ul>
+	                		}
 	                </div>
 	            </div>
         );
