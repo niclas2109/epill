@@ -74,7 +74,7 @@ class UserData extends React.Component {
     }
     
     handleGenderChange(event) {
-	    this.state.gender.id = event.target.value;
+	    this.state.gender = {id : event.target.value };
 	    this.setState(this.state);
     }
     
@@ -117,19 +117,20 @@ class UserData extends React.Component {
         
         
         var date = Moment(this.state.dateOfBirth);
-        if(date.isValid()) {
-    	        console.log(date);
-    		} else if(Moment(this.state.dateOfBirth, "DD.MM.YYYY").isValid()) {
-    			date = Moment(this.state.dateOfBirth, "DD.MM.YYYY");
-    	        console.log(date);
-    		} else {
-            toast.error(t('invalidDateFormat'), options);
-    			return;
+        
+        if(!date.isValid()) {
+	        	if(Moment(this.state.dateOfBirth, "DD.MM.YYYY").isValid()) {
+	    			date = Moment(this.state.dateOfBirth, "DD.MM.YYYY");
+	    		} else {
+	            toast.error(t('invalidDateFormat'), options);
+	    			return;
+	    		}
         }
 
         this.state.sending = true;
         this.setState(this.state);
         
+        console.log(this.state);
         
         axios.post('/user/update',
                {
@@ -185,8 +186,8 @@ class UserData extends React.Component {
 			                   <label htmlFor="gender">{t('gender')}</label>
 			                   <select id="gender" value="0" name="gender" className="form-control" title={t('gender')} value={this.state.gender.id} onChange={this.handleGenderChange}>
 	                        		<option value="0" disabled>{t('noInfo')}</option>
-			                         <option value="1">{t('female')}</option>
-			                         <option value="2">{t('male')}</option>
+			                         <option value="2">{t('female')}</option>
+			                         <option value="1">{t('male')}</option>
 			                    </select>
 			               </div>
 				            

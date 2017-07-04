@@ -18643,7 +18643,7 @@ var Register = function (_React$Component) {
             firstname: '',
             lastname: '',
             username: '',
-            gender: 0,
+            gender: { id: 0 },
             password: '',
             passwordRepeat: '',
             sending: false
@@ -18817,12 +18817,12 @@ var Register = function (_React$Component) {
                                 ),
                                 _react2.default.createElement(
                                     "option",
-                                    { value: "1" },
+                                    { value: "2" },
                                     t('female')
                                 ),
                                 _react2.default.createElement(
                                     "option",
-                                    { value: "2" },
+                                    { value: "1" },
                                     t('male')
                                 )
                             )
@@ -19026,7 +19026,7 @@ var UserData = function (_React$Component) {
 	}, {
 		key: "handleGenderChange",
 		value: function handleGenderChange(event) {
-			this.state.gender.id = event.target.value;
+			this.state.gender = { id: event.target.value };
 			this.setState(this.state);
 		}
 	}, {
@@ -19075,18 +19075,20 @@ var UserData = function (_React$Component) {
 			};
 
 			var date = (0, _moment2.default)(this.state.dateOfBirth);
-			if (date.isValid()) {
-				console.log(date);
-			} else if ((0, _moment2.default)(this.state.dateOfBirth, "DD.MM.YYYY").isValid()) {
-				date = (0, _moment2.default)(this.state.dateOfBirth, "DD.MM.YYYY");
-				console.log(date);
-			} else {
-				_reactToastify.toast.error(t('invalidDateFormat'), options);
-				return;
+
+			if (!date.isValid()) {
+				if ((0, _moment2.default)(this.state.dateOfBirth, "DD.MM.YYYY").isValid()) {
+					date = (0, _moment2.default)(this.state.dateOfBirth, "DD.MM.YYYY");
+				} else {
+					_reactToastify.toast.error(t('invalidDateFormat'), options);
+					return;
+				}
 			}
 
 			this.state.sending = true;
 			this.setState(this.state);
+
+			console.log(this.state);
 
 			_axios2.default.post('/user/update', {
 				firstname: this.state.firstname,
@@ -19173,12 +19175,12 @@ var UserData = function (_React$Component) {
 								),
 								_react2.default.createElement(
 									"option",
-									{ value: "1" },
+									{ value: "2" },
 									t('female')
 								),
 								_react2.default.createElement(
 									"option",
-									{ value: "2" },
+									{ value: "1" },
 									t('male')
 								)
 							)

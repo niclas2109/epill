@@ -13,7 +13,7 @@ class Register extends React.Component {
         		firstname	: '',
         		lastname		: '',
         		username		: '',
-        		gender		: 0,
+        		gender		: {id : 0},
         		password		: '',
         		passwordRepeat: '',
             	sending		: false
@@ -137,8 +137,8 @@ class Register extends React.Component {
 			                   <label htmlFor="gender">{t('gender')}</label>
 			                   <select id="gender" value="0" name="gender" className="form-control" title={t('gender')} value={this.state.gender} onChange={this.handleGenderChange}>
 	                           		<option value="0" disabled>{t('noInfo')}</option>
-			                         <option value="1">{t('female')}</option>
-			                         <option value="2">{t('male')}</option>
+			                         <option value="2">{t('female')}</option>
+			                         <option value="1">{t('male')}</option>
 			                    </select>
 			               </div>
 			                 

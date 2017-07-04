@@ -138,21 +138,14 @@ public class UserService {
 			.withPreferredFontSize(usr.getPreferredFontSize())
 			.withLevelOfDetail(usr.getLevelOfDetail());
 
-		Language language = null;
 		if(usr.getLanguage() != null)
-			language = languageRepository.findOne(usr.getLanguage().getId());
-		user.withLanguage(language);
-
-		Country country = null;
+			user.setLanguage(languageRepository.findOne(usr.getLanguage().getId()));
+		
 		if(usr.getCountry() != null)
-			country = countryRepository.findOne(usr.getCountry().getId());
-		user.withCountry(country);
+			user.setCountry(countryRepository.findOne(usr.getCountry().getId()));
 		
-		Gender gender = null;
 		if(usr.getGender() != null)
-			gender = genderRepository.findOne(usr.getGender().getId());
-		
-		user.withGender(gender);
+			user.setGender(genderRepository.findOne(usr.getGender().getId()));
 		
 		user = repository.save(user);
 		
