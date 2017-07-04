@@ -83,8 +83,17 @@ class DrugList extends React.Component {
     
     //=============================
     
-    addToTakingList(id) {
-    	 	axios.post('/drug/taking/add', { id : id }, {
+    
+    toggleTaking(drug) {
+    		if(drug.isTaken) {
+    			this.removeFromTakingList(drug);
+    		} else {
+    			this.addToTakingList(drug);
+    		}
+    }
+	
+    addToTakingList(drug) {
+    	 	axios.post('/drug/taking/add', { id : drug.id }, {
 	            validateStatus: (status) => {
 	                return (status >= 200 && status < 300) || status == 400 || status == 401
 	            }
@@ -109,8 +118,8 @@ class DrugList extends React.Component {
          });
     }
     
-    removeFromTakingList(id) {
-	 	axios.post('/drug/taking/remove', { id : id }, {
+    removeFromTakingList(drug) {
+	 	axios.post('/drug/taking/remove', { id : drug.id }, {
             validateStatus: (status) => {
                 return (status >= 200 && status < 300) || status == 400 || status == 401
             }
@@ -124,6 +133,9 @@ class DrugList extends React.Component {
 	         switch (status) {
 	             case 200:
                      toast.success(t('removeFromTakingListSuccess'), options);
+                     var idx = this.state.drugs.indexOf(drug);
+                     this.state.drugs.slice(idx, 1);
+                     this.setState(this.state);
 	                 this.checkForInteractions();
 	                 break;
 	             case 400:
@@ -136,8 +148,18 @@ class DrugList extends React.Component {
 	     });
 	}
     
-    addToRememberList(id) {
-	 	axios.post('/drug/remember/add', { id : id }, {
+    
+    
+    toggleRemember(drug) {
+    		if(drug.isRemembered) {
+    			this.removeFromRememberList(drug);
+    		} else {
+    			this.addToRememberList(drug);
+    		}
+    }
+    
+    addToRememberList(drug) {
+	 	axios.post('/drug/remember/add', { id : drug.id }, {
             validateStatus: (status) => {
                 return (status >= 200 && status < 300) || status == 400 || status == 401 || status == 405
             }
@@ -165,21 +187,25 @@ class DrugList extends React.Component {
 	     });
     }
     
-    removeFromRememberList(id) {
-	 	axios.post('/drug/remember/remove', { id : id }, {
+    removeFromRememberList(drug) {
+	 	axios.post('/drug/remember/remove', { id : drug.id }, {
             validateStatus: (status) => {
                 return (status >= 200 && status < 300) || status == 400 || status == 401 || status == 405
             }
  		})
 	     .then(({data, status}) => {
+
              const {t} = this.props;
              const options = {
              	    position: toast.POSITION.BOTTOM_CENTER
              };
-             
+
 	         switch (status) {
 	             case 200:
 	                 toast.success(t('removeFromRememberListSuccess'), options);
+                     var idx = this.state.drugs.indexOf(drug);
+                     this.state.drugs.slice(idx, 1);
+                     this.setState(this.state);
 	                 this.checkForInteractions();
 	                 break;
 	             case 400:
@@ -235,10 +261,12 @@ class DrugList extends React.Component {
 		if(!drug.disease) {
 			return;
 		}
-		
+
+        const {t} = this.props;
+        
         return (
-        	<p> U. a. verwendet bei: 
-	        	{ drug.disease.map(packaging => <span key={disease.id}>{disease.name}</span> ) }
+        		<p> {t('usedWhen')}: 
+        			{ drug.disease.map(packaging => <span key={disease.id}>{disease.name}</span> ) }
 	        </p>
 		);
 	}
@@ -247,10 +275,12 @@ class DrugList extends React.Component {
 		if(!drug.activeSubstance) {
 			return;
 		}
-		
+
+        const {t} = this.props;
+        
         return (
-        	<p> Wirkstoff(e): 
-	        	{ drug.activeSubstance.map(substance => <span key={substance.id}>{substance.name}</span> ) }
+        		<p> {t('activeSubstance')}: 
+        			{ drug.activeSubstance.map(substance => <span key={substance.id}>{substance.name}</span> ) }
 	        </p>
 		);
 	}
@@ -282,13 +312,13 @@ class DrugList extends React.Component {
 	        		{User.isAuthenticated() &&
 	        			<ul>
 	        				<li>
-	        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.addToTakingList(drug.id)}>
-	        						<span className="glyphicon glyphicon-heart white"></span>
+	        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.toggleTaking(drug)}>
+	        						<span className={"glyphicon white "+(drug.isTaken ? 'glyphicon-minus' : 'glyphicon-heart' )}></span>
 	        					</button>
 	        				</li>
 	        				<li>
-	        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.addToRememberList(drug.id)}>
-	        						<span className="glyphicon glyphicon-plus white"></span>
+	        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.toggleRemember(drug)}>
+	        						<span className={"glyphicon white "+ (drug.isRemembered ? 'glyphicon-minus' : 'glyphicon-plus' )}></span>
 	        					</button>
 	        				</li>
 	        				<li>

@@ -58,7 +58,9 @@ public class DrugCreator implements SendableEntityCreatorNoIndex
       Drug.PROPERTY_DISEASE,
       Drug.PROPERTY_DRUGFEATURE,
       Drug.PROPERTY_PERSONALIZEDINFORMATION,
-      Drug.PROPERTY_IMAGE
+      Drug.PROPERTY_IMAGE,
+      Drug.PROPERTY_REMEMBERED,
+      Drug.PROPERTY_TAKEN
    };
    
    @Override
@@ -154,6 +156,16 @@ public class DrugCreator implements SendableEntityCreatorNoIndex
          return ((Drug) target).getImage();
       }
       
+      if (Drug.PROPERTY_REMEMBERED.equalsIgnoreCase(attribute))
+      {
+         return ((Drug) target).getIsRemembered();
+      }
+      
+      if (Drug.PROPERTY_TAKEN.equalsIgnoreCase(attribute))
+      {
+         return ((Drug) target).getIsTaken();
+      }
+      
       if (Drug.PROPERTY_DRUGFEATURE.equalsIgnoreCase(attribute))
       {
          return ((Drug) target).getDrugFeature();
@@ -174,6 +186,19 @@ public class DrugCreator implements SendableEntityCreatorNoIndex
       if (Drug.PROPERTY_PERSONALIZEDINFORMATION.equalsIgnoreCase(attrName))
       {
           ((Drug) target).setPersonalizedInformation((String) value);
+          return true;
+       }
+
+
+      if (Drug.PROPERTY_REMEMBERED.equalsIgnoreCase(attrName))
+      {
+          ((Drug) target).setIsRemembered((boolean) value);
+          return true;
+       }      
+
+      if (Drug.PROPERTY_TAKEN.equalsIgnoreCase(attrName))
+      {
+          ((Drug) target).setIsTaken((boolean) value);
           return true;
        }
       

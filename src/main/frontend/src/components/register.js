@@ -13,13 +13,15 @@ class Register extends React.Component {
         		firstname	: '',
         		lastname		: '',
         		username		: '',
+        		gender		: 0,
         		password		: '',
         		passwordRepeat: '',
             	sending		: false
         };
 
-        this.handleFirstnameChange = this.handleFirstnameChange.bind(this);
-        this.handleLastnameChange = this.handleLastnameChange.bind(this);
+        this.handleFirstnameChange	= this.handleFirstnameChange.bind(this);
+        this.handleLastnameChange	= this.handleLastnameChange.bind(this);
+        this.handleGenderChange		= this.handleGenderChange.bind(this);
 
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
@@ -37,6 +39,11 @@ class Register extends React.Component {
     handleLastnameChange(event) {
 		this.state.lastname = event.target.value;
 		this.setState(this.state);
+    }
+    
+    handleGenderChange(event) {
+    		this.state.gender = event.target.value;
+    		this.setState(this.state);
     }
     
     handleUsernameChange(event) {
@@ -76,10 +83,11 @@ class Register extends React.Component {
         
         axios.post('/user/save',
             {
-            		firstname	: this.state.firstname,
-            		lastname	: this.state.lastname,
-            		username	: this.state.username,
-            		password	: this.state.password
+                firstname: this.state.firstname,
+                lastname: this.state.lastname,
+                gender: { id: this.state.gender },
+                username: this.state.username,
+                password: this.state.password
             }, {
                 // We allow a status code of 401 (unauthorized). Otherwise it is interpreted as an error and we can't
                 // check the HTTP status code.
@@ -124,8 +132,16 @@ class Register extends React.Component {
 			                   <label htmlFor="lastname">{t('lastname')}</label>
 			                   <input type="text" name="lastname" id="lastname" className="form-control" value={this.state.lastname} onChange={this.handleLastnameChange} />
 			                </div> 
-		                    
-		                
+
+			                <div className="form-group">
+			                   <label htmlFor="gender">{t('gender')}</label>
+			                   <select id="gender" value="0" name="gender" className="form-control" title={t('gender')} value={this.state.gender} onChange={this.handleGenderChange}>
+	                           		<option value="0" disabled>{t('noInfo')}</option>
+			                         <option value="1">{t('female')}</option>
+			                         <option value="2">{t('male')}</option>
+			                    </select>
+			               </div>
+			                 
 				            <div className="form-group">
 				                <label htmlFor="username">{t('username')}</label>
 				                <input type="text" name="username" id="username" className="form-control" value={this.state.username} onChange={this.handleUsernameChange} />

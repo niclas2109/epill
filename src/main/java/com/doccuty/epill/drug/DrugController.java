@@ -40,12 +40,13 @@ public class DrugController {
     
     @RequestMapping(value = "/list/all", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> getAllDrugs() {
-	
+
+	    List<Drug> set = service.findAllDrugs();
+	    	
+	    
 	    	IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(2)));
 			
-	    List<Drug> set = service.findAllDrugs();
-	    	
 	    	JsonObject json = new JsonObject();
 	    	JsonArray drugArray = new JsonArray();
 	    	

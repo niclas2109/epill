@@ -31,7 +31,7 @@ class Home extends React.Component {
         						Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
         						Praesent commodo cursus magna.</p>
         					<p>
-        						<a className="btn btn-default" href="/about" role="button" target="blank">View details »</a>
+        						<a className="btn btn-default" href="/about" role="button" target="blank">{t('viewDetails')} »</a>
         					</p>
         				</div>
         				<div className="col-lg-4">
@@ -42,7 +42,7 @@ class Home extends React.Component {
         						purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo,
         						tortor mauris condimentum nibh.</p>
         					<p>
-        						<a className="btn btn-default" href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/team.html" role="button" target="blank">View details »</a>
+        						<a className="btn btn-default" href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/team.html" role="button" target="blank">{t('viewDetails')} »</a>
         					</p>
         				</div>
 
@@ -54,7 +54,7 @@ class Home extends React.Component {
         						Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
         						nibh, ut fermentum massa justo sit amet risus.</p>
         					<p>
-        						<a className="btn btn-default" href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/research.html" role="button" target="blank">View details »</a>
+        						<a className="btn btn-default" href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/research.html" role="button" target="blank">{t('viewDetails')} »</a>
         					</p>
         				</div>
         			</div>

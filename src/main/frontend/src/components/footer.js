@@ -31,14 +31,14 @@ class Footer extends React.Component {
 						<div className="row bottom-rule">
 							<div className="col-sm-4 footer-section">
 								<strong>Connect with us</strong>
-								<p>Email promotions, news, and information</p>
+								<p>Email</p>
 								<form className="form-inline">
 									<div className="form-group">
-										<label className="sr-only" htmlFor="inputEmail">Email</label> <input
+										<label className="sr-only" htmlFor="inputEmail">{t("email")}</label> <input
 											type="email" className="form-control" id="inputEmail"
 											placeholder="address@example.com" />
 									</div>
-									<button type="submit" className="btn btn-default">Subscribe</button>
+									<button type="submit" className="btn btn-default">{t('subscribe')}</button>
 								</form>
 							</div>
 							<div className="col-sm-5 footer-section">
@@ -46,11 +46,11 @@ class Footer extends React.Component {
 									<li className="text-uppercase">ePill:</li>
 									<li><a href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/team.html" target="blank">{t("team")}</a></li>
 									<li><a href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/research.html" target="blank">{t("articles")}</a></li>
-									<li><a href="#!/about">Why Register?</a></li>
+									<li><a href="#!/about">{t('whyRegister')}</a></li>
 								</ul>
 								<ul className="list-inline">
 									<li className="text-uppercase">{t("help")}:</li>
-									<li><a href="#!/sitemap">{t("funcion")}</a></li>
+									<li><a href="#!/sitemap">{t("functions")}</a></li>
 									<li><a href="#!/privacy">{t("privacy")}</a></li>
 								</ul>
 							</div>
@@ -58,7 +58,7 @@ class Footer extends React.Component {
 								<address>
 									<strong>Universität Kassel</strong><br /> Henschelstraße 4<br />
 									34127, Kassel<br /> (+49) 561-804-3450<br />
-									<a href="mailto:sunyaev@uni-kassel.de">Contact Us</a>
+									<a href="mailto:sunyaev@uni-kassel.de">{t("contactUs")}</a>
 								</address>
 							</div>
 						</div>
@@ -67,7 +67,7 @@ class Footer extends React.Component {
 								<nav className="navbar navbar-default navbar-footer">
 									<ul className="nav navbar-nav">
 										<li><a href="#">{t("customerCare")}</a></li>
-										<li><a href="#">News</a></li>
+										<li><a href="#">{t("news")}</a></li>
 										<li><a href="#">{t("imprint")}</a></li>
 									</ul>
 								</nav>

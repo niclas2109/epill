@@ -27,7 +27,25 @@ public class DrugService {
 	
 	
     public List<Drug> findAllDrugs() {
-    	return repository.findAllOrderByName();
+    		List<Drug> drugs = repository.findAllOrderByName();
+    		
+    		if(!userService.isAnonymous()) {
+    			User user = userService.getCurrentUser();
+
+    			List<Drug> taking	= repository.findUserDrugsRemembered(user.getId());
+    	    		List<Drug> remember	= repository.findUserDrugsRemembered(user.getId());
+    			
+    	    		for(Drug drug : drugs) {
+    	    			if(taking.contains(drug))
+    	    				drug.setIsTaken(true);
+
+    	    			if(remember.contains(drug))
+    	    				drug.setIsRemembered(true);
+    	    		}
+    	    		
+    		}
+    		
+    		return drugs;
     }
 
     public void saveDrug(Drug Drug) {
@@ -87,10 +105,22 @@ public class DrugService {
 
 	public List<Drug> findUserDrugsTaking() {
 		SimpleUser user = userService.getCurrentUser();
-		return repository.findUserDrugsTaking(user.getId());
+		List<Drug> drugs = repository.findUserDrugsTaking(user.getId());
+		
+		for(Drug drug : drugs) {
+			drug.setIsTaken(true);
+		}
+		
+		return drugs;
 	}
 	
 	public List<Drug> findUserDrugsRemembered(SimpleUser user) {
-		return repository.findUserDrugsRemembered(user.getId());
+		List<Drug> drugs = repository.findUserDrugsRemembered(user.getId());
+		
+		for(Drug drug : drugs) {
+			drug.setIsRemembered(true);
+		}
+		
+		return drugs;
 	}
 }

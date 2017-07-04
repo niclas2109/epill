@@ -185,7 +185,7 @@ import com.doccuty.epill.user.User;
    
    public static final String PROPERTY_USER = "user";
 
-   @OneToMany(cascade=CascadeType.ALL, mappedBy="gender")
+   @OneToMany(mappedBy="gender", cascade = {CascadeType.ALL, CascadeType.MERGE, CascadeType.PERSIST})
    private Set<User> user = null;
 
    public Set<User> getUser()

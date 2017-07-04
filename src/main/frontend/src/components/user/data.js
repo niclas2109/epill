@@ -1,8 +1,10 @@
 import axios from "axios";
 import React from "react";
+import Moment from 'moment';
 
 import {Link} from "react-router-dom";
 
+import { toast } from 'react-toastify';
 import {translate} from "react-i18next";
 
 import User from "./../../util/User";
@@ -16,6 +18,7 @@ class UserData extends React.Component {
 	        	firstname	: '',
 	        	lastname		: '',
 	        	dateOfBirth	: '',
+	        	gender		: {id : 0},
 	        	email		: '',
 	        	sending		: false,
 	        	levelOfDetail		: 1,
@@ -24,6 +27,7 @@ class UserData extends React.Component {
         
         this.handleFirstnameChange		= this.handleFirstnameChange.bind(this);
         this.handleLastnameChange		= this.handleLastnameChange.bind(this);
+        this.handleGenderChange			= this.handleGenderChange.bind(this);
 
         this.handleDateOfBirthChange		= this.handleDateOfBirthChange.bind(this);
         
@@ -41,16 +45,20 @@ class UserData extends React.Component {
     			return;
 
     		axios.get(`/user/${User.id}`)
-            .then(({data}) => {
-                this.setState({
-                    firstname	: data.value.firstname,
-                    lastname		: data.value.lastname,
-                    email		: data.value.email,
-                    dateOfBirth	: data.value.dateOfBirth,
-                    username		: data.value.username,
-                    levelOfDetail		: data.value.levelOfDetail,
-                    preferredFontSize	: data.value.preferredFontSize
-                });
+            .then(({data, status}) => {
+            	
+            		console.log(data, status);
+            		
+            		this.state.firstname		= data.value.firstname,
+            		this.state.lastname		= data.value.lastname,
+            		this.state.email			= data.value.email			|| '',
+            		this.state.dateOfBirth	= data.value.dateOfBirth		|| '',
+            		this.state.gender		= data.value.gender			|| {id : 0},
+            		this.state.username		= data.value.username,
+            		this.state.levelOfDetail	= data.value.levelOfDetail,
+            		this.state.preferredFontSize	= data.value.preferredFontSize
+
+                this.setState(this.state);
             });
     }
     
@@ -65,8 +73,13 @@ class UserData extends React.Component {
 	    	this.setState(this.state);
     }
     
+    handleGenderChange(event) {
+	    this.state.gender.id = event.target.value;
+	    this.setState(this.state);
+    }
+    
     handleDateOfBirthChange(event) {
-	    this.state.dateOfBirth = event.target.value;
+	    this.state.dateOfBirth = event.target.value
 	    	this.setState(this.state);
     }
     
@@ -96,20 +109,58 @@ class UserData extends React.Component {
         if(this.state.sending)
         		return;
         
+
+		const {t} = this.props;
+	    const options = {
+	    	    position: toast.POSITION.BOTTOM_CENTER
+	    };
+        
+        
+        var date = Moment(this.state.dateOfBirth);
+        if(date.isValid()) {
+    	        console.log(date);
+    		} else if(Moment(this.state.dateOfBirth, "DD.MM.YYYY").isValid()) {
+    			date = Moment(this.state.dateOfBirth, "DD.MM.YYYY");
+    	        console.log(date);
+    		} else {
+            toast.error(t('invalidDateFormat'), options);
+    			return;
+        }
+
         this.state.sending = true;
         this.setState(this.state);
         
+        
         axios.post('/user/update',
                {
-	           		firstname	: this.state.firstname,
-	           		lastname		: this.state.lastname,
-	                	dateOfBirth	: this.state.dateOfBirth,
-	    	        		levelOfDetail		: this.state.levelOfDetail,
+	           		firstname			: this.state.firstname,
+	           		lastname				: this.state.lastname,
+	                	dateOfBirth			: date.format("YYYY-MM-DD"),
+	        			gender				: this.state.gender,
+	        			email				: this.state.email,
+    	        			levelOfDetail		: this.state.levelOfDetail,
 	    	        		preferredFontSize	: this.state.preferredFontSize
                 })
-                .then((data) => {
+                .then(({data, status}) => {
                      this.state.sending = false;
                      this.setState(this.state);
+                     
+                     const {t} = this.props;
+                     const options = {
+                     	    position: toast.POSITION.BOTTOM_CENTER
+                     };
+                     
+                     switch (status) {
+                         case 200:
+                             toast.success(t('savingSuccessfull'), options);
+                             break;
+                         case 400:
+                          	toast.error(t('savingFailed'), options);
+                             break;
+                         case 401:
+                         	console.log(data, "not permitted");
+                            	break;
+                     }
                 });
     }
     
@@ -130,19 +181,20 @@ class UserData extends React.Component {
 	        	    
 	        	   <form onSubmit={this.handleSubmit}>
 		        		<fieldset>
-			        	    		<div className="form-group col-lg-2 col-md-2">
-						        <label htmlFor="address">{t('address')}</label>
-				        	    		<select>
-				        	    		  	<option>Herr</option>
-				        	    		  	<option>Frau</option>
-				        	    		 </select>
-				            </div>
+			                <div className="form-group col-md-4 col-lg-4">
+			                   <label htmlFor="gender">{t('gender')}</label>
+			                   <select id="gender" value="0" name="gender" className="form-control" title={t('gender')} value={this.state.gender.id} onChange={this.handleGenderChange}>
+	                        		<option value="0" disabled>{t('noInfo')}</option>
+			                         <option value="1">{t('female')}</option>
+			                         <option value="2">{t('male')}</option>
+			                    </select>
+			               </div>
 				            
-				            <div className="form-group col-lg-5 col-md-5">
+				            <div className="form-group col-md-4 col-lg-4">
 				               <label htmlFor="firstname">{t('firstname')}</label>
 				               <input type="text" name="firstname" id="firstname" className="form-control" value={this.state.firstname} onChange={this.handleFirstnameChange} />
 				            </div> 
-				            <div className="form-group col-lg-5 col-md-5">
+				            <div className="form-group col-md-4 col-lg-4">
 				               <label htmlFor="lastname">{t('lastname')}</label>
 				               <input type="text" name="lastname" id="lastname" className="form-control" value={this.state.lastname} onChange={this.handleLastnameChange} />
 				            </div> 
@@ -160,7 +212,7 @@ class UserData extends React.Component {
 					</fieldset>
 						
 					<fieldset>
-						<p><b>Detailierungsgrad der Ansicht</b></p>
+						<p><b>{t("levelofDetail")}</b></p>
 						<ul className="list-inline">
 							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
 								<label htmlFor="settings-detail-min" className="checkbox-inline">
@@ -186,7 +238,7 @@ class UserData extends React.Component {
 						</ul>
 					</fieldset>
 					<fieldset>
-					<p><b>Gewünschte Schriftgröße</b></p>
+					<p><b>{t("preferredFontSize")}</b></p>
 					<ul className="list-inline">
 						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
 							<label htmlFor="settings-preferred-font-size-min" className="checkbox-inline">
