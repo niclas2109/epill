@@ -19,6 +19,7 @@ class Authentication extends React.Component {
             error	: undefined,
             sending	: false
         };
+        
         this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         

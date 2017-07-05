@@ -56,14 +56,22 @@ class DrugList extends React.Component {
 		            this.checkForInteractions();
 	            });
 				break;
-			default:
+			case 'list':
 		        axios.get('/drug/list/all')
 	            .then(({data}) => {
 		        		this.state.drugs = data.value;
 	            		this.state.loading	= false;
 		        		this.setState(this.state);
 	            });
-				break;		
+				break;
+			default:
+		        axios.get('/drug/search', { params : { exp : "ac" }})
+	            .then(({data}) => {
+		        		this.state.drugs = data.value;
+	            		this.state.loading	= false;
+		        		this.setState(this.state);
+	            });
+				break;
 		}
     }
     

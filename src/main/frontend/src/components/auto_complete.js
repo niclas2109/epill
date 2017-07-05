@@ -1,29 +1,34 @@
-import React from "react";
 import axios from "axios";
+import React from "react";
 
 import {Link} from "react-router-dom";
 import {translate} from "react-i18next";
+import { withRouter } from 'react-router'
 
 class UserMenue extends React.Component {
 	  constructor(props) {
 	    super(props);
+	    	    
 	    this.state = {
 	    		drugs	: [],
 	    		exp		: '',
 	    		selectedValue	: '',
-	    		show		: false
+	    		show		: false,
+	    		redirect: false
 	    }
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleExpressionChange = this.handleExpressionChange.bind(this);
         this.handleSelectedValueChange = this.handleSelectedValueChange.bind(this);
+        
         this.hide = this.hide.bind(this);
         this.show = this.show.bind(this);
+        
 	  }
-	  
+
 	  handleSubmit(event) {
-		  event.preventDefault();
-		  
+	      event.preventDefault();
+	      this.setState({ redirect: true })
 	  }
 	  
 	  handleExpressionChange(event) {
@@ -66,13 +71,14 @@ class UserMenue extends React.Component {
 	  
 	  render() {
 	    const {t} = this.props;
+	    
 	    const drugs	= this.state.drugs;
 	    const show	= this.state.show;
 	    const exp	= this.state.exp;
 
 	    return (
 	    		<div>
-		    		<form className="navbar-form navbar-left" onSubmit={this.handleSubmit}>
+		    		<form className="navbar-form navbar-left" onSubmit={this.handleSubmit} >
 		    			<div className="col-sm-12 col-md-12 col-lg-12">
 		    				<div className="row">
 		    					<input type="text" value={this.state.exp} onChange={this.handleExpressionChange} name="search" className="form-control"

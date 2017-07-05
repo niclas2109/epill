@@ -24,32 +24,23 @@ import UserData from "./components/user/data";
 import UserSettings from "./components/user/settings";
 
 
-//Design decision: We use a global parent component for inter-sibling communication.
 class Root extends React.Component {
 	constructor(props) {
         super(props);
+        
         // Force initialization of the object.
         
         this.state = {
         		fontSize		: 'defaultFontSize'
         }
         
-        
         User.isAuthenticated();
         
-        this.updateAuthentication = this.updateAuthentication.bind(this);
-        this.updateNavigation = this.updateNavigation.bind(this);
-        
+        this.updateNavigation 	= this.updateNavigation.bind(this);
         this.updateFontSize	= this.updateFontSize.bind(this);
     }
 
-    // This is called whenever the authentication state of a user is changed by a component. Additionally,
-    // this is an example of intersibling communication with a common parent.
-	updateAuthentication() {
-		console.log("updateAuthentication");
-		//this.auth.updateAuthentication();
-    }
-    
+    // This is called whenever the authentication state of a user is changed by a component
     updateNavigation() {
     		if(User.isAuthenticated())
     			this.updateFontSize(User.preferredFontSize);
@@ -64,7 +55,7 @@ class Root extends React.Component {
     render() {
         return (
             <div className={this.state.fontSize}>
-	            <Navigation ref={(component) => { this.nav = component; }} updateAuthentication={this.updateAuthentication} />
+	            <Navigation ref={(component) => { this.nav = component; }} />
                 <Switch>
 	                {/* Authentication */}
 	                
@@ -76,6 +67,7 @@ class Root extends React.Component {
 	                <Route path="/drug/list" component={DrugList}/>
 	                <Route path="/drug/taking" component={DrugList}/>
 	                <Route path="/drug/remember" component={DrugList} />
+	                <Route path="/drug/search" component={DrugList} />
 	                <Route path="/drug/:id" component={DrugDetail}/>
 	
 	                {/* User sites */}
@@ -90,6 +82,7 @@ class Root extends React.Component {
 	                {/* Default route */}
 	                <Route path="/" component={Home} />
 	            </Switch>
+	                
 	            <ToastContainer />
 	            <Footer />
             </div>

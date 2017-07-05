@@ -18,10 +18,8 @@ class Navigation extends React.Component {
 	updateNavigation() {
         this.forceUpdate();
     }
-	  
-	
+		
 	 render() {
-
 	      const {t} = this.props;
 		  
 		  return (
