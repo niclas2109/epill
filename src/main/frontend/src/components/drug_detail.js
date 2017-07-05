@@ -13,6 +13,8 @@ class DrugDetail extends React.Component {
         this.state = {
             drug: undefined
         }
+        
+        this.getOriginalText = this.getOriginalText.bind(this);
     }
 
     init() {
@@ -35,6 +37,18 @@ class DrugDetail extends React.Component {
     
     //=============================
     
+    getOriginalText(section) {
+    		var text = "";
+    		var possible = "ABCDEF GHIJKLMN OPQRSTUVWXYZabcdefg hijklmnopq rstuvwx yz01 23456789";
+
+    		for (var i = 0; i < 60; i++)
+    			text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    		var idx = this.state.drug.packagingSection.indexOf(section);
+    		this.state.drug.packagingSection[idx]["text"] = text;
+        
+    		this.setState(this.state);
+    }
     
     addToTakingList(id) {
     	 	axios.post('/drug/taking/add', { id : id }, {
@@ -202,7 +216,7 @@ class DrugDetail extends React.Component {
 	}
     
     renderSectionOverview(drug) {
-    	if(!drug.packagingSection) {
+    		if(!drug.packagingSection) {
 			return;
 		}
 
@@ -219,7 +233,7 @@ class DrugDetail extends React.Component {
 		}
     		
     		return drug.packagingSection.map((section => {
-            return (	<Accordion section={section} key={section.id} /> );
+            return (	<Accordion section={section} getOriginalText={this.getOriginalText} key={section.id} /> );
         }));
     }
     

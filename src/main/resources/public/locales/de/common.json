@@ -73,5 +73,7 @@
 	"noInfo"	: "Keine Angabe",
 	"invalidDateFormat"	: "Kein gültiges Datums-Format!",
 	"yes" 	: "Ja",
-	"no"		: "Nein"
+	"no"		: "Nein",
+	"getPersonalizedText" : "Personalisierten Text anzeigen",
+	"getOriginalText" : "Original Text anzeigen"
 }

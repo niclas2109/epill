@@ -27750,7 +27750,8 @@ var Accordion = function (_React$Component) {
 
 		_this.state = {
 			show: false,
-			section: _this.props.section
+			section: _this.props.section,
+			isPersonalized: _this.props.isPersonalized || false
 		};
 
 		_this.toggleShow = _this.toggleShow.bind(_this);
@@ -27763,6 +27764,14 @@ var Accordion = function (_React$Component) {
 			this.state.show = !this.state.show;
 			this.setState(this.state);
 		}
+	}, {
+		key: "togglePersonalized",
+		value: function togglePersonalized(section) {
+			this.state.isPersonalized = !this.state.isPersonalized;
+			this.setState(this.state);
+
+			this.props.getOriginalText(section, this.state.isPersonalized);
+		}
 
 		// for html conversion
 
@@ -27774,6 +27783,8 @@ var Accordion = function (_React$Component) {
 	}, {
 		key: "render",
 		value: function render() {
+			var _this2 = this;
+
 			var show = this.state.show;
 			var section = this.state.section;
 
@@ -27781,15 +27792,29 @@ var Accordion = function (_React$Component) {
 				return null;
 			}
 
+			var t = this.props.t;
+
+
 			return _react2.default.createElement(
 				"div",
 				{ className: "panel panel-default" },
 				_react2.default.createElement(
 					"div",
-					{ className: "panel-heading", onClick: this.toggleShow },
+					{ className: "panel-heading" },
+					show && this.props.getOriginalText && _react2.default.createElement(
+						"div",
+						{ className: "pull-right" },
+						_react2.default.createElement(
+							"button",
+							{ type: "button", className: "btn btn-default", onClick: function onClick() {
+									return _this2.togglePersonalized(section);
+								} },
+							this.state.isPersonalized ? t('getOriginalText') : t('getPersonalizedText')
+						)
+					),
 					_react2.default.createElement(
 						"h4",
-						{ id: "packaging-heading-section.topic.id", className: "panel-title" },
+						{ id: "packaging-heading-section.topic.id", className: "panel-title", onClick: this.toggleShow },
 						_react2.default.createElement(
 							"a",
 							null,
@@ -28426,6 +28451,8 @@ var DrugDetail = function (_React$Component) {
         _this.state = {
             drug: undefined
         };
+
+        _this.getOriginalText = _this.getOriginalText.bind(_this);
         return _this;
     }
 
@@ -28456,7 +28483,19 @@ var DrugDetail = function (_React$Component) {
 
         //=============================
 
+    }, {
+        key: "getOriginalText",
+        value: function getOriginalText(section) {
+            var text = "";
+            var possible = "ABCDEF GHIJKLMN OPQRSTUVWXYZabcdefg hijklmnopq rstuvwx yz01 23456789";
 
+            for (var i = 0; i < 60; i++) {
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            }var idx = this.state.drug.packagingSection.indexOf(section);
+            this.state.drug.packagingSection[idx]["text"] = text;
+
+            this.setState(this.state);
+        }
     }, {
         key: "addToTakingList",
         value: function addToTakingList(id) {
@@ -28696,18 +28735,20 @@ var DrugDetail = function (_React$Component) {
     }, {
         key: "renderSectionList",
         value: function renderSectionList(drug) {
+            var _this7 = this;
+
             if (!drug.packagingSection) {
                 return;
             }
 
             return drug.packagingSection.map(function (section) {
-                return _react2.default.createElement(_accordion2.default, { section: section, key: section.id });
+                return _react2.default.createElement(_accordion2.default, { section: section, getOriginalText: _this7.getOriginalText, key: section.id });
             });
         }
     }, {
         key: "render",
         value: function render() {
-            var _this7 = this;
+            var _this8 = this;
 
             var t = this.props.t;
 
@@ -28751,14 +28792,14 @@ var DrugDetail = function (_React$Component) {
                             _react2.default.createElement(
                                 "button",
                                 { type: "button", className: "btn btn-like", onClick: function onClick() {
-                                        return _this7.addToTakingList(drug.id);
+                                        return _this8.addToTakingList(drug.id);
                                     } },
                                 _react2.default.createElement("span", { className: "glyphicon glyphicon-heart white" })
                             ),
                             _react2.default.createElement(
                                 "button",
                                 { type: "button", className: "btn btn-add", onClick: function onClick() {
-                                        return _this7.addToRememberList(drug.id);
+                                        return _this8.addToRememberList(drug.id);
                                     } },
                                 _react2.default.createElement("span", { className: "glyphicon glyphicon-plus white" })
                             )
@@ -29034,7 +29075,7 @@ var DrugList = function (_React$Component) {
           case 200:
             _reactToastify.toast.success(t('removeFromTakingListSuccess'), options);
             var idx = _this4.state.drugs.indexOf(drug);
-            _this4.state.drugs.slice(idx, 1);
+            _this4.state.drugs.splice(idx, 1);
             _this4.setState(_this4.state);
             _this4.checkForInteractions();
             break;
@@ -29112,7 +29153,7 @@ var DrugList = function (_React$Component) {
           case 200:
             _reactToastify.toast.success(t('removeFromRememberListSuccess'), options);
             var idx = _this6.state.drugs.indexOf(drug);
-            _this6.state.drugs.slice(idx, 1);
+            _this6.state.drugs.splice(idx, 1);
             _this6.setState(_this6.state);
             _this6.checkForInteractions();
             break;

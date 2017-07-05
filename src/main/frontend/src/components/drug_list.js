@@ -134,7 +134,7 @@ class DrugList extends React.Component {
 	             case 200:
                      toast.success(t('removeFromTakingListSuccess'), options);
                      var idx = this.state.drugs.indexOf(drug);
-                     this.state.drugs.slice(idx, 1);
+                     this.state.drugs.splice(idx, 1);
                      this.setState(this.state);
 	                 this.checkForInteractions();
 	                 break;
@@ -204,7 +204,7 @@ class DrugList extends React.Component {
 	             case 200:
 	                 toast.success(t('removeFromRememberListSuccess'), options);
                      var idx = this.state.drugs.indexOf(drug);
-                     this.state.drugs.slice(idx, 1);
+                     this.state.drugs.splice(idx, 1);
                      this.setState(this.state);
 	                 this.checkForInteractions();
 	                 break;

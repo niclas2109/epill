@@ -31295,7 +31295,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // See https://www.i18next.com/ for a LOT of documentation.
 
 _i18next2.default.use(_i18nextXhrBackend2.default).init({
-    fallbackLng: 'en',
+    fallbackLng: 'de',
 
     // Have a common namespace used around the full app
     ns: ['common'],

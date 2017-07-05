@@ -11,7 +11,8 @@ class Accordion extends React.Component {
 	    
 	    this.state = {
 	    		show		: false,
-	    		section	: this.props.section
+	    		section	: this.props.section,
+	    		isPersonalized	: this.props.isPersonalized	|| false
 	    }
 
         this.toggleShow = this.toggleShow.bind(this);
@@ -20,6 +21,13 @@ class Accordion extends React.Component {
 	  toggleShow(event) {
 		  this.state.show = !this.state.show;
 		  this.setState(this.state);
+	  }
+	  
+	  togglePersonalized(section) {
+		  this.state.isPersonalized = !this.state.isPersonalized;
+		  this.setState(this.state);
+		  
+		  this.props.getOriginalText(section, this.state.isPersonalized);
 	  }
 	  
 	  // for html conversion
@@ -33,11 +41,20 @@ class Accordion extends React.Component {
 	    if(!section) {
 	    		return null;
 	    }
-	    
+
+		const {t} = this.props;
+		  
 	    return (	
                 <div className="panel panel-default">
-                		<div className="panel-heading" onClick={this.toggleShow}>
-                			<h4 id="packaging-heading-section.topic.id" className="panel-title">
+                		<div className="panel-heading">
+                			{show && this.props.getOriginalText &&
+	                			<div className="pull-right">
+	                				<button type="button" className="btn btn-default" onClick={() => this.togglePersonalized(section)} >
+	                					{ this.state.isPersonalized ? t('getOriginalText') : t('getPersonalizedText') }
+	                				</button>
+	                			</div>
+                			}
+                			<h4 id="packaging-heading-section.topic.id" className="panel-title" onClick={this.toggleShow}>
                 				<a>{section.topic.title}</a>
                 			</h4>
                 		</div>
