@@ -40,8 +40,8 @@ public class PackagingSectionService {
 		return section;
 	}
 	
-	public TailoredPackagingSection getTailoredPackagingSection(long topicId, long drugId) {
-		TailoredPackagingSection section = (TailoredPackagingSection) repository.findOne(1L);
+	public PackagingSection getTailoredPackagingSection(long topicId, long drugId) {
+		PackagingSection section = (PackagingSection) repository.findOne(1L);
 		section.setIsTailored(true);
 		return section;
 	}
