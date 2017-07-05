@@ -27793,7 +27793,7 @@ var Accordion = function (_React$Component) {
 				_react2.default.createElement(
 					"div",
 					{ className: "panel-heading" },
-					show && this.props.toggleOriginalAndTailoredText && _react2.default.createElement(
+					show && _User2.default.isAuthenticated() && this.props.toggleOriginalAndTailoredText && _react2.default.createElement(
 						"div",
 						{ className: "pull-right" },
 						_react2.default.createElement(

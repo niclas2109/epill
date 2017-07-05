@@ -47,7 +47,7 @@ class Accordion extends React.Component {
 	    return (	
                 <div className="panel panel-default">
                 		<div className="panel-heading">
-                			{show && this.props.toggleOriginalAndTailoredText &&
+                			{show && User.isAuthenticated() && this.props.toggleOriginalAndTailoredText &&
 	                			<div className="pull-right">
 	                				<button type="button" className="btn btn-default" onClick={() => this.togglePersonalized(section)} >
 	                					{ section.isTailored ? t('getOriginalText') : t('getPersonalizedText') }
