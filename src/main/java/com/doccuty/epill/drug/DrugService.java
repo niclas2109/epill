@@ -32,7 +32,7 @@ public class DrugService {
     		if(!userService.isAnonymous()) {
     			User user = userService.getCurrentUser();
 
-    			List<Drug> taking	= repository.findUserDrugsRemembered(user.getId());
+    			List<Drug> taking	= repository.findUserDrugsTaking(user.getId());
     	    		List<Drug> remember	= repository.findUserDrugsRemembered(user.getId());
     			
     	    		for(Drug drug : drugs) {

@@ -106,29 +106,6 @@ public class UserController {
      * update all parameters from settings section including
      * preferredFontSize, preferredDrugFeatures, preferredPackagingTopics,
      * levelOfDetail
-     * @param user
-     * @return
-     */
-    
-    @RequestMapping(value="/update/settings", method = RequestMethod.POST)
-    public ResponseEntity<JsonObject> updateUserSettings(@RequestBody User user) {
-    	// A pragmatic approach to security which does not use much framework-specific magic. While other approaches
-        // with annotations, etc. are possible they are much more complex while this is quite easy to understand and
-        // extend.
-        if (service.isAnonymous()) {
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-        }
-        
-        user = service.updateUserSettings(user);
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    
-    /**
-     * update all parameters from settings section including
-     * preferredFontSize, preferredDrugFeatures, preferredPackagingTopics,
-     * levelOfDetail
      * 
      * @param user
      * @return
@@ -147,8 +124,30 @@ public class UserController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
     
+    /**
+     * update all parameters from settings section including
+     * preferredFontSize, preferredDrugFeatures, preferredPackagingTopics,
+     * levelOfDetail
+     * @param user
+     * @return
+     */
+    
+    @RequestMapping(value="/update/settings", method = RequestMethod.POST)
+    public ResponseEntity<JsonObject> updateUserSettings(@RequestBody User user) {
+    	// A pragmatic approach to security which does not use much framework-specific magic. While other approaches
+        // with annotations, etc. are possible they are much more complex while this is quite easy to understand and
+        // extend.
+        if (service.isAnonymous()) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        
+        user = service.updateUserSettings(user);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
     /**
      * update all parameters from settings section including
      * preferredFontSize, preferredDrugFeatures, preferredPackagingTopics,

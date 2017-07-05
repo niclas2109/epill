@@ -30322,10 +30322,12 @@ var Register = function (_React$Component) {
             this.state.sending = true;
             this.setState(this.state);
 
+            console.log("save");
+
             _axios2.default.post('/user/save', {
                 firstname: this.state.firstname,
                 lastname: this.state.lastname,
-                gender: { id: this.state.gender },
+                gender: this.state.gender,
                 handleRedGreenColorblind: this.state.handleRedGreenColorblind,
                 username: this.state.username,
                 password: this.state.password

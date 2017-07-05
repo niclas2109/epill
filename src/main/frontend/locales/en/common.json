@@ -75,5 +75,6 @@
 	"yes" 	: "Yes",
 	"no"		: "No",
 	"getPersonalizedText" : "Show personalized text",
-	"getOriginalText" : "Show original text"
+	"getOriginalText" : "Show original text",
+	"errorOccured"	: "Sorry, an error occured!"
 }

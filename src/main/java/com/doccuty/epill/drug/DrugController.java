@@ -42,7 +42,6 @@ public class DrugController {
     public ResponseEntity<JsonObject> getAllDrugs() {
 
 	    List<Drug> set = service.findAllDrugs();
-	    	
 	    
 	    	IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(2)));
