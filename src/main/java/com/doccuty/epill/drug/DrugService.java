@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import com.doccuty.epill.model.DrugFeature;
 import com.doccuty.epill.model.Interaction;
 import com.doccuty.epill.model.ItemInvocation;
-import com.doccuty.epill.model.util.UserSet;
+import com.doccuty.epill.tailoredsummary.TailoredSummary;
+import com.doccuty.epill.tailoredsummary.TailoredSummaryService;
 import com.doccuty.epill.user.SimpleUser;
 import com.doccuty.epill.user.User;
-import com.doccuty.epill.user.UserRepository;
 import com.doccuty.epill.user.UserService;
 
 @Service
@@ -25,6 +25,10 @@ public class DrugService {
 	
 	@Autowired
 	DrugFeatureRepository featureRepository;
+	
+	@Autowired
+	TailoredSummaryService tailoredSummaryService;
+	
 	
 	
     public List<Drug> findAllDrugs() {
@@ -79,9 +83,16 @@ public class DrugService {
 				}
 			}
 			
-			//TODO: make dynamically
 			
-	    		drug.setPersonalizedInformation("Lieber %User.firstname% %User.lastname%, das ist deine personalisierte Information.");
+			drug = tailoredSummaryService.replaceSections(drug, user);
+			
+			
+			// load tailored summary
+			TailoredSummary summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
+
+			if(summary != null) {
+				drug.setTailoredSummary(summary.getText());
+			}
 		}
 
 		return drug;

@@ -97,12 +97,12 @@ public class DrugController {
 
     @RequestMapping(value = "/feature/all", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> searchDrug() {
-		
+    	
+	    	List<DrugFeature> list = service.findAllDrugFeaturesSimple();
+
 		IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(1)));
 
-	    	List<DrugFeature> list = service.findAllDrugFeaturesSimple();
-	    	
 	    	JsonObject json = new JsonObject();
 	    	JsonArray drugArray = new JsonArray();
 	    	

@@ -23,7 +23,12 @@ package com.doccuty.epill.user;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,6 +39,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -44,8 +50,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-
-
 @Entity
 @Table(name = "user_simple")
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -53,28 +57,28 @@ public class SimpleUser implements SendableEntity {
 
 	private static final int PROPERTY_LEVELOFDETAIL_DEFAULT = 2;
 	private static final String PROPERTY_PREFERREDFONTSIZE_DEFAULT = "defaultFontSize";
-	
+
 	public SimpleUser() {
 
 	}
-	
+
 	public SimpleUser(long id, String firstname, String lastname) {
-		this.id			= id;
-		this.firstname	= firstname;
-		this.lastname	= lastname;
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
 	}
-	
+
 	public SimpleUser(long id, String firstname, String lastname, String username, String password, String salt,
 			String preferredFontSize, int levelOfDetail, boolean redGreenColorblind) {
-		this.id			= id;
-		this.firstname	= firstname;
-		this.lastname	= lastname;
-		this.username	= username;
-		this.password	= password;
-		this.salt		= salt;
-		this.preferredFontSize	= preferredFontSize;
-		this.levelOfDetail		= levelOfDetail;
-		this.redGreenColorblind	= redGreenColorblind;
+		this.id = id;
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.username = username;
+		this.password = password;
+		this.salt = salt;
+		this.preferredFontSize = preferredFontSize;
+		this.levelOfDetail = levelOfDetail;
+		this.redGreenColorblind = redGreenColorblind;
 	}
 
 	public SimpleUser(User user) {
@@ -82,7 +86,7 @@ public class SimpleUser implements SendableEntity {
 		this.firstname = user.getFirstname();
 		this.lastname = user.getLastname();
 		this.dateOfBirth = user.getDateOfBirth();
-		this.redGreenColorblind	= user.getRedGreenColorblind();
+		this.redGreenColorblind = user.getRedGreenColorblind();
 
 		this.dateOfRegistration = user.getDateOfRegistration();
 
@@ -244,7 +248,7 @@ public class SimpleUser implements SendableEntity {
 	// ==========================================================================
 
 	public static final String PROPERTY_PASSWORD = "password";
-	
+
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;
 
@@ -332,6 +336,18 @@ public class SimpleUser implements SendableEntity {
 		return this;
 	}
 
+	@JsonIgnore
+	public int getAge() {
+		
+		Calendar cal = Calendar.getInstance();
+	    cal.setTime(this.dateOfBirth);
+
+		LocalDate b = LocalDate.of(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH));
+	    long age = b.until(LocalDate.now(), ChronoUnit.YEARS);
+	    
+		return (int) age;
+	}
+
 	// ==========================================================================
 
 	public static final String PROPERTY_PREFERREDFONTSIZE = "preferredFontSize";
@@ -357,7 +373,6 @@ public class SimpleUser implements SendableEntity {
 
 	public static final String PROPERTY_LEVELOFDETAIL = "levelOfDetail";
 
-	
 	private int levelOfDetail = PROPERTY_LEVELOFDETAIL_DEFAULT;
 
 	public int getLevelOfDetail() {

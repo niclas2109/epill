@@ -248,8 +248,7 @@ public class PackagingSection implements SendableEntity {
       setText(value);
       return this;
    }
-	
-	
+
 	/********************************************************************
     * <pre>
     *              many                       one

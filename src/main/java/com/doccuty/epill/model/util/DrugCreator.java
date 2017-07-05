@@ -58,7 +58,7 @@ public class DrugCreator implements SendableEntityCreatorNoIndex
       Drug.PROPERTY_CLICKS,
       Drug.PROPERTY_DISEASE,
       Drug.PROPERTY_DRUGFEATURE,
-      Drug.PROPERTY_PERSONALIZEDINFORMATION,
+      Drug.PROPERTY_TAILOREDSUMMARY,
       Drug.PROPERTY_IMAGE,
       Drug.PROPERTY_REMEMBERED,
       Drug.PROPERTY_TAKEN
@@ -97,9 +97,9 @@ public class DrugCreator implements SendableEntityCreatorNoIndex
          return ((Drug) target).getName();
       }
 
-      if (Drug.PROPERTY_PERSONALIZEDINFORMATION.equalsIgnoreCase(attribute))
+      if (Drug.PROPERTY_TAILOREDSUMMARY.equalsIgnoreCase(attribute))
       {
-          return ((Drug) target).getPersonalizedInformation();
+          return ((Drug) target).getTailoredSummary();
        }
       
       if (Drug.PROPERTY_PACKAGINGSECTION.equalsIgnoreCase(attribute))
@@ -184,9 +184,9 @@ public class DrugCreator implements SendableEntityCreatorNoIndex
          return true;
       }
 
-      if (Drug.PROPERTY_PERSONALIZEDINFORMATION.equalsIgnoreCase(attrName))
+      if (Drug.PROPERTY_TAILOREDSUMMARY.equalsIgnoreCase(attrName))
       {
-          ((Drug) target).setPersonalizedInformation((String) value);
+          ((Drug) target).setTailoredSummary((String) value);
           return true;
        }
 

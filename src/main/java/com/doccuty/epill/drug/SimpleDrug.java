@@ -335,27 +335,27 @@ import com.doccuty.epill.model.ProductGroup;
    
    //==========================================================================
    
-   public static final String PROPERTY_PERSONALIZEDINFORMATION = "personalizedInformation";
+   public static final String PROPERTY_TAILOREDSUMMARY = "personalizedInformation";
    
    @Transient
-   private String personalizedInformation;
+   private String tailoredSummary;
 
-   public String getPersonalizedInformation()
+   public String getTailoredSummary()
    {
-      return this.personalizedInformation;
+      return this.tailoredSummary;
    }
    
-   public void setPersonalizedInformation(String value)
+   public void setTailoredSummary(String value)
    {
-      if ( ! EntityUtil.stringEquals(this.personalizedInformation, value)) {
+      if ( ! EntityUtil.stringEquals(this.tailoredSummary, value)) {
       
-         String oldValue = this.personalizedInformation;
-         this.personalizedInformation = value;
-         this.firePropertyChange(PROPERTY_PERSONALIZEDINFORMATION, oldValue, value);
+         String oldValue = this.tailoredSummary;
+         this.tailoredSummary = value;
+         this.firePropertyChange(PROPERTY_TAILOREDSUMMARY, oldValue, value);
       }
    }
    
-   public SimpleDrug withPersonalizedInformation(String value)
+   public SimpleDrug withTailoredSummary(String value)
    {
       setName(value);
       return this;

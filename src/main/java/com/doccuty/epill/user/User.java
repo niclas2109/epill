@@ -21,6 +21,8 @@
    
 package com.doccuty.epill.user;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -781,5 +783,5 @@ import com.doccuty.epill.model.DrugFeature;
       Disease value = new Disease();
       withDisease(value);
       return value;
-   } 
+   }
 }
