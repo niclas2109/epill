@@ -8,6 +8,18 @@ body {
 	margin-bottom: 330px;
 }
 
+.minFontSize {
+	font-size: 80%;
+}
+
+.defaultFontSize {
+	font-size: 100%;
+}
+
+.maxFontSize {
+	font-size: 120%;
+}
+
 h4 a { cursor: pointer; }
 
 span.enumeration {
@@ -45,11 +57,11 @@ a.wide { display : block }
 	margin-top: -8px;
 }
 
-.small-text { font-size: 10pt; }
+.small-text { font-size: 80%; }
 
-.medium-text { font-size: 12pt; }
+.medium-text { font-size: 100%; }
 
-.big-text { font-size: 14pt; }
+.big-text { font-size: 120%; }
 
 /* */
 .drug-features {
@@ -626,4 +638,23 @@ lightgray
 	display: inline;
 	background-color: #00a7a8;
     color: white;
+}
+
+
+
+.danger-red-green-colorblind {
+	color: black;
+	border-color:#cccccc;
+	background: #efefef;
+	background: repeating-linear-gradient(
+		  45deg,
+		  rgba(255, 255, 255, 0.5),
+		  rgba(255, 255, 255, 0.5) 10px,
+		  rgba(200, 200, 200, 0.15) 10px,
+		  rgba(200, 200, 200, 0.15) 20px
+		)
+}
+
+.warning-red-green-colorblind {
+	background-color:black;
 }
