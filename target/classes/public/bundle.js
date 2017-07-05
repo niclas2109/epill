@@ -28517,6 +28517,8 @@ var DrugDetail = function (_React$Component) {
                 switch (status) {
                     case 200:
                         _reactToastify.toast.success(t('addToTakingListSuccess'), options);
+                        _this3.state.drug.isTaken = !_this3.state.drug.isTaken;
+                        _this3.setState(_this3.state.drug);
                         break;
                     case 400:
                         _reactToastify.toast.error(t('addToTakingListFailed'), options);
@@ -28548,6 +28550,8 @@ var DrugDetail = function (_React$Component) {
                 switch (status) {
                     case 200:
                         _reactToastify.toast.success(t('removeFromTakingListSuccess'), options);
+                        _this4.state.drug.isTaken = !_this4.state.drug.isTaken;
+                        _this4.setState(_this4.state.drug);
                         break;
                     case 400:
                         _reactToastify.toast.error(t('removeFromTakingListFailed'), options);
@@ -28579,6 +28583,8 @@ var DrugDetail = function (_React$Component) {
                 switch (status) {
                     case 200:
                         _reactToastify.toast.success(t('addToRememberListSuccess'), options);
+                        _this5.state.drug.isRemembered = !_this5.state.drug.isRemembered;
+                        _this5.setState(_this5.state.drug);
                         break;
                     case 400:
                         _reactToastify.toast.error(t('addToRememberListFailed'), options);
@@ -28613,6 +28619,8 @@ var DrugDetail = function (_React$Component) {
                 switch (status) {
                     case 200:
                         _reactToastify.toast.success(t('removeFromRememberListSuccess'), options);
+                        _this6.state.drug.isRemembered = !_this6.state.drug.isRemembered;
+                        _this6.setState(_this6.state.drug);
                         break;
                     case 400:
                         _reactToastify.toast.error(t('removeFromRememberListFailed'), options);
@@ -28794,14 +28802,14 @@ var DrugDetail = function (_React$Component) {
                                 { type: "button", className: "btn btn-like", onClick: function onClick() {
                                         return _this8.addToTakingList(drug.id);
                                     } },
-                                _react2.default.createElement("span", { className: "glyphicon glyphicon-heart white" })
+                                _react2.default.createElement("span", { className: "glyphicon white" + (!drug.isTaken ? " glyphicon-heart" : " glyphicon-minus") })
                             ),
                             _react2.default.createElement(
                                 "button",
                                 { type: "button", className: "btn btn-add", onClick: function onClick() {
                                         return _this8.addToRememberList(drug.id);
                                     } },
-                                _react2.default.createElement("span", { className: "glyphicon glyphicon-plus white" })
+                                _react2.default.createElement("span", { className: "glyphicon white" + (!drug.isRemembered ? " glyphicon-plus" : " glyphicon-minus") })
                             )
                         )
                     ),
@@ -29043,6 +29051,10 @@ var DrugList = function (_React$Component) {
         switch (status) {
           case 200:
             _reactToastify.toast.success(t('addToTakingListSuccess'), options);
+            var idx = _this3.state.drugs.indexOf(drug);
+            drug.isTaken = !drug.isTaken;
+            _this3.state.drugs[idx] = drug;
+            _this3.setState(_this3.state);
             break;
           case 400:
             _reactToastify.toast.error(t('addToTakingListFailed'), options);
@@ -29074,8 +29086,16 @@ var DrugList = function (_React$Component) {
         switch (status) {
           case 200:
             _reactToastify.toast.success(t('removeFromTakingListSuccess'), options);
+
             var idx = _this4.state.drugs.indexOf(drug);
-            _this4.state.drugs.splice(idx, 1);
+            if (_this4.state.cmd != 'taking') {
+              drug.isTaken = !drug.isTaken;
+              _this4.state.drugs[idx] = drug;
+              _this4.setState(_this4.state);
+            } else {
+              _this4.state.drugs.splice(idx, 1);
+            }
+
             _this4.setState(_this4.state);
             _this4.checkForInteractions();
             break;
@@ -29118,6 +29138,10 @@ var DrugList = function (_React$Component) {
         switch (status) {
           case 200:
             _reactToastify.toast.success(t('addToRememberListSuccess'), options);
+            var idx = _this5.state.drugs.indexOf(drug);
+            drug.isRemembered = !drug.isRemembered;
+            _this5.state.drugs[idx] = drug;
+            _this5.setState(_this5.state);
             break;
           case 400:
             _reactToastify.toast.error(t('addToRememberListFailed'), options);
@@ -29153,9 +29177,16 @@ var DrugList = function (_React$Component) {
           case 200:
             _reactToastify.toast.success(t('removeFromRememberListSuccess'), options);
             var idx = _this6.state.drugs.indexOf(drug);
-            _this6.state.drugs.splice(idx, 1);
-            _this6.setState(_this6.state);
-            _this6.checkForInteractions();
+
+            if (_this6.state.cmd != 'remember') {
+              drug.isRemembered = !drug.isRemembered;
+              _this6.state.drugs[idx] = drug;
+              _this6.setState(_this6.state);
+            } else {
+              _this6.state.drugs.splice(idx, 1);
+              _this6.checkForInteractions();
+            }
+
             break;
           case 400:
             _reactToastify.toast.error(t('removeFromRememberListFailed'), options);
@@ -30552,7 +30583,7 @@ exports.default = (0, _reactI18next.translate)()(Register);
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+    value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -30592,473 +30623,485 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // See https://facebook.github.io/react/docs/forms.html for documentation about
 // forms.
 var UserData = function (_React$Component) {
-	_inherits(UserData, _React$Component);
+    _inherits(UserData, _React$Component);
 
-	function UserData(props) {
-		_classCallCheck(this, UserData);
+    function UserData(props) {
+        _classCallCheck(this, UserData);
 
-		var _this = _possibleConstructorReturn(this, (UserData.__proto__ || Object.getPrototypeOf(UserData)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (UserData.__proto__ || Object.getPrototypeOf(UserData)).call(this, props));
 
-		_this.state = {
-			firstname: '',
-			lastname: '',
-			dateOfBirth: '',
-			gender: { id: 0 },
-			email: '',
-			redGreenColorblind: false,
-			levelOfDetail: 1,
-			preferredFontSize: 'defaultFontSize',
-			sending: false
-		};
+        _this.state = {
+            firstname: '',
+            lastname: '',
+            dateOfBirth: '',
+            gender: { id: 0 },
+            email: '',
+            redGreenColorblind: false,
+            levelOfDetail: 1,
+            preferredFontSize: 'defaultFontSize',
+            sending: false
+        };
 
-		_this.handleFirstnameChange = _this.handleFirstnameChange.bind(_this);
-		_this.handleLastnameChange = _this.handleLastnameChange.bind(_this);
-		_this.handleDateOfBirthChange = _this.handleDateOfBirthChange.bind(_this);
+        _this.handleFirstnameChange = _this.handleFirstnameChange.bind(_this);
+        _this.handleLastnameChange = _this.handleLastnameChange.bind(_this);
+        _this.handleDateOfBirthChange = _this.handleDateOfBirthChange.bind(_this);
 
-		_this.handleGenderChange = _this.handleGenderChange.bind(_this);
-		_this.handleRedGreenColorblind = _this.handleRedGreenColorblind.bind(_this);
+        _this.handleGenderChange = _this.handleGenderChange.bind(_this);
+        _this.handleRedGreenColorblind = _this.handleRedGreenColorblind.bind(_this);
 
-		_this.handleEmailChange = _this.handleEmailChange.bind(_this);
+        _this.handleEmailChange = _this.handleEmailChange.bind(_this);
 
-		_this.handleChangeLevelOfDetail = _this.handleChangeLevelOfDetail.bind(_this);
-		_this.handleChangePreferredFontSize = _this.handleChangePreferredFontSize.bind(_this);
+        _this.handleChangeLevelOfDetail = _this.handleChangeLevelOfDetail.bind(_this);
+        _this.handleChangePreferredFontSize = _this.handleChangePreferredFontSize.bind(_this);
 
-		_this.handleSubmit = _this.handleSubmit.bind(_this);
-		return _this;
-	}
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
+    }
 
-	_createClass(UserData, [{
-		key: "componentWillMount",
-		value: function componentWillMount() {
-			var _this2 = this;
+    _createClass(UserData, [{
+        key: "componentWillMount",
+        value: function componentWillMount() {
+            var _this2 = this;
 
-			if (!_User2.default.isAuthenticated()) return;
+            if (!_User2.default.isAuthenticated()) return;
 
-			_axios2.default.get("/user/" + _User2.default.id).then(function (_ref) {
-				var data = _ref.data,
-				    status = _ref.status;
+            _axios2.default.get("/user/" + _User2.default.id).then(function (_ref) {
+                var data = _ref.data,
+                    status = _ref.status;
 
-				_this2.state.firstname = data.value.firstname;
-				_this2.state.lastname = data.value.lastname;
-				_this2.state.email = data.value.email || '';
-				_this2.state.dateOfBirth = data.value.dateOfBirth || '', _this2.state.gender = data.value.gender || { id: 0 };
-				_this2.state.username = data.value.username;
-				_this2.state.redGreenColorblind = data.value.redGreenColorblind || false;
+                _this2.state.firstname = data.value.firstname;
+                _this2.state.lastname = data.value.lastname;
+                _this2.state.email = data.value.email || '';
+                _this2.state.dateOfBirth = data.value.dateOfBirth || '', _this2.state.gender = data.value.gender || { id: 0 };
+                _this2.state.username = data.value.username;
+                _this2.state.redGreenColorblind = data.value.redGreenColorblind || false;
 
-				_this2.state.levelOfDetail = data.value.levelOfDetail || 0;
-				_this2.state.preferredFontSize = data.value.preferredFontSize || 'defaultFontSize';
+                _this2.state.levelOfDetail = data.value.levelOfDetail || 0;
+                _this2.state.preferredFontSize = data.value.preferredFontSize || 'defaultFontSize';
 
-				_this2.setState(_this2.state);
-			});
-		}
-	}, {
-		key: "handleFirstnameChange",
-		value: function handleFirstnameChange(event) {
-			this.state.firstname = event.target.value;
-			this.setState(this.state);
-		}
-	}, {
-		key: "handleLastnameChange",
-		value: function handleLastnameChange(event) {
-			this.state.lastname = event.target.value;
-			this.setState(this.state);
-		}
-	}, {
-		key: "handleGenderChange",
-		value: function handleGenderChange(event) {
-			this.state.gender = { id: event.target.value };
-			this.setState(this.state);
-		}
-	}, {
-		key: "handleDateOfBirthChange",
-		value: function handleDateOfBirthChange(event) {
-			this.state.dateOfBirth = event.target.value;
-			this.setState(this.state);
-		}
-	}, {
-		key: "handleUsernameChange",
-		value: function handleUsernameChange(event) {
-			this.state.username = event.target.value;
-			this.setState(this.state);
-		}
-	}, {
-		key: "handleRedGreenColorblind",
-		value: function handleRedGreenColorblind(event) {
-			this.state.redGreenColorblind = event.target.value == 1 ? true : false;
-			this.setState(this.state);
+                _this2.setState(_this2.state);
+            });
+        }
+    }, {
+        key: "handleFirstnameChange",
+        value: function handleFirstnameChange(event) {
+            this.state.firstname = event.target.value;
+            this.setState(this.state);
+        }
+    }, {
+        key: "handleLastnameChange",
+        value: function handleLastnameChange(event) {
+            this.state.lastname = event.target.value;
+            this.setState(this.state);
+        }
+    }, {
+        key: "handleGenderChange",
+        value: function handleGenderChange(event) {
+            this.state.gender = { id: event.target.value };
+            this.setState(this.state);
+        }
+    }, {
+        key: "handleDateOfBirthChange",
+        value: function handleDateOfBirthChange(event) {
+            this.state.dateOfBirth = event.target.value;
+            this.setState(this.state);
+        }
+    }, {
+        key: "handleUsernameChange",
+        value: function handleUsernameChange(event) {
+            this.state.username = event.target.value;
+            this.setState(this.state);
+        }
+    }, {
+        key: "handleRedGreenColorblind",
+        value: function handleRedGreenColorblind(event) {
+            this.state.redGreenColorblind = event.target.value == 1 ? true : false;
+            this.setState(this.state);
 
-			_User2.default.setRedGreenColorblind(this.state.redGreenColorblind);
-		}
-	}, {
-		key: "handleChangeLevelOfDetail",
-		value: function handleChangeLevelOfDetail(event) {
-			this.state.levelOfDetail = event.target.value;
-			this.setState(this.state);
+            _User2.default.setRedGreenColorblind(this.state.redGreenColorblind);
+        }
+    }, {
+        key: "handleChangeLevelOfDetail",
+        value: function handleChangeLevelOfDetail(event) {
+            this.state.levelOfDetail = event.target.value;
+            this.setState(this.state);
 
-			_User2.default.setLevelOfDetail(this.state.levelOfDetail);
-		}
-	}, {
-		key: "handleChangePreferredFontSize",
-		value: function handleChangePreferredFontSize(event) {
-			this.state.preferredFontSize = event.target.value;
-			this.setState(this.state);
+            _User2.default.setLevelOfDetail(this.state.levelOfDetail);
+        }
+    }, {
+        key: "handleChangePreferredFontSize",
+        value: function handleChangePreferredFontSize(event) {
+            this.state.preferredFontSize = event.target.value;
+            this.setState(this.state);
 
-			_User2.default.setPreferredFontSize(this.state.preferredFontSize);
-			this.props.updateFontSize(this.state.preferredFontSize);
-		}
-	}, {
-		key: "handleEmailChange",
-		value: function handleEmailChange(event) {
-			this.state.email = event.target.value;
-			this.setState(this.state);
-		}
-	}, {
-		key: "handleSubmit",
-		value: function handleSubmit(event) {
-			var _this3 = this;
+            _User2.default.setPreferredFontSize(this.state.preferredFontSize);
+            this.props.updateFontSize(this.state.preferredFontSize);
+        }
+    }, {
+        key: "handleEmailChange",
+        value: function handleEmailChange(event) {
+            this.state.email = event.target.value;
+            this.setState(this.state);
+        }
+    }, {
+        key: "handleSubmit",
+        value: function handleSubmit(event) {
+            var _this3 = this;
 
-			event.preventDefault();
+            event.preventDefault();
 
-			if (this.state.sending) return;
+            if (this.state.sending) return;
 
-			var t = this.props.t;
+            var t = this.props.t;
 
-			var options = {
-				position: _reactToastify.toast.POSITION.BOTTOM_CENTER
-			};
+            var options = {
+                position: _reactToastify.toast.POSITION.BOTTOM_CENTER
+            };
 
-			var date = (0, _moment2.default)(this.state.dateOfBirth);
+            var date = (0, _moment2.default)(this.state.dateOfBirth);
 
-			if (!date.isValid()) {
-				if ((0, _moment2.default)(this.state.dateOfBirth, "DD.MM.YYYY").isValid()) {
-					date = (0, _moment2.default)(this.state.dateOfBirth, "DD.MM.YYYY");
-				} else {
-					_reactToastify.toast.error(t('invalidDateFormat'), options);
-					return;
-				}
-			}
+            if (!date.isValid()) {
+                if ((0, _moment2.default)(this.state.dateOfBirth, "DD.MM.YYYY").isValid()) {
+                    date = (0, _moment2.default)(this.state.dateOfBirth, "DD.MM.YYYY");
+                } else {
+                    _reactToastify.toast.error(t('invalidDateFormat'), options);
+                    return;
+                }
+            }
 
-			this.state.sending = true;
-			this.setState(this.state);
+            this.state.sending = true;
+            this.setState(this.state);
 
-			_axios2.default.post('/user/update', {
-				firstname: this.state.firstname,
-				lastname: this.state.lastname,
-				dateOfBirth: date.format("YYYY-MM-DD"),
-				gender: this.state.gender,
-				email: this.state.email,
-				redGreenColorblind: this.state.redGreenColorblind,
-				levelOfDetail: this.state.levelOfDetail,
-				preferredFontSize: this.state.preferredFontSize
-			}).then(function (_ref2) {
-				var data = _ref2.data,
-				    status = _ref2.status;
+            _axios2.default.post('/user/update', {
+                firstname: this.state.firstname,
+                lastname: this.state.lastname,
+                dateOfBirth: date.format("YYYY-MM-DD"),
+                gender: this.state.gender,
+                email: this.state.email,
+                redGreenColorblind: this.state.redGreenColorblind,
+                levelOfDetail: this.state.levelOfDetail,
+                preferredFontSize: this.state.preferredFontSize
+            }).then(function (_ref2) {
+                var data = _ref2.data,
+                    status = _ref2.status;
 
-				_this3.state.sending = false;
-				_this3.setState(_this3.state);
+                _this3.state.sending = false;
+                _this3.setState(_this3.state);
 
-				var t = _this3.props.t;
+                var t = _this3.props.t;
 
-				var options = {
-					position: _reactToastify.toast.POSITION.BOTTOM_CENTER
-				};
+                var options = {
+                    position: _reactToastify.toast.POSITION.BOTTOM_CENTER
+                };
 
-				switch (status) {
-					case 200:
-						_reactToastify.toast.success(t('savingSuccessfull'), options);
-						break;
-					case 400:
-						_reactToastify.toast.error(t('savingFailed'), options);
-						break;
-					case 401:
-						console.log(data, "not permitted");
-						break;
-				}
-			});
-		}
-	}, {
-		key: "render",
-		value: function render() {
-			var _React$createElement;
+                switch (status) {
+                    case 200:
+                        _reactToastify.toast.success(t('savingSuccessfull'), options);
+                        break;
+                    case 400:
+                        _reactToastify.toast.error(t('savingFailed'), options);
+                        break;
+                    case 401:
+                        console.log(data, "not permitted");
+                        break;
+                }
+            });
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _React$createElement;
 
-			var t = this.props.t;
+            var t = this.props.t;
 
-			var firstname = _User2.default.firstname;
-			var lastname = _User2.default.lastname;
+            var firstname = _User2.default.firstname;
+            var lastname = _User2.default.lastname;
 
-			return _react2.default.createElement(
-				"div",
-				{ className: "container marketing no-banner" },
-				_react2.default.createElement(
-					"div",
-					{ className: "page-header" },
-					_react2.default.createElement(
-						"h3",
-						null,
-						t("userData")
-					)
-				),
-				_User2.default.levelOfDetail >= 1 && _react2.default.createElement(
-					"div",
-					{ className: "text-box" },
-					t("userCockpitDescr").replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
-				),
-				_react2.default.createElement(
-					"form",
-					{ onSubmit: this.handleSubmit },
-					_react2.default.createElement(
-						"fieldset",
-						null,
-						_react2.default.createElement(
-							"div",
-							{ className: "form-group col-md-4 col-lg-4" },
-							_react2.default.createElement(
-								"label",
-								{ htmlFor: "gender" },
-								t('gender')
-							),
-							_react2.default.createElement(
-								"select",
-								(_React$createElement = { id: "gender", value: "0", name: "gender", className: "form-control", title: t('gender') }, _defineProperty(_React$createElement, "value", this.state.gender.id), _defineProperty(_React$createElement, "onChange", this.handleGenderChange), _React$createElement),
-								_react2.default.createElement(
-									"option",
-									{ value: "0", disabled: true },
-									t('noInfo')
-								),
-								_react2.default.createElement(
-									"option",
-									{ value: "2" },
-									t('female')
-								),
-								_react2.default.createElement(
-									"option",
-									{ value: "1" },
-									t('male')
-								)
-							)
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "form-group col-md-4 col-lg-4" },
-							_react2.default.createElement(
-								"label",
-								{ htmlFor: "firstname" },
-								t('firstname')
-							),
-							_react2.default.createElement("input", { type: "text", name: "firstname", id: "firstname", className: "form-control", value: this.state.firstname, onChange: this.handleFirstnameChange })
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "form-group col-md-4 col-lg-4" },
-							_react2.default.createElement(
-								"label",
-								{ htmlFor: "lastname" },
-								t('lastname')
-							),
-							_react2.default.createElement("input", { type: "text", name: "lastname", id: "lastname", className: "form-control", value: this.state.lastname, onChange: this.handleLastnameChange })
-						)
-					),
-					_react2.default.createElement(
-						"fieldset",
-						null,
-						_react2.default.createElement(
-							"div",
-							{ className: "form-group col-lg-5 col-md-5" },
-							_react2.default.createElement(
-								"label",
-								{ htmlFor: "dateOfBirth" },
-								t('dateOfBirth')
-							),
-							_react2.default.createElement("input", { type: "text", name: "dateOfBirth", id: "dateOfBirth", className: "form-control", value: this.state.dateOfBirth, onChange: this.handleDateOfBirthChange })
-						),
-						_react2.default.createElement(
-							"div",
-							{ className: "form-group col-lg-5 col-md-5" },
-							_react2.default.createElement(
-								"label",
-								{ htmlFor: "email" },
-								t('email')
-							),
-							_react2.default.createElement("input", { type: "text", name: "email", id: "email", className: "form-control", value: this.state.email, onChange: this.handleEmailChange })
-						)
-					),
-					_react2.default.createElement(
-						"fieldset",
-						null,
-						_react2.default.createElement(
-							"p",
-							null,
-							_react2.default.createElement(
-								"b",
-								null,
-								t("redGreenColorblind")
-							)
-						),
-						_react2.default.createElement(
-							"ul",
-							{ className: "list-inline" },
-							_react2.default.createElement(
-								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
-								_react2.default.createElement(
-									"label",
-									{ htmlFor: "red-green-colorblind-yes", className: "radio-inline" },
-									_react2.default.createElement("input", { type: "radio", value: "1", id: "red-green-colorblind-yes", name: "redGreenColorblind", checked: this.state.redGreenColorblind == true, onChange: this.handleRedGreenColorblind }),
-									t('yes')
-								)
-							),
-							_react2.default.createElement(
-								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
-								_react2.default.createElement(
-									"label",
-									{ htmlFor: "red-green-colorblind-no", className: "radio-inline" },
-									_react2.default.createElement("input", { type: "radio", value: "0", id: "red-green-colorblind-no", name: "redGreenColorblind", checked: this.state.redGreenColorblind == false, onChange: this.handleRedGreenColorblind }),
-									t('no')
-								)
-							)
-						)
-					),
-					_react2.default.createElement(
-						"fieldset",
-						null,
-						_react2.default.createElement(
-							"p",
-							null,
-							_react2.default.createElement(
-								"b",
-								null,
-								t("levelOfDetail")
-							)
-						),
-						_react2.default.createElement(
-							"ul",
-							{ className: "list-inline" },
-							_react2.default.createElement(
-								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
-								_react2.default.createElement(
-									"label",
-									{ htmlFor: "settings-detail-min", className: "radio-inline" },
-									_react2.default.createElement("input", { type: "radio", value: "1", id: "settings-detail-min", name: "levelOfDetail", checked: this.state.levelOfDetail == 1, onChange: this.handleChangeLevelOfDetail }),
-									"minimal",
-									_react2.default.createElement(
-										"p",
-										null,
-										"kein Hilfe"
-									)
-								)
-							),
-							_react2.default.createElement(
-								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
-								_react2.default.createElement(
-									"label",
-									{ htmlFor: "settings-detail-default", className: "radio-inline" },
-									_react2.default.createElement("input", { type: "radio", value: "3", id: "settings-detail-default", name: "levelOfDetail", checked: this.state.levelOfDetail == 3, onChange: this.handleChangeLevelOfDetail }),
-									"standard",
-									_react2.default.createElement(
-										"p",
-										null,
-										"Hilfe"
-									)
-								)
-							),
-							_react2.default.createElement(
-								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
-								_react2.default.createElement(
-									"label",
-									{ htmlFor: "settings-detail-max", className: "radio-inline" },
-									_react2.default.createElement("input", { type: "radio", value: "5", id: "settings-detail-max", name: "levelOfDetail", checked: this.state.levelOfDetail == 5, onChange: this.handleChangeLevelOfDetail }),
-									"maximal",
-									_react2.default.createElement(
-										"p",
-										null,
-										"Viel Hilfe"
-									)
-								)
-							)
-						)
-					),
-					_react2.default.createElement(
-						"fieldset",
-						null,
-						_react2.default.createElement(
-							"p",
-							null,
-							_react2.default.createElement(
-								"b",
-								null,
-								t("preferredFontSize")
-							)
-						),
-						_react2.default.createElement(
-							"ul",
-							{ className: "list-inline" },
-							_react2.default.createElement(
-								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
-								_react2.default.createElement(
-									"label",
-									{ htmlFor: "settings-preferred-font-size-min", className: "radio-inline" },
-									_react2.default.createElement("input", { type: "radio", value: "minFontSize", id: "settings-preferred-font-size-min", name: "preferredFontSize", checked: this.state.preferredFontSize == 'minFontSize', onChange: this.handleChangePreferredFontSize }),
-									_react2.default.createElement(
-										"span",
-										{ className: "small-text" },
-										"AAA"
-									)
-								)
-							),
-							_react2.default.createElement(
-								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
-								_react2.default.createElement(
-									"label",
-									{ htmlFor: "settings-preferred-font-size-default", className: "radio-inline" },
-									_react2.default.createElement("input", { type: "radio", value: "defaultFontSize", id: "settings-preferred-font-size-default", name: "preferredFontSize", checked: this.state.preferredFontSize == 'defaultFontSize', onChange: this.handleChangePreferredFontSize }),
-									_react2.default.createElement(
-										"span",
-										{ className: "medium-text" },
-										"AAA"
-									)
-								)
-							),
-							_react2.default.createElement(
-								"li",
-								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
-								_react2.default.createElement(
-									"label",
-									{ htmlFor: "settings-preferred-font-size-max", className: "radio-inline" },
-									_react2.default.createElement("input", { type: "radio", value: "maxFontSize", id: "settings-preferred-font-size-max", name: "preferredFontSize", checked: this.state.preferredFontSize == 'maxFontSize', onChange: this.handleChangePreferredFontSize }),
-									_react2.default.createElement(
-										"span",
-										{ className: "big-text" },
-										"AAA"
-									)
-								)
-							)
-						)
-					),
-					_react2.default.createElement(
-						"div",
-						{ className: "form-actions" },
-						!this.state.sending ? _react2.default.createElement(
-							"button",
-							{ type: "submit", className: "btn btn-primary" },
-							t('save')
-						) : _react2.default.createElement(
-							"button",
-							{ className: "btn btn-default" },
-							_react2.default.createElement("img", { src: "data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" })
-						)
-					)
-				)
-			);
-		}
-	}]);
+            return _react2.default.createElement(
+                "div",
+                { className: "container marketing no-banner" },
+                _react2.default.createElement(
+                    "div",
+                    { className: "page-header" },
+                    _react2.default.createElement(
+                        "h3",
+                        null,
+                        t("userData")
+                    )
+                ),
+                _User2.default.levelOfDetail >= 1 && _react2.default.createElement(
+                    "div",
+                    { className: "text-box" },
+                    t("userCockpitDescr").replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
+                ),
+                _react2.default.createElement(
+                    "form",
+                    { onSubmit: this.handleSubmit },
+                    _react2.default.createElement(
+                        "fieldset",
+                        null,
+                        _react2.default.createElement(
+                            "div",
+                            { className: "form-group col-md-6 col-lg-6" },
+                            _react2.default.createElement(
+                                "label",
+                                { htmlFor: "firstname" },
+                                t('firstname')
+                            ),
+                            _react2.default.createElement("input", { type: "text", name: "firstname", id: "firstname", className: "form-control", value: this.state.firstname, onChange: this.handleFirstnameChange })
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "form-group col-md-6 col-lg-6" },
+                            _react2.default.createElement(
+                                "label",
+                                { htmlFor: "lastname" },
+                                t('lastname')
+                            ),
+                            _react2.default.createElement("input", { type: "text", name: "lastname", id: "lastname", className: "form-control", value: this.state.lastname, onChange: this.handleLastnameChange })
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "form-group col-md-6 col-lg-6" },
+                            _react2.default.createElement(
+                                "label",
+                                { htmlFor: "gender" },
+                                t('gender')
+                            ),
+                            _react2.default.createElement(
+                                "select",
+                                (_React$createElement = { id: "gender", value: "0", name: "gender", className: "form-control", title: t('gender') }, _defineProperty(_React$createElement, "value", this.state.gender.id), _defineProperty(_React$createElement, "onChange", this.handleGenderChange), _React$createElement),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "0", disabled: true },
+                                    t('noInfo')
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "2" },
+                                    t('female')
+                                ),
+                                _react2.default.createElement(
+                                    "option",
+                                    { value: "1" },
+                                    t('male')
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "form-group col-md-6 col-lg-6" },
+                            _react2.default.createElement(
+                                "label",
+                                { htmlFor: "dateOfBirth" },
+                                t('dateOfBirth')
+                            ),
+                            _react2.default.createElement("input", { type: "text", name: "dateOfBirth", id: "dateOfBirth", className: "form-control", value: this.state.dateOfBirth, onChange: this.handleDateOfBirthChange })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "fieldset",
+                        null,
+                        _react2.default.createElement(
+                            "div",
+                            { className: "form-group col-lg-6 col-md-6" },
+                            _react2.default.createElement(
+                                "label",
+                                { htmlFor: "email" },
+                                t('email')
+                            ),
+                            _react2.default.createElement("input", { type: "text", name: "email", id: "email", className: "form-control", value: this.state.email, onChange: this.handleEmailChange })
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "fieldset",
+                        null,
+                        _react2.default.createElement(
+                            "div",
+                            { className: "form-group col-lg-6 col-md-6" },
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                _react2.default.createElement(
+                                    "b",
+                                    null,
+                                    t("redGreenColorblind")
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "ul",
+                                { className: "list-inline" },
+                                _react2.default.createElement(
+                                    "li",
+                                    { className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
+                                    _react2.default.createElement(
+                                        "label",
+                                        { htmlFor: "red-green-colorblind-yes", className: "radio-inline" },
+                                        _react2.default.createElement("input", { type: "radio", value: "1", id: "red-green-colorblind-yes", name: "redGreenColorblind", checked: this.state.redGreenColorblind == true, onChange: this.handleRedGreenColorblind }),
+                                        t('yes')
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    "li",
+                                    { className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
+                                    _react2.default.createElement(
+                                        "label",
+                                        { htmlFor: "red-green-colorblind-no", className: "radio-inline" },
+                                        _react2.default.createElement("input", { type: "radio", value: "0", id: "red-green-colorblind-no", name: "redGreenColorblind", checked: this.state.redGreenColorblind == false, onChange: this.handleRedGreenColorblind }),
+                                        t('no')
+                                    )
+                                )
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "fieldset",
+                        null,
+                        _react2.default.createElement(
+                            "div",
+                            { className: "form-group col-lg-9 col-md-9" },
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                _react2.default.createElement(
+                                    "b",
+                                    null,
+                                    t("levelOfDetail")
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "ul",
+                                { className: "list-inline" },
+                                _react2.default.createElement(
+                                    "li",
+                                    { className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
+                                    _react2.default.createElement(
+                                        "label",
+                                        { htmlFor: "settings-detail-min", className: "radio-inline" },
+                                        _react2.default.createElement("input", { type: "radio", value: "1", id: "settings-detail-min", name: "levelOfDetail", checked: this.state.levelOfDetail == 1, onChange: this.handleChangeLevelOfDetail }),
+                                        "minimal",
+                                        _react2.default.createElement(
+                                            "p",
+                                            null,
+                                            "kein Hilfe"
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    "li",
+                                    { className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
+                                    _react2.default.createElement(
+                                        "label",
+                                        { htmlFor: "settings-detail-default", className: "radio-inline" },
+                                        _react2.default.createElement("input", { type: "radio", value: "3", id: "settings-detail-default", name: "levelOfDetail", checked: this.state.levelOfDetail == 3, onChange: this.handleChangeLevelOfDetail }),
+                                        "standard",
+                                        _react2.default.createElement(
+                                            "p",
+                                            null,
+                                            "Hilfe"
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    "li",
+                                    { className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
+                                    _react2.default.createElement(
+                                        "label",
+                                        { htmlFor: "settings-detail-max", className: "radio-inline" },
+                                        _react2.default.createElement("input", { type: "radio", value: "5", id: "settings-detail-max", name: "levelOfDetail", checked: this.state.levelOfDetail == 5, onChange: this.handleChangeLevelOfDetail }),
+                                        "maximal",
+                                        _react2.default.createElement(
+                                            "p",
+                                            null,
+                                            "Viel Hilfe"
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "fieldset",
+                        null,
+                        _react2.default.createElement(
+                            "div",
+                            { className: "form-group col-lg-9 col-md-9" },
+                            _react2.default.createElement(
+                                "p",
+                                null,
+                                _react2.default.createElement(
+                                    "b",
+                                    null,
+                                    t("preferredFontSize")
+                                )
+                            ),
+                            _react2.default.createElement(
+                                "ul",
+                                { className: "list-inline" },
+                                _react2.default.createElement(
+                                    "li",
+                                    { className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
+                                    _react2.default.createElement(
+                                        "label",
+                                        { htmlFor: "settings-preferred-font-size-min", className: "radio-inline" },
+                                        _react2.default.createElement("input", { type: "radio", value: "minFontSize", id: "settings-preferred-font-size-min", name: "preferredFontSize", checked: this.state.preferredFontSize == 'minFontSize', onChange: this.handleChangePreferredFontSize }),
+                                        _react2.default.createElement(
+                                            "span",
+                                            { className: "small-text" },
+                                            "AAA"
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    "li",
+                                    { className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
+                                    _react2.default.createElement(
+                                        "label",
+                                        { htmlFor: "settings-preferred-font-size-default", className: "radio-inline" },
+                                        _react2.default.createElement("input", { type: "radio", value: "defaultFontSize", id: "settings-preferred-font-size-default", name: "preferredFontSize", checked: this.state.preferredFontSize == 'defaultFontSize', onChange: this.handleChangePreferredFontSize }),
+                                        _react2.default.createElement(
+                                            "span",
+                                            { className: "medium-text" },
+                                            "AAA"
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    "li",
+                                    { className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
+                                    _react2.default.createElement(
+                                        "label",
+                                        { htmlFor: "settings-preferred-font-size-max", className: "radio-inline" },
+                                        _react2.default.createElement("input", { type: "radio", value: "maxFontSize", id: "settings-preferred-font-size-max", name: "preferredFontSize", checked: this.state.preferredFontSize == 'maxFontSize', onChange: this.handleChangePreferredFontSize }),
+                                        _react2.default.createElement(
+                                            "span",
+                                            { className: "big-text" },
+                                            "AAA"
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        "div",
+                        { className: "form-actions" },
+                        !this.state.sending ? _react2.default.createElement(
+                            "button",
+                            { type: "submit", className: "btn btn-primary" },
+                            t('save')
+                        ) : _react2.default.createElement(
+                            "button",
+                            { className: "btn btn-default" },
+                            _react2.default.createElement("img", { src: "data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" })
+                        )
+                    )
+                )
+            );
+        }
+    }]);
 
-	return UserData;
+    return UserData;
 }(_react2.default.Component);
 
 exports.default = (0, _reactI18next.translate)()(UserData);

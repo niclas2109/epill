@@ -196,99 +196,105 @@ class UserData extends React.Component {
 		    } 
 	        	   <form onSubmit={this.handleSubmit}>
 		        		<fieldset>
-			                <div className="form-group col-md-4 col-lg-4">
-			                   <label htmlFor="gender">{t('gender')}</label>
-			                   <select id="gender" value="0" name="gender" className="form-control" title={t('gender')} value={this.state.gender.id} onChange={this.handleGenderChange}>
-	                        			<option value="0" disabled>{t('noInfo')}</option>
-			                         <option value="2">{t('female')}</option>
-			                         <option value="1">{t('male')}</option>
-			                    </select>
-			               </div>
-				            <div className="form-group col-md-4 col-lg-4">
+				            <div className="form-group col-md-6 col-lg-6">
 				               <label htmlFor="firstname">{t('firstname')}</label>
 				               <input type="text" name="firstname" id="firstname" className="form-control" value={this.state.firstname} onChange={this.handleFirstnameChange} />
 				            </div> 
-				            <div className="form-group col-md-4 col-lg-4">
+				            <div className="form-group col-md-6 col-lg-6">
 				               <label htmlFor="lastname">{t('lastname')}</label>
 				               <input type="text" name="lastname" id="lastname" className="form-control" value={this.state.lastname} onChange={this.handleLastnameChange} />
-				            </div> 
+				            </div>
+                            <div className="form-group col-md-6 col-lg-6">
+                               <label htmlFor="gender">{t('gender')}</label>
+                               <select id="gender" value="0" name="gender" className="form-control" title={t('gender')} value={this.state.gender.id} onChange={this.handleGenderChange}>
+                                        <option value="0" disabled>{t('noInfo')}</option>
+                                     <option value="2">{t('female')}</option>
+                                     <option value="1">{t('male')}</option>
+                                </select>
+                           </div>
+                           <div className="form-group col-md-6 col-lg-6">
+                             <label htmlFor="dateOfBirth">{t('dateOfBirth')}</label>
+                             <input type="text" name="dateOfBirth" id="dateOfBirth" className="form-control" value={this.state.dateOfBirth} onChange={this.handleDateOfBirthChange} />
+                          </div> 
 					</fieldset>
 						
 		        		<fieldset>
-				          <div className="form-group col-lg-5 col-md-5">
-				             <label htmlFor="dateOfBirth">{t('dateOfBirth')}</label>
-				             <input type="text" name="dateOfBirth" id="dateOfBirth" className="form-control" value={this.state.dateOfBirth} onChange={this.handleDateOfBirthChange} />
-				          </div> 
-					      <div className="form-group col-lg-5 col-md-5">
+					      <div className="form-group col-lg-6 col-md-6">
 					         <label htmlFor="email">{t('email')}</label>
 					         <input type="text" name="email" id="email" className="form-control" value={this.state.email} onChange={this.handleEmailChange} />
 					      </div> 
 					</fieldset>
 					<fieldset>
-                        <p><b>{t("redGreenColorblind")}</b></p>
-                        <ul className="list-inline">
-                            <li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-                                <label htmlFor="red-green-colorblind-yes" className="radio-inline">
-                                    <input type="radio" value="1" id="red-green-colorblind-yes" name="redGreenColorblind" checked={this.state.redGreenColorblind == true} onChange={this.handleRedGreenColorblind} /> 
-                                     {t('yes')}
-                                 </label>
-                            </li>
-                            <li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-                                <label htmlFor="red-green-colorblind-no" className="radio-inline">
-                                    <input type="radio" value="0" id="red-green-colorblind-no" name="redGreenColorblind" checked={this.state.redGreenColorblind == false} onChange={this.handleRedGreenColorblind} /> 
-                                    {t('no')}
-                                </label>
-                            </li>
-                        </ul>
+                          <div className="form-group col-lg-6 col-md-6">
+                            <p><b>{t("redGreenColorblind")}</b></p>
+                            <ul className="list-inline">
+                                <li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
+                                    <label htmlFor="red-green-colorblind-yes" className="radio-inline">
+                                        <input type="radio" value="1" id="red-green-colorblind-yes" name="redGreenColorblind" checked={this.state.redGreenColorblind == true} onChange={this.handleRedGreenColorblind} /> 
+                                         {t('yes')}
+                                     </label>
+                                </li>
+                                <li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
+                                    <label htmlFor="red-green-colorblind-no" className="radio-inline">
+                                        <input type="radio" value="0" id="red-green-colorblind-no" name="redGreenColorblind" checked={this.state.redGreenColorblind == false} onChange={this.handleRedGreenColorblind} /> 
+                                        {t('no')}
+                                    </label>
+                                </li>
+                            </ul>
+                        </div>
                     </fieldset>
 					<fieldset>
-						<p><b>{t("levelOfDetail")}</b></p>
-						<ul className="list-inline">
-							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-								<label htmlFor="settings-detail-min" className="radio-inline">
-									<input type="radio" value="1" id="settings-detail-min" name="levelOfDetail" checked={this.state.levelOfDetail == 1} onChange={this.handleChangeLevelOfDetail} />
-									minimal
-									<p>kein Hilfe</p>
-								</label>
-							</li>
-							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-								<label htmlFor="settings-detail-default" className="radio-inline">
-									<input type="radio" value="3" id="settings-detail-default" name="levelOfDetail" checked={this.state.levelOfDetail == 3} onChange={this.handleChangeLevelOfDetail} />
-									standard
-									<p>Hilfe</p>
-								</label>
-							</li>
-							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-								<label htmlFor="settings-detail-max" className="radio-inline">
-									<input type="radio" value="5" id="settings-detail-max" name="levelOfDetail" checked={this.state.levelOfDetail == 5} onChange={this.handleChangeLevelOfDetail} />
-									maximal
-									<p>Viel Hilfe</p>
-								</label>
-							</li>
-						</ul>
+					    <div className="form-group col-lg-9 col-md-9">
+        						<p><b>{t("levelOfDetail")}</b></p>
+        						<ul className="list-inline">
+        							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
+        								<label htmlFor="settings-detail-min" className="radio-inline">
+        									<input type="radio" value="1" id="settings-detail-min" name="levelOfDetail" checked={this.state.levelOfDetail == 1} onChange={this.handleChangeLevelOfDetail} />
+        									minimal
+        									<p>kein Hilfe</p>
+        								</label>
+        							</li>
+        							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
+        								<label htmlFor="settings-detail-default" className="radio-inline">
+        									<input type="radio" value="3" id="settings-detail-default" name="levelOfDetail" checked={this.state.levelOfDetail == 3} onChange={this.handleChangeLevelOfDetail} />
+        									standard
+        									<p>Hilfe</p>
+        								</label>
+        							</li>
+        							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
+        								<label htmlFor="settings-detail-max" className="radio-inline">
+        									<input type="radio" value="5" id="settings-detail-max" name="levelOfDetail" checked={this.state.levelOfDetail == 5} onChange={this.handleChangeLevelOfDetail} />
+        									maximal
+        									<p>Viel Hilfe</p>
+        								</label>
+        							</li>
+        						</ul>
+						</div>
 					</fieldset>
 					<fieldset>
-					<p><b>{t("preferredFontSize")}</b></p>
-					<ul className="list-inline">
-						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-							<label htmlFor="settings-preferred-font-size-min" className="radio-inline">
-								<input type="radio" value="minFontSize" id="settings-preferred-font-size-min" name="preferredFontSize" checked={this.state.preferredFontSize == 'minFontSize'} onChange={this.handleChangePreferredFontSize} />
-								<span className="small-text">AAA</span>
-							</label>
-						</li>
-						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-							<label htmlFor="settings-preferred-font-size-default" className="radio-inline">
-								<input type="radio" value="defaultFontSize" id="settings-preferred-font-size-default" name="preferredFontSize" checked={this.state.preferredFontSize == 'defaultFontSize'} onChange={this.handleChangePreferredFontSize} />
-								<span className="medium-text">AAA</span>
-							</label>
-						</li>
-						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-							<label htmlFor="settings-preferred-font-size-max" className="radio-inline">
-								<input type="radio" value="maxFontSize" id="settings-preferred-font-size-max" name="preferredFontSize" checked={this.state.preferredFontSize == 'maxFontSize'} onChange={this.handleChangePreferredFontSize} />
-								<span className="big-text">AAA</span>
-							</label>
-						</li>
-					</ul>
+                        <div className="form-group col-lg-9 col-md-9">
+            					<p><b>{t("preferredFontSize")}</b></p>
+            					<ul className="list-inline">
+            						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
+            							<label htmlFor="settings-preferred-font-size-min" className="radio-inline">
+            								<input type="radio" value="minFontSize" id="settings-preferred-font-size-min" name="preferredFontSize" checked={this.state.preferredFontSize == 'minFontSize'} onChange={this.handleChangePreferredFontSize} />
+            								<span className="small-text">AAA</span>
+            							</label>
+            						</li>
+            						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
+            							<label htmlFor="settings-preferred-font-size-default" className="radio-inline">
+            								<input type="radio" value="defaultFontSize" id="settings-preferred-font-size-default" name="preferredFontSize" checked={this.state.preferredFontSize == 'defaultFontSize'} onChange={this.handleChangePreferredFontSize} />
+            								<span className="medium-text">AAA</span>
+            							</label>
+            						</li>
+            						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
+            							<label htmlFor="settings-preferred-font-size-max" className="radio-inline">
+            								<input type="radio" value="maxFontSize" id="settings-preferred-font-size-max" name="preferredFontSize" checked={this.state.preferredFontSize == 'maxFontSize'} onChange={this.handleChangePreferredFontSize} />
+            								<span className="big-text">AAA</span>
+            							</label>
+            						</li>
+            					</ul>
+        					</div>
 				</fieldset>	
 						
 						<div className="form-actions">

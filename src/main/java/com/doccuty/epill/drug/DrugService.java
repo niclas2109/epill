@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.doccuty.epill.model.DrugFeature;
 import com.doccuty.epill.model.Interaction;
 import com.doccuty.epill.model.ItemInvocation;
+import com.doccuty.epill.model.util.UserSet;
 import com.doccuty.epill.user.SimpleUser;
 import com.doccuty.epill.user.User;
 import com.doccuty.epill.user.UserRepository;
@@ -49,7 +50,7 @@ public class DrugService {
     }
 
     public void saveDrug(Drug Drug) {
-    	repository.save(Drug);
+    		repository.save(Drug);
     }
 
 	public Drug findDrugById(long id) {
@@ -63,6 +64,20 @@ public class DrugService {
 			invocation.withDrug(drug).withUser(user);
 			
 			user = userService.saveItemInvocation(invocation);
+
+			for(User usr : drug.getUserRemembering()) {
+				if(usr.getId() == user.getId()) {
+					drug.setIsRemembered(true);
+					break;
+				}
+			}
+			
+			for(User usr : drug.getUser()) {
+				if(usr.getId() == user.getId()) {
+					drug.setIsTaken(true);
+					break;
+				}
+			}
 			
 			//TODO: make dynamically
 			

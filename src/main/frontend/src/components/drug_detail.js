@@ -50,7 +50,19 @@ class DrugDetail extends React.Component {
     		this.setState(this.state);
     }
     
+    
+    //
+    
+    toggleTaking(drug) {
+		if(drug.isTaken) {
+			this.removeFromTakingList(drug.id);
+		} else {
+			this.addToTakingList(drug.id);
+		}
+    }
+    
     addToTakingList(id) {
+    	
     	 	axios.post('/drug/taking/add', { id : id }, {
 	            validateStatus: (status) => {
 	                return (status >= 200 && status < 300) || status == 400 || status == 401
@@ -61,10 +73,12 @@ class DrugDetail extends React.Component {
              const options = {
              	    position: toast.POSITION.BOTTOM_CENTER
              };
-             
+
              switch (status) {
                  case 200:
                      toast.success(t('addToTakingListSuccess'), options);
+                     this.state.drug.isTaken = true;
+                     this.setState(this.state.drug);
                      break;
                  case 400:
                   	toast.error(t('addToTakingListFailed'), options);
@@ -91,6 +105,8 @@ class DrugDetail extends React.Component {
 	         switch (status) {
 	             case 200:
                      toast.success(t('removeFromTakingListSuccess'), options);
+                     this.state.drug.isTaken = !this.state.drug.isTaken;
+                     this.setState(this.state.drug);
 	                 break;
 	             case 400:
                      toast.error(t('removeFromTakingListFailed'), options);
@@ -101,6 +117,15 @@ class DrugDetail extends React.Component {
 	         }
 	     });
 	}
+    
+    
+    toggleRemember(drug) {
+		if(drug.isRemembered) {
+			this.removeFromRememberList(drug.id);
+		} else {
+			this.addToRememberList(drug.id);
+		}
+    }
     
     addToRememberList(id) {
 	 	axios.post('/drug/remember/add', { id : id }, {
@@ -117,6 +142,8 @@ class DrugDetail extends React.Component {
 	         switch (status) {
 	             case 200:
 	                 toast.success(t('addToRememberListSuccess'), options);
+                     this.state.drug.isRemembered = true;
+                     this.setState(this.state.drug);
 	                 break;
 	             case 400:
 	            	 	toast.error(t('addToRememberListFailed'), options);
@@ -146,6 +173,8 @@ class DrugDetail extends React.Component {
 	         switch (status) {
 	             case 200:
 	                 toast.success(t('removeFromRememberListSuccess'), options);
+                     this.state.drug.isRemembered = !this.state.drug.isRemembered;
+                     this.setState(this.state.drug);
 	                 break;
 	             case 400:
 	            	 	toast.error(t('removeFromRememberListFailed'), options);
@@ -265,12 +294,12 @@ class DrugDetail extends React.Component {
         				&&
 	        			<div className='btn-toolbar pull-right'>
 		        		    <div className='btn-group'>
-			    				<button type="button" className="btn btn-like" onClick={() => this.addToTakingList(drug.id)}>
-								<span className="glyphicon glyphicon-heart white"></span>
+			    				<button type="button" className="btn btn-like" onClick={() => this.toggleTaking(drug)}>
+								<span className={"glyphicon white" + ((!drug.isTaken) ? " glyphicon-heart" : " glyphicon-minus")}></span>
 							</button>
 							
-		        				<button type="button" className="btn btn-add" onClick={() => this.addToRememberList(drug.id)}>
-		        					<span className="glyphicon glyphicon-plus white"></span>
+		        				<button type="button" className="btn btn-add" onClick={() => this.toggleRemember(drug)}>
+		        					<span className={"glyphicon white" + ((!drug.isRemembered) ? " glyphicon-plus" : " glyphicon-minus")}></span>
 		        				</button>
 		        		    </div>
 		        		  </div>	

@@ -128,7 +128,7 @@ public class UserSet extends HashSet<User>
     * 
     * @return Subset of User objects that match the parameter
     */
-   public UserSet filterId(int value)
+   public UserSet filterId(long value)
    {
       UserSet result = new UserSet();
       
