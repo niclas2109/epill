@@ -25,11 +25,12 @@ import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
 
 import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.ItemInvocation;
+import com.doccuty.epill.packagingsection.PackagingSection;
+
 import de.uniks.networkparser.IdMap;
 
 import java.util.Date;
 
-import com.doccuty.epill.model.PackagingSection;
 import com.doccuty.epill.user.User;
 
 public class ItemInvocationCreator implements SendableEntityCreatorNoIndex

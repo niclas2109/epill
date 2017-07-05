@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.doccuty.epill.model.PackagingSection;
 import com.doccuty.epill.model.Question;
 import com.doccuty.epill.model.util.QuestionCreator;
 import com.doccuty.epill.model.util.UserCreator;
+import com.doccuty.epill.packagingsection.PackagingSection;
 import com.doccuty.epill.user.User;
 import com.doccuty.epill.user.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;

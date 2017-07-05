@@ -40,6 +40,7 @@ import de.uniks.networkparser.EntityUtil;
 
 import com.doccuty.epill.model.util.PackagingSectionSet;
 import com.doccuty.epill.model.util.UserSet;
+import com.doccuty.epill.packagingsection.PackagingSection;
 import com.doccuty.epill.user.User;
 
 /**

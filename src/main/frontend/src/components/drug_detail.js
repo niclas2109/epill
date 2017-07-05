@@ -14,7 +14,7 @@ class DrugDetail extends React.Component {
             drug: undefined
         }
         
-        this.getOriginalText = this.getOriginalText.bind(this);
+        this.toggleOriginalAndTailoredText = this.toggleOriginalAndTailoredText.bind(this);
     }
 
     init() {
@@ -37,21 +37,33 @@ class DrugDetail extends React.Component {
     
     //=============================
     
-    getOriginalText(section) {
-    		var text = "";
-    		var possible = "ABCDEF GHIJKLMN OPQRSTUVWXYZabcdefg hijklmnopq rstuvwx yz01 23456789";
+    toggleOriginalAndTailoredText(section) {
 
-    		for (var i = 0; i < 60; i++)
-    			text += possible.charAt(Math.floor(Math.random() * possible.length));
+    		var url = (!section.isTailored) ? `packagingSection/tailored/${section.topic.id}/${this.props.match.params.id}` : `packagingSection/${section.topic.id}/${this.props.match.params.id}`;
+        	
+    		axios.get(url)
+         .then(({data, status}) => {
+        	 	 
+        	 	switch(status) {
+        	 		case 200:
+        	 			var idx = this.state.drug.packagingSection.indexOf(section);
+                		this.state.drug.packagingSection[idx]["text"] = data["text"];
+                		this.setState(this.state);
+        	 			break;
+        	 		default:
+        	 			const {t} = this.props;
+        	 			const options = {
+        	 				position: toast.POSITION.BOTTOM_CENTER
+        	 			};
+        	 			toast.error(t('errorOccured'), options);
+        	 			break;
+        	 	}
+         });
 
-    		var idx = this.state.drug.packagingSection.indexOf(section);
-    		this.state.drug.packagingSection[idx]["text"] = text;
-        
-    		this.setState(this.state);
     }
     
     
-    //
+    //=============================
     
     toggleTaking(drug) {
 		if(drug.isTaken) {
@@ -262,7 +274,7 @@ class DrugDetail extends React.Component {
 		}
     		
     		return drug.packagingSection.map((section => {
-            return (	<Accordion section={section} getOriginalText={this.getOriginalText} key={section.id} /> );
+            return (	<Accordion section={section} toggleOriginalAndTailoredText={this.toggleOriginalAndTailoredText} key={section.id} /> );
         }));
     }
     

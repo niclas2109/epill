@@ -28,10 +28,11 @@ import com.doccuty.epill.model.DrugFeature;
 import com.doccuty.epill.model.Image;
 
 import de.uniks.networkparser.IdMap;
-import com.doccuty.epill.model.PackagingSection;
+
 import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.ActiveSubstance;
 import com.doccuty.epill.model.ProductGroup;
+import com.doccuty.epill.packagingsection.PackagingSection;
 import com.doccuty.epill.model.IndicationGroup;
 import com.doccuty.epill.model.PharmaceuticalForm;
 import com.doccuty.epill.model.AdverseEffect;

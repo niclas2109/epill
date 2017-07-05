@@ -19,7 +19,7 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
  */
 
-package com.doccuty.epill.model;
+package com.doccuty.epill.packagingsection;
 
 import de.uniks.networkparser.interfaces.SendableEntity;
 import java.beans.PropertyChangeSupport;
@@ -34,8 +34,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import java.beans.PropertyChangeListener;
 import com.doccuty.epill.model.PackagingTopic;
@@ -45,11 +45,7 @@ import com.doccuty.epill.model.util.ItemInvocationSet;
 import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.ItemInvocation;
 
-/**
- * 
- * @see <a href=
- *      '../../../../../../../src/test/java/com/doccuty/epill/model/SDMLib/ModelCreator.java'>ModelCreator.java</a>
- */
+
 @Entity
 @Table(name = "packaging_section")
 public class PackagingSection implements SendableEntity {
@@ -164,6 +160,35 @@ public class PackagingSection implements SendableEntity {
 	public PackagingSection withState(int value)
 	{
 	   setState(value);
+	   return this;
+	}
+	
+	
+	// ==========================================================================
+
+	public static final String PROPERTY_ISTAILORED = "isTailored";
+
+	@Transient
+	private boolean isTailored = false;
+	
+	public boolean getIsTailored()
+	{
+	   return this.isTailored;
+	}
+	
+	public void setIsTailored(boolean value)
+	{
+	   if (this.isTailored != value) {
+	   
+	      boolean oldValue = this.isTailored;
+	      this.isTailored = value;
+	      this.firePropertyChange(PROPERTY_ISTAILORED, oldValue, value);
+	   }
+	}
+	
+	public PackagingSection withIsTailored(boolean value)
+	{
+	   setIsTailored(value);
 	   return this;
 	}
 

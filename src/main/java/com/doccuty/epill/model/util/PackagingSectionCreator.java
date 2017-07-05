@@ -22,10 +22,9 @@
 package com.doccuty.epill.model.util;
 
 import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
-
-import com.doccuty.epill.model.PackagingSection;
 import de.uniks.networkparser.IdMap;
 import com.doccuty.epill.model.PackagingTopic;
+import com.doccuty.epill.packagingsection.PackagingSection;
 import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.ItemInvocation;
 
@@ -37,7 +36,8 @@ public class PackagingSectionCreator implements SendableEntityCreatorNoIndex
       PackagingSection.PROPERTY_TOPIC,
       PackagingSection.PROPERTY_TEXT,
       PackagingSection.PROPERTY_DRUG,
-      PackagingSection.PROPERTY_CLICKS
+      //PackagingSection.PROPERTY_CLICKS,
+      PackagingSection.PROPERTY_ISTAILORED
    };
    
    @Override
@@ -66,6 +66,11 @@ public class PackagingSectionCreator implements SendableEntityCreatorNoIndex
       if (PackagingSection.PROPERTY_ID.equalsIgnoreCase(attribute))
       {
          return ((PackagingSection) target).getId();
+      }
+
+      if (PackagingSection.PROPERTY_ISTAILORED.equalsIgnoreCase(attribute))
+      {
+         return ((PackagingSection) target).getIsTailored();
       }
 
       if (PackagingSection.PROPERTY_TOPIC.equalsIgnoreCase(attribute))
@@ -110,6 +115,12 @@ public class PackagingSectionCreator implements SendableEntityCreatorNoIndex
       if (PackagingSection.PROPERTY_ID.equalsIgnoreCase(attrName))
       {
          ((PackagingSection) target).setId(Integer.parseInt(value.toString()));
+         return true;
+      }
+
+      if (PackagingSection.PROPERTY_ISTAILORED.equalsIgnoreCase(attrName))
+      {
+         ((PackagingSection) target).setIsTailored((boolean) value);
          return true;
       }
 
