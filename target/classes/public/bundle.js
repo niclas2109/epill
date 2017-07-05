@@ -28161,7 +28161,7 @@ var UserMenue = function (_React$Component) {
 
 			this.setState(this.state);
 
-			_axios2.default.get('/drug/search', { exp: this.state.exp }).then(function (_ref) {
+			_axios2.default.get('/drug/search', { params: { exp: this.state.exp } }).then(function (_ref) {
 				var data = _ref.data;
 
 				_this2.state.drugs = data.value;

@@ -99,7 +99,7 @@ public class DrugService {
 	}
 	
 	public List<Drug> findDrugByName(String exp) {
-		List<Drug> list = repository.findByName(exp);
+		List<Drug> list = repository.findByNameContainingIgnoreCase(exp);
 		return list;
 	}
 	
