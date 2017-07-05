@@ -76,8 +76,7 @@ public class TailoredSummary {
 	public void personalize(User user) {
 		this.text = this.text.replace("%firstname%", user.getFirstname())
 				.replace("%lastname%", user.getLastname())
-				.replace("%dateOfBirth%", user.getDateOfBirth().toString())
-				.replace("%age%", Integer.toString(user.getAge()));		
+				.replace("%age%", Integer.toString(user.getAge()));	
 	}
 	
 	/*

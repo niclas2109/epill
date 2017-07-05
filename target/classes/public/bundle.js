@@ -30390,8 +30390,6 @@ var Register = function (_React$Component) {
             this.state.sending = true;
             this.setState(this.state);
 
-            console.log("save");
-
             _axios2.default.post('/user/save', {
                 firstname: this.state.firstname,
                 lastname: this.state.lastname,
@@ -30706,6 +30704,9 @@ var UserData = function (_React$Component) {
                 var data = _ref.data,
                     status = _ref.status;
 
+
+                console.log(data);
+
                 _this2.state.firstname = data.value.firstname;
                 _this2.state.lastname = data.value.lastname;
                 _this2.state.email = data.value.email || '';
@@ -30713,7 +30714,7 @@ var UserData = function (_React$Component) {
                 _this2.state.username = data.value.username;
                 _this2.state.redGreenColorblind = data.value.redGreenColorblind || false;
 
-                _this2.state.levelOfDetail = data.value.levelOfDetail || 0;
+                _this2.state.levelOfDetail = data.value.levelOfDetail || 3;
                 _this2.state.preferredFontSize = data.value.preferredFontSize || 'defaultFontSize';
 
                 _this2.setState(_this2.state);
@@ -30795,15 +30796,21 @@ var UserData = function (_React$Component) {
                 position: _reactToastify.toast.POSITION.BOTTOM_CENTER
             };
 
-            var date = (0, _moment2.default)(this.state.dateOfBirth);
+            var date = null;
 
-            if (!date.isValid()) {
-                if ((0, _moment2.default)(this.state.dateOfBirth, "DD.MM.YYYY").isValid()) {
-                    date = (0, _moment2.default)(this.state.dateOfBirth, "DD.MM.YYYY");
-                } else {
-                    _reactToastify.toast.error(t('invalidDateFormat'), options);
-                    return;
+            if (this.state.dateOfBirth != '') {
+                date = (0, _moment2.default)(this.state.dateOfBirth);
+
+                if (!date.isValid()) {
+                    if ((0, _moment2.default)(this.state.dateOfBirth, "DD.MM.YYYY").isValid()) {
+                        date = (0, _moment2.default)(this.state.dateOfBirth, "DD.MM.YYYY");
+                    } else {
+                        _reactToastify.toast.error(t('invalidDateFormat'), options);
+                        return;
+                    }
                 }
+
+                date = date.format("YYYY-MM-DD");
             }
 
             this.state.sending = true;
@@ -30812,7 +30819,7 @@ var UserData = function (_React$Component) {
             _axios2.default.post('/user/update', {
                 firstname: this.state.firstname,
                 lastname: this.state.lastname,
-                dateOfBirth: date.format("YYYY-MM-DD"),
+                dateOfBirth: date,
                 gender: this.state.gender,
                 email: this.state.email,
                 redGreenColorblind: this.state.redGreenColorblind,

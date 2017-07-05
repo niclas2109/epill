@@ -38,15 +38,17 @@ public class TailoredSummaryService {
 		return drug;
 	}
 	
-	
 	public TailoredSummary findTailoredSummaryForUser(List<TailoredSummary> list, User user) {
+		
+		if(user == null)
+			return null;
 		
 		TailoredSummary summary = null;
 		
 		for(TailoredSummary s : list) {
-			if(user.getGender() == null || s.getGender().getId() == user.getGender().getId()) {
+			if(s.getGender() == null || s.getGender().getId() == user.getGender().getId()) {
 				if(s.getMinAge() == 0 && s.getMaxAge() == 0
-						|| s.getMinAge() <= user.getAge() && s.getMaxAge() >= user.getAge()) {
+						|| user.getAge() != 0 && s.getMinAge() <= user.getAge() && s.getMaxAge() >= user.getAge()) {
 					summary = s;
 					summary.personalize(user);
 					break;

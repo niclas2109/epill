@@ -88,7 +88,6 @@ class Register extends React.Component {
         this.state.sending = true;
         this.setState(this.state);
         
-        console.log("save");
         
         axios.post('/user/save',
             {

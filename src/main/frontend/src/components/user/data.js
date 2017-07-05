@@ -50,6 +50,9 @@ class UserData extends React.Component {
 
     		axios.get(`/user/${User.id}`)
             .then(({data, status}) => {
+                
+                console.log(data);
+                
             		this.state.firstname		= data.value.firstname;
             		this.state.lastname		= data.value.lastname;
             		this.state.email			= data.value.email		|| '';
@@ -58,7 +61,7 @@ class UserData extends React.Component {
             		this.state.username		= data.value.username;
             		this.state.redGreenColorblind    = data.value.redGreenColorblind || false;
             		
-            		this.state.levelOfDetail	= data.value.levelOfDetail	|| 0;
+            		this.state.levelOfDetail	= data.value.levelOfDetail	|| 3;
             		this.state.preferredFontSize	= data.value.preferredFontSize   || 'defaultFontSize';
 
                 this.setState(this.state);
@@ -130,17 +133,23 @@ class UserData extends React.Component {
 	    };
         
         
-        var date = Moment(this.state.dateOfBirth);
+        var date = null;
         
-        if(!date.isValid()) {
-	        	if(Moment(this.state.dateOfBirth, "DD.MM.YYYY").isValid()) {
-	    			date = Moment(this.state.dateOfBirth, "DD.MM.YYYY");
-	    		} else {
-	            toast.error(t('invalidDateFormat'), options);
-	    			return;
-	    		}
+        if(this.state.dateOfBirth != '') {
+            date = Moment(this.state.dateOfBirth);
+            
+            if(!date.isValid()) {
+        	        	if(Moment(this.state.dateOfBirth, "DD.MM.YYYY").isValid()) {
+        	    			date = Moment(this.state.dateOfBirth, "DD.MM.YYYY");
+        	    		} else {
+        	            toast.error(t('invalidDateFormat'), options);
+        	    			return;
+        	    		}
+            }
+            
+            date = date.format("YYYY-MM-DD");
         }
-
+        
         this.state.sending = true;
         this.setState(this.state);
 
@@ -148,7 +157,7 @@ class UserData extends React.Component {
                {
 	           		firstname			: this.state.firstname,
 	           		lastname				: this.state.lastname,
-	                	dateOfBirth			: date.format("YYYY-MM-DD"),
+	                	dateOfBirth			: date,
 	        			gender				: this.state.gender,
 	        			email				: this.state.email,
 	        			redGreenColorblind   : this.state.redGreenColorblind,

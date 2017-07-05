@@ -78,9 +78,12 @@ public class UserService {
 		user.withPassword(encryptedPassword)
 			.withSalt(salt);
 
-
-		if(user.getGender() != null)
-			user.setGender(genderRepository.findOne(user.getGender().getId()));
+		user.setGender(null);
+		
+		if(user.getGender() != null) {
+			Gender gender = genderRepository.findOne(user.getGender().getId());
+			user.setGender(gender);
+		}
 		
 		user = repository.save(user);
 		

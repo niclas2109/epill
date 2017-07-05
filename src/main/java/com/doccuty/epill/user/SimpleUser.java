@@ -55,7 +55,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class SimpleUser implements SendableEntity {
 
-	private static final int PROPERTY_LEVELOFDETAIL_DEFAULT = 2;
+	private static final int PROPERTY_LEVELOFDETAIL_DEFAULT = 5;
 	private static final String PROPERTY_PREFERREDFONTSIZE_DEFAULT = "defaultFontSize";
 
 	public SimpleUser() {
@@ -339,6 +339,10 @@ public class SimpleUser implements SendableEntity {
 	@JsonIgnore
 	public int getAge() {
 		
+		if(this.dateOfBirth == null) {
+			return 0;
+		}
+		
 		Calendar cal = Calendar.getInstance();
 	    cal.setTime(this.dateOfBirth);
 
@@ -372,7 +376,8 @@ public class SimpleUser implements SendableEntity {
 	// ==========================================================================
 
 	public static final String PROPERTY_LEVELOFDETAIL = "levelOfDetail";
-
+	
+	@Column(columnDefinition="int default '5'")
 	private int levelOfDetail = PROPERTY_LEVELOFDETAIL_DEFAULT;
 
 	public int getLevelOfDetail() {
