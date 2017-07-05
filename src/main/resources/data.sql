@@ -467,3 +467,8 @@ INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, 
 INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (27, 2, 2, 3, 26, 40, 'Hey Hey, Hier steht wieder eine Information für Frauen mit %age% Jahren.');
 INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (28, 1, 2, 4, 30, 40, 'Hier steht wieder eine Information für Männer mit %age% Jahren.');
 INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (29, 1, 2, 5, 0, 40, 'Hier steht wieder eine Information für Männer mit %age% Jahren.');
+INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (30, 1, 2, 0, 40, 'Eine Zusammenfassung für Männer mit %age% Jahren.');
+INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (31, 1, 2, 41, 70, 'Eine andere Zusammenfassung für Männer mit %age% Jahren.');
+INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (32, 1, 2, 0, 0, 'Eine Zusammenfassung für Männer ohne Altersbezug.');
+INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (33, 2, 2, 0, 0, 'Eine Zusammenfassung für Frauen ohne Altersbezug, %firstname%.');
+INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (34, 2, 1, 0, 0, 'Eine Zusammenfassung für Frauen ohne Altersbezug, %firstname%.');
