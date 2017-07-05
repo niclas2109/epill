@@ -98,8 +98,9 @@ public class DrugService {
 		return drug;
 	}
 	
-	public List<Drug> findDrugByName(String name) {
-		return repository.findByName(name);
+	public List<Drug> findDrugByName(String exp) {
+		List<Drug> list = repository.findByName(exp);
+		return list;
 	}
 	
 	public List<Drug> getDrugMinimized(String value) {

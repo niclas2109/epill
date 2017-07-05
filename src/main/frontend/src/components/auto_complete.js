@@ -32,7 +32,7 @@ class UserMenue extends React.Component {
 		  	
 	      this.setState(this.state);
 		  	
-	      axios.get('/drug/list/all')
+	      axios.get('/drug/search', { params : { exp : this.state.exp } })
 	      	.then(({data}) => {
 	      		this.state.drugs = data.value
 	      		this.setState(this.state);

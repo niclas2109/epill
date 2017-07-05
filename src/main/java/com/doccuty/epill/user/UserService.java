@@ -78,8 +78,6 @@ public class UserService {
 		user.withPassword(encryptedPassword)
 			.withSalt(salt);
 
-		user.setGender(null);
-		
 		if(user.getGender() != null) {
 			Gender gender = genderRepository.findOne(user.getGender().getId());
 			user.setGender(gender);

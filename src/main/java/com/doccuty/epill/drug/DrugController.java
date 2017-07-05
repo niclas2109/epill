@@ -76,12 +76,12 @@ public class DrugController {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> searchDrug(@RequestParam("exp") String exp) {
-		
+
+    		List<Drug> list = service.findDrugByName(exp);
+    	
 		IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(2)));
-
-	    	List<Drug> list = service.findDrugByName(exp);
-	    	
+		
 	    	JsonObject json = new JsonObject();
 	    	JsonArray drugArray = new JsonArray();
 	    	
