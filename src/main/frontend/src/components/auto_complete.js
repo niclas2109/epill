@@ -14,7 +14,7 @@ class UserMenue extends React.Component {
 	    		exp		: '',
 	    		selectedValue	: '',
 	    		show		: false,
-	    		redirect: false
+	    		loading	: false
 	    }
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,6 +33,7 @@ class UserMenue extends React.Component {
 	  
 	  handleExpressionChange(event) {
 		  this.state.exp = event.target.value
+		  this.state.loading = true;
 		  this.state.show= true;
 		  	
 	      this.setState(this.state);
@@ -40,6 +41,7 @@ class UserMenue extends React.Component {
 	      axios.get('/drug/search', { params : { exp : this.state.exp } })
 	      	.then(({data}) => {
 	      		this.state.drugs = data.value
+	      		this.state.loading = false;
 	      		this.setState(this.state);
 	        });
 	  }
@@ -75,6 +77,7 @@ class UserMenue extends React.Component {
 	    const drugs	= this.state.drugs;
 	    const show	= this.state.show;
 	    const exp	= this.state.exp;
+	    const loading = this.state.loading;
 
 	    return (
 	    		<div>
@@ -87,7 +90,7 @@ class UserMenue extends React.Component {
 		    						<span className="glyphicon glyphicon-search"></span>
 		    					</button>
 		    				</div>
-		    				{show && exp.length > 0 &&
+		    				{show && exp.length > 0 && !loading &&
 		    					<div className="row">
 			    					<ul className="ui-autocomplete">
 	    								{this.renderResults(drugs)}

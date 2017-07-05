@@ -28131,7 +28131,7 @@ var UserMenue = function (_React$Component) {
 			exp: '',
 			selectedValue: '',
 			show: false,
-			redirect: false
+			loading: false
 		};
 
 		_this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -28156,6 +28156,7 @@ var UserMenue = function (_React$Component) {
 			var _this2 = this;
 
 			this.state.exp = event.target.value;
+			this.state.loading = true;
 			this.state.show = true;
 
 			this.setState(this.state);
@@ -28164,6 +28165,7 @@ var UserMenue = function (_React$Component) {
 				var data = _ref.data;
 
 				_this2.state.drugs = data.value;
+				_this2.state.loading = false;
 				_this2.setState(_this2.state);
 			});
 		}
@@ -28216,6 +28218,7 @@ var UserMenue = function (_React$Component) {
 			var drugs = this.state.drugs;
 			var show = this.state.show;
 			var exp = this.state.exp;
+			var loading = this.state.loading;
 
 			return _react2.default.createElement(
 				"div",
@@ -28237,7 +28240,7 @@ var UserMenue = function (_React$Component) {
 								_react2.default.createElement("span", { className: "glyphicon glyphicon-search" })
 							)
 						),
-						show && exp.length > 0 && _react2.default.createElement(
+						show && exp.length > 0 && !loading && _react2.default.createElement(
 							"div",
 							{ className: "row" },
 							_react2.default.createElement(
