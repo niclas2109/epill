@@ -70,9 +70,9 @@ INSERT INTO country (id, name) VALUES (1,'Deutschland');
 --
 
 
-INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstname, lastname, password, preferred_font_size, salt, username, red_green_colorblind)
+INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstname, lastname, level_of_detail, password, preferred_font_size, salt, username, red_green_colorblind)
 	VALUES
-	(1,'1990-09-21','2015-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser','89794011ed99bae7b5062920bffbef2a334dca75628975cd9cce51ba9691b12843beaed302416bdee221796816346fdeb618903cfa887945174237c92dc2dd2a','defaultFontSize','[B@63ba2cf8','nic', true);
+	(1,'1990-09-21','2015-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser',3,'89794011ed99bae7b5062920bffbef2a334dca75628975cd9cce51ba9691b12843beaed302416bdee221796816346fdeb618903cfa887945174237c92dc2dd2a','defaultFontSize','[B@63ba2cf8','nic', true);
 
 --
 -- Dumping data for table `user_`
@@ -442,7 +442,7 @@ INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALU
 INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (2, 1, 1, 4, 0, 0, 'XYZ... Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
 INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (3, 1, 1, 5, 0, 0, 'Hallo Hallo! Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
 INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (4, 1, 1, 8, 30, 40, 'Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (5, 1, 2, 4, 0, 36, '<p>XYZ</p>... Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
+INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (5, 1, 2, 4, 0, 0, '<p>XYZ</p>... Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
 INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (6, 1, 3, 5, 21, 40, 'Hallo Hallo %firstname%! Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
 INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (7, 1, 2, 8, 30, 40, 'Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
 INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (8, 1, 1, 4, 0, 36, '<p>XYZ</p>... Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
