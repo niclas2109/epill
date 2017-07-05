@@ -46,7 +46,7 @@ public class TailoredSummaryService {
 		TailoredSummary summary = null;
 		
 		for(TailoredSummary s : list) {
-			if(s.getGender() == null || s.getGender().getId() == user.getGender().getId()) {
+			if(s.getGender() == null || user.getGender() != null && s.getGender().getId() == user.getGender().getId()) {
 				if(s.getMinAge() == 0 && s.getMaxAge() == 0
 						|| user.getAge() != 0 && s.getMinAge() <= user.getAge() && s.getMaxAge() >= user.getAge()) {
 					summary = s;
