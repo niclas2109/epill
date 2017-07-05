@@ -5114,7 +5114,8 @@ var User = function () {
             this.firstname = data.firstname;
             this.lastname = data.lastname;
             this.levelOfDetail = data.levelOfDetail || 5;
-            this.preferredFontSize = data.preferredFontSize || 100;
+            this.preferredFontSize = data.preferredFontSize || 'defaultFontSize';
+            this.redGreenColorblind = data.redGreenColorblind || false;
         }
     }, {
         key: "reset",
@@ -5124,6 +5125,7 @@ var User = function () {
             this.lastname = undefined;
             this.levelOfDetail = 5;
             this.preferredFontSize = 100;
+            this.redGreenColorblind = false;
             this.id = -1;
         }
     }, {
@@ -5138,13 +5140,18 @@ var User = function () {
         }
     }, {
         key: "setLevelOfDetail",
-        value: function setLevelOfDetail(levelOfDetail) {
-            this.levelOfDetail = levelOfDetail;
+        value: function setLevelOfDetail(value) {
+            this.levelOfDetail = value;
         }
     }, {
         key: "setPreferredFontSize",
-        value: function setPreferredFontSize(preferredFontSize) {
-            this.preferredFontSize = preferredFontSize;
+        value: function setPreferredFontSize(value) {
+            this.preferredFontSize = value;
+        }
+    }, {
+        key: "setRedGreenColorblind",
+        value: function setRedGreenColorblind(value) {
+            this.redGreenColorblind = value;
         }
     }]);
 
@@ -29350,10 +29357,12 @@ var DrugList = function (_React$Component) {
         ),
         drugs.length > 1 && _User2.default.isAuthenticated() && interactions.length > 0 && _react2.default.createElement(
           "div",
-          { className: "alert alert-danger" },
+          { className: "alert" + (_User2.default.redGreenColorblind ? " danger-red-green-colorblind" : " alert-danger") },
           _react2.default.createElement(
             "h5",
             null,
+            _User2.default.redGreenColorblind,
+            " ",
             t("interaction")
           ),
           _react2.default.createElement("span", { dangerouslySetInnerHTML: this.createMarkup(interactions) })
@@ -30186,6 +30195,7 @@ var Register = function (_React$Component) {
             lastname: '',
             username: '',
             gender: { id: 0 },
+            redGreenColorblind: false,
             password: '',
             passwordRepeat: '',
             sending: false
@@ -30194,6 +30204,7 @@ var Register = function (_React$Component) {
         _this.handleFirstnameChange = _this.handleFirstnameChange.bind(_this);
         _this.handleLastnameChange = _this.handleLastnameChange.bind(_this);
         _this.handleGenderChange = _this.handleGenderChange.bind(_this);
+        _this.handleRedGreenColorblind = _this.handleRedGreenColorblind.bind(_this);
 
         _this.handleUsernameChange = _this.handleUsernameChange.bind(_this);
         _this.handlePasswordChange = _this.handlePasswordChange.bind(_this);
@@ -30218,7 +30229,13 @@ var Register = function (_React$Component) {
     }, {
         key: "handleGenderChange",
         value: function handleGenderChange(event) {
-            this.state.gender = event.target.value;
+            this.state.gender.id = event.target.value;
+            this.setState(this.state);
+        }
+    }, {
+        key: "handleRedGreenColorblind",
+        value: function handleRedGreenColorblind(event) {
+            this.state.redGreenColorblind = event.target.value;
             this.setState(this.state);
         }
     }, {
@@ -30268,14 +30285,9 @@ var Register = function (_React$Component) {
                 firstname: this.state.firstname,
                 lastname: this.state.lastname,
                 gender: { id: this.state.gender },
+                handleRedGreenColorblind: this.state.handleRedGreenColorblind,
                 username: this.state.username,
                 password: this.state.password
-            }, {
-                // We allow a status code of 401 (unauthorized). Otherwise it is interpreted as an error and we can't
-                // check the HTTP status code.
-                validateStatus: function validateStatus(status) {
-                    return status >= 200 && status < 300 || status == 409;
-                }
             }).then(function (_ref) {
                 var data = _ref.data,
                     status = _ref.status;
@@ -30291,6 +30303,9 @@ var Register = function (_React$Component) {
                         break;
                     case 409:
                         _reactToastify.toast.error(t('usernameUsed'), options);
+                        break;
+                    default:
+                        _reactToastify.toast.error(t('errorOccured'), options);
                         break;
                 }
             });
@@ -30351,7 +30366,7 @@ var Register = function (_React$Component) {
                             ),
                             _react2.default.createElement(
                                 "select",
-                                (_React$createElement = { id: "gender", value: "0", name: "gender", className: "form-control", title: t('gender') }, _defineProperty(_React$createElement, "value", this.state.gender), _defineProperty(_React$createElement, "onChange", this.handleGenderChange), _React$createElement),
+                                (_React$createElement = { id: "gender", value: "0", name: "gender", className: "form-control", title: t('gender') }, _defineProperty(_React$createElement, "value", this.state.gender.id), _defineProperty(_React$createElement, "onChange", this.handleGenderChange), _React$createElement),
                                 _react2.default.createElement(
                                     "option",
                                     { value: "0", disabled: true },
@@ -30366,6 +30381,39 @@ var Register = function (_React$Component) {
                                     "option",
                                     { value: "1" },
                                     t('male')
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "div",
+                            { className: "form-group" },
+                            _react2.default.createElement(
+                                "label",
+                                { htmlFor: "red-green-colorblind" },
+                                t('redGreenColorblind')
+                            ),
+                            _react2.default.createElement(
+                                "ul",
+                                { id: "red-green-colorblind", className: "inline" },
+                                _react2.default.createElement(
+                                    "li",
+                                    { className: "col-lg-6 col-md-6 col-xs-6" },
+                                    _react2.default.createElement(
+                                        "label",
+                                        { htmlFor: "red-green-colorblind-yes", className: "radio-inline" },
+                                        _react2.default.createElement("input", { type: "radio", value: "1", id: "red-green-colorblind-yes", name: "redGreenColorblind", checked: this.state.redGreenColorblind == true, onChange: this.handleRedGreenColorblind }),
+                                        t('yes')
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    "li",
+                                    { className: "col-lg-6 col-md-6 col-xs-6" },
+                                    _react2.default.createElement(
+                                        "label",
+                                        { htmlFor: "red-green-colorblind-no", className: "radio-inline" },
+                                        _react2.default.createElement("input", { type: "radio", value: "0", id: "red-green-colorblind-no", name: "redGreenColorblind", checked: this.state.redGreenColorblind == false, onChange: this.handleRedGreenColorblind }),
+                                        t('no')
+                                    )
                                 )
                             )
                         ),
@@ -30514,16 +30562,18 @@ var UserData = function (_React$Component) {
 			dateOfBirth: '',
 			gender: { id: 0 },
 			email: '',
-			sending: false,
+			redGreenColorblind: false,
 			levelOfDetail: 1,
-			preferredFontSize: 12
+			preferredFontSize: 'defaultFontSize',
+			sending: false
 		};
 
 		_this.handleFirstnameChange = _this.handleFirstnameChange.bind(_this);
 		_this.handleLastnameChange = _this.handleLastnameChange.bind(_this);
-		_this.handleGenderChange = _this.handleGenderChange.bind(_this);
-
 		_this.handleDateOfBirthChange = _this.handleDateOfBirthChange.bind(_this);
+
+		_this.handleGenderChange = _this.handleGenderChange.bind(_this);
+		_this.handleRedGreenColorblind = _this.handleRedGreenColorblind.bind(_this);
 
 		_this.handleEmailChange = _this.handleEmailChange.bind(_this);
 
@@ -30545,7 +30595,15 @@ var UserData = function (_React$Component) {
 				var data = _ref.data,
 				    status = _ref.status;
 
-				_this2.state.firstname = data.value.firstname, _this2.state.lastname = data.value.lastname, _this2.state.email = data.value.email || '', _this2.state.dateOfBirth = data.value.dateOfBirth || '', _this2.state.gender = data.value.gender || { id: 0 }, _this2.state.username = data.value.username, _this2.state.levelOfDetail = data.value.levelOfDetail || 0, _this2.state.preferredFontSize = data.value.preferredFontSize;
+				_this2.state.firstname = data.value.firstname;
+				_this2.state.lastname = data.value.lastname;
+				_this2.state.email = data.value.email || '';
+				_this2.state.dateOfBirth = data.value.dateOfBirth || '', _this2.state.gender = data.value.gender || { id: 0 };
+				_this2.state.username = data.value.username;
+				_this2.state.redGreenColorblind = data.value.redGreenColorblind || false;
+
+				_this2.state.levelOfDetail = data.value.levelOfDetail || 0;
+				_this2.state.preferredFontSize = data.value.preferredFontSize || 'defaultFontSize';
 
 				_this2.setState(_this2.state);
 			});
@@ -30579,6 +30637,14 @@ var UserData = function (_React$Component) {
 		value: function handleUsernameChange(event) {
 			this.state.username = event.target.value;
 			this.setState(this.state);
+		}
+	}, {
+		key: "handleRedGreenColorblind",
+		value: function handleRedGreenColorblind(event) {
+			this.state.redGreenColorblind = event.target.value == 1 ? true : false;
+			this.setState(this.state);
+
+			_User2.default.setRedGreenColorblind(this.state.redGreenColorblind);
 		}
 	}, {
 		key: "handleChangeLevelOfDetail",
@@ -30638,6 +30704,7 @@ var UserData = function (_React$Component) {
 				dateOfBirth: date.format("YYYY-MM-DD"),
 				gender: this.state.gender,
 				email: this.state.email,
+				redGreenColorblind: this.state.redGreenColorblind,
 				levelOfDetail: this.state.levelOfDetail,
 				preferredFontSize: this.state.preferredFontSize
 			}).then(function (_ref2) {
@@ -30770,6 +30837,43 @@ var UserData = function (_React$Component) {
 								t('email')
 							),
 							_react2.default.createElement("input", { type: "text", name: "email", id: "email", className: "form-control", value: this.state.email, onChange: this.handleEmailChange })
+						)
+					),
+					_react2.default.createElement(
+						"fieldset",
+						null,
+						_react2.default.createElement(
+							"p",
+							null,
+							_react2.default.createElement(
+								"b",
+								null,
+								t("redGreenColorblind")
+							)
+						),
+						_react2.default.createElement(
+							"ul",
+							{ className: "list-inline" },
+							_react2.default.createElement(
+								"li",
+								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
+								_react2.default.createElement(
+									"label",
+									{ htmlFor: "red-green-colorblind-yes", className: "radio-inline" },
+									_react2.default.createElement("input", { type: "radio", value: "1", id: "red-green-colorblind-yes", name: "redGreenColorblind", checked: this.state.redGreenColorblind == true, onChange: this.handleRedGreenColorblind }),
+									t('yes')
+								)
+							),
+							_react2.default.createElement(
+								"li",
+								{ className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
+								_react2.default.createElement(
+									"label",
+									{ htmlFor: "red-green-colorblind-no", className: "radio-inline" },
+									_react2.default.createElement("input", { type: "radio", value: "0", id: "red-green-colorblind-no", name: "redGreenColorblind", checked: this.state.redGreenColorblind == false, onChange: this.handleRedGreenColorblind }),
+									t('no')
+								)
+							)
 						)
 					),
 					_react2.default.createElement(

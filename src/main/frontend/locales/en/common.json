@@ -6,6 +6,7 @@
 	"username"	: "username",
 	"password"	: "password",
 	"passwordRepeat": "password repeat",
+	"redGreenColorblind"	: "Red-green colorblind",
 	"login": "login",
 	"register": "register",
 	"loginSuccess": "login was successfull!",
@@ -70,5 +71,7 @@
 	"female"	: "femail",
 	"male"	: "male",
 	"noInfo"	: "No information",
-	"invalidDateFormat"	: "Invalid date format!"
+	"invalidDateFormat"	: "Invalid date format!",
+	"yes" 	: "Yes",
+	"no"		: "No"
 }

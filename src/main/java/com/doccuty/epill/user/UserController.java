@@ -74,19 +74,20 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
         
-    	IdMap map = UserCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(5)));
-    	
         User user = service.getUserById(id);
     	
-    	JsonObject json = new JsonObject();
+    		IdMap map = UserCreator.createIdMap("");
+		map.withFilter(Filter.regard(Deep.create(5)));
+    	
+        
+		JsonObject json = new JsonObject();
 		json.add("value", map.toJsonObject(user));
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }
     
     /**
-     * save or update a complete user profile
+     * save complete user profile
      * @param user
      * @return
      */

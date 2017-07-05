@@ -6,6 +6,7 @@
 	"username"	: "Benutzername",
 	"password"	: "Passwort",
 	"passwordRepeat": "Passwort wiederholen",
+	"redGreenColorblind"	: "Rot-Grün-Schwäche",
 	"login": "Login",
 	"register": "Registrieren",
 	"loginSuccess": "Login war erfolgreich!",
@@ -70,5 +71,7 @@
 	"male"	: "männlich",
 	"female"	: "weiblich",
 	"noInfo"	: "Keine Angabe",
-	"invalidDateFormat"	: "Kein gültiges Datums-Format!"
+	"invalidDateFormat"	: "Kein gültiges Datums-Format!",
+	"yes" 	: "Ja",
+	"no"		: "Nein"
 }

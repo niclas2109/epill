@@ -56,7 +56,8 @@ public class UserCreator implements SendableEntityCreatorNoIndex
       User.PROPERTY_GENDER,
       User.PROPERTY_CLICKS,
       User.PROPERTY_QUERY,
-      User.PROPERTY_DISEASE
+      User.PROPERTY_DISEASE,
+      User.PROPERTY_REDGREENCOLORBLIND
    };
    
    @Override
@@ -136,7 +137,12 @@ public class UserCreator implements SendableEntityCreatorNoIndex
       {
           return ((User) target).getLevelOfDetail();
       }
-
+      
+      if (User.PROPERTY_REDGREENCOLORBLIND.equalsIgnoreCase(attribute))
+      {
+          return ((User) target).getRedGreenColorblind();
+      }
+      
       if (User.PROPERTY_PREFERREDPACKAGINGTOPIC.equalsIgnoreCase(attribute))
       {
          return ((User) target).getPreferredPackagingTopic();
@@ -185,7 +191,7 @@ public class UserCreator implements SendableEntityCreatorNoIndex
    {
       if (User.PROPERTY_PREFERREDFONTSIZE.equalsIgnoreCase(attrName))
       {
-         ((User) target).setPreferredFontSize(value.toString());
+         ((User) target).setPreferredFontSize((String) value);
          return true;
       }
 
@@ -242,7 +248,13 @@ public class UserCreator implements SendableEntityCreatorNoIndex
          ((User) target).setFirstname((String) value);
          return true;
       }
-
+      
+      if (User.PROPERTY_REDGREENCOLORBLIND.equalsIgnoreCase(attrName))
+      {
+         ((User) target).setRedGreenColorblind((boolean) value);
+         return true;
+      }
+      
       if (User.PROPERTY_ID.equalsIgnoreCase(attrName))
       {
          ((User) target).setId(Integer.parseInt(value.toString()));
@@ -274,7 +286,7 @@ public class UserCreator implements SendableEntityCreatorNoIndex
       
       if ((User.PROPERTY_PREFERREDDRUGFEATURE + SendableEntityCreatorNoIndex.REMOVE).equalsIgnoreCase(attrName))
       {
-    	 ((User) target).withoutPreferredDrugFeature((DrugFeature) value);
+    	  	 ((User) target).withoutPreferredDrugFeature((DrugFeature) value);
          return true;
       }
 

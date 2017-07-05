@@ -55,7 +55,7 @@ class Root extends React.Component {
     			this.updateFontSize(User.preferredFontSize);
 		this.nav.updateNavigation();
     }    
-    
+
     updateFontSize(fontSize) {
 		this.state.fontSize = fontSize;
 		this.setState(this.state);

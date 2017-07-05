@@ -64,7 +64,8 @@ public class SimpleUser implements SendableEntity {
 		this.lastname	= lastname;
 	}
 	
-	public SimpleUser(long id, String firstname, String lastname, String username, String password, String salt, String preferredFontSize, int levelOfDetail) {
+	public SimpleUser(long id, String firstname, String lastname, String username, String password, String salt,
+			String preferredFontSize, int levelOfDetail, boolean redGreenColorblind) {
 		this.id			= id;
 		this.firstname	= firstname;
 		this.lastname	= lastname;
@@ -73,6 +74,7 @@ public class SimpleUser implements SendableEntity {
 		this.salt		= salt;
 		this.preferredFontSize	= preferredFontSize;
 		this.levelOfDetail		= levelOfDetail;
+		this.redGreenColorblind	= redGreenColorblind;
 	}
 
 	public SimpleUser(User user) {
@@ -80,6 +82,7 @@ public class SimpleUser implements SendableEntity {
 		this.firstname = user.getFirstname();
 		this.lastname = user.getLastname();
 		this.dateOfBirth = user.getDateOfBirth();
+		this.redGreenColorblind	= user.getRedGreenColorblind();
 
 		this.dateOfRegistration = user.getDateOfRegistration();
 
@@ -90,7 +93,7 @@ public class SimpleUser implements SendableEntity {
 		this.email = user.getEmail();
 
 		this.preferredFontSize = user.getPreferredFontSize();
-
+		this.levelOfDetail = user.getLevelOfDetail();
 	}
 
 	// ==========================================================================
@@ -394,6 +397,29 @@ public class SimpleUser implements SendableEntity {
 
 	public SimpleUser withDateOfRegistration(Date value) {
 		setDateOfRegistration(value);
+		return this;
+	}
+
+	// ==========================================================================
+
+	public static final String PROPERTY_REDGREENCOLORBLIND = "redGreenColorblind";
+
+	private boolean redGreenColorblind = false;
+
+	public boolean getRedGreenColorblind() {
+		return this.redGreenColorblind;
+	}
+
+	public void setRedGreenColorblind(boolean value) {
+		if (this.redGreenColorblind != value) {
+			boolean oldValue = this.redGreenColorblind;
+			this.redGreenColorblind = value;
+			this.firePropertyChange(PROPERTY_REDGREENCOLORBLIND, oldValue, value);
+		}
+	}
+
+	public SimpleUser withRedGreenColorblind(boolean value) {
+		setRedGreenColorblind(value);
 		return this;
 	}
 }

@@ -23,7 +23,8 @@ class User {
         this.firstname	= data.firstname;
         this.lastname	= data.lastname;
         this.levelOfDetail		= data.levelOfDetail || 5;
-        this.preferredFontSize	= data.preferredFontSize || 100;
+        this.preferredFontSize	= data.preferredFontSize || 'defaultFontSize';
+        this.redGreenColorblind	= data.redGreenColorblind || false;
     }
 
     reset() {
@@ -32,6 +33,7 @@ class User {
         this.lastname = undefined;
         this.levelOfDetail		= 5;
         this.preferredFontSize	= 100;
+        this.redGreenColorblind	= false;
         this.id = -1;
     }
 
@@ -44,12 +46,16 @@ class User {
     }
     
     
-    setLevelOfDetail(levelOfDetail) {
-        this.levelOfDetail = levelOfDetail;
+    setLevelOfDetail(value) {
+        this.levelOfDetail = value;
     }
     
-    setPreferredFontSize(preferredFontSize) {
-        this.preferredFontSize = preferredFontSize;
+    setPreferredFontSize(value) {
+        this.preferredFontSize = value;
+    }
+    
+    setRedGreenColorblind(value) {
+    		this.redGreenColorblind	= value;
     }
 }
 

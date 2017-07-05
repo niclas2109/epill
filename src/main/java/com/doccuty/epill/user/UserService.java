@@ -78,6 +78,10 @@ public class UserService {
 		user.withPassword(encryptedPassword)
 			.withSalt(salt);
 
+
+		if(user.getGender() != null)
+			user.setGender(genderRepository.findOne(user.getGender().getId()));
+		
 		user = repository.save(user);
 		
 		return user;
@@ -135,7 +139,8 @@ public class UserService {
 			.withEmail(usr.getEmail())
 			.withDateOfBirth(usr.getDateOfBirth())
 			.withPreferredFontSize(usr.getPreferredFontSize())
-			.withLevelOfDetail(usr.getLevelOfDetail());
+			.withLevelOfDetail(usr.getLevelOfDetail())
+			.withRedGreenColorblind(usr.getRedGreenColorblind());
 
 		if(usr.getUsername() != null)
 			user.withUsername(usr.getUsername());

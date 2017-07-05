@@ -21,16 +21,19 @@ class UserData extends React.Component {
 	        	dateOfBirth	: '',
 	        	gender		: {id : 0},
 	        	email		: '',
-	        	sending		: false,
-	        	levelOfDetail		: 1,
-	        	preferredFontSize	: 12
+	        	redGreenColorblind    : false,
+            levelOfDetail       : 1,
+            preferredFontSize   : 'defaultFontSize',
+	        	sending		: false
         };
         
         this.handleFirstnameChange		= this.handleFirstnameChange.bind(this);
         this.handleLastnameChange		= this.handleLastnameChange.bind(this);
+        this.handleDateOfBirthChange     = this.handleDateOfBirthChange.bind(this);
+        
         this.handleGenderChange			= this.handleGenderChange.bind(this);
+        this.handleRedGreenColorblind    = this.handleRedGreenColorblind.bind(this);
 
-        this.handleDateOfBirthChange		= this.handleDateOfBirthChange.bind(this);
         
         this.handleEmailChange			= this.handleEmailChange.bind(this);
 
@@ -47,14 +50,16 @@ class UserData extends React.Component {
 
     		axios.get(`/user/${User.id}`)
             .then(({data, status}) => {
-            		this.state.firstname		= data.value.firstname,
-            		this.state.lastname		= data.value.lastname,
-            		this.state.email			= data.value.email			|| '',
+            		this.state.firstname		= data.value.firstname;
+            		this.state.lastname		= data.value.lastname;
+            		this.state.email			= data.value.email		|| '';
             		this.state.dateOfBirth	= data.value.dateOfBirth		|| '',
-            		this.state.gender		= data.value.gender			|| {id : 0},
-            		this.state.username		= data.value.username,
-            		this.state.levelOfDetail	= data.value.levelOfDetail	|| 0,
-            		this.state.preferredFontSize	= data.value.preferredFontSize
+            		this.state.gender		= data.value.gender			|| {id : 0};
+            		this.state.username		= data.value.username;
+            		this.state.redGreenColorblind    = data.value.redGreenColorblind || false;
+            		
+            		this.state.levelOfDetail	= data.value.levelOfDetail	|| 0;
+            		this.state.preferredFontSize	= data.value.preferredFontSize   || 'defaultFontSize';
 
                 this.setState(this.state);
             });
@@ -84,6 +89,13 @@ class UserData extends React.Component {
     handleUsernameChange(event) {
 	    this.state.username = event.target.value;
 	    	this.setState(this.state);
+    }
+    
+    handleRedGreenColorblind(event) {
+        this.state.redGreenColorblind = (event.target.value == 1) ? true : false;
+        this.setState(this.state);
+        
+        User.setRedGreenColorblind(this.state.redGreenColorblind);
     }
     
     handleChangeLevelOfDetail(event) {
@@ -131,7 +143,7 @@ class UserData extends React.Component {
 
         this.state.sending = true;
         this.setState(this.state);
-        
+
         axios.post('/user/update',
                {
 	           		firstname			: this.state.firstname,
@@ -139,6 +151,7 @@ class UserData extends React.Component {
 	                	dateOfBirth			: date.format("YYYY-MM-DD"),
 	        			gender				: this.state.gender,
 	        			email				: this.state.email,
+	        			redGreenColorblind   : this.state.redGreenColorblind,
     	        			levelOfDetail		: this.state.levelOfDetail,
 	    	        		preferredFontSize	: this.state.preferredFontSize
                 })
@@ -211,7 +224,23 @@ class UserData extends React.Component {
 					         <input type="text" name="email" id="email" className="form-control" value={this.state.email} onChange={this.handleEmailChange} />
 					      </div> 
 					</fieldset>
-						
+					<fieldset>
+                        <p><b>{t("redGreenColorblind")}</b></p>
+                        <ul className="list-inline">
+                            <li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
+                                <label htmlFor="red-green-colorblind-yes" className="radio-inline">
+                                    <input type="radio" value="1" id="red-green-colorblind-yes" name="redGreenColorblind" checked={this.state.redGreenColorblind == true} onChange={this.handleRedGreenColorblind} /> 
+                                     {t('yes')}
+                                 </label>
+                            </li>
+                            <li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
+                                <label htmlFor="red-green-colorblind-no" className="radio-inline">
+                                    <input type="radio" value="0" id="red-green-colorblind-no" name="redGreenColorblind" checked={this.state.redGreenColorblind == false} onChange={this.handleRedGreenColorblind} /> 
+                                    {t('no')}
+                                </label>
+                            </li>
+                        </ul>
+                    </fieldset>
 					<fieldset>
 						<p><b>{t("levelOfDetail")}</b></p>
 						<ul className="list-inline">

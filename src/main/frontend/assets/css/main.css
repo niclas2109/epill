@@ -639,3 +639,22 @@ lightgray
 	background-color: #00a7a8;
     color: white;
 }
+
+
+
+.danger-red-green-colorblind {
+	color: black;
+	border-color:#cccccc;
+	background: #efefef;
+	background: repeating-linear-gradient(
+		  45deg,
+		  rgba(255, 255, 255, 0.5),
+		  rgba(255, 255, 255, 0.5) 10px,
+		  rgba(200, 200, 200, 0.15) 10px,
+		  rgba(200, 200, 200, 0.15) 20px
+		)
+}
+
+.warning-red-green-colorblind {
+	background-color:black;
+}
