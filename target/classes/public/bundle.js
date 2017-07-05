@@ -27750,11 +27750,11 @@ var Accordion = function (_React$Component) {
 
 		_this.state = {
 			show: false,
-			section: _this.props.section,
-			isPersonalized: _this.props.isPersonalized || false
+			section: _this.props.section
 		};
 
 		_this.toggleShow = _this.toggleShow.bind(_this);
+		_this.togglePersonalized = _this.togglePersonalized.bind(_this);
 		return _this;
 	}
 
@@ -27767,10 +27767,10 @@ var Accordion = function (_React$Component) {
 	}, {
 		key: "togglePersonalized",
 		value: function togglePersonalized(section) {
-			this.state.isPersonalized = !this.state.isPersonalized;
+			this.state.section.isTailored = !this.state.section.isTailored;
 			this.setState(this.state);
 
-			this.props.getOriginalText(section, this.state.isPersonalized);
+			this.props.toggleOriginalAndTailoredText(this.state.section);
 		}
 
 		// for html conversion
@@ -27801,7 +27801,7 @@ var Accordion = function (_React$Component) {
 				_react2.default.createElement(
 					"div",
 					{ className: "panel-heading" },
-					show && this.props.getOriginalText && _react2.default.createElement(
+					show && this.props.toggleOriginalAndTailoredText && _react2.default.createElement(
 						"div",
 						{ className: "pull-right" },
 						_react2.default.createElement(
@@ -27809,7 +27809,7 @@ var Accordion = function (_React$Component) {
 							{ type: "button", className: "btn btn-default", onClick: function onClick() {
 									return _this2.togglePersonalized(section);
 								} },
-							this.state.isPersonalized ? t('getOriginalText') : t('getPersonalizedText')
+							section.isTailored ? t('getOriginalText') : t('getPersonalizedText')
 						)
 					),
 					_react2.default.createElement(
@@ -28452,7 +28452,7 @@ var DrugDetail = function (_React$Component) {
             drug: undefined
         };
 
-        _this.getOriginalText = _this.getOriginalText.bind(_this);
+        _this.toggleOriginalAndTailoredText = _this.toggleOriginalAndTailoredText.bind(_this);
         return _this;
     }
 
@@ -28484,57 +28484,52 @@ var DrugDetail = function (_React$Component) {
         //=============================
 
     }, {
-        key: "getOriginalText",
-        value: function getOriginalText(section) {
-            var text = "";
-            var possible = "ABCDEF GHIJKLMN OPQRSTUVWXYZabcdefg hijklmnopq rstuvwx yz01 23456789";
-
-            for (var i = 0; i < 60; i++) {
-                text += possible.charAt(Math.floor(Math.random() * possible.length));
-            }var idx = this.state.drug.packagingSection.indexOf(section);
-            this.state.drug.packagingSection[idx]["text"] = text;
-
-            this.setState(this.state);
-        }
-    }, {
-        key: "addToTakingList",
-        value: function addToTakingList(id) {
+        key: "toggleOriginalAndTailoredText",
+        value: function toggleOriginalAndTailoredText(section) {
             var _this3 = this;
 
-            _axios2.default.post('/drug/taking/add', { id: id }, {
-                validateStatus: function validateStatus(status) {
-                    return status >= 200 && status < 300 || status == 400 || status == 401;
-                }
-            }).then(function (_ref2) {
+            var url = !section.isTailored ? "packagingSection/tailored/" + section.topic.id + "/" + this.props.match.params.id : "packagingSection/" + section.topic.id + "/" + this.props.match.params.id;
+
+            _axios2.default.get(url).then(function (_ref2) {
                 var data = _ref2.data,
                     status = _ref2.status;
-                var t = _this3.props.t;
 
-                var options = {
-                    position: _reactToastify.toast.POSITION.BOTTOM_CENTER
-                };
 
                 switch (status) {
                     case 200:
-                        _reactToastify.toast.success(t('addToTakingListSuccess'), options);
-                        _this3.state.drug.isTaken = !_this3.state.drug.isTaken;
-                        _this3.setState(_this3.state.drug);
+                        var idx = _this3.state.drug.packagingSection.indexOf(section);
+                        _this3.state.drug.packagingSection[idx]["text"] = data["text"];
+                        _this3.setState(_this3.state);
                         break;
-                    case 400:
-                        _reactToastify.toast.error(t('addToTakingListFailed'), options);
-                        break;
-                    case 401:
-                        console.log(data, "not permitted");
+                    default:
+                        var t = _this3.props.t;
+
+                        var options = {
+                            position: _reactToastify.toast.POSITION.BOTTOM_CENTER
+                        };
+                        _reactToastify.toast.error(t('errorOccured'), options);
                         break;
                 }
             });
         }
+
+        //=============================
+
     }, {
-        key: "removeFromTakingList",
-        value: function removeFromTakingList(id) {
+        key: "toggleTaking",
+        value: function toggleTaking(drug) {
+            if (drug.isTaken) {
+                this.removeFromTakingList(drug.id);
+            } else {
+                this.addToTakingList(drug.id);
+            }
+        }
+    }, {
+        key: "addToTakingList",
+        value: function addToTakingList(id) {
             var _this4 = this;
 
-            _axios2.default.post('/drug/taking/remove', { id: id }, {
+            _axios2.default.post('/drug/taking/add', { id: id }, {
                 validateStatus: function validateStatus(status) {
                     return status >= 200 && status < 300 || status == 400 || status == 401;
                 }
@@ -28549,12 +28544,12 @@ var DrugDetail = function (_React$Component) {
 
                 switch (status) {
                     case 200:
-                        _reactToastify.toast.success(t('removeFromTakingListSuccess'), options);
-                        _this4.state.drug.isTaken = !_this4.state.drug.isTaken;
+                        _reactToastify.toast.success(t('addToTakingListSuccess'), options);
+                        _this4.state.drug.isTaken = true;
                         _this4.setState(_this4.state.drug);
                         break;
                     case 400:
-                        _reactToastify.toast.error(t('removeFromTakingListFailed'), options);
+                        _reactToastify.toast.error(t('addToTakingListFailed'), options);
                         break;
                     case 401:
                         console.log(data, "not permitted");
@@ -28563,13 +28558,13 @@ var DrugDetail = function (_React$Component) {
             });
         }
     }, {
-        key: "addToRememberList",
-        value: function addToRememberList(id) {
+        key: "removeFromTakingList",
+        value: function removeFromTakingList(id) {
             var _this5 = this;
 
-            _axios2.default.post('/drug/remember/add', { id: id }, {
+            _axios2.default.post('/drug/taking/remove', { id: id }, {
                 validateStatus: function validateStatus(status) {
-                    return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
+                    return status >= 200 && status < 300 || status == 400 || status == 401;
                 }
             }).then(function (_ref4) {
                 var data = _ref4.data,
@@ -28582,9 +28577,51 @@ var DrugDetail = function (_React$Component) {
 
                 switch (status) {
                     case 200:
-                        _reactToastify.toast.success(t('addToRememberListSuccess'), options);
-                        _this5.state.drug.isRemembered = !_this5.state.drug.isRemembered;
+                        _reactToastify.toast.success(t('removeFromTakingListSuccess'), options);
+                        _this5.state.drug.isTaken = !_this5.state.drug.isTaken;
                         _this5.setState(_this5.state.drug);
+                        break;
+                    case 400:
+                        _reactToastify.toast.error(t('removeFromTakingListFailed'), options);
+                        break;
+                    case 401:
+                        console.log(data, "not permitted");
+                        break;
+                }
+            });
+        }
+    }, {
+        key: "toggleRemember",
+        value: function toggleRemember(drug) {
+            if (drug.isRemembered) {
+                this.removeFromRememberList(drug.id);
+            } else {
+                this.addToRememberList(drug.id);
+            }
+        }
+    }, {
+        key: "addToRememberList",
+        value: function addToRememberList(id) {
+            var _this6 = this;
+
+            _axios2.default.post('/drug/remember/add', { id: id }, {
+                validateStatus: function validateStatus(status) {
+                    return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
+                }
+            }).then(function (_ref5) {
+                var data = _ref5.data,
+                    status = _ref5.status;
+                var t = _this6.props.t;
+
+                var options = {
+                    position: _reactToastify.toast.POSITION.BOTTOM_CENTER
+                };
+
+                switch (status) {
+                    case 200:
+                        _reactToastify.toast.success(t('addToRememberListSuccess'), options);
+                        _this6.state.drug.isRemembered = true;
+                        _this6.setState(_this6.state.drug);
                         break;
                     case 400:
                         _reactToastify.toast.error(t('addToRememberListFailed'), options);
@@ -28601,16 +28638,16 @@ var DrugDetail = function (_React$Component) {
     }, {
         key: "removeFromRememberList",
         value: function removeFromRememberList(id) {
-            var _this6 = this;
+            var _this7 = this;
 
             _axios2.default.post('/drug/remember/remove', { id: id }, {
                 validateStatus: function validateStatus(status) {
                     return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
                 }
-            }).then(function (_ref5) {
-                var data = _ref5.data,
-                    status = _ref5.status;
-                var t = _this6.props.t;
+            }).then(function (_ref6) {
+                var data = _ref6.data,
+                    status = _ref6.status;
+                var t = _this7.props.t;
 
                 var options = {
                     position: _reactToastify.toast.POSITION.BOTTOM_CENTER
@@ -28619,8 +28656,8 @@ var DrugDetail = function (_React$Component) {
                 switch (status) {
                     case 200:
                         _reactToastify.toast.success(t('removeFromRememberListSuccess'), options);
-                        _this6.state.drug.isRemembered = !_this6.state.drug.isRemembered;
-                        _this6.setState(_this6.state.drug);
+                        _this7.state.drug.isRemembered = !_this7.state.drug.isRemembered;
+                        _this7.setState(_this7.state.drug);
                         break;
                     case 400:
                         _reactToastify.toast.error(t('removeFromRememberListFailed'), options);
@@ -28743,20 +28780,20 @@ var DrugDetail = function (_React$Component) {
     }, {
         key: "renderSectionList",
         value: function renderSectionList(drug) {
-            var _this7 = this;
+            var _this8 = this;
 
             if (!drug.packagingSection) {
                 return;
             }
 
             return drug.packagingSection.map(function (section) {
-                return _react2.default.createElement(_accordion2.default, { section: section, getOriginalText: _this7.getOriginalText, key: section.id });
+                return _react2.default.createElement(_accordion2.default, { section: section, toggleOriginalAndTailoredText: _this8.toggleOriginalAndTailoredText, key: section.id });
             });
         }
     }, {
         key: "render",
         value: function render() {
-            var _this8 = this;
+            var _this9 = this;
 
             var t = this.props.t;
 
@@ -28800,14 +28837,14 @@ var DrugDetail = function (_React$Component) {
                             _react2.default.createElement(
                                 "button",
                                 { type: "button", className: "btn btn-like", onClick: function onClick() {
-                                        return _this8.addToTakingList(drug.id);
+                                        return _this9.toggleTaking(drug);
                                     } },
                                 _react2.default.createElement("span", { className: "glyphicon white" + (!drug.isTaken ? " glyphicon-heart" : " glyphicon-minus") })
                             ),
                             _react2.default.createElement(
                                 "button",
                                 { type: "button", className: "btn btn-add", onClick: function onClick() {
-                                        return _this8.addToRememberList(drug.id);
+                                        return _this9.toggleRemember(drug);
                                     } },
                                 _react2.default.createElement("span", { className: "glyphicon white" + (!drug.isRemembered ? " glyphicon-plus" : " glyphicon-minus") })
                             )
