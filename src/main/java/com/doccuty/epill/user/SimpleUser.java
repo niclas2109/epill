@@ -44,11 +44,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-/**
- * 
- * @see <a href=
- *      '../../../../../../../src/test/java/com/doccuty/epill/model/SDMLib/ModelCreator.java'>ModelCreator.java</a>
- */
+
 
 @Entity
 @Table(name = "user_simple")
@@ -56,7 +52,7 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 public class SimpleUser implements SendableEntity {
 
 	private static final int PROPERTY_LEVELOFDETAIL_DEFAULT = 2;
-	private static final int PROPERTY_PREFERREDFONTSIZE_DEFAULT = 12;
+	private static final String PROPERTY_PREFERREDFONTSIZE_DEFAULT = "defaultFontSize";
 	
 	public SimpleUser() {
 
@@ -68,13 +64,15 @@ public class SimpleUser implements SendableEntity {
 		this.lastname	= lastname;
 	}
 	
-	public SimpleUser(long id, String firstname, String lastname, String username, String password, String salt) {
+	public SimpleUser(long id, String firstname, String lastname, String username, String password, String salt, String preferredFontSize, int levelOfDetail) {
 		this.id			= id;
 		this.firstname	= firstname;
 		this.lastname	= lastname;
 		this.username	= username;
 		this.password	= password;
 		this.salt		= salt;
+		this.preferredFontSize	= preferredFontSize;
+		this.levelOfDetail		= levelOfDetail;
 	}
 
 	public SimpleUser(User user) {
@@ -335,19 +333,19 @@ public class SimpleUser implements SendableEntity {
 
 	public static final String PROPERTY_PREFERREDFONTSIZE = "preferredFontSize";
 
-	private int preferredFontSize = PROPERTY_PREFERREDFONTSIZE_DEFAULT;
+	private String preferredFontSize = PROPERTY_PREFERREDFONTSIZE_DEFAULT;
 
-	public int getPreferredFontSize() {
+	public String getPreferredFontSize() {
 		return this.preferredFontSize;
 	}
 
-	public void setPreferredFontSize(int value) {
+	public void setPreferredFontSize(String value) {
 		if (this.preferredFontSize != value) {
 			this.preferredFontSize = value;
 		}
 	}
 
-	public SimpleUser withPreferredFontSize(int value) {
+	public SimpleUser withPreferredFontSize(String value) {
 		setPreferredFontSize(value);
 		return this;
 	}

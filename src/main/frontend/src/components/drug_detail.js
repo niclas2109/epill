@@ -166,10 +166,11 @@ class DrugDetail extends React.Component {
 		if(!drug.disease) {
 			return;
 		}
-		
+
+        const {t} = this.props;
         return (
-        	<p> U. a. verwendet bei: 
-	        	{ drug.disease.map((packaging, i) => <span key={disease.id}>{disease.name}</span> ) }
+        		<p>{t('usedWhen')}: 
+        			{ drug.disease.map((packaging, i) => <span key={disease.id}>{disease.name}</span> ) }
 	        </p>
 		);
 	}
@@ -178,10 +179,12 @@ class DrugDetail extends React.Component {
 		if(!drug.activeSubstance) {
 			return;
 		}
-		
+
+        const {t} = this.props;
+        
         return (
-        	<p> Wirkstoff(e): 
-	        	{ drug.activeSubstance.map((substance, i) => <span key={substance.id}>{substance.name}</span> ) }
+        		<p>{t('activeSubstance')}: 
+        			{ drug.activeSubstance.map((substance, i) => <span key={substance.id}>{substance.name}</span> ) }
 	        </p>
 		);
 	}
@@ -221,6 +224,8 @@ class DrugDetail extends React.Component {
     }
     
     render() {
+
+        const {t} = this.props;
         const drug = this.state.drug;
         
         if (!drug) {
@@ -270,11 +275,13 @@ class DrugDetail extends React.Component {
         			<div className="col-xs-9 col-md-6">
         				{ User.isAuthenticated() && drug.personalizedInformation && <p>{drug.personalizedInformation.replace("%User.firstname%", User.firstname).replace("%User.lastname%", User.lastname)}</p> }
       
-        				{this.renderDisease(drug)}
+        				{ this.renderDisease(drug) }
         				
-        				<p>
-        					Indikation-Gruppe:<span>drug.indicationGroup.name</span>
-        				</p>
+        				{drug.indicationGroup &&
+	        				<p>
+	        					{t('indicationGroup')}:<span>{drug.indicationGroup.name}</span>
+	        				</p>
+        				}
         				
         				{this.renderActiveSubstance(drug)}
 

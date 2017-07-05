@@ -19,7 +19,11 @@ i18n
             // not needed for react.
             escapeValue: false,
             formatSeparator: ',',
-        }
+            format: function(value, format, lng) {
+                if (format === 'uppercase') return value.toUpperCase();
+                return value;
+              }
+            }
     });
 
 export default i18n;

@@ -768,7 +768,7 @@ public class UserSet extends HashSet<User>
     * 
     * @return Subset of User objects that match the parameter
     */
-   public UserSet filterPreferredFontSize(int value)
+   public UserSet filterPreferredFontSize(String value)
    {
       UserSet result = new UserSet();
       
@@ -784,28 +784,6 @@ public class UserSet extends HashSet<User>
    }
 
 
-   /**
-    * Loop through the current set of User objects and collect those User objects where the preferredFontSize attribute is between lower and upper. 
-    * 
-    * @param lower Lower bound 
-    * @param upper Upper bound 
-    * 
-    * @return Subset of User objects that match the parameter
-    */
-   public UserSet filterPreferredFontSize(int lower, int upper)
-   {
-      UserSet result = new UserSet();
-      
-      for (User obj : this)
-      {
-         if (lower <= obj.getPreferredFontSize() && obj.getPreferredFontSize() <= upper)
-         {
-            result.add(obj);
-         }
-      }
-      
-      return result;
-   }
 
 
    /**
@@ -815,7 +793,7 @@ public class UserSet extends HashSet<User>
     * 
     * @return Current set of User objects now with new attribute values.
     */
-   public UserSet withPreferredFontSize(int value)
+   public UserSet withPreferredFontSize(String value)
    {
       for (User obj : this)
       {

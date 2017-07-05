@@ -12,6 +12,7 @@ import User from "../util/User";
 class Authentication extends React.Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             username: '',
             password: '',
@@ -25,7 +26,12 @@ class Authentication extends React.Component {
         this.handleLogout = this.handleLogout.bind(this);
         this.cookies = this.props.cookies;
     }
-
+	
+	updateAuthentication() {
+        this.forceUpdate();
+    }
+	
+	
     handleUsernameChange(event) {
         this.setState({username: event.target.value});
     }
@@ -70,6 +76,9 @@ class Authentication extends React.Component {
                             user: User
                         }, {path: '/'});
 
+                        // Send event of updated login state.
+                        this.props.updateNavigation();
+                        
                         // Redirect to front page.
                         this.props.history.push("/");
                         break;
@@ -87,6 +96,7 @@ class Authentication extends React.Component {
         User.reset();
         this.cookies.remove('auth');
         this.forceUpdate();
+        this.props.updateNavigation();
     }
 
 
@@ -116,7 +126,7 @@ class Authentication extends React.Component {
         } else {
             component = <div>
         						Current user: {User.username || 'not logged in'}<br />
-            					<span onClick={this.handleLogout}>Logout</span>
+            					<button onClick={this.handleLogout} className="btn btn-danger">Logout</button>
             				</div>
         }
 

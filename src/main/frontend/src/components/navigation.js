@@ -6,27 +6,23 @@ import {translate} from "react-i18next";
 import User from "./../util/User";
 import UserMenue from "./user_menue";
 import AutoComplete from "./auto_complete";
+import MenueItem from "./menue_item";
 
 
 class Navigation extends React.Component {
-	  constructor(props) {
-	    super(props);
-	    this.status = {
-	    		show		: false
-	    }
-
-	    this.toggleShow = this.toggleShow.bind(this);
-	  }
-
-	  toggleShow(event) {
-		  this.status.show = !this.status.show;
-		  this.setState(this.status);
-	  }
+	
+    constructor(props) {
+        super(props);
+    }
+    
+	updateNavigation() {
+        this.forceUpdate();
+    }
 	  
-	  render() {
+	
+	 render() {
 
 	      const {t} = this.props;
-	      const show = this.status.show;
 		  
 		  return (
 	                <div>
@@ -46,8 +42,8 @@ class Navigation extends React.Component {
 		            					</div>
 		            					<div id="navbar" className="collapse navbar-collapse">
 		            						<ul className="nav navbar-nav">
-		            							<li data-toggle="collapse" data-target=".nav-collapse"><Link to="/about">{t("about")}</Link></li>
-		            							<li data-toggle="collapse" data-target=".nav-collapse"><Link to="/drug/list">{t("drugs")}</Link></li>
+		            							<MenueItem title="about" to="/about" />
+		            							<MenueItem title="drugs" to="/drug/list" />
 		            						</ul>
 		            	
 		            						<AutoComplete />
@@ -63,4 +59,4 @@ class Navigation extends React.Component {
 	  }
 }
 
-export default translate()(Navigation);
+export default Navigation;

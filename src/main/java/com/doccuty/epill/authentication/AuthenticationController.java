@@ -32,7 +32,7 @@ public class AuthenticationController {
         UserToken token = authenticationService.login(userLogin.username, userLogin.password);
 
         if(token == null) {
-        	return new ResponseEntity<>(token, HttpStatus.UNAUTHORIZED);
+        		return new ResponseEntity<>(token, HttpStatus.UNAUTHORIZED);
         }
         
         return new ResponseEntity<>(token, HttpStatus.OK);

@@ -14,6 +14,7 @@ import User from "./../../util/User";
 class UserData extends React.Component {
     constructor(props) {
         super(props);
+        
         this.state = {
 	        	firstname	: '',
 	        	lastname		: '',
@@ -46,16 +47,13 @@ class UserData extends React.Component {
 
     		axios.get(`/user/${User.id}`)
             .then(({data, status}) => {
-            	
-            		console.log(data, status);
-            		
             		this.state.firstname		= data.value.firstname,
             		this.state.lastname		= data.value.lastname,
             		this.state.email			= data.value.email			|| '',
             		this.state.dateOfBirth	= data.value.dateOfBirth		|| '',
             		this.state.gender		= data.value.gender			|| {id : 0},
             		this.state.username		= data.value.username,
-            		this.state.levelOfDetail	= data.value.levelOfDetail,
+            		this.state.levelOfDetail	= data.value.levelOfDetail	|| 0,
             		this.state.preferredFontSize	= data.value.preferredFontSize
 
                 this.setState(this.state);
@@ -91,11 +89,16 @@ class UserData extends React.Component {
     handleChangeLevelOfDetail(event) {
 	    this.state.levelOfDetail = event.target.value;
 	    	this.setState(this.state);
+	    	
+	    User.setLevelOfDetail(this.state.levelOfDetail);
     }
     
     handleChangePreferredFontSize(event) {
 	    this.state.preferredFontSize = event.target.value;
 	    	this.setState(this.state);
+
+		User.setPreferredFontSize(this.state.preferredFontSize);
+		this.props.updateFontSize(this.state.preferredFontSize);
     }
     
     handleEmailChange(event) {
@@ -108,7 +111,6 @@ class UserData extends React.Component {
         
         if(this.state.sending)
         		return;
-        
 
 		const {t} = this.props;
 	    const options = {
@@ -129,8 +131,6 @@ class UserData extends React.Component {
 
         this.state.sending = true;
         this.setState(this.state);
-        
-        console.log(this.state);
         
         axios.post('/user/update',
                {
@@ -176,21 +176,21 @@ class UserData extends React.Component {
 	        	      <h3>{t("userData")}</h3>
 	        	</div>
 	     	
-	        <p className="text-box">
-	        		{t("userCockpitDescr").replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
-		    	</p>
-	        	    
+	        	{User.levelOfDetail >= 1 &&
+			    <div className="text-box">
+	        			{t("userCockpitDescr").replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
+				</div>
+		    } 
 	        	   <form onSubmit={this.handleSubmit}>
 		        		<fieldset>
 			                <div className="form-group col-md-4 col-lg-4">
 			                   <label htmlFor="gender">{t('gender')}</label>
 			                   <select id="gender" value="0" name="gender" className="form-control" title={t('gender')} value={this.state.gender.id} onChange={this.handleGenderChange}>
-	                        		<option value="0" disabled>{t('noInfo')}</option>
+	                        			<option value="0" disabled>{t('noInfo')}</option>
 			                         <option value="2">{t('female')}</option>
 			                         <option value="1">{t('male')}</option>
 			                    </select>
 			               </div>
-				            
 				            <div className="form-group col-md-4 col-lg-4">
 				               <label htmlFor="firstname">{t('firstname')}</label>
 				               <input type="text" name="firstname" id="firstname" className="form-control" value={this.state.firstname} onChange={this.handleFirstnameChange} />
@@ -213,25 +213,25 @@ class UserData extends React.Component {
 					</fieldset>
 						
 					<fieldset>
-						<p><b>{t("levelofDetail")}</b></p>
+						<p><b>{t("levelOfDetail")}</b></p>
 						<ul className="list-inline">
 							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-								<label htmlFor="settings-detail-min" className="checkbox-inline">
+								<label htmlFor="settings-detail-min" className="radio-inline">
 									<input type="radio" value="1" id="settings-detail-min" name="levelOfDetail" checked={this.state.levelOfDetail == 1} onChange={this.handleChangeLevelOfDetail} />
 									minimal
 									<p>kein Hilfe</p>
 								</label>
 							</li>
 							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-								<label htmlFor="settings-detail-default" className="checkbox-inline">
-									<input type="radio" value="2" id="settings-detail-default" name="levelOfDetail" checked={this.state.levelOfDetail == 2} onChange={this.handleChangeLevelOfDetail} />
+								<label htmlFor="settings-detail-default" className="radio-inline">
+									<input type="radio" value="3" id="settings-detail-default" name="levelOfDetail" checked={this.state.levelOfDetail == 3} onChange={this.handleChangeLevelOfDetail} />
 									standard
 									<p>Hilfe</p>
 								</label>
 							</li>
 							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-								<label htmlFor="settings-detail-max" className="checkbox-inline">
-									<input type="radio" value="3" id="settings-detail-max" name="levelOfDetail" checked={this.state.levelOfDetail == 3} onChange={this.handleChangeLevelOfDetail} />
+								<label htmlFor="settings-detail-max" className="radio-inline">
+									<input type="radio" value="5" id="settings-detail-max" name="levelOfDetail" checked={this.state.levelOfDetail == 5} onChange={this.handleChangeLevelOfDetail} />
 									maximal
 									<p>Viel Hilfe</p>
 								</label>
@@ -242,20 +242,20 @@ class UserData extends React.Component {
 					<p><b>{t("preferredFontSize")}</b></p>
 					<ul className="list-inline">
 						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-							<label htmlFor="settings-preferred-font-size-min" className="checkbox-inline">
-								<input type="radio" value="10" id="settings-preferred-font-size-min" name="preferredFontSize" checked={this.state.preferredFontSize == 10} onChange={this.handleChangePreferredFontSize} />
+							<label htmlFor="settings-preferred-font-size-min" className="radio-inline">
+								<input type="radio" value="minFontSize" id="settings-preferred-font-size-min" name="preferredFontSize" checked={this.state.preferredFontSize == 'minFontSize'} onChange={this.handleChangePreferredFontSize} />
 								<span className="small-text">AAA</span>
 							</label>
 						</li>
 						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-							<label htmlFor="settings-preferred-font-size-default" className="checkbox-inline">
-								<input type="radio" value="12" id="settings-preferred-font-size-default" name="preferredFontSize" checked={this.state.preferredFontSize == 12} onChange={this.handleChangePreferredFontSize} />
+							<label htmlFor="settings-preferred-font-size-default" className="radio-inline">
+								<input type="radio" value="defaultFontSize" id="settings-preferred-font-size-default" name="preferredFontSize" checked={this.state.preferredFontSize == 'defaultFontSize'} onChange={this.handleChangePreferredFontSize} />
 								<span className="medium-text">AAA</span>
 							</label>
 						</li>
 						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-							<label htmlFor="settings-preferred-font-size-max" className="checkbox-inline">
-								<input type="radio" value="14" id="settings-preferred-font-size-max" name="preferredFontSize" checked={this.state.preferredFontSize == 14} onChange={this.handleChangePreferredFontSize} />
+							<label htmlFor="settings-preferred-font-size-max" className="radio-inline">
+								<input type="radio" value="maxFontSize" id="settings-preferred-font-size-max" name="preferredFontSize" checked={this.state.preferredFontSize == 'maxFontSize'} onChange={this.handleChangePreferredFontSize} />
 								<span className="big-text">AAA</span>
 							</label>
 						</li>

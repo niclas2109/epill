@@ -185,7 +185,7 @@ public class UserCreator implements SendableEntityCreatorNoIndex
    {
       if (User.PROPERTY_PREFERREDFONTSIZE.equalsIgnoreCase(attrName))
       {
-         ((User) target).setPreferredFontSize(Integer.parseInt(value.toString()));
+         ((User) target).setPreferredFontSize(value.toString());
          return true;
       }
 

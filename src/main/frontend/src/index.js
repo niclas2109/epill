@@ -26,28 +26,50 @@ import UserSettings from "./components/user/settings";
 
 //Design decision: We use a global parent component for inter-sibling communication.
 class Root extends React.Component {
-    constructor(props) {
+	constructor(props) {
         super(props);
         // Force initialization of the object.
+        
+        this.state = {
+        		fontSize		: 'defaultFontSize'
+        }
+        
+        
         User.isAuthenticated();
+        
         this.updateAuthentication = this.updateAuthentication.bind(this);
+        this.updateNavigation = this.updateNavigation.bind(this);
+        
+        this.updateFontSize	= this.updateFontSize.bind(this);
     }
 
     // This is called whenever the authentication state of a user is changed by a component. Additionally,
     // this is an example of intersibling communication with a common parent.
-    updateAuthentication() {
-        this.nav.updateAuthentication();
+	updateAuthentication() {
+		console.log("updateAuthentication");
+		//this.auth.updateAuthentication();
+    }
+    
+    updateNavigation() {
+    		if(User.isAuthenticated())
+    			this.updateFontSize(User.preferredFontSize);
+		this.nav.updateNavigation();
+    }    
+    
+    updateFontSize(fontSize) {
+		this.state.fontSize = fontSize;
+		this.setState(this.state);
     }
 
     render() {
         return (
-            <div>
-                <Navigation ref={(component) => {
-                    this.nav = component;
-                }}/>
+            <div className={this.state.fontSize}>
+	            <Navigation ref={(component) => { this.nav = component; }} updateAuthentication={this.updateAuthentication} />
                 <Switch>
 	                {/* Authentication */}
-	                <Route path="/user/login" component={Authentication}/>
+	                
+	                <Route path="/user/login" render={(props) => (<Authentication {...props} updateNavigation={this.updateNavigation}/> )}/>
+	                
 	                <Route path="/user/register" component={Register}/>
 	
 	                {/* Drug handling */}
@@ -59,7 +81,7 @@ class Root extends React.Component {
 	                {/* User sites */}
 	                <Route path="/user/rememberedDrugs" component={DrugList}/>
 	                <Route path="/user/takenDrugs" component={DrugList}/>
-	                <Route path="/user/data" component={UserData}/>
+	                <Route path="/user/data"  render={(props) => (<UserData {...props} updateFontSize={this.updateFontSize}/> )}/>
 	                <Route path="/user/settings" component={UserSettings}/>
 	                
 	                {/* Information sites */}

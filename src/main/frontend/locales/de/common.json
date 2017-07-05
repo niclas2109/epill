@@ -55,6 +55,7 @@
 	"usedWhen"			: "U. a. benutzt bei:",
 	"adverseEffects"		: "Nebenwirkungen",
 	"activeSubstance"	: "Wirkstoff(e)",
+	"indicationGroup"	: "Indikationsgruppe",
 	"removeFromRememberListSuccess": "Das Medikament wurde aus der Merkliste gelöscht.",
 	"removeFromRememberListFailed": "Das Medikament konnte nicht aus der Merkliste gelöscht werden.",
 	"addToRememberListSuccess": "Das Medikament wurde zu deiner Merkliste hinzugefügt.",
