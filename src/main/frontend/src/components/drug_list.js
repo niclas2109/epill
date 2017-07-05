@@ -106,7 +106,11 @@ class DrugList extends React.Component {
              
              switch (status) {
                  case 200:
-                     toast.success(t('addToTakingListSuccess'), options);
+                	 	toast.success(t('addToTakingListSuccess'), options);
+         			var idx = this.state.drugs.indexOf(drug);
+         			drug.isTaken = !drug.isTaken;
+         			this.state.drugs[idx] = drug;
+         			this.setState(this.state);
                      break;
                  case 400:
                   	toast.error(t('addToTakingListFailed'), options);
@@ -133,8 +137,16 @@ class DrugList extends React.Component {
 	         switch (status) {
 	             case 200:
                      toast.success(t('removeFromTakingListSuccess'), options);
-                     var idx = this.state.drugs.indexOf(drug);
-                     this.state.drugs.splice(idx, 1);
+
+          			var idx = this.state.drugs.indexOf(drug);
+          			if(this.state.cmd != 'taking') {
+              			drug.isTaken = !drug.isTaken;
+              			this.state.drugs[idx] = drug;
+              			this.setState(this.state);
+          			} else {
+                        this.state.drugs.splice(idx, 1);
+          			}
+                     
                      this.setState(this.state);
 	                 this.checkForInteractions();
 	                 break;
@@ -172,8 +184,12 @@ class DrugList extends React.Component {
              
 	         switch (status) {
 	             case 200:
-	                 toast.success(t('addToRememberListSuccess'), options);
-	                 break;
+	            	 	toast.success(t('addToRememberListSuccess'), options);
+	            	 	var idx = this.state.drugs.indexOf(drug);
+	            	 	drug.isRemembered = !drug.isRemembered;
+	              	this.state.drugs[idx] = drug;
+	              	this.setState(this.state);
+	              	break;
 	             case 400:
 	            	 	toast.error(t('addToRememberListFailed'), options);
 	            	 	break;
@@ -203,10 +219,17 @@ class DrugList extends React.Component {
 	         switch (status) {
 	             case 200:
 	                 toast.success(t('removeFromRememberListSuccess'), options);
-                     var idx = this.state.drugs.indexOf(drug);
-                     this.state.drugs.splice(idx, 1);
-                     this.setState(this.state);
-	                 this.checkForInteractions();
+                     var idx = this.state.drugs.indexOf(drug);	                 
+	          		
+	          		if(this.state.cmd != 'remember') {
+	              		drug.isRemembered = !drug.isRemembered;
+	              		this.state.drugs[idx] = drug;
+	              		this.setState(this.state);
+	          		} else {
+	                    this.state.drugs.splice(idx, 1);
+	                    this.checkForInteractions();
+	          		}
+	                  
 	                 break;
 	             case 400:
 	            	 	toast.error(t('removeFromRememberListFailed'), options);

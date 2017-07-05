@@ -29043,6 +29043,10 @@ var DrugList = function (_React$Component) {
         switch (status) {
           case 200:
             _reactToastify.toast.success(t('addToTakingListSuccess'), options);
+            var idx = _this3.state.drugs.indexOf(drug);
+            drug.isTaken = !drug.isTaken;
+            _this3.state.drugs[idx] = drug;
+            _this3.setState(_this3.state);
             break;
           case 400:
             _reactToastify.toast.error(t('addToTakingListFailed'), options);
@@ -29074,8 +29078,16 @@ var DrugList = function (_React$Component) {
         switch (status) {
           case 200:
             _reactToastify.toast.success(t('removeFromTakingListSuccess'), options);
+
             var idx = _this4.state.drugs.indexOf(drug);
-            _this4.state.drugs.splice(idx, 1);
+            if (_this4.state.cmd != 'taking') {
+              drug.isTaken = !drug.isTaken;
+              _this4.state.drugs[idx] = drug;
+              _this4.setState(_this4.state);
+            } else {
+              _this4.state.drugs.splice(idx, 1);
+            }
+
             _this4.setState(_this4.state);
             _this4.checkForInteractions();
             break;
@@ -29118,6 +29130,10 @@ var DrugList = function (_React$Component) {
         switch (status) {
           case 200:
             _reactToastify.toast.success(t('addToRememberListSuccess'), options);
+            var idx = _this5.state.drugs.indexOf(drug);
+            drug.isRemembered = !drug.isRemembered;
+            _this5.state.drugs[idx] = drug;
+            _this5.setState(_this5.state);
             break;
           case 400:
             _reactToastify.toast.error(t('addToRememberListFailed'), options);
@@ -29153,9 +29169,16 @@ var DrugList = function (_React$Component) {
           case 200:
             _reactToastify.toast.success(t('removeFromRememberListSuccess'), options);
             var idx = _this6.state.drugs.indexOf(drug);
-            _this6.state.drugs.splice(idx, 1);
-            _this6.setState(_this6.state);
-            _this6.checkForInteractions();
+
+            if (_this6.state.cmd != 'remember') {
+              drug.isRemembered = !drug.isRemembered;
+              _this6.state.drugs[idx] = drug;
+              _this6.setState(_this6.state);
+            } else {
+              _this6.state.drugs.splice(idx, 1);
+              _this6.checkForInteractions();
+            }
+
             break;
           case 400:
             _reactToastify.toast.error(t('removeFromRememberListFailed'), options);
