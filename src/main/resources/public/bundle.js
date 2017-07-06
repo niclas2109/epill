@@ -28887,7 +28887,7 @@ var DrugDetail = function (_React$Component) {
                     { className: "row featurette" },
                     _react2.default.createElement(
                         "div",
-                        { className: "col-md-3" },
+                        { className: "col-xs-12 col-sm-12 col-md-3" },
                         _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "{drug.name}", src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg" }),
                         _react2.default.createElement(
                             "div",
@@ -28897,7 +28897,7 @@ var DrugDetail = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         "div",
-                        { className: "col-xs-9 col-md-6" },
+                        { className: "col-xs-12 col-sm-12 col-md-6" },
                         _User2.default.isAuthenticated() && drug.personalizedInformation && _react2.default.createElement(
                             "p",
                             null,
@@ -28920,7 +28920,7 @@ var DrugDetail = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         "div",
-                        { className: "col-xs-0 col-md-3 drug-detail-short-links" },
+                        { className: "hidden-xs hidden-sm col-md-3 drug-detail-short-links" },
                         _react2.default.createElement(
                             "ul",
                             null,
@@ -29372,10 +29372,10 @@ var DrugList = function (_React$Component) {
 			return drugs.map(function (drug) {
 				return _react2.default.createElement(
 					"li",
-					{ className: "col-sm-12 col-md-12 col-lg-12", key: drug.id },
+					{ className: "row", key: drug.id },
 					_react2.default.createElement(
 						"div",
-						{ className: "image-container col-sm-2 col-md-3 col-lg-4" },
+						{ className: "image-container col-sm-3 col-md-3 col-lg-4" },
 						_react2.default.createElement(
 							_reactRouterDom.Link,
 							{ to: "/drug/" + drug.id },
@@ -29384,7 +29384,7 @@ var DrugList = function (_React$Component) {
 					),
 					_react2.default.createElement(
 						"div",
-						{ className: "flex_container" },
+						null,
 						_react2.default.createElement(
 							"div",
 							{ className: "info" },
@@ -29507,7 +29507,7 @@ var DrugList = function (_React$Component) {
 				),
 				_react2.default.createElement(
 					"div",
-					{ className: "row" },
+					null,
 					this.state.loading && _react2.default.createElement(_loading2.default, null),
 					!this.state.loading && drugs && drugs.length == 0 && _react2.default.createElement(_empty_list2.default, null),
 					!this.state.loading && drugs && drugs.length > 0 && _react2.default.createElement(

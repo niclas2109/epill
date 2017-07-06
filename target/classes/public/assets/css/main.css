@@ -92,18 +92,6 @@ a.wide { display : block }
 	max-height:300px;
 }
 
-.drug-list>li>.info {
-	text-align: left;
-}
-
-.drug-list>li>.info>.title {
-	margin: 0px;
-}
-
-.drug-list>li>.info>.desc {
-	margin: 0px;
-}
-
 .drug-list>li>div>.action-pattern {
 	background-color: rgb(255, 255, 255);
 }
@@ -158,6 +146,7 @@ a.wide { display : block }
 		display: block;
 		width: 100%;
 		padding: 0px;
+		background-color:#cdcdcd;
 	}
 	
 	.drug-list>li>div.image-container {
@@ -168,6 +157,8 @@ a.wide { display : block }
 	
 	.drug-list>li>div>.info {
 		background-color: rgb(255, 255, 255);
+		text-align: left;
+		padding-right: 30px;
 	}
 	
 	.drug-list>li>div>.info h4 {
@@ -175,8 +166,12 @@ a.wide { display : block }
 	}
 
 	.drug-list>li>div>.action-pattern {
-		width: 40px;
-		height: 120px;
+		position: absolute;
+		top: 0px;
+		right: 0px;
+		display: block;
+		width: 30px;
+		height: 100%;
 	}
 	
 	.drug-list>li>div>.action-pattern>ul {
@@ -186,11 +181,11 @@ a.wide { display : block }
 	.drug-list>li>div>.action-pattern>ul>li {
 		display: block;
 		padding: 0px;
-		height: 33%;
+		height: 30px;
 	}
 		
 	.drug-list>li>div>.action-pattern>ul>li button {
-		height: 100%;
+		
 	}
 }
 

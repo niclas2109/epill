@@ -320,13 +320,13 @@ class DrugList extends React.Component {
     renderDrugs(drugs) {
         return drugs.map((drug => {
             return (
-               <li className="col-sm-12 col-md-12 col-lg-12" key={drug.id}>
-               	<div className="image-container col-sm-2 col-md-3 col-lg-4">
+               <li className="row" key={drug.id}>
+               	<div className="image-container col-sm-3 col-md-3 col-lg-4">
                		<Link to={`/drug/${drug.id}`}>
 		        				<img className="featurette-image img-responsive center-block" alt="{drug.name}" src="http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg"></img>
 		        		</Link>
 		        </div>
-		        <div className="flex_container">
+		        <div>
 		        		<div className="info">
 		    			
 		    				{this.renderDrugFeatures(drug)}
@@ -362,8 +362,8 @@ class DrugList extends React.Component {
 			        				</li>
 			        			</ul>
 			        		}
-			        		</div>
-		        		</div>
+			        	</div>
+		        	</div>
         	</li>
             );
         }));
@@ -414,7 +414,7 @@ class DrugList extends React.Component {
 		                </div>
 					}
     
-	                <div className="row">
+	                <div>
             				{this.state.loading && <Loading /> }
             				{!this.state.loading && drugs && drugs.length == 0 && <EmptyList /> }
 	                		{!this.state.loading && drugs && drugs.length > 0 &&

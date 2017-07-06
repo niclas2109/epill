@@ -28838,7 +28838,6 @@ var DrugDetail = function (_React$Component) {
                         { className: "btn-toolbar pull-right" },
                         _react2.default.createElement("div", { className: "btn-group" })
                     ),
-                    "s",
                     _User2.default.isAuthenticated() && _react2.default.createElement(
                         "div",
                         { className: "btn-toolbar pull-right" },
@@ -29373,7 +29372,7 @@ var DrugList = function (_React$Component) {
 			return drugs.map(function (drug) {
 				return _react2.default.createElement(
 					"li",
-					{ className: "col-sm-12 col-md-12 col-lg-12", key: drug.id },
+					{ className: "row", key: drug.id },
 					_react2.default.createElement(
 						"div",
 						{ className: "image-container col-sm-2 col-md-3 col-lg-4" },
@@ -29385,7 +29384,7 @@ var DrugList = function (_React$Component) {
 					),
 					_react2.default.createElement(
 						"div",
-						{ className: "flex_container" },
+						null,
 						_react2.default.createElement(
 							"div",
 							{ className: "info" },
@@ -29508,7 +29507,7 @@ var DrugList = function (_React$Component) {
 				),
 				_react2.default.createElement(
 					"div",
-					{ className: "row" },
+					null,
 					this.state.loading && _react2.default.createElement(_loading2.default, null),
 					!this.state.loading && drugs && drugs.length == 0 && _react2.default.createElement(_empty_list2.default, null),
 					!this.state.loading && drugs && drugs.length > 0 && _react2.default.createElement(

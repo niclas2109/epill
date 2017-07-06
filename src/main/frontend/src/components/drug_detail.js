@@ -321,13 +321,13 @@ class DrugDetail extends React.Component {
   
         		</div>
         		<div className="row featurette">
-        			<div className="col-md-3">
+        			<div className="col-xs-12 col-sm-12 col-md-3">
         				<img className="featurette-image img-responsive center-block" alt="{drug.name}" src="http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg"></img>
                 		<div className="drug-features margin-s">
 	    					{this.renderDrugFeatures(drug)}
 	            		</div>
         			</div>
-        			<div className="col-xs-9 col-md-6">
+        			<div className="col-xs-12 col-sm-12 col-md-6">
         				{ User.isAuthenticated() && drug.personalizedInformation && <p>{drug.personalizedInformation.replace("%User.firstname%", User.firstname).replace("%User.lastname%", User.lastname)}</p> }
       
         				{ this.renderDisease(drug) }
@@ -343,7 +343,7 @@ class DrugDetail extends React.Component {
         				{this.renderPZN(drug)}
 
         			</div>
-        			<div className="col-xs-0 col-md-3 drug-detail-short-links">
+        			<div className="hidden-xs hidden-sm col-md-3 drug-detail-short-links">
         				<ul>
         					{this.renderSectionOverview(drug)}
         				</ul>
