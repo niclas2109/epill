@@ -28838,7 +28838,6 @@ var DrugDetail = function (_React$Component) {
                         { className: "btn-toolbar pull-right" },
                         _react2.default.createElement("div", { className: "btn-group" })
                     ),
-                    "s",
                     _User2.default.isAuthenticated() && _react2.default.createElement(
                         "div",
                         { className: "btn-toolbar pull-right" },
@@ -29385,10 +29384,10 @@ var DrugList = function (_React$Component) {
 					),
 					_react2.default.createElement(
 						"div",
-						{ className: "col-sm-10 col-md-9 col-lg-8" },
+						{ className: "flex_container" },
 						_react2.default.createElement(
 							"div",
-							{ className: "info col-sm-11 col-md-11 col-lg-11" },
+							{ className: "info" },
 							_this9.renderDrugFeatures(drug),
 							_react2.default.createElement(
 								_reactRouterDom.Link,
@@ -29404,7 +29403,7 @@ var DrugList = function (_React$Component) {
 						),
 						_react2.default.createElement(
 							"div",
-							{ className: "action-pattern col-sm-1 col-md-1 col-lg-1" },
+							{ className: "action-pattern" },
 							_User2.default.isAuthenticated() && _react2.default.createElement(
 								"ul",
 								null,

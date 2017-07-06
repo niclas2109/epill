@@ -301,7 +301,6 @@ class DrugDetail extends React.Component {
         			<div className='btn-toolbar pull-right'>
         				<div className='btn-group'></div>
         			</div>
-          			s
         			{User.isAuthenticated()
         				&&
 	        			<div className='btn-toolbar pull-right'>

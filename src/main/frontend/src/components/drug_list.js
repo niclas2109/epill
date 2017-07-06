@@ -326,8 +326,8 @@ class DrugList extends React.Component {
 		        				<img className="featurette-image img-responsive center-block" alt="{drug.name}" src="http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg"></img>
 		        		</Link>
 		        </div>
-		        <div className="col-sm-10 col-md-9 col-lg-8">
-		        		<div className="info col-sm-11 col-md-11 col-lg-11">
+		        <div className="flex_container">
+		        		<div className="info">
 		    			
 		    				{this.renderDrugFeatures(drug)}
 		    			
@@ -340,7 +340,7 @@ class DrugList extends React.Component {
 		        			{this.renderActiveSubstance(drug)}
 		
 		        		</div>
-		        		<div className="action-pattern col-sm-1 col-md-1 col-lg-1">
+		        		<div className="action-pattern">
 			        		{User.isAuthenticated() &&
 			        			<ul>
 			        				<li>
