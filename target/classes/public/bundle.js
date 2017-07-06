@@ -29488,7 +29488,7 @@ var DrugList = function (_React$Component) {
 						title
 					)
 				),
-				_User2.default.isAuthenticated() && _User2.default.levelOfDetail >= 3 && _react2.default.createElement(
+				_User2.default.isAuthenticated() && _User2.default.levelOfDetail != 'min' && _react2.default.createElement(
 					"div",
 					{ className: "text-box" },
 					description.replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)

@@ -401,7 +401,7 @@ class DrugList extends React.Component {
 		    		<div className='page-header'>
 		    			<h3>{title}</h3>
 				</div>
-				{User.isAuthenticated() && User.levelOfDetail >= 3 &&
+				{User.isAuthenticated() && User.levelOfDetail != 'min' &&
 		            <div className="text-box">
 						{description.replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
 		            </div>
