@@ -321,48 +321,49 @@ class DrugList extends React.Component {
         return drugs.map((drug => {
             return (
                <li className="col-sm-12 col-md-12 col-lg-12" key={drug.id}>
+               	<div className="image-container col-sm-2 col-md-3 col-lg-4">
                		<Link to={`/drug/${drug.id}`}>
-		               	<div className="image-container col-sm-2 col-md-2 col-lg-2">
-		        			<img className="featurette-image img-responsive center-block" alt="{drug.name}" src="http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg"></img>
+		        				<img className="featurette-image img-responsive center-block" alt="{drug.name}" src="http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg"></img>
+		        		</Link>
+		        </div>
+		        <div className="col-sm-10 col-md-9 col-lg-8">
+		        		<div className="info col-sm-11 col-md-11 col-lg-11">
+		    			
+		    				{this.renderDrugFeatures(drug)}
+		    			
+		        			<Link to={`/drug/${drug.id}`}>
+		        				<h4>{ drug.name }</h4>
+		        			</Link>
+		        			
+		        			{this.renderDisease(drug)}
+		        			
+		        			{this.renderActiveSubstance(drug)}
+		
 		        		</div>
-	        		</Link>
-        		<div className="info col-sm-9 col-md-9 col-lg-9">
-    			
-    				{this.renderDrugFeatures(drug)}
-    			
-        			<Link to={`/drug/${drug.id}`}>
-        				<h4>{ drug.name }</h4>
-        			</Link>
-        			
-        			{this.renderDisease(drug)}
-        			
-        			{this.renderActiveSubstance(drug)}
-
-        			{drug.year && <p>new Date(drug.year).toISOString()</p>}
-        		</div>
-        		<div className="action-pattern col-sm-1 col-md-1 col-lg-1">
-	        		{User.isAuthenticated() &&
-	        			<ul>
-	        				<li>
-	        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.toggleTaking(drug)}>
-	        						<span className={"glyphicon white "+(drug.isTaken ? 'glyphicon-minus' : 'glyphicon-heart' )}></span>
-	        					</button>
-	        				</li>
-	        				<li>
-	        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.toggleRemember(drug)}>
-	        						<span className={"glyphicon white "+ (drug.isRemembered ? 'glyphicon-minus' : 'glyphicon-plus' )}></span>
-	        					</button>
-	        				</li>
-	        				<li>
-		        				<button type="button" className="btn btn-xs btn-open">
-			        				<Link to={`/drug/${drug.id}`}>
-		        						<span className="glyphicon glyphicon-eye-open white"></span>
-				        			</Link>
-		        				</button>
-	        				</li>
-	        			</ul>
-	        		}
-        		</div>
+		        		<div className="action-pattern col-sm-1 col-md-1 col-lg-1">
+			        		{User.isAuthenticated() &&
+			        			<ul>
+			        				<li>
+			        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.toggleTaking(drug)}>
+			        						<span className={"glyphicon white "+(drug.isTaken ? 'glyphicon-minus' : 'glyphicon-heart' )}></span>
+			        					</button>
+			        				</li>
+			        				<li>
+			        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.toggleRemember(drug)}>
+			        						<span className={"glyphicon white "+ (drug.isRemembered ? 'glyphicon-minus' : 'glyphicon-plus' )}></span>
+			        					</button>
+			        				</li>
+			        				<li>
+				        				<button type="button" className="btn btn-xs btn-open">
+					        				<Link to={`/drug/${drug.id}`}>
+				        						<span className="glyphicon glyphicon-eye-open white"></span>
+						        			</Link>
+				        				</button>
+			        				</li>
+			        			</ul>
+			        		}
+			        		</div>
+		        		</div>
         	</li>
             );
         }));

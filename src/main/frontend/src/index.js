@@ -28,22 +28,22 @@ class Root extends React.Component {
 	constructor(props) {
         super(props);
         
+        var fontSize = 'defaultFontSize';
         // Force initialization of the object.
-        
-        this.state = {
-        		fontSize		: 'defaultFontSize'
+        if(User.isAuthenticated()){
+        		fontSize = User.preferredFontSize;
         }
         
-        User.isAuthenticated();
+        this.state = {
+        		fontSize		: fontSize
+        }
         
         this.updateNavigation 	= this.updateNavigation.bind(this);
-        this.updateFontSize	= this.updateFontSize.bind(this);
+        this.updateFontSize		= this.updateFontSize.bind(this);
     }
 
     // This is called whenever the authentication state of a user is changed by a component
     updateNavigation() {
-    		if(User.isAuthenticated())
-    			this.updateFontSize(User.preferredFontSize);
 		this.nav.updateNavigation();
     }    
 
@@ -73,7 +73,7 @@ class Root extends React.Component {
 	                {/* User sites */}
 	                <Route path="/user/rememberedDrugs" component={DrugList}/>
 	                <Route path="/user/takenDrugs" component={DrugList}/>
-	                <Route path="/user/data"  render={(props) => (<UserData {...props} updateFontSize={this.updateFontSize}/> )}/>
+	                <Route path="/user/data"  render={(props) => (<UserData {...props} updateFontSize={this.updateFontSize} updateNavigation={this.updateNavigation} /> )}/>
 	                <Route path="/user/settings" component={UserSettings}/>
 	                
 	                {/* Information sites */}

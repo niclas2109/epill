@@ -5079,7 +5079,7 @@ var _axios = __webpack_require__(14);
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _universalCookie = __webpack_require__(49);
+var _universalCookie = __webpack_require__(39);
 
 var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
@@ -5127,6 +5127,19 @@ var User = function () {
             this.preferredFontSize = 100;
             this.redGreenColorblind = false;
             this.id = -1;
+        }
+    }, {
+        key: "get",
+        value: function get() {
+            return {
+                id: this.id,
+                username: this.username,
+                firstname: this.firstname,
+                lastname: this.lastname,
+                levelOfDetail: this.levelOfDetail,
+                preferredFontSize: this.preferredFontSize,
+                redGreenColorblind: this.redGreenColorblind
+            };
         }
     }, {
         key: "isAuthenticated",
@@ -6019,7 +6032,7 @@ var CallbackQueue = __webpack_require__(191);
 var PooledClass = __webpack_require__(26);
 var ReactFeatureFlags = __webpack_require__(196);
 var ReactReconciler = __webpack_require__(30);
-var Transaction = __webpack_require__(44);
+var Transaction = __webpack_require__(45);
 
 var invariant = __webpack_require__(2);
 
@@ -7108,7 +7121,7 @@ var _assign = __webpack_require__(6);
 var ReactCurrentOwner = __webpack_require__(20);
 
 var warning = __webpack_require__(4);
-var canDefineProperty = __webpack_require__(48);
+var canDefineProperty = __webpack_require__(49);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
 var REACT_ELEMENT_TYPE = __webpack_require__(217);
@@ -7495,7 +7508,7 @@ module.exports = reactProdInvariant;
 
 
 var DOMNamespaces = __webpack_require__(57);
-var setInnerHTML = __webpack_require__(46);
+var setInnerHTML = __webpack_require__(47);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(64);
 var setTextContent = __webpack_require__(210);
@@ -7808,7 +7821,7 @@ var createFactory = ReactElement.createFactory;
 var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
-  var canDefineProperty = __webpack_require__(48);
+  var canDefineProperty = __webpack_require__(49);
   var ReactElementValidator = __webpack_require__(218);
   var didWarnPropTypesDeprecated = false;
   createElement = ReactElementValidator.createElement;
@@ -8063,7 +8076,7 @@ var EventEmitter = function () {
 
 var _prodInvariant = __webpack_require__(5);
 
-var EventPluginRegistry = __webpack_require__(41);
+var EventPluginRegistry = __webpack_require__(42);
 var EventPluginUtils = __webpack_require__(58);
 var ReactErrorUtils = __webpack_require__(62);
 
@@ -8581,6 +8594,26 @@ module.exports = SyntheticUIEvent;
 
 /***/ }),
 /* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Cookies = __webpack_require__(415);
+
+var _Cookies2 = _interopRequireDefault(_Cookies);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _Cookies2.default;
+module.exports = exports['default'];
+
+/***/ }),
+/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8700,7 +8733,7 @@ function escape(data) {
 }
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8759,7 +8792,7 @@ module.exports = invariant;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9018,7 +9051,7 @@ module.exports = EventPluginRegistry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9036,7 +9069,7 @@ module.exports = EventPluginRegistry;
 
 var _assign = __webpack_require__(6);
 
-var EventPluginRegistry = __webpack_require__(41);
+var EventPluginRegistry = __webpack_require__(42);
 var ReactEventEmitterMixin = __webpack_require__(333);
 var ViewportMetrics = __webpack_require__(202);
 
@@ -9347,7 +9380,7 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
 module.exports = ReactBrowserEventEmitter;
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9424,7 +9457,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 module.exports = SyntheticMouseEvent;
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9658,7 +9691,7 @@ module.exports = TransactionImpl;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9785,7 +9818,7 @@ function escapeTextContentForBrowser(text) {
 module.exports = escapeTextContentForBrowser;
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9888,7 +9921,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setInnerHTML;
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9921,7 +9954,7 @@ exports.default = {
 };
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9951,26 +9984,6 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = canDefineProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _Cookies = __webpack_require__(415);
-
-var _Cookies2 = _interopRequireDefault(_Cookies);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _Cookies2.default;
-module.exports = exports['default'];
 
 /***/ }),
 /* 50 */
@@ -10421,7 +10434,7 @@ var ReactDOMComponentTree = __webpack_require__(8);
 var ReactInstrumentation = __webpack_require__(17);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(64);
-var setInnerHTML = __webpack_require__(46);
+var setInnerHTML = __webpack_require__(47);
 var setTextContent = __webpack_require__(210);
 
 function getNodeAfter(parentNode, node) {
@@ -12143,7 +12156,7 @@ module.exports = validateDOMNesting;
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
@@ -12351,7 +12364,7 @@ var _prodInvariant = __webpack_require__(28);
 
 var ReactNoopUpdateQueue = __webpack_require__(74);
 
-var canDefineProperty = __webpack_require__(48);
+var canDefineProperty = __webpack_require__(49);
 var emptyObject = __webpack_require__(32);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(4);
@@ -24464,7 +24477,7 @@ var _prodInvariant = __webpack_require__(5);
 var DOMLazyTree = __webpack_require__(29);
 var DOMProperty = __webpack_require__(23);
 var React = __webpack_require__(31);
-var ReactBrowserEventEmitter = __webpack_require__(42);
+var ReactBrowserEventEmitter = __webpack_require__(43);
 var ReactCurrentOwner = __webpack_require__(20);
 var ReactDOMComponentTree = __webpack_require__(8);
 var ReactDOMContainerInfo = __webpack_require__(316);
@@ -24480,7 +24493,7 @@ var ReactUpdates = __webpack_require__(19);
 var emptyObject = __webpack_require__(32);
 var instantiateReactComponent = __webpack_require__(208);
 var invariant = __webpack_require__(2);
-var setInnerHTML = __webpack_require__(46);
+var setInnerHTML = __webpack_require__(47);
 var shouldUpdateReactComponent = __webpack_require__(69);
 var warning = __webpack_require__(4);
 
@@ -25594,8 +25607,8 @@ module.exports = isTextInputElement;
 
 
 var ExecutionEnvironment = __webpack_require__(10);
-var escapeTextContentForBrowser = __webpack_require__(45);
-var setInnerHTML = __webpack_require__(46);
+var escapeTextContentForBrowser = __webpack_require__(46);
+var setInnerHTML = __webpack_require__(47);
 
 /**
  * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -26249,7 +26262,7 @@ var ReactElement = __webpack_require__(27);
 
 var checkReactTypeSpec = __webpack_require__(410);
 
-var canDefineProperty = __webpack_require__(48);
+var canDefineProperty = __webpack_require__(49);
 var getIteratorFn = __webpack_require__(220);
 var warning = __webpack_require__(4);
 
@@ -26671,15 +26684,17 @@ var Root = function (_React$Component) {
     function Root(props) {
         _classCallCheck(this, Root);
 
-        // Force initialization of the object.
-
         var _this = _possibleConstructorReturn(this, (Root.__proto__ || Object.getPrototypeOf(Root)).call(this, props));
 
-        _this.state = {
-            fontSize: 'defaultFontSize'
-        };
+        var fontSize = 'defaultFontSize';
+        // Force initialization of the object.
+        if (_User2.default.isAuthenticated()) {
+            fontSize = _User2.default.preferredFontSize;
+        }
 
-        _User2.default.isAuthenticated();
+        _this.state = {
+            fontSize: fontSize
+        };
 
         _this.updateNavigation = _this.updateNavigation.bind(_this);
         _this.updateFontSize = _this.updateFontSize.bind(_this);
@@ -26692,7 +26707,6 @@ var Root = function (_React$Component) {
     _createClass(Root, [{
         key: "updateNavigation",
         value: function updateNavigation() {
-            if (_User2.default.isAuthenticated()) this.updateFontSize(_User2.default.preferredFontSize);
             this.nav.updateNavigation();
         }
     }, {
@@ -26727,7 +26741,7 @@ var Root = function (_React$Component) {
                     _react2.default.createElement(_reactRouterDom.Route, { path: "/user/rememberedDrugs", component: _drug_list2.default }),
                     _react2.default.createElement(_reactRouterDom.Route, { path: "/user/takenDrugs", component: _drug_list2.default }),
                     _react2.default.createElement(_reactRouterDom.Route, { path: "/user/data", render: function render(props) {
-                            return _react2.default.createElement(_data2.default, _extends({}, props, { updateFontSize: _this2.updateFontSize }));
+                            return _react2.default.createElement(_data2.default, _extends({}, props, { updateFontSize: _this2.updateFontSize, updateNavigation: _this2.updateNavigation }));
                         } }),
                     _react2.default.createElement(_reactRouterDom.Route, { path: "/user/settings", component: _settings2.default }),
                     _react2.default.createElement(_reactRouterDom.Route, { path: "/about", component: _about2.default }),
@@ -27675,20 +27689,12 @@ var About = function (_React$Component) {
                         t("about")
                     )
                 ),
+                _react2.default.createElement("div", { className: "col-md-7 no-padding", dangerouslySetInnerHTML: this.createMarkup(t('aboutText')) }),
                 _react2.default.createElement(
                     "div",
-                    { className: "row" },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "col-md-7" },
-                        _react2.default.createElement("p", { className: "panel-body", dangerouslySetInnerHTML: this.createMarkup(t('aboutText')) })
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "col-md-5" },
-                        _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "500x500",
-                            src: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1YzA2N2E3MjE2IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTVjMDY3YTcyMTYiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg0Ljc4OTA2MjUiIHk9IjI2MS4yMzEyNSI+NTAweDUwMDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" })
-                    )
+                    { className: "col-md-5 " },
+                    _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "500x500",
+                        src: "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzUwMHg1MDAvYXV0bwpDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNi4wLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnM+PHN0eWxlIHR5cGU9InRleHQvY3NzIj48IVtDREFUQVsjaG9sZGVyXzE1YzA2N2E3MjE2IHRleHQgeyBmaWxsOiNBQUFBQUE7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6MjVwdCB9IF1dPjwvc3R5bGU+PC9kZWZzPjxnIGlkPSJob2xkZXJfMTVjMDY3YTcyMTYiPjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjRUVFRUVFIi8+PGc+PHRleHQgeD0iMTg0Ljc4OTA2MjUiIHk9IjI2MS4yMzEyNSI+NTAweDUwMDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==" })
                 )
             );
         }
@@ -28832,6 +28838,7 @@ var DrugDetail = function (_React$Component) {
                         { className: "btn-toolbar pull-right" },
                         _react2.default.createElement("div", { className: "btn-group" })
                     ),
+                    "s",
                     _User2.default.isAuthenticated() && _react2.default.createElement(
                         "div",
                         { className: "btn-toolbar pull-right" },
@@ -28941,7 +28948,7 @@ exports.default = (0, _reactI18next.translate)()(DrugDetail);
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+	value: true
 });
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -28981,541 +28988,540 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var DrugList = function (_React$Component) {
-  _inherits(DrugList, _React$Component);
+	_inherits(DrugList, _React$Component);
 
-  function DrugList(props) {
-    _classCallCheck(this, DrugList);
+	function DrugList(props) {
+		_classCallCheck(this, DrugList);
 
-    var _this = _possibleConstructorReturn(this, (DrugList.__proto__ || Object.getPrototypeOf(DrugList)).call(this));
+		var _this = _possibleConstructorReturn(this, (DrugList.__proto__ || Object.getPrototypeOf(DrugList)).call(this));
 
-    _this.state = {
-      drugs: [],
-      interactions: '',
-      cmd: '',
-      loading: false
-    };
+		_this.state = {
+			drugs: [],
+			interactions: '',
+			cmd: '',
+			loading: false
+		};
 
-    _this.checkForInteractions = _this.checkForInteractions.bind(_this);
-    _this.addToRememberList = _this.addToRememberList.bind(_this);
-    _this.removeFromRememberList = _this.removeFromRememberList.bind(_this);
-    _this.addToTakingList = _this.addToTakingList.bind(_this);
-    _this.removeFromTakingList = _this.removeFromTakingList.bind(_this);
-    return _this;
-  }
+		_this.checkForInteractions = _this.checkForInteractions.bind(_this);
+		_this.addToRememberList = _this.addToRememberList.bind(_this);
+		_this.removeFromRememberList = _this.removeFromRememberList.bind(_this);
+		_this.addToTakingList = _this.addToTakingList.bind(_this);
+		_this.removeFromTakingList = _this.removeFromTakingList.bind(_this);
+		return _this;
+	}
 
-  _createClass(DrugList, [{
-    key: "setCmd",
-    value: function setCmd() {
-      var _this2 = this;
+	_createClass(DrugList, [{
+		key: "setCmd",
+		value: function setCmd() {
+			var _this2 = this;
 
-      var path = this.props.location.pathname.split('/');
-      var cmd = path[path.length - 1];
+			var path = this.props.location.pathname.split('/');
+			var cmd = path[path.length - 1];
 
-      this.state.cmd = cmd;
-      this.state.interactions = '';
-      this.state.loading = true;
-      this.setState(this.state);
+			this.state.cmd = cmd;
+			this.state.interactions = '';
+			this.state.loading = true;
+			this.setState(this.state);
 
-      switch (this.state.cmd) {
-        case 'taking':
-          _axios2.default.get('/drug/list/taking').then(function (_ref) {
-            var data = _ref.data;
+			switch (this.state.cmd) {
+				case 'taking':
+					_axios2.default.get('/drug/list/taking').then(function (_ref) {
+						var data = _ref.data;
 
-            _this2.state.drugs = data.value;
-            _this2.state.loading = false;
-            _this2.setState(_this2.state);
-            _this2.checkForInteractions();
-          });
-          break;
-        case 'remember':
-          _axios2.default.get('/drug/list/remember').then(function (_ref2) {
-            var data = _ref2.data;
+						_this2.state.drugs = data.value;
+						_this2.state.loading = false;
+						_this2.setState(_this2.state);
+						_this2.checkForInteractions();
+					});
+					break;
+				case 'remember':
+					_axios2.default.get('/drug/list/remember').then(function (_ref2) {
+						var data = _ref2.data;
 
-            _this2.state.drugs = data.value;
-            _this2.state.loading = false;
-            _this2.setState(_this2.state);
-            _this2.checkForInteractions();
-          });
-          break;
-        case 'list':
-          _axios2.default.get('/drug/list/all').then(function (_ref3) {
-            var data = _ref3.data,
-                status = _ref3.status;
+						_this2.state.drugs = data.value;
+						_this2.state.loading = false;
+						_this2.setState(_this2.state);
+						_this2.checkForInteractions();
+					});
+					break;
+				case 'list':
+					_axios2.default.get('/drug/list/all').then(function (_ref3) {
+						var data = _ref3.data,
+						    status = _ref3.status;
 
-            _this2.state.drugs = data.value;
-            _this2.state.loading = false;
-            _this2.setState(_this2.state);
-          });
-          break;
-        default:
-          _axios2.default.get('/drug/search', { params: { exp: "ac" } }).then(function (_ref4) {
-            var data = _ref4.data;
+						_this2.state.drugs = data.value;
+						_this2.state.loading = false;
+						_this2.setState(_this2.state);
+					});
+					break;
+				default:
+					_axios2.default.get('/drug/search', { params: { exp: "ac" } }).then(function (_ref4) {
+						var data = _ref4.data;
 
-            _this2.state.drugs = data.value;
-            _this2.state.loading = false;
-            _this2.setState(_this2.state);
-          });
-          break;
-      }
-    }
+						_this2.state.drugs = data.value;
+						_this2.state.loading = false;
+						_this2.setState(_this2.state);
+					});
+					break;
+			}
+		}
 
-    // This function is called before render() to initialize its state.
+		// This function is called before render() to initialize its state.
 
-  }, {
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      this.setCmd();
-    }
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(props) {
-      this.props = props;
-      this.setCmd();
-    }
-  }, {
-    key: "createMarkup",
-    value: function createMarkup(text) {
-      return { __html: text };
-    }
-  }, {
-    key: "toggleTaking",
-
-
-    //=============================
+	}, {
+		key: "componentWillMount",
+		value: function componentWillMount() {
+			this.setCmd();
+		}
+	}, {
+		key: "componentWillReceiveProps",
+		value: function componentWillReceiveProps(props) {
+			this.props = props;
+			this.setCmd();
+		}
+	}, {
+		key: "createMarkup",
+		value: function createMarkup(text) {
+			return { __html: text };
+		}
+	}, {
+		key: "toggleTaking",
 
 
-    value: function toggleTaking(drug) {
-      if (drug.isTaken) {
-        this.removeFromTakingList(drug);
-      } else {
-        this.addToTakingList(drug);
-      }
-    }
-  }, {
-    key: "addToTakingList",
-    value: function addToTakingList(drug) {
-      var _this3 = this;
-
-      _axios2.default.post('/drug/taking/add', { id: drug.id }, {
-        validateStatus: function validateStatus(status) {
-          return status >= 200 && status < 300 || status == 400 || status == 401;
-        }
-      }).then(function (_ref5) {
-        var data = _ref5.data,
-            status = _ref5.status;
-        var t = _this3.props.t;
-
-        var options = {
-          position: _reactToastify.toast.POSITION.BOTTOM_CENTER
-        };
-
-        switch (status) {
-          case 200:
-            _reactToastify.toast.success(t('addToTakingListSuccess'), options);
-            var idx = _this3.state.drugs.indexOf(drug);
-            drug.isTaken = !drug.isTaken;
-            _this3.state.drugs[idx] = drug;
-            _this3.setState(_this3.state);
-            break;
-          case 400:
-            _reactToastify.toast.error(t('addToTakingListFailed'), options);
-            break;
-          case 401:
-            console.log(data, "not permitted");
-            break;
-        }
-      });
-    }
-  }, {
-    key: "removeFromTakingList",
-    value: function removeFromTakingList(drug) {
-      var _this4 = this;
-
-      _axios2.default.post('/drug/taking/remove', { id: drug.id }, {
-        validateStatus: function validateStatus(status) {
-          return status >= 200 && status < 300 || status == 400 || status == 401;
-        }
-      }).then(function (_ref6) {
-        var data = _ref6.data,
-            status = _ref6.status;
-        var t = _this4.props.t;
-
-        var options = {
-          position: _reactToastify.toast.POSITION.BOTTOM_CENTER
-        };
-
-        switch (status) {
-          case 200:
-            _reactToastify.toast.success(t('removeFromTakingListSuccess'), options);
-
-            var idx = _this4.state.drugs.indexOf(drug);
-            if (_this4.state.cmd != 'taking') {
-              drug.isTaken = !drug.isTaken;
-              _this4.state.drugs[idx] = drug;
-              _this4.setState(_this4.state);
-            } else {
-              _this4.state.drugs.splice(idx, 1);
-            }
-
-            _this4.setState(_this4.state);
-            _this4.checkForInteractions();
-            break;
-          case 400:
-            _reactToastify.toast.error(t('removeFromTakingListFailed'), options);
-            break;
-          case 401:
-            console.log(data, "not permitted");
-            break;
-        }
-      });
-    }
-  }, {
-    key: "toggleRemember",
-    value: function toggleRemember(drug) {
-      if (drug.isRemembered) {
-        this.removeFromRememberList(drug);
-      } else {
-        this.addToRememberList(drug);
-      }
-    }
-  }, {
-    key: "addToRememberList",
-    value: function addToRememberList(drug) {
-      var _this5 = this;
-
-      _axios2.default.post('/drug/remember/add', { id: drug.id }, {
-        validateStatus: function validateStatus(status) {
-          return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
-        }
-      }).then(function (_ref7) {
-        var data = _ref7.data,
-            status = _ref7.status;
-        var t = _this5.props.t;
-
-        var options = {
-          position: _reactToastify.toast.POSITION.BOTTOM_CENTER
-        };
-
-        switch (status) {
-          case 200:
-            _reactToastify.toast.success(t('addToRememberListSuccess'), options);
-            var idx = _this5.state.drugs.indexOf(drug);
-            drug.isRemembered = !drug.isRemembered;
-            _this5.state.drugs[idx] = drug;
-            _this5.setState(_this5.state);
-            break;
-          case 400:
-            _reactToastify.toast.error(t('addToRememberListFailed'), options);
-            break;
-          case 401:
-            console.log(data, "not permitted");
-            break;
-          case 405:
-            console.log(data, "Method not allowed");
-            break;
-        }
-      });
-    }
-  }, {
-    key: "removeFromRememberList",
-    value: function removeFromRememberList(drug) {
-      var _this6 = this;
-
-      _axios2.default.post('/drug/remember/remove', { id: drug.id }, {
-        validateStatus: function validateStatus(status) {
-          return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
-        }
-      }).then(function (_ref8) {
-        var data = _ref8.data,
-            status = _ref8.status;
-        var t = _this6.props.t;
-
-        var options = {
-          position: _reactToastify.toast.POSITION.BOTTOM_CENTER
-        };
-
-        switch (status) {
-          case 200:
-            _reactToastify.toast.success(t('removeFromRememberListSuccess'), options);
-            var idx = _this6.state.drugs.indexOf(drug);
-
-            if (_this6.state.cmd != 'remember') {
-              drug.isRemembered = !drug.isRemembered;
-              _this6.state.drugs[idx] = drug;
-              _this6.setState(_this6.state);
-            } else {
-              _this6.state.drugs.splice(idx, 1);
-              _this6.checkForInteractions();
-            }
-
-            break;
-          case 400:
-            _reactToastify.toast.error(t('removeFromRememberListFailed'), options);
-            break;
-          case 401:
-            console.log(data, "not permitted");
-            break;
-          case 405:
-            console.log(data, "Method not allowed");
-            break;
-        }
-      });
-    }
-  }, {
-    key: "deleteDrug",
-    value: function deleteDrug(id) {
-      var _this7 = this;
-
-      // ES6 string interpolation (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
-      // No error handling for now, e.g. if the user is not authenticated.
-      _axios2.default.delete("/drugs/delete/" + id).then(function (data) {
-        // Remove post from list of posts.
-        var posts = _this7.state.posts.filter(function (e) {
-          return e.id != id;
-        });
-        _this7.setState({
-          drugs: drugs
-        });
-      });
-    }
-  }, {
-    key: "checkForInteractions",
-    value: function checkForInteractions() {
-      var _this8 = this;
-
-      _axios2.default.get('/drug/interactions').then(function (_ref9) {
-        var data = _ref9.data;
-
-        _this8.state.interactions = data.value;
-        _this8.setState(_this8.state);
-      });
-    }
-
-    //=============================
-
-  }, {
-    key: "renderDrugFeatures",
-    value: function renderDrugFeatures(drug) {
-      if (!drug.drugFeature) {
-        return;
-      }
-
-      return _react2.default.createElement(
-        "div",
-        { className: "drug-features pull-right" },
-        drug.drugFeature.map(function (feature) {
-          return _react2.default.createElement("img", { key: feature.id, src: "./../../assets/icons/" + feature.id + ".svg", className: "drug-feature-icon", alt: feature.drugFeature, title: feature.drugFeature });
-        })
-      );
-    }
-  }, {
-    key: "renderDisease",
-    value: function renderDisease(drug) {
-      if (!drug.disease) {
-        return;
-      }
-
-      var t = this.props.t;
+		//=============================
 
 
-      return _react2.default.createElement(
-        "p",
-        null,
-        " ",
-        t('usedWhen'),
-        ":",
-        drug.disease.map(function (disease) {
-          return _react2.default.createElement(
-            "span",
-            { key: disease.id },
-            disease.name
-          );
-        })
-      );
-    }
-  }, {
-    key: "renderActiveSubstance",
-    value: function renderActiveSubstance(drug) {
-      if (!drug.activeSubstance) {
-        return;
-      }
+		value: function toggleTaking(drug) {
+			if (drug.isTaken) {
+				this.removeFromTakingList(drug);
+			} else {
+				this.addToTakingList(drug);
+			}
+		}
+	}, {
+		key: "addToTakingList",
+		value: function addToTakingList(drug) {
+			var _this3 = this;
 
-      var t = this.props.t;
+			_axios2.default.post('/drug/taking/add', { id: drug.id }, {
+				validateStatus: function validateStatus(status) {
+					return status >= 200 && status < 300 || status == 400 || status == 401;
+				}
+			}).then(function (_ref5) {
+				var data = _ref5.data,
+				    status = _ref5.status;
+				var t = _this3.props.t;
+
+				var options = {
+					position: _reactToastify.toast.POSITION.BOTTOM_CENTER
+				};
+
+				switch (status) {
+					case 200:
+						_reactToastify.toast.success(t('addToTakingListSuccess'), options);
+						var idx = _this3.state.drugs.indexOf(drug);
+						drug.isTaken = !drug.isTaken;
+						_this3.state.drugs[idx] = drug;
+						_this3.setState(_this3.state);
+						break;
+					case 400:
+						_reactToastify.toast.error(t('addToTakingListFailed'), options);
+						break;
+					case 401:
+						console.log(data, "not permitted");
+						break;
+				}
+			});
+		}
+	}, {
+		key: "removeFromTakingList",
+		value: function removeFromTakingList(drug) {
+			var _this4 = this;
+
+			_axios2.default.post('/drug/taking/remove', { id: drug.id }, {
+				validateStatus: function validateStatus(status) {
+					return status >= 200 && status < 300 || status == 400 || status == 401;
+				}
+			}).then(function (_ref6) {
+				var data = _ref6.data,
+				    status = _ref6.status;
+				var t = _this4.props.t;
+
+				var options = {
+					position: _reactToastify.toast.POSITION.BOTTOM_CENTER
+				};
+
+				switch (status) {
+					case 200:
+						_reactToastify.toast.success(t('removeFromTakingListSuccess'), options);
+
+						var idx = _this4.state.drugs.indexOf(drug);
+						if (_this4.state.cmd != 'taking') {
+							drug.isTaken = !drug.isTaken;
+							_this4.state.drugs[idx] = drug;
+							_this4.setState(_this4.state);
+						} else {
+							_this4.state.drugs.splice(idx, 1);
+						}
+
+						_this4.setState(_this4.state);
+						_this4.checkForInteractions();
+						break;
+					case 400:
+						_reactToastify.toast.error(t('removeFromTakingListFailed'), options);
+						break;
+					case 401:
+						console.log(data, "not permitted");
+						break;
+				}
+			});
+		}
+	}, {
+		key: "toggleRemember",
+		value: function toggleRemember(drug) {
+			if (drug.isRemembered) {
+				this.removeFromRememberList(drug);
+			} else {
+				this.addToRememberList(drug);
+			}
+		}
+	}, {
+		key: "addToRememberList",
+		value: function addToRememberList(drug) {
+			var _this5 = this;
+
+			_axios2.default.post('/drug/remember/add', { id: drug.id }, {
+				validateStatus: function validateStatus(status) {
+					return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
+				}
+			}).then(function (_ref7) {
+				var data = _ref7.data,
+				    status = _ref7.status;
+				var t = _this5.props.t;
+
+				var options = {
+					position: _reactToastify.toast.POSITION.BOTTOM_CENTER
+				};
+
+				switch (status) {
+					case 200:
+						_reactToastify.toast.success(t('addToRememberListSuccess'), options);
+						var idx = _this5.state.drugs.indexOf(drug);
+						drug.isRemembered = !drug.isRemembered;
+						_this5.state.drugs[idx] = drug;
+						_this5.setState(_this5.state);
+						break;
+					case 400:
+						_reactToastify.toast.error(t('addToRememberListFailed'), options);
+						break;
+					case 401:
+						console.log(data, "not permitted");
+						break;
+					case 405:
+						console.log(data, "Method not allowed");
+						break;
+				}
+			});
+		}
+	}, {
+		key: "removeFromRememberList",
+		value: function removeFromRememberList(drug) {
+			var _this6 = this;
+
+			_axios2.default.post('/drug/remember/remove', { id: drug.id }, {
+				validateStatus: function validateStatus(status) {
+					return status >= 200 && status < 300 || status == 400 || status == 401 || status == 405;
+				}
+			}).then(function (_ref8) {
+				var data = _ref8.data,
+				    status = _ref8.status;
+				var t = _this6.props.t;
+
+				var options = {
+					position: _reactToastify.toast.POSITION.BOTTOM_CENTER
+				};
+
+				switch (status) {
+					case 200:
+						_reactToastify.toast.success(t('removeFromRememberListSuccess'), options);
+						var idx = _this6.state.drugs.indexOf(drug);
+
+						if (_this6.state.cmd != 'remember') {
+							drug.isRemembered = !drug.isRemembered;
+							_this6.state.drugs[idx] = drug;
+							_this6.setState(_this6.state);
+						} else {
+							_this6.state.drugs.splice(idx, 1);
+							_this6.checkForInteractions();
+						}
+
+						break;
+					case 400:
+						_reactToastify.toast.error(t('removeFromRememberListFailed'), options);
+						break;
+					case 401:
+						console.log(data, "not permitted");
+						break;
+					case 405:
+						console.log(data, "Method not allowed");
+						break;
+				}
+			});
+		}
+	}, {
+		key: "deleteDrug",
+		value: function deleteDrug(id) {
+			var _this7 = this;
+
+			// ES6 string interpolation (https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/template_strings)
+			// No error handling for now, e.g. if the user is not authenticated.
+			_axios2.default.delete("/drugs/delete/" + id).then(function (data) {
+				// Remove post from list of posts.
+				var posts = _this7.state.posts.filter(function (e) {
+					return e.id != id;
+				});
+				_this7.setState({
+					drugs: drugs
+				});
+			});
+		}
+	}, {
+		key: "checkForInteractions",
+		value: function checkForInteractions() {
+			var _this8 = this;
+
+			_axios2.default.get('/drug/interactions').then(function (_ref9) {
+				var data = _ref9.data;
+
+				_this8.state.interactions = data.value;
+				_this8.setState(_this8.state);
+			});
+		}
+
+		//=============================
+
+	}, {
+		key: "renderDrugFeatures",
+		value: function renderDrugFeatures(drug) {
+			if (!drug.drugFeature) {
+				return;
+			}
+
+			return _react2.default.createElement(
+				"div",
+				{ className: "drug-features pull-right" },
+				drug.drugFeature.map(function (feature) {
+					return _react2.default.createElement("img", { key: feature.id, src: "./../../assets/icons/" + feature.id + ".svg", className: "drug-feature-icon", alt: feature.drugFeature, title: feature.drugFeature });
+				})
+			);
+		}
+	}, {
+		key: "renderDisease",
+		value: function renderDisease(drug) {
+			if (!drug.disease) {
+				return;
+			}
+
+			var t = this.props.t;
 
 
-      return _react2.default.createElement(
-        "p",
-        null,
-        " ",
-        t('activeSubstance'),
-        ":",
-        drug.activeSubstance.map(function (substance) {
-          return _react2.default.createElement(
-            "span",
-            { key: substance.id },
-            substance.name
-          );
-        })
-      );
-    }
-  }, {
-    key: "renderDrugs",
-    value: function renderDrugs(drugs) {
-      var _this9 = this;
+			return _react2.default.createElement(
+				"p",
+				null,
+				" ",
+				t('usedWhen'),
+				":",
+				drug.disease.map(function (disease) {
+					return _react2.default.createElement(
+						"span",
+						{ key: disease.id },
+						disease.name
+					);
+				})
+			);
+		}
+	}, {
+		key: "renderActiveSubstance",
+		value: function renderActiveSubstance(drug) {
+			if (!drug.activeSubstance) {
+				return;
+			}
 
-      return drugs.map(function (drug) {
-        return _react2.default.createElement(
-          "li",
-          { className: "col-sm-12 col-md-12 col-lg-12", key: drug.id },
-          _react2.default.createElement(
-            _reactRouterDom.Link,
-            { to: "/drug/" + drug.id },
-            _react2.default.createElement(
-              "div",
-              { className: "image-container col-sm-2 col-md-2 col-lg-2" },
-              _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "{drug.name}", src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg" })
-            )
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "info col-sm-9 col-md-9 col-lg-9" },
-            _this9.renderDrugFeatures(drug),
-            _react2.default.createElement(
-              _reactRouterDom.Link,
-              { to: "/drug/" + drug.id },
-              _react2.default.createElement(
-                "h4",
-                null,
-                drug.name
-              )
-            ),
-            _this9.renderDisease(drug),
-            _this9.renderActiveSubstance(drug),
-            drug.year && _react2.default.createElement(
-              "p",
-              null,
-              "new Date(drug.year).toISOString()"
-            )
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "action-pattern col-sm-1 col-md-1 col-lg-1" },
-            _User2.default.isAuthenticated() && _react2.default.createElement(
-              "ul",
-              null,
-              _react2.default.createElement(
-                "li",
-                null,
-                _react2.default.createElement(
-                  "button",
-                  { type: "button", className: "btn btn-xs btn-like", onClick: function onClick() {
-                      return _this9.toggleTaking(drug);
-                    } },
-                  _react2.default.createElement("span", { className: "glyphicon white " + (drug.isTaken ? 'glyphicon-minus' : 'glyphicon-heart') })
-                )
-              ),
-              _react2.default.createElement(
-                "li",
-                null,
-                _react2.default.createElement(
-                  "button",
-                  { type: "button", className: "btn btn-xs btn-add", onClick: function onClick() {
-                      return _this9.toggleRemember(drug);
-                    } },
-                  _react2.default.createElement("span", { className: "glyphicon white " + (drug.isRemembered ? 'glyphicon-minus' : 'glyphicon-plus') })
-                )
-              ),
-              _react2.default.createElement(
-                "li",
-                null,
-                _react2.default.createElement(
-                  "button",
-                  { type: "button", className: "btn btn-xs btn-open" },
-                  _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: "/drug/" + drug.id },
-                    _react2.default.createElement("span", { className: "glyphicon glyphicon-eye-open white" })
-                  )
-                )
-              )
-            )
-          )
-        );
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var t = this.props.t;
+			var t = this.props.t;
 
-      var firstname = _User2.default.firstname;
-      var lastname = _User2.default.lastname;
 
-      var drugs = this.state.drugs;
-      var interactions = this.state.interactions;
+			return _react2.default.createElement(
+				"p",
+				null,
+				" ",
+				t('activeSubstance'),
+				":",
+				drug.activeSubstance.map(function (substance) {
+					return _react2.default.createElement(
+						"span",
+						{ key: substance.id },
+						substance.name
+					);
+				})
+			);
+		}
+	}, {
+		key: "renderDrugs",
+		value: function renderDrugs(drugs) {
+			var _this9 = this;
 
-      var title = null;
-      var description = null;
+			return drugs.map(function (drug) {
+				return _react2.default.createElement(
+					"li",
+					{ className: "col-sm-12 col-md-12 col-lg-12", key: drug.id },
+					_react2.default.createElement(
+						"div",
+						{ className: "image-container col-sm-2 col-md-3 col-lg-4" },
+						_react2.default.createElement(
+							_reactRouterDom.Link,
+							{ to: "/drug/" + drug.id },
+							_react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "{drug.name}", src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg" })
+						)
+					),
+					_react2.default.createElement(
+						"div",
+						{ className: "col-sm-10 col-md-9 col-lg-8" },
+						_react2.default.createElement(
+							"div",
+							{ className: "info col-sm-11 col-md-11 col-lg-11" },
+							_this9.renderDrugFeatures(drug),
+							_react2.default.createElement(
+								_reactRouterDom.Link,
+								{ to: "/drug/" + drug.id },
+								_react2.default.createElement(
+									"h4",
+									null,
+									drug.name
+								)
+							),
+							_this9.renderDisease(drug),
+							_this9.renderActiveSubstance(drug)
+						),
+						_react2.default.createElement(
+							"div",
+							{ className: "action-pattern col-sm-1 col-md-1 col-lg-1" },
+							_User2.default.isAuthenticated() && _react2.default.createElement(
+								"ul",
+								null,
+								_react2.default.createElement(
+									"li",
+									null,
+									_react2.default.createElement(
+										"button",
+										{ type: "button", className: "btn btn-xs btn-like", onClick: function onClick() {
+												return _this9.toggleTaking(drug);
+											} },
+										_react2.default.createElement("span", { className: "glyphicon white " + (drug.isTaken ? 'glyphicon-minus' : 'glyphicon-heart') })
+									)
+								),
+								_react2.default.createElement(
+									"li",
+									null,
+									_react2.default.createElement(
+										"button",
+										{ type: "button", className: "btn btn-xs btn-add", onClick: function onClick() {
+												return _this9.toggleRemember(drug);
+											} },
+										_react2.default.createElement("span", { className: "glyphicon white " + (drug.isRemembered ? 'glyphicon-minus' : 'glyphicon-plus') })
+									)
+								),
+								_react2.default.createElement(
+									"li",
+									null,
+									_react2.default.createElement(
+										"button",
+										{ type: "button", className: "btn btn-xs btn-open" },
+										_react2.default.createElement(
+											_reactRouterDom.Link,
+											{ to: "/drug/" + drug.id },
+											_react2.default.createElement("span", { className: "glyphicon glyphicon-eye-open white" })
+										)
+									)
+								)
+							)
+						)
+					)
+				);
+			});
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			var t = this.props.t;
 
-      switch (this.state.cmd) {
-        case 'taking':
-          title = t('userDrugs');
-          description = t('drugTakingListDescriptionText');
-          break;
-        case 'remember':
-          title = t('rememberedDrugs');
-          description = t('drugRememberListDescriptionText');
-        default:
-          title = t('drugs');
-          description = t('drugListAllDescriptionText');
-          break;
-      }
+			var firstname = _User2.default.firstname;
+			var lastname = _User2.default.lastname;
 
-      return _react2.default.createElement(
-        "div",
-        { className: "container no-banner" },
-        _react2.default.createElement(
-          "div",
-          { className: "page-header" },
-          _react2.default.createElement(
-            "h3",
-            null,
-            title
-          )
-        ),
-        _User2.default.isAuthenticated() && _User2.default.levelOfDetail >= 3 && _react2.default.createElement(
-          "div",
-          { className: "text-box" },
-          description.replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
-        ),
-        drugs.length > 1 && _User2.default.isAuthenticated() && interactions.length > 0 && _react2.default.createElement(
-          "div",
-          { className: "alert" + (_User2.default.redGreenColorblind ? " danger-red-green-colorblind" : " alert-danger") },
-          _react2.default.createElement(
-            "h5",
-            null,
-            _User2.default.redGreenColorblind,
-            " ",
-            t("interaction")
-          ),
-          _react2.default.createElement("span", { dangerouslySetInnerHTML: this.createMarkup(interactions) })
-        ),
-        _react2.default.createElement(
-          "div",
-          { className: "row" },
-          this.state.loading && _react2.default.createElement(_loading2.default, null),
-          !this.state.loading && drugs && drugs.length == 0 && _react2.default.createElement(_empty_list2.default, null),
-          !this.state.loading && drugs && drugs.length > 0 && _react2.default.createElement(
-            "ul",
-            { className: "drug-list" },
-            this.renderDrugs(drugs)
-          )
-        )
-      );
-    }
-  }]);
+			var drugs = this.state.drugs;
+			var interactions = this.state.interactions;
 
-  return DrugList;
+			var title = null;
+			var description = null;
+
+			switch (this.state.cmd) {
+				case 'taking':
+					title = t('userDrugs');
+					description = t('drugTakingListDescriptionText');
+					break;
+				case 'remember':
+					title = t('rememberedDrugs');
+					description = t('drugRememberListDescriptionText');
+				default:
+					title = t('drugs');
+					description = t('drugListAllDescriptionText');
+					break;
+			}
+
+			return _react2.default.createElement(
+				"div",
+				{ className: "container no-banner" },
+				_react2.default.createElement(
+					"div",
+					{ className: "page-header" },
+					_react2.default.createElement(
+						"h3",
+						null,
+						title
+					)
+				),
+				_User2.default.isAuthenticated() && _User2.default.levelOfDetail >= 3 && _react2.default.createElement(
+					"div",
+					{ className: "text-box" },
+					description.replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
+				),
+				drugs.length > 1 && _User2.default.isAuthenticated() && interactions.length > 0 && _react2.default.createElement(
+					"div",
+					{ className: "alert" + (_User2.default.redGreenColorblind ? " danger-red-green-colorblind" : " alert-danger") },
+					_react2.default.createElement(
+						"h5",
+						null,
+						_User2.default.redGreenColorblind,
+						" ",
+						t("interaction")
+					),
+					_react2.default.createElement("span", { dangerouslySetInnerHTML: this.createMarkup(interactions) })
+				),
+				_react2.default.createElement(
+					"div",
+					{ className: "row" },
+					this.state.loading && _react2.default.createElement(_loading2.default, null),
+					!this.state.loading && drugs && drugs.length == 0 && _react2.default.createElement(_empty_list2.default, null),
+					!this.state.loading && drugs && drugs.length > 0 && _react2.default.createElement(
+						"ul",
+						{ className: "drug-list" },
+						this.renderDrugs(drugs)
+					)
+				)
+			);
+		}
+	}]);
+
+	return DrugList;
 }(_react2.default.Component);
 
 exports.default = (0, _reactI18next.translate)()(DrugList);
@@ -30665,6 +30671,10 @@ var _reactToastify = __webpack_require__(24);
 
 var _reactI18next = __webpack_require__(9);
 
+var _universalCookie = __webpack_require__(39);
+
+var _universalCookie2 = _interopRequireDefault(_universalCookie);
+
 var _User = __webpack_require__(11);
 
 var _User2 = _interopRequireDefault(_User);
@@ -30714,6 +30724,8 @@ var UserData = function (_React$Component) {
         _this.handleChangePreferredFontSize = _this.handleChangePreferredFontSize.bind(_this);
 
         _this.handleSubmit = _this.handleSubmit.bind(_this);
+
+        _this.cookies = _this.props.cookies;
         return _this;
     }
 
@@ -30862,7 +30874,20 @@ var UserData = function (_React$Component) {
 
                 switch (status) {
                     case 200:
+
+                        var data = _this3.state;
+                        data.id = _User2.default.id;
+
+                        _User2.default.set(data);
+
+                        var cookies = new _universalCookie2.default();
+                        var auth = cookies.get('auth');
+
+                        auth["user"] = data;
+                        cookies.set('auth', auth);
+
                         _reactToastify.toast.success(t('savingSuccessfull'), options);
+
                         break;
                     case 400:
                         _reactToastify.toast.error(t('savingFailed'), options);
@@ -30880,8 +30905,8 @@ var UserData = function (_React$Component) {
 
             var t = this.props.t;
 
-            var firstname = _User2.default.firstname;
-            var lastname = _User2.default.lastname;
+            var firstname = this.state.firstname;
+            var lastname = this.state.lastname;
 
             return _react2.default.createElement(
                 "div",
@@ -32453,7 +32478,7 @@ var _warning = __webpack_require__(25);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(40);
+var _invariant = __webpack_require__(41);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -32764,7 +32789,7 @@ var _warning = __webpack_require__(25);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _invariant = __webpack_require__(40);
+var _invariant = __webpack_require__(41);
 
 var _invariant2 = _interopRequireDefault(_invariant);
 
@@ -33514,7 +33539,7 @@ module.exports = __webpack_require__(278).default;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__logger__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__EventEmitter__ = __webpack_require__(34);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -33892,7 +33917,7 @@ var Connector = function (_EventEmitter) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__logger__ = __webpack_require__(22);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -34387,7 +34412,7 @@ var PluralResolver = function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EventEmitter__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(40);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
@@ -34541,7 +34566,7 @@ var ResourceStore = function (_EventEmitter) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__EventEmitter__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postProcessor__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__compatibility_v1__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils__ = __webpack_require__(40);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -36226,7 +36251,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _universalCookie = __webpack_require__(49);
+var _universalCookie = __webpack_require__(39);
 
 var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
@@ -36252,7 +36277,7 @@ var _react = __webpack_require__(3);
 
 var _propTypes = __webpack_require__(7);
 
-var _universalCookie = __webpack_require__(49);
+var _universalCookie = __webpack_require__(39);
 
 var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
@@ -36334,7 +36359,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _propTypes = __webpack_require__(7);
 
-var _universalCookie = __webpack_require__(49);
+var _universalCookie = __webpack_require__(39);
 
 var _universalCookie2 = _interopRequireDefault(_universalCookie);
 
@@ -37521,7 +37546,7 @@ module.exports = DefaultEventPluginOrder;
 
 var EventPropagators = __webpack_require__(36);
 var ReactDOMComponentTree = __webpack_require__(8);
-var SyntheticMouseEvent = __webpack_require__(43);
+var SyntheticMouseEvent = __webpack_require__(44);
 
 var eventTypes = {
   mouseEnter: {
@@ -39190,8 +39215,8 @@ var DOMNamespaces = __webpack_require__(57);
 var DOMProperty = __webpack_require__(23);
 var DOMPropertyOperations = __webpack_require__(192);
 var EventPluginHub = __webpack_require__(35);
-var EventPluginRegistry = __webpack_require__(41);
-var ReactBrowserEventEmitter = __webpack_require__(42);
+var EventPluginRegistry = __webpack_require__(42);
+var ReactBrowserEventEmitter = __webpack_require__(43);
 var ReactDOMComponentFlags = __webpack_require__(193);
 var ReactDOMComponentTree = __webpack_require__(8);
 var ReactDOMInput = __webpack_require__(320);
@@ -39203,7 +39228,7 @@ var ReactMultiChild = __webpack_require__(339);
 var ReactServerRenderingTransaction = __webpack_require__(344);
 
 var emptyFunction = __webpack_require__(16);
-var escapeTextContentForBrowser = __webpack_require__(45);
+var escapeTextContentForBrowser = __webpack_require__(46);
 var invariant = __webpack_require__(2);
 var isEventSupported = __webpack_require__(68);
 var shallowEqual = __webpack_require__(51);
@@ -41153,7 +41178,7 @@ var DOMChildrenOperations = __webpack_require__(56);
 var DOMLazyTree = __webpack_require__(29);
 var ReactDOMComponentTree = __webpack_require__(8);
 
-var escapeTextContentForBrowser = __webpack_require__(45);
+var escapeTextContentForBrowser = __webpack_require__(46);
 var invariant = __webpack_require__(2);
 var validateDOMNesting = __webpack_require__(70);
 
@@ -41623,7 +41648,7 @@ module.exports = {
 
 
 var DOMProperty = __webpack_require__(23);
-var EventPluginRegistry = __webpack_require__(41);
+var EventPluginRegistry = __webpack_require__(42);
 var ReactComponentTreeHook = __webpack_require__(13);
 
 var warning = __webpack_require__(4);
@@ -42110,7 +42135,7 @@ module.exports = ReactDebugTool;
 var _assign = __webpack_require__(6);
 
 var ReactUpdates = __webpack_require__(19);
-var Transaction = __webpack_require__(44);
+var Transaction = __webpack_require__(45);
 
 var emptyFunction = __webpack_require__(16);
 
@@ -42537,7 +42562,7 @@ var EventPluginHub = __webpack_require__(35);
 var EventPluginUtils = __webpack_require__(58);
 var ReactComponentEnvironment = __webpack_require__(61);
 var ReactEmptyComponent = __webpack_require__(195);
-var ReactBrowserEventEmitter = __webpack_require__(42);
+var ReactBrowserEventEmitter = __webpack_require__(43);
 var ReactHostComponent = __webpack_require__(197);
 var ReactUpdates = __webpack_require__(19);
 
@@ -43255,10 +43280,10 @@ var _assign = __webpack_require__(6);
 
 var CallbackQueue = __webpack_require__(191);
 var PooledClass = __webpack_require__(26);
-var ReactBrowserEventEmitter = __webpack_require__(42);
+var ReactBrowserEventEmitter = __webpack_require__(43);
 var ReactInputSelection = __webpack_require__(198);
 var ReactInstrumentation = __webpack_require__(17);
-var Transaction = __webpack_require__(44);
+var Transaction = __webpack_require__(45);
 var ReactUpdateQueue = __webpack_require__(63);
 
 /**
@@ -43532,7 +43557,7 @@ module.exports = ReactRef;
 var _assign = __webpack_require__(6);
 
 var PooledClass = __webpack_require__(26);
-var Transaction = __webpack_require__(44);
+var Transaction = __webpack_require__(45);
 var ReactInstrumentation = __webpack_require__(17);
 var ReactServerUpdateQueue = __webpack_require__(345);
 
@@ -44300,7 +44325,7 @@ var SyntheticClipboardEvent = __webpack_require__(351);
 var SyntheticEvent = __webpack_require__(21);
 var SyntheticFocusEvent = __webpack_require__(354);
 var SyntheticKeyboardEvent = __webpack_require__(356);
-var SyntheticMouseEvent = __webpack_require__(43);
+var SyntheticMouseEvent = __webpack_require__(44);
 var SyntheticDragEvent = __webpack_require__(353);
 var SyntheticTouchEvent = __webpack_require__(357);
 var SyntheticTransitionEvent = __webpack_require__(358);
@@ -44649,7 +44674,7 @@ module.exports = SyntheticCompositionEvent;
 
 
 
-var SyntheticMouseEvent = __webpack_require__(43);
+var SyntheticMouseEvent = __webpack_require__(44);
 
 /**
  * @interface DragEvent
@@ -44956,7 +44981,7 @@ module.exports = SyntheticTransitionEvent;
 
 
 
-var SyntheticMouseEvent = __webpack_require__(43);
+var SyntheticMouseEvent = __webpack_require__(44);
 
 /**
  * @interface WheelEvent
@@ -45735,7 +45760,7 @@ module.exports = getVendorPrefixedEventName;
 
 
 
-var escapeTextContentForBrowser = __webpack_require__(45);
+var escapeTextContentForBrowser = __webpack_require__(46);
 
 /**
  * Escapes attribute value to prevent scripting attacks.
@@ -46977,7 +47002,7 @@ Redirect.contextTypes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_invariant__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_invariant__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react__);
@@ -47340,7 +47365,7 @@ var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _config = __webpack_require__(47);
+var _config = __webpack_require__(48);
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -47429,7 +47454,7 @@ var _ProgressBar = __webpack_require__(395);
 
 var _ProgressBar2 = _interopRequireDefault(_ProgressBar);
 
-var _config = __webpack_require__(47);
+var _config = __webpack_require__(48);
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -47614,7 +47639,7 @@ var _DefaultCloseButton = __webpack_require__(394);
 
 var _DefaultCloseButton2 = _interopRequireDefault(_DefaultCloseButton);
 
-var _config = __webpack_require__(47);
+var _config = __webpack_require__(48);
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -47915,7 +47940,7 @@ var _EventManager = __webpack_require__(214);
 
 var _EventManager2 = _interopRequireDefault(_EventManager);
 
-var _config = __webpack_require__(47);
+var _config = __webpack_require__(48);
 
 var _config2 = _interopRequireDefault(_config);
 

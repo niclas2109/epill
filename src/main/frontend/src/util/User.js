@@ -36,7 +36,19 @@ class User {
         this.redGreenColorblind	= false;
         this.id = -1;
     }
-
+    
+    get() {
+    		return {
+    	        id			:	this.id,
+    			username		:	this.username,
+    			firstname	:	this.firstname,
+    			lastname		:	this.lastname,
+    			levelOfDetail:	this.levelOfDetail,
+    			preferredFontSize	:	this.preferredFontSize,
+    			redGreenColorblind	:	this.redGreenColorblind
+    		}
+    }
+    
     isAuthenticated() {
         return this.username && this.id != -1;
     }

@@ -3,9 +3,9 @@ import React from "react";
 import Moment from 'moment';
 
 import {Link} from "react-router-dom";
-
 import { toast } from 'react-toastify';
 import {translate} from "react-i18next";
+import Cookies from "universal-cookie";
 
 import User from "./../../util/User";
 
@@ -41,6 +41,9 @@ class UserData extends React.Component {
         this.handleChangePreferredFontSize	= this.handleChangePreferredFontSize.bind(this);
         
         this.handleSubmit				= this.handleSubmit.bind(this);
+        
+
+        this.cookies = this.props.cookies;
     }
 
 
@@ -173,7 +176,20 @@ class UserData extends React.Component {
                      
                      switch (status) {
                          case 200:
+
+                             var data = this.state;
+                             data.id = User.id;
+                             
+                             User.set(data);
+                             
+                             const cookies = new Cookies();
+                             const auth = cookies.get('auth');
+
+                             auth["user"] = data;
+                             cookies.set('auth', auth);
+                             
                              toast.success(t('savingSuccessfull'), options);
+                             
                              break;
                          case 400:
                           	toast.error(t('savingFailed'), options);
@@ -187,8 +203,8 @@ class UserData extends React.Component {
     
     render() {
         const {t} 		= this.props;
-        const firstname 	= User.firstname;
-        const lastname 	= User.lastname;
+        const firstname 	= this.state.firstname;
+        const lastname 	= this.state.lastname;
 
         return (
 	       <div className="container marketing no-banner">
