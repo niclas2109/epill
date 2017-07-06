@@ -36,6 +36,7 @@ import javax.persistence.Transient;
 import com.doccuty.epill.model.util.PackagingSectionSet;
 import com.doccuty.epill.model.util.PackagingSet;
 import com.doccuty.epill.model.util.ActiveSubstanceSet;
+import com.doccuty.epill.disease.Disease;
 import com.doccuty.epill.model.ActiveSubstance;
 import com.doccuty.epill.model.ProductGroup;
 import com.doccuty.epill.model.IndicationGroup;
@@ -54,7 +55,6 @@ import com.doccuty.epill.model.Packaging;
 import com.doccuty.epill.model.util.DiseaseSet;
 import com.doccuty.epill.model.util.DrugFeatureSet;
 import com.doccuty.epill.model.util.DrugSet;
-import com.doccuty.epill.model.Disease;
 import com.doccuty.epill.model.DrugFeature;
 
 @Entity

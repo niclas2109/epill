@@ -28,6 +28,7 @@ import de.uniks.networkparser.list.ObjectSet;
 import java.util.Collections;
 import com.doccuty.epill.model.util.PackagingSectionSet;
 import com.doccuty.epill.model.util.ActiveSubstanceSet;
+import com.doccuty.epill.disease.Disease;
 import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.ActiveSubstance;
 import com.doccuty.epill.model.util.ProductGroupSet;
@@ -44,7 +45,6 @@ import com.doccuty.epill.model.Interaction;
 import com.doccuty.epill.model.util.ItemInvocationSet;
 import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.model.util.DiseaseSet;
-import com.doccuty.epill.model.Disease;
 
 public class DrugSet extends HashSet<Drug>
 {

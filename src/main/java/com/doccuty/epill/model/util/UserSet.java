@@ -31,6 +31,7 @@ import java.util.Date;
 import com.doccuty.epill.model.util.PackagingTopicSet;
 import com.doccuty.epill.model.PackagingTopic;
 import com.doccuty.epill.model.util.CountrySet;
+import com.doccuty.epill.disease.Disease;
 import com.doccuty.epill.language.Language;
 import com.doccuty.epill.model.Country;
 import com.doccuty.epill.model.util.LanguageSet;
@@ -42,7 +43,6 @@ import com.doccuty.epill.model.util.UserQuerySet;
 import com.doccuty.epill.user.User;
 import com.doccuty.epill.model.UserQuery;
 import com.doccuty.epill.model.util.DiseaseSet;
-import com.doccuty.epill.model.Disease;
 
 public class UserSet extends HashSet<User>
 {

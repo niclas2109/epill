@@ -79,9 +79,7 @@ public class UserController {
     		IdMap map = UserCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(5)));
     	
-        
-		JsonObject json = new JsonObject();
-		json.add("value", map.toJsonObject(user));
+		JsonObject json = map.toJsonObject(user);
 
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }

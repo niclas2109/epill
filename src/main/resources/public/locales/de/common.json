@@ -53,7 +53,7 @@
 	"contactUs"		: "Kontaktieren aufnehmen",
 	"imprint"		: "Impressum",
 	"subscribe"		: "Abbonieren",
-	"usedWhen"			: "U. a. benutzt bei:",
+	"usedWhen"			: "U. a. benutzt bei",
 	"adverseEffects"		: "Nebenwirkungen",
 	"activeSubstance"	: "Wirkstoff(e)",
 	"indicationGroup"	: "Indikationsgruppe",
@@ -76,5 +76,6 @@
 	"no"		: "Nein",
 	"getPersonalizedText" : "Personalisierten Text anzeigen",
 	"getOriginalText" : "Original Text anzeigen",
-	"errorOccured"	: "Sorry, es ist ein Fehler aufgetreten!"
+	"errorOccured"	: "Sorry, es ist ein Fehler aufgetreten!",
+	"publishingDate"	: "Veröffentlicht am"
 }

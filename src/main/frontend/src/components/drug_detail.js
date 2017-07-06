@@ -19,9 +19,9 @@ class DrugDetail extends React.Component {
 
     init() {
         axios.get(`/drug/${this.props.match.params.id}/de`)
-        .then(({data}) => {
+        .then(({data, status}) => {
             this.setState({
-                drug: data.value
+                drug: data
             });
         });
     }
@@ -225,7 +225,7 @@ class DrugDetail extends React.Component {
         const {t} = this.props;
         return (
         		<p>{t('usedWhen')}: 
-        			{ drug.disease.map((packaging, i) => <span key={disease.id}>{disease.name}</span> ) }
+        			{ drug.disease.map(disease => <span key={disease.id}>{disease.name}</span> ) }
 	        </p>
 		);
 	}
@@ -318,6 +318,7 @@ class DrugDetail extends React.Component {
 	        			}
         			
         			<h3>{drug.name} {drug.productGroup && <span className="text-muted">drug.productGroup.name</span> }</h3>
+        			<span>v. {drug.version} | {t('publishingDate')}: {new Date(drug.year).toLocaleDateString()}</span>
   
         		</div>
         		<div className="row featurette">

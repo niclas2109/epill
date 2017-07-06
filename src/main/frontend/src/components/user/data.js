@@ -22,7 +22,7 @@ class UserData extends React.Component {
 	        	gender		: {id : 0},
 	        	email		: '',
 	        	redGreenColorblind    : false,
-            levelOfDetail       : 1,
+            levelOfDetail       : 3,
             preferredFontSize   : 'defaultFontSize',
 	        	sending		: false
         };
@@ -51,18 +51,16 @@ class UserData extends React.Component {
     		axios.get(`/user/${User.id}`)
             .then(({data, status}) => {
                 
-                console.log(data);
-                
-            		this.state.firstname		= data.value.firstname;
-            		this.state.lastname		= data.value.lastname;
-            		this.state.email			= data.value.email		|| '';
-            		this.state.dateOfBirth	= data.value.dateOfBirth		|| '',
-            		this.state.gender		= data.value.gender			|| {id : 0};
-            		this.state.username		= data.value.username;
-            		this.state.redGreenColorblind    = data.value.redGreenColorblind || false;
+            		this.state.firstname		= data.firstname;
+            		this.state.lastname		= data.lastname;
+            		this.state.email			= data.email		|| '';
+            		this.state.dateOfBirth	= data.dateOfBirth		|| '',
+            		this.state.gender		= data.gender			|| {id : 0};
+            		this.state.username		= data.username;
+            		this.state.redGreenColorblind    = data.redGreenColorblind || false;
             		
-            		this.state.levelOfDetail	= data.value.levelOfDetail	|| 3;
-            		this.state.preferredFontSize	= data.value.preferredFontSize   || 'defaultFontSize';
+            		this.state.levelOfDetail	    = data.levelOfDetail	|| 3;
+            		this.state.preferredFontSize	= data.preferredFontSize   || 'defaultFontSize';
 
                 this.setState(this.state);
             });

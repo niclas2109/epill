@@ -313,9 +313,8 @@ public class DrugController {
 	
 	    	Drug drug = service.findDrugById(id);
 
-	    	JsonObject json = new JsonObject();
-		json.add("value", map.toJsonObject(drug));
-
+	    	JsonObject json = map.toJsonObject(drug);
+	    	
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }
 

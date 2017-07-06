@@ -58,7 +58,7 @@ class DrugList extends React.Component {
 				break;
 			case 'list':
 		        axios.get('/drug/list/all')
-	            .then(({data}) => {
+	            .then(({data, status}) => {
 		        		this.state.drugs = data.value;
 	            		this.state.loading	= false;
 		        		this.setState(this.state);
@@ -282,9 +282,9 @@ class DrugList extends React.Component {
 		}
 	
         return (
-        		<p className="drug-features">
+        		<div className="drug-features pull-right">
         			{ drug.drugFeature.map(feature => <img key={feature.id} src={"./../../assets/icons/"+feature.id + ".svg"} className="drug-feature-icon" alt={feature.drugFeature} title={feature.drugFeature}></img> ) }
-        		</p>
+        		</div>
 		);
     }
 
@@ -297,7 +297,7 @@ class DrugList extends React.Component {
         
         return (
         		<p> {t('usedWhen')}: 
-        			{ drug.disease.map(packaging => <span key={disease.id}>{disease.name}</span> ) }
+        			{ drug.disease.map(disease => <span key={disease.id}>{disease.name}</span> ) }
 	        </p>
 		);
 	}
@@ -327,11 +327,12 @@ class DrugList extends React.Component {
 		        		</div>
 	        		</Link>
         		<div className="info col-sm-9 col-md-9 col-lg-9">
+    			
+    				{this.renderDrugFeatures(drug)}
+    			
         			<Link to={`/drug/${drug.id}`}>
         				<h4>{ drug.name }</h4>
         			</Link>
-        			
-        			{this.renderDrugFeatures(drug)}
         			
         			{this.renderDisease(drug)}
         			

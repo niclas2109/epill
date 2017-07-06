@@ -53,7 +53,7 @@
 	"contactUs"		: "Contact Us",
 	"imprint"		: "Imprint",
 	"subscribe"		: "Subscribe",
-	"usedWhen"			: "Used when:",
+	"usedWhen"			: "Used when",
 	"adverseEffects"		: "Adverse effects",
 	"activeSubstance"	: "Active substances",
 	"indicationGroup"	: "Indication group",
@@ -76,5 +76,6 @@
 	"no"		: "No",
 	"getPersonalizedText" : "Show personalized text",
 	"getOriginalText" : "Show original text",
-	"errorOccured"	: "Sorry, an error occured!"
+	"errorOccured"	: "Sorry, an error occured!",
+	"publishingDate"	: "Publishing date"
 }

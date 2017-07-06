@@ -29,6 +29,9 @@ import com.doccuty.epill.model.Image;
 
 import de.uniks.networkparser.IdMap;
 
+import java.util.Date;
+
+import com.doccuty.epill.disease.Disease;
 import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.ActiveSubstance;
 import com.doccuty.epill.model.ProductGroup;
@@ -39,7 +42,6 @@ import com.doccuty.epill.model.AdverseEffect;
 import com.doccuty.epill.model.Interaction;
 import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.model.Packaging;
-import com.doccuty.epill.model.Disease;
 
 public class DrugCreator implements SendableEntityCreatorNoIndex
 {
@@ -61,7 +63,10 @@ public class DrugCreator implements SendableEntityCreatorNoIndex
       Drug.PROPERTY_TAILOREDSUMMARY,
       Drug.PROPERTY_IMAGE,
       Drug.PROPERTY_REMEMBERED,
-      Drug.PROPERTY_TAKEN
+      Drug.PROPERTY_TAKEN,
+      Drug.PROPERTY_YEAR,
+      Drug.PROPERTY_STATUS,
+      Drug.PROPERTY_VERSION
    };
    
    @Override
@@ -167,6 +172,21 @@ public class DrugCreator implements SendableEntityCreatorNoIndex
          return ((Drug) target).getIsTaken();
       }
       
+      if (Drug.PROPERTY_YEAR.equalsIgnoreCase(attribute))
+      {
+         return ((Drug) target).getYear();
+      }
+      
+      if (Drug.PROPERTY_STATUS.equalsIgnoreCase(attribute))
+      {
+         return ((Drug) target).getStatus();
+      }
+      
+      if (Drug.PROPERTY_VERSION.equalsIgnoreCase(attribute))
+      {
+         return ((Drug) target).getVersion();
+      }
+      
       if (Drug.PROPERTY_DRUGFEATURE.equalsIgnoreCase(attribute))
       {
          return ((Drug) target).getDrugFeature();
@@ -197,6 +217,24 @@ public class DrugCreator implements SendableEntityCreatorNoIndex
           return true;
        }      
 
+      if (Drug.PROPERTY_STATUS.equalsIgnoreCase(attrName))
+      {
+          ((Drug) target).setStatus((Date) value);
+          return true;
+       }
+      
+      if (Drug.PROPERTY_YEAR.equalsIgnoreCase(attrName))
+      {
+          ((Drug) target).setYear((Date) value);
+          return true;
+       }
+      
+      if (Drug.PROPERTY_VERSION.equalsIgnoreCase(attrName))
+      {
+          ((Drug) target).setVersion((String) value);
+          return true;
+       }
+      
       if (Drug.PROPERTY_TAKEN.equalsIgnoreCase(attrName))
       {
           ((Drug) target).setIsTaken((boolean) value);

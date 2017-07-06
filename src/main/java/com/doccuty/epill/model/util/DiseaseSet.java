@@ -23,8 +23,9 @@ package com.doccuty.epill.model.util;
 
 import java.util.HashSet;
 
+import com.doccuty.epill.disease.Disease;
 import com.doccuty.epill.drug.Drug;
-import com.doccuty.epill.model.Disease;
+
 import java.util.Collection;
 import de.uniks.networkparser.list.NumberList;
 import de.uniks.networkparser.list.ObjectSet;

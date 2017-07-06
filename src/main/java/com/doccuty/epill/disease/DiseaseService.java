@@ -3,7 +3,6 @@ package com.doccuty.epill.disease;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.doccuty.epill.model.Disease;
 import com.doccuty.epill.model.util.DiseaseSet;
 
 /**

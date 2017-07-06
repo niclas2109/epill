@@ -28465,10 +28465,11 @@ var DrugDetail = function (_React$Component) {
             var _this2 = this;
 
             _axios2.default.get("/drug/" + this.props.match.params.id + "/de").then(function (_ref) {
-                var data = _ref.data;
+                var data = _ref.data,
+                    status = _ref.status;
 
                 _this2.setState({
-                    drug: data.value
+                    drug: data
                 });
             });
         }
@@ -28706,7 +28707,7 @@ var DrugDetail = function (_React$Component) {
                 null,
                 t('usedWhen'),
                 ":",
-                drug.disease.map(function (packaging, i) {
+                drug.disease.map(function (disease) {
                     return _react2.default.createElement(
                         "span",
                         { key: disease.id },
@@ -28863,6 +28864,16 @@ var DrugDetail = function (_React$Component) {
                             { className: "text-muted" },
                             "drug.productGroup.name"
                         )
+                    ),
+                    _react2.default.createElement(
+                        "span",
+                        null,
+                        "v. ",
+                        drug.version,
+                        " | ",
+                        t('publishingDate'),
+                        ": ",
+                        new Date(drug.year).toLocaleDateString()
                     )
                 ),
                 _react2.default.createElement(
@@ -29028,7 +29039,8 @@ var DrugList = function (_React$Component) {
           break;
         case 'list':
           _axios2.default.get('/drug/list/all').then(function (_ref3) {
-            var data = _ref3.data;
+            var data = _ref3.data,
+                status = _ref3.status;
 
             _this2.state.drugs = data.value;
             _this2.state.loading = false;
@@ -29312,7 +29324,7 @@ var DrugList = function (_React$Component) {
         " ",
         t('usedWhen'),
         ":",
-        drug.disease.map(function (packaging) {
+        drug.disease.map(function (disease) {
           return _react2.default.createElement(
             "span",
             { key: disease.id },
@@ -30684,7 +30696,7 @@ var UserData = function (_React$Component) {
             gender: { id: 0 },
             email: '',
             redGreenColorblind: false,
-            levelOfDetail: 1,
+            levelOfDetail: 3,
             preferredFontSize: 'defaultFontSize',
             sending: false
         };
@@ -30717,17 +30729,15 @@ var UserData = function (_React$Component) {
                     status = _ref.status;
 
 
-                console.log(data);
+                _this2.state.firstname = data.firstname;
+                _this2.state.lastname = data.lastname;
+                _this2.state.email = data.email || '';
+                _this2.state.dateOfBirth = data.dateOfBirth || '', _this2.state.gender = data.gender || { id: 0 };
+                _this2.state.username = data.username;
+                _this2.state.redGreenColorblind = data.redGreenColorblind || false;
 
-                _this2.state.firstname = data.value.firstname;
-                _this2.state.lastname = data.value.lastname;
-                _this2.state.email = data.value.email || '';
-                _this2.state.dateOfBirth = data.value.dateOfBirth || '', _this2.state.gender = data.value.gender || { id: 0 };
-                _this2.state.username = data.value.username;
-                _this2.state.redGreenColorblind = data.value.redGreenColorblind || false;
-
-                _this2.state.levelOfDetail = data.value.levelOfDetail || 3;
-                _this2.state.preferredFontSize = data.value.preferredFontSize || 'defaultFontSize';
+                _this2.state.levelOfDetail = data.levelOfDetail || 3;
+                _this2.state.preferredFontSize = data.preferredFontSize || 'defaultFontSize';
 
                 _this2.setState(_this2.state);
             });
