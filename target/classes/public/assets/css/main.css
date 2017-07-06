@@ -104,11 +104,11 @@ a.wide { display : block }
 	margin: 0px;
 }
 
-.drug-list>li>.action-pattern {
+.drug-list>li>div>.action-pattern {
 	background-color: rgb(255, 255, 255);
 }
 
-.drug-list>li>.info>ul, .drug-list>li>.action-pattern>ul {
+.drug-list>li>div>.info>ul, .drug-list>li>div>.action-pattern>ul {
 	display: table;
 	list-style: none;
 	margin: 10px 0px 0px;
@@ -117,24 +117,24 @@ a.wide { display : block }
 	text-align: center;
 }
 
-.drug-list>li>.action-pattern>ul {
+.drug-list>li>div>.action-pattern>ul {
 	margin: 0px;
 }
 
-.drug-list>li>.info>ul>li, .drug-list>li>.action-pattern>ul>li {
+.drug-list>li>div>.info>ul>li, .drug-list>li>div>.action-pattern>ul>li {
 	display: table-cell;
 	padding: 0px 0px;
 }
 
-.drug-list>li>.info>ul>li>button {
+.drug-list>li>div>.info>ul>li>button {
 	display: block;
 }
 
-.drug-list>li>.action-pattern>ul>li {
+.drug-list>li>div>.action-pattern>ul>li {
 	padding: 0px;
 }	
 		
-.drug-list>li>.action-pattern>ul>li>button {
+.drug-list>li>div>.action-pattern>ul>li>button {
 	width:100%;
 	height:30px;
 }
@@ -148,7 +148,7 @@ a.wide { display : block }
 }
 
 
-.drug-list>li>.action-pattern>ul>li>button.btn-open {
+.drug-list>li>div>.action-pattern>ul>li>button.btn-open {
 	background-color: #00cbcd;
 }
 
@@ -164,50 +164,32 @@ a.wide { display : block }
 		display: block;
 		height:100%;
 		margin:0px;
-		float:left;
 	}
 	
-	.drug-list>li>img {
-		width: 100%;
-		height:auto;
-	}
-	
-	.drug-list>li>.info {
+	.drug-list>li>div>.info {
 		background-color: rgb(255, 255, 255);
-		text-align: left;
-		padding-right: 40px;
 	}
 	
-	.drug-list>li>.info>.title, .drug-list>li>.info>.desc {
-		padding: 0px 10px;
+	.drug-list>li>div>.info h4 {
+		margin-top: 0px;
 	}
-	
-	.drug-list>li>.info>ul {
-		position: absolute;
-		left: 0px;
-		bottom: 0px;
-	}
-	
-	.drug-list>li>.action-pattern {
-		position: absolute;
-		top: 0px;
-		right: 0px;
-		display: block;
+
+	.drug-list>li>div>.action-pattern {
 		width: 40px;
+		height: 120px;
+	}
+	
+	.drug-list>li>div>.action-pattern>ul {
 		height: 100%;
 	}
 	
-	.drug-list>li>.action-pattern>ul {
-		height: 100%;
-	}
-	
-	.drug-list>li>.action-pattern>ul>li {
+	.drug-list>li>div>.action-pattern>ul>li {
 		display: block;
 		padding: 0px;
 		height: 33%;
 	}
 		
-	.drug-list>li>.action-pattern>ul>li button {
+	.drug-list>li>div>.action-pattern>ul>li button {
 		height: 100%;
 	}
 }

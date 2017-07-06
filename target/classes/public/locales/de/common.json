@@ -16,7 +16,7 @@
 	"preferredFontSize": "Gewünschte Schriftgröße",
 	"levelOfDetail"	: "Detailierungsgrad der Ansicht",
 	"viewDetails"	:	"mehr",
-	"drugListAllDescriptionText": "%User.firstname%, hier findest du eine Übersicht über alle im System geführten Medikamente. Details kannst ruftst du auf, indem du ein Medikament anklickst. Du kannst Medikamente, die du regelmäßig benutzt zu deiner Liste hinzufügen. Medikamente, die du dir merken möchtest, kannst du in eine Merkliste hinzufügen.",
+	"drugListAllDescriptionText": "%User.firstname%, hier findest du eine Übersicht über alle im System geführten Medikamente. Du kannst Medikamente, die du regelmäßig benutzt zu deiner Liste hinzufügen. Medikamente, die du dir merken möchtest, kannst du in eine Merkliste hinzufügen. Details kannst ruftst du auf, indem du ein Medikament anklickst.",
 	"drugs": "Medikamente",
 	"drug": "Medikament",
 	"checkForInteractions": "Auf Wechselwirkungen prüfen",
