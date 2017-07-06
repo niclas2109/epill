@@ -28887,7 +28887,7 @@ var DrugDetail = function (_React$Component) {
                     { className: "row featurette" },
                     _react2.default.createElement(
                         "div",
-                        { className: "col-md-3" },
+                        { className: "col-xs-12 col-sm-12 col-md-3" },
                         _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "{drug.name}", src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg" }),
                         _react2.default.createElement(
                             "div",
@@ -28897,7 +28897,7 @@ var DrugDetail = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         "div",
-                        { className: "col-xs-9 col-md-6" },
+                        { className: "col-xs-12 col-sm-12 col-md-6" },
                         _User2.default.isAuthenticated() && drug.personalizedInformation && _react2.default.createElement(
                             "p",
                             null,
@@ -28920,7 +28920,7 @@ var DrugDetail = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         "div",
-                        { className: "col-xs-0 col-md-3 drug-detail-short-links" },
+                        { className: "hidden-xs hidden-sm col-md-3 drug-detail-short-links" },
                         _react2.default.createElement(
                             "ul",
                             null,
@@ -29375,7 +29375,7 @@ var DrugList = function (_React$Component) {
 					{ className: "row", key: drug.id },
 					_react2.default.createElement(
 						"div",
-						{ className: "image-container col-sm-2 col-md-3 col-lg-4" },
+						{ className: "image-container col-sm-3 col-md-3 col-lg-4" },
 						_react2.default.createElement(
 							_reactRouterDom.Link,
 							{ to: "/drug/" + drug.id },
@@ -30373,7 +30373,7 @@ var Register = function (_React$Component) {
     }, {
         key: "handleRedGreenColorblind",
         value: function handleRedGreenColorblind(event) {
-            this.state.redGreenColorblind = event.target.value;
+            this.state.redGreenColorblind = event.target.value == 1 ? true : false;
             this.setState(this.state);
         }
     }, {
@@ -30423,7 +30423,7 @@ var Register = function (_React$Component) {
                 firstname: this.state.firstname,
                 lastname: this.state.lastname,
                 gender: this.state.gender,
-                handleRedGreenColorblind: this.state.handleRedGreenColorblind,
+                redGreenColorblind: this.state.redGreenColorblind,
                 username: this.state.username,
                 password: this.state.password
             }).then(function (_ref) {
@@ -30705,7 +30705,7 @@ var UserData = function (_React$Component) {
             gender: { id: 0 },
             email: '',
             redGreenColorblind: false,
-            levelOfDetail: 3,
+            levelOfDetail: 'max',
             preferredFontSize: 'defaultFontSize',
             sending: false
         };
@@ -30740,6 +30740,8 @@ var UserData = function (_React$Component) {
                     status = _ref.status;
 
 
+                console.log(data);
+
                 _this2.state.firstname = data.firstname;
                 _this2.state.lastname = data.lastname;
                 _this2.state.email = data.email || '';
@@ -30747,7 +30749,7 @@ var UserData = function (_React$Component) {
                 _this2.state.username = data.username;
                 _this2.state.redGreenColorblind = data.redGreenColorblind || false;
 
-                _this2.state.levelOfDetail = data.levelOfDetail || 3;
+                _this2.state.levelOfDetail = data.levelOfDetail || 'max';
                 _this2.state.preferredFontSize = data.preferredFontSize || 'defaultFontSize';
 
                 _this2.setState(_this2.state);
@@ -30919,7 +30921,7 @@ var UserData = function (_React$Component) {
                         t("userData")
                     )
                 ),
-                _User2.default.levelOfDetail >= 1 && _react2.default.createElement(
+                _User2.default.levelOfDetail != 'min' && _react2.default.createElement(
                     "div",
                     { className: "text-box" },
                     t("userCockpitDescr").replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)
@@ -31068,7 +31070,7 @@ var UserData = function (_React$Component) {
                                     _react2.default.createElement(
                                         "label",
                                         { htmlFor: "settings-detail-min", className: "radio-inline" },
-                                        _react2.default.createElement("input", { type: "radio", value: "1", id: "settings-detail-min", name: "levelOfDetail", checked: this.state.levelOfDetail == 1, onChange: this.handleChangeLevelOfDetail }),
+                                        _react2.default.createElement("input", { type: "radio", value: "min", id: "settings-detail-min", name: "levelOfDetail", checked: this.state.levelOfDetail == 'min', onChange: this.handleChangeLevelOfDetail }),
                                         "minimal",
                                         _react2.default.createElement(
                                             "p",
@@ -31083,7 +31085,7 @@ var UserData = function (_React$Component) {
                                     _react2.default.createElement(
                                         "label",
                                         { htmlFor: "settings-detail-default", className: "radio-inline" },
-                                        _react2.default.createElement("input", { type: "radio", value: "3", id: "settings-detail-default", name: "levelOfDetail", checked: this.state.levelOfDetail == 3, onChange: this.handleChangeLevelOfDetail }),
+                                        _react2.default.createElement("input", { type: "radio", value: "default", id: "settings-detail-default", name: "levelOfDetail", checked: this.state.levelOfDetail == 'default', onChange: this.handleChangeLevelOfDetail }),
                                         "standard",
                                         _react2.default.createElement(
                                             "p",
@@ -31098,7 +31100,7 @@ var UserData = function (_React$Component) {
                                     _react2.default.createElement(
                                         "label",
                                         { htmlFor: "settings-detail-max", className: "radio-inline" },
-                                        _react2.default.createElement("input", { type: "radio", value: "5", id: "settings-detail-max", name: "levelOfDetail", checked: this.state.levelOfDetail == 5, onChange: this.handleChangeLevelOfDetail }),
+                                        _react2.default.createElement("input", { type: "radio", value: "max", id: "settings-detail-max", name: "levelOfDetail", checked: this.state.levelOfDetail == 'max', onChange: this.handleChangeLevelOfDetail }),
                                         "maximal",
                                         _react2.default.createElement(
                                             "p",

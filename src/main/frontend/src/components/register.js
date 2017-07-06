@@ -49,7 +49,7 @@ class Register extends React.Component {
     }
     
     handleRedGreenColorblind(event) {
-        this.state.redGreenColorblind = event.target.value;
+        this.state.redGreenColorblind = (event.target.value == 1) ? true : false;
         this.setState(this.state);
     }
     
@@ -88,13 +88,12 @@ class Register extends React.Component {
         this.state.sending = true;
         this.setState(this.state);
         
-        
         axios.post('/user/save',
             {
                 firstname       : this.state.firstname,
                 lastname        : this.state.lastname,
                 gender          : this.state.gender,
-                handleRedGreenColorblind    : this.state.handleRedGreenColorblind,
+                redGreenColorblind    : this.state.redGreenColorblind,
                 username        : this.state.username,
                 password        : this.state.password
             })

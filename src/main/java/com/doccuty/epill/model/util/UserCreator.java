@@ -197,10 +197,10 @@ public class UserCreator implements SendableEntityCreatorNoIndex
 
       if(User.PROPERTY_LEVELOFDETAIL.equalsIgnoreCase(attrName))
       {
-          ((User) target).setLevelOfDetail(Integer.parseInt(value.toString()));
+          ((User) target).setLevelOfDetail((String) value);
           return true;
        }
-      
+
       if (User.PROPERTY_DATEOFBIRTH.equalsIgnoreCase(attrName))
       {
          ((User) target).setDateOfBirth((Date) value);
