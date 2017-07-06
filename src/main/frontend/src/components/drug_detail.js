@@ -39,7 +39,7 @@ class DrugDetail extends React.Component {
     
     toggleOriginalAndTailoredText(section) {
 
-    		var url = (!section.isTailored) ? `packagingSection/tailored/${section.topic.id}/${this.props.match.params.id}` : `packagingSection/${section.topic.id}/${this.props.match.params.id}`;
+    		var url = (section.isTailored) ? `packagingSection/tailored/${section.topic.id}/${this.props.match.params.id}` : `packagingSection/${section.topic.id}/${this.props.match.params.id}`;
         	
     		axios.get(url)
          .then(({data, status}) => {

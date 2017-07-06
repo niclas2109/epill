@@ -108,22 +108,22 @@ public class PackagingTopic implements SendableEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private long id;
 
-	public int getId() {
+	public long getId() {
 		return this.id;
 	}
 
-	public void setId(int value) {
+	public void setId(long value) {
 		if (this.id != value) {
 
-			int oldValue = this.id;
+			long oldValue = this.id;
 			this.id = value;
 			this.firePropertyChange(PROPERTY_ID, oldValue, value);
 		}
 	}
 
-	public PackagingTopic withId(int value) {
+	public PackagingTopic withId(long value) {
 		setId(value);
 		return this;
 	}

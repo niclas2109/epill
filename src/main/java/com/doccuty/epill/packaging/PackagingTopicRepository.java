@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.doccuty.epill.model.PackagingTopic;
 
 @Repository
-public interface PackagingTopicRepository extends JpaRepository<PackagingTopic, Integer> {
+public interface PackagingTopicRepository extends JpaRepository<PackagingTopic, Long> {
 
 	@Query("SELECT topic FROM PackagingTopic topic WHERE topic.title LIKE :value")
 	PackagingTopic findByName(@Param(value = "value") String value);

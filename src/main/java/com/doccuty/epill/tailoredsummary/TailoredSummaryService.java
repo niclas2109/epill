@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.doccuty.epill.drug.Drug;
+import com.doccuty.epill.model.PackagingTopic;
 import com.doccuty.epill.packagingsection.PackagingSection;
 import com.doccuty.epill.user.User;
 
@@ -36,6 +37,21 @@ public class TailoredSummaryService {
 		}
 		
 		return drug;
+	}
+	
+
+	public PackagingSection findTailoredPackagingSummary(Drug drug, PackagingSection section, User user) {
+	
+		List<TailoredSummary> list = repository.findByDrugAndTopic(drug, section.getTopic());
+		
+		TailoredSummary summary = findTailoredSummaryForUser(list, user);
+		
+		if(summary != null) {
+			section.setText(summary.getText());
+			section.setIsTailored(true);
+		}
+		
+		return section;
 	}
 	
 	public TailoredSummary findTailoredSummaryForUser(List<TailoredSummary> list, User user) {

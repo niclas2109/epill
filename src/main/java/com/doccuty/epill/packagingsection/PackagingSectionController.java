@@ -76,7 +76,7 @@ public class PackagingSectionController {
         PackagingSection section = service.getPackagingSectionById(id);
         
     		IdMap map = PackagingSectionCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(5)));
+		map.withFilter(Filter.regard(Deep.create(2)));
     	
     	
     		JsonObject json = new JsonObject();
@@ -102,7 +102,7 @@ public class PackagingSectionController {
         PackagingSection section = service.getPackagingSectionByTopicAndDrug(topicId, drugId);
         
     		IdMap map = PackagingSectionCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(5)));
+		map.withFilter(Filter.regard(Deep.create(2)));
     	
 
 		JsonObject json = map.toJsonObject(section);
@@ -116,7 +116,7 @@ public class PackagingSectionController {
      */
     
     @RequestMapping(value={"tailored/{topicId}/{drugId}"}, method = RequestMethod.GET)
-    public ResponseEntity<JsonObject> getTailoredPackagingSectionByTopicAndDrug(@PathVariable(value = "topicId") long topicId, @PathVariable(value = "drugId") long drugId) {
+    public ResponseEntity<JsonObject> getTailoredPackagingSectionByTopicAndDrug(@PathVariable(value = "topicId") int topicId, @PathVariable(value = "drugId") long drugId) {
     		// A pragmatic approach to security which does not use much framework-specific magic. While other approaches
         // with annotations, etc. are possible they are much more complex while this is quite easy to understand and
         // extend.
@@ -127,7 +127,7 @@ public class PackagingSectionController {
         PackagingSection section = service.getTailoredPackagingSection(topicId, drugId);
         
     		IdMap map = PackagingSectionCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(5)));
+		map.withFilter(Filter.regard(Deep.create(2)));
     	
     	
     		JsonObject json = map.toJsonObject(section);

@@ -28498,7 +28498,7 @@ var DrugDetail = function (_React$Component) {
         value: function toggleOriginalAndTailoredText(section) {
             var _this3 = this;
 
-            var url = !section.isTailored ? "packagingSection/tailored/" + section.topic.id + "/" + this.props.match.params.id : "packagingSection/" + section.topic.id + "/" + this.props.match.params.id;
+            var url = section.isTailored ? "packagingSection/tailored/" + section.topic.id + "/" + this.props.match.params.id : "packagingSection/" + section.topic.id + "/" + this.props.match.params.id;
 
             _axios2.default.get(url).then(function (_ref2) {
                 var data = _ref2.data,
