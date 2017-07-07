@@ -54,10 +54,10 @@ class Root extends React.Component {
     render() {
         return (
             <div className={this.state.fontSize}>
-	            <Navigation ref={(component) => { this.nav = component; }} />
-                <Switch>
+	            <Navigation {...this.props} ref={(component) => { this.nav = component; }} />
+                
+	            <Switch>
 	                {/* Authentication */}
-	                
 	                <Route path="/user/login" render={(props) => (<Authentication {...props} updateNavigation={this.updateNavigation}/> )}/>
 	                
 	                <Route path="/user/register" component={Register}/>

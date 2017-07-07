@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 
 import {Link} from "react-router-dom";
+import {withRouter} from 'react-router';
 import {translate} from "react-i18next";
 
 class UserMenue extends React.Component {
@@ -28,8 +29,6 @@ class UserMenue extends React.Component {
 	  handleSubmit(event) {
 	      event.preventDefault();
 	      
-	      // Redirect to front page.
-	      this.props.history.push("/");
 	  }
 	  
 	  handleExpressionChange(event) {

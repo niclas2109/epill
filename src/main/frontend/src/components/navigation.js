@@ -2,6 +2,7 @@ import React from "react";
 
 import {HashRouter as Router, Link, Route, Switch} from "react-router-dom";
 import {translate} from "react-i18next";
+import {withRouter} from "react-router-dom";
 
 import User from "./../util/User";
 import UserMenue from "./user_menue";
@@ -12,7 +13,11 @@ import MenueItem from "./menue_item";
 class Navigation extends React.Component {
 	
     constructor(props) {
-        super(props);
+        super(props); 
+    }
+    
+    componentDidMount() {
+    	
     }
     
 	updateNavigation() {
@@ -40,11 +45,11 @@ class Navigation extends React.Component {
 		            					</div>
 		            					<div id="navbar" className="collapse navbar-collapse">
 		            						<ul className="nav navbar-nav">
-		            							<MenueItem title="about" to="/about" />
+		            							<MenueItem title="about" to="/about"  />
 		            							<MenueItem title="drugs" to="/drug/list" />
 		            						</ul>
 		            	
-		            						<AutoComplete />
+		            						<AutoComplete {...this.props} />
 		            	
 		            						<UserMenue />
 		            					</div>

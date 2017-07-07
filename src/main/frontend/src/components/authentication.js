@@ -82,7 +82,6 @@ class Authentication extends React.Component {
                         // Redirect to front page.
                         this.props.history.push("/");
                         break;
-
                     case 401:
                     		this.setState({error: true});
                     		toast.error(t('loginFailed'), options);

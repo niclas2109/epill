@@ -11,8 +11,8 @@ import User from "./../util/User";
 
 class DrugList extends React.Component {
     constructor(props) {
-        super();
-
+        super(props);
+        
         this.state = {
         		drugs		: [],
         		interactions	: '',

@@ -20,7 +20,6 @@ class UserMenue extends React.Component {
 		  this.setState(this.status);
 	  }
 
-	  
 	  render() {
 	      const {t} = this.props;
 	      const show = this.status.show;
