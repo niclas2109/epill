@@ -31496,6 +31496,7 @@ _i18next2.default.use(_i18nextXhrBackend2.default).use(_i18nextBrowserLanguagede
 												cookieMinutes: 60 * 24 * 365
 						},
 
+						//suppress 404 warnings
 						whitelist: ['de', 'en'],
 						fallbackLng: 'de',
 

@@ -25,6 +25,7 @@ i18n
 			cookieMinutes: 60*24*365,
 		},
     	
+		//suppress 404 warnings
 		whitelist	: ['de', 'en'],
         fallbackLng	: 'de',
 
