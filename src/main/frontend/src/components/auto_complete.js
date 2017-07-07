@@ -3,7 +3,6 @@ import React from "react";
 
 import {Link} from "react-router-dom";
 import {translate} from "react-i18next";
-import { withRouter } from 'react-router'
 
 class UserMenue extends React.Component {
 	  constructor(props) {
@@ -28,7 +27,9 @@ class UserMenue extends React.Component {
 
 	  handleSubmit(event) {
 	      event.preventDefault();
-	      this.setState({ redirect: true })
+	      
+	      // Redirect to front page.
+	      this.props.history.push("/");
 	  }
 	  
 	  handleExpressionChange(event) {
@@ -67,7 +68,7 @@ class UserMenue extends React.Component {
 		  if(!drugs)
 			  return null;
 		
-		  return drugs.map(drug => <li key={drug.id} onMouseOver={() => this.handleSelectedValueChange(drug) } onClick={ this.hide }><Link to={`/drug/${drug.id}`} className="wide">{drug.name}</Link></li> );
+		  return drugs.map(drug => <li key={"aC"+drug.id} onMouseOver={() => this.handleSelectedValueChange(drug) } onClick={ this.hide }><Link to={`/drug/${drug.id}`} className="wide">{drug.name}</Link></li> );
 	  }
 
 	  

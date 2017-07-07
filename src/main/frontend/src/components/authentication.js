@@ -2,10 +2,9 @@ import axios from "axios";
 import React from "react";
 
 import {Link} from "react-router-dom";
-import {withCookies} from "react-cookie";
 import {translate} from "react-i18next";
-
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify';
+import {withCookies} from "react-cookie";
 
 import User from "../util/User";
 

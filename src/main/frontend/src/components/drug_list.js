@@ -278,9 +278,9 @@ class DrugList extends React.Component {
     
     renderDrugFeatures(drug) {
 		if(!drug.drugFeature) {
-			return;
+			return null;
 		}
-	
+
         return (
         		<div className="drug-features pull-right">
         			{ drug.drugFeature.map(feature => <img key={feature.id} src={"./../../assets/icons/"+feature.id + ".svg"} className="drug-feature-icon" alt={feature.drugFeature} title={feature.drugFeature}></img> ) }

@@ -307,14 +307,13 @@ INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (3,5);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (3,8);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (3,4);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (3,1);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (3,2);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (4,2);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,2);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (4,3);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (4,4);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (4,5);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (4,8);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,1);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,2);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,4);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,7);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,8);
@@ -322,8 +321,6 @@ INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (6,1);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (6,4);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (6,7);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (6,8);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,7);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,8);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (7,1);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (8,4);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (9,7);
@@ -335,9 +332,9 @@ INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (10,8);
 
 INSERT INTO drug_pharmaceutical_form (iddrug, idpharmaceutical_form) VALUES (1,1);
 INSERT INTO drug_pharmaceutical_form (iddrug, idpharmaceutical_form) VALUES (2,1);
+INSERT INTO drug_pharmaceutical_form (iddrug, idpharmaceutical_form) VALUES (3,2);
 INSERT INTO drug_pharmaceutical_form (iddrug, idpharmaceutical_form) VALUES (7,1);
 INSERT INTO drug_pharmaceutical_form (iddrug, idpharmaceutical_form) VALUES (10,1);
-INSERT INTO drug_pharmaceutical_form (iddrug, idpharmaceutical_form) VALUES (3,2);
 
 --
 -- Dumping data for table `interaction`

@@ -19,7 +19,6 @@ import Authentication from "./components/authentication";
 import Register from "./components/register";
 import DrugList from "./components/drug_list";
 import DrugDetail from "./components/drug_detail";
-
 import UserData from "./components/user/data";
 import UserSettings from "./components/user/settings";
 
