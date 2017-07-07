@@ -46,7 +46,16 @@ public class DrugService {
 
     	    			if(remember.contains(drug))
     	    				drug.setIsRemembered(true);
+    	    			
+
+        	    		for(DrugFeature feature : drug.getDrugFeature()) {
+        	    			if(user.getAge() != 0 && user.getAge() <= feature.getMinAge()
+        	    				|| (feature.getGender() != null && user.getGender() != null && !feature.getGender().contains(user.getGender()))) {
+        	    				drug.getDrugFeature().remove(feature);
+        	    			}
+        	    		}
     	    		}
+    	    		
     	    		
     		}
     		
@@ -115,7 +124,7 @@ public class DrugService {
 
 		StringBuilder interactionText = new StringBuilder();
 		
-		List<Drug> list = this.findUserDrugsTaking();
+		List<Drug> list = this.findUserDrugsTaking(userService.getCurrentUser());
 		
 		for(Drug drug : list) {
 			for(Interaction interaction : drug.getInteraction()) {
@@ -130,22 +139,33 @@ public class DrugService {
 		return interactionText.toString();
 	}
 
-	public List<Drug> findUserDrugsTaking() {
-		SimpleUser user = userService.getCurrentUser();
-		List<Drug> drugs = repository.findUserDrugsTaking(user.getId());
+	public List<Drug> findUserDrugsTaking(SimpleUser user) {
+		
+		List<Drug> drugs = repository.findUserDrugsTaking(user.getId());		
+		List<Drug> remembered = repository.findUserDrugsRemembered(user.getId());
 		
 		for(Drug drug : drugs) {
 			drug.setIsTaken(true);
+			
+			if(remembered.contains(drug)) {
+				drug.setIsRemembered(true);
+			}
 		}
 		
 		return drugs;
 	}
 	
 	public List<Drug> findUserDrugsRemembered(SimpleUser user) {
-		List<Drug> drugs = repository.findUserDrugsRemembered(user.getId());
+
+		List<Drug> drugs = repository.findUserDrugsTaking(user.getId());		
+		List<Drug> taking = repository.findUserDrugsRemembered(user.getId());
 		
 		for(Drug drug : drugs) {
 			drug.setIsRemembered(true);
+			
+			if(taking.contains(drug)) {
+				drug.setIsTaken(true);
+			}
 		}
 		
 		return drugs;

@@ -29470,6 +29470,7 @@ var DrugList = function (_React$Component) {
 				case 'remember':
 					title = t('rememberedDrugs');
 					description = t('drugRememberListDescriptionText');
+					break;
 				default:
 					title = t('drugs');
 					description = t('drugListAllDescriptionText');

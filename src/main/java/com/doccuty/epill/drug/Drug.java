@@ -21,6 +21,8 @@
 
 package com.doccuty.epill.drug;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -93,11 +95,11 @@ public class Drug extends SimpleDrug {
 	public static final String PROPERTY_PACKAGING = "packaging";
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "drug")
-	private Set<Packaging> packaging = null;
+	private List<Packaging> packaging = null;
 
-	public Set<Packaging> getPackaging() {
+	public List<Packaging> getPackaging() {
 		if (this.packaging == null) {
-			return PackagingSet.EMPTY_SET;
+			return new ArrayList<Packaging>();
 		}
 
 		return this.packaging;
@@ -110,7 +112,7 @@ public class Drug extends SimpleDrug {
 		for (Packaging item : value) {
 			if (item != null) {
 				if (this.packaging == null) {
-					this.packaging = new PackagingSet();
+					this.packaging = new ArrayList<Packaging>();
 				}
 
 				boolean changed = this.packaging.add(item);
@@ -153,11 +155,11 @@ public class Drug extends SimpleDrug {
 	public static final String PROPERTY_PACKAGINGSECTION = "packagingSection";
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "drug")
-	private Set<PackagingSection> packagingSection = null;
+	private List<PackagingSection> packagingSection = null;
 
-	public Set<PackagingSection> getPackagingSection() {
+	public List<PackagingSection> getPackagingSection() {
 		if (this.packagingSection == null) {
-			return PackagingSectionSet.EMPTY_SET;
+			return new ArrayList<PackagingSection>();
 		}
 
 		return this.packagingSection;
@@ -170,7 +172,7 @@ public class Drug extends SimpleDrug {
 		for (PackagingSection item : value) {
 			if (item != null) {
 				if (this.packagingSection == null) {
-					this.packagingSection = new PackagingSectionSet();
+					this.packagingSection = new ArrayList<PackagingSection>();
 				}
 
 				boolean changed = this.packagingSection.add(item);
@@ -214,11 +216,11 @@ public class Drug extends SimpleDrug {
 
 	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "drug_drug_feature", joinColumns = @JoinColumn(name = "iddrug"), inverseJoinColumns = @JoinColumn(name = "iddrug_feature"))
-	private Set<DrugFeature> drugFeature = null;
+	private List<DrugFeature> drugFeature = null;
 
-	public Set<DrugFeature> getDrugFeature() {
+	public List<DrugFeature> getDrugFeature() {
 		if (this.drugFeature == null) {
-			return DrugFeatureSet.EMPTY_SET;
+			return new ArrayList<DrugFeature>();
 		}
 
 		return this.drugFeature;
@@ -231,7 +233,7 @@ public class Drug extends SimpleDrug {
 		for (DrugFeature item : value) {
 			if (item != null) {
 				if (this.drugFeature == null) {
-					this.drugFeature = new DrugFeatureSet();
+					this.drugFeature = new ArrayList<DrugFeature>();
 				}
 
 				boolean changed = this.drugFeature.add(item);
@@ -275,11 +277,11 @@ public class Drug extends SimpleDrug {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "drug_active_substance", joinColumns = @JoinColumn(name = "iddrug"), inverseJoinColumns = @JoinColumn(name = "idactive_substance"))
-	private Set<ActiveSubstance> activeSubstance = null;
+	private List<ActiveSubstance> activeSubstance = null;
 
-	public Set<ActiveSubstance> getActiveSubstance() {
+	public List<ActiveSubstance> getActiveSubstance() {
 		if (this.activeSubstance == null) {
-			return ActiveSubstanceSet.EMPTY_SET;
+			return new ArrayList<ActiveSubstance>();
 		}
 
 		return this.activeSubstance;
@@ -292,7 +294,7 @@ public class Drug extends SimpleDrug {
 		for (ActiveSubstance item : value) {
 			if (item != null) {
 				if (this.activeSubstance == null) {
-					this.activeSubstance = new ActiveSubstanceSet();
+					this.activeSubstance = new ArrayList<ActiveSubstance>();
 				}
 
 				boolean changed = this.activeSubstance.add(item);
@@ -442,11 +444,11 @@ public class Drug extends SimpleDrug {
 
 	@ManyToMany(cascade = CascadeType.MERGE)
 	@JoinTable(name = "drug_pharmaceutical_form", joinColumns = @JoinColumn(name = "iddrug"), inverseJoinColumns = @JoinColumn(name = "idpharmaceutical_form"))
-	private Set<PharmaceuticalForm> pharmaceuticalForm = null;
+	private List<PharmaceuticalForm> pharmaceuticalForm = null;
 
-	public Set<PharmaceuticalForm> getPharmaceuticalForm() {
+	public List<PharmaceuticalForm> getPharmaceuticalForm() {
 		if (this.pharmaceuticalForm == null) {
-			return PharmaceuticalFormSet.EMPTY_SET;
+			return new ArrayList<PharmaceuticalForm>();
 		}
 
 		return this.pharmaceuticalForm;
@@ -459,7 +461,7 @@ public class Drug extends SimpleDrug {
 		for (PharmaceuticalForm item : value) {
 			if (item != null) {
 				if (this.pharmaceuticalForm == null) {
-					this.pharmaceuticalForm = new PharmaceuticalFormSet();
+					this.pharmaceuticalForm = new ArrayList<PharmaceuticalForm>();
 				}
 
 				boolean changed = this.pharmaceuticalForm.add(item);
@@ -503,11 +505,11 @@ public class Drug extends SimpleDrug {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "drug_adverse_effect", joinColumns = @JoinColumn(name = "iddrug"), inverseJoinColumns = @JoinColumn(name = "idadverse_effect"))
-	private Set<AdverseEffect> adverseEffects = null;
+	private List<AdverseEffect> adverseEffects = null;
 
-	public Set<AdverseEffect> getAdverseEffects() {
+	public List<AdverseEffect> getAdverseEffects() {
 		if (this.adverseEffects == null) {
-			return AdverseEffectSet.EMPTY_SET;
+			return new ArrayList<AdverseEffect>();
 		}
 
 		return this.adverseEffects;
@@ -520,7 +522,7 @@ public class Drug extends SimpleDrug {
 		for (AdverseEffect item : value) {
 			if (item != null) {
 				if (this.adverseEffects == null) {
-					this.adverseEffects = new AdverseEffectSet();
+					this.adverseEffects = new ArrayList<AdverseEffect>();
 				}
 
 				boolean changed = this.adverseEffects.add(item);
@@ -563,11 +565,11 @@ public class Drug extends SimpleDrug {
 	public static final String PROPERTY_INTERACTION = "interaction";
 
 	@ManyToMany(cascade = CascadeType.ALL, mappedBy = "drug")
-	private Set<Interaction> interaction = null;
+	private List<Interaction> interaction = null;
 
-	public Set<Interaction> getInteraction() {
+	public List<Interaction> getInteraction() {
 		if (this.interaction == null) {
-			return InteractionSet.EMPTY_SET;
+			return new ArrayList<Interaction>();
 		}
 
 		return this.interaction;
@@ -580,7 +582,7 @@ public class Drug extends SimpleDrug {
 		for (Interaction item : value) {
 			if (item != null) {
 				if (this.interaction == null) {
-					this.interaction = new InteractionSet();
+					this.interaction = new ArrayList<Interaction>();
 				}
 
 				boolean changed = this.interaction.add(item);
@@ -684,11 +686,11 @@ public class Drug extends SimpleDrug {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "drug_disease", joinColumns = @JoinColumn(name = "iddrug"), inverseJoinColumns = @JoinColumn(name = "iddisease"))
-	private Set<Disease> disease = null;
+	private List<Disease> disease = null;
 
-	public Set<Disease> getDisease() {
+	public List<Disease> getDisease() {
 		if (this.disease == null) {
-			return DiseaseSet.EMPTY_SET;
+			return new ArrayList<Disease>();
 		}
 
 		return this.disease;
@@ -701,7 +703,7 @@ public class Drug extends SimpleDrug {
 		for (Disease item : value) {
 			if (item != null) {
 				if (this.disease == null) {
-					this.disease = new DiseaseSet();
+					this.disease = new ArrayList<Disease>();
 				}
 
 				boolean changed = this.disease.add(item);

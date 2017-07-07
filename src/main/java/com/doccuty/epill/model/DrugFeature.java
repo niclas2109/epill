@@ -1,22 +1,5 @@
 /*
 Copyright (c) 2017 mac
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software 
-and associated documentation files (the "Software"), to deal in the Software without restriction, 
-including without limitation the rights to use, copy, modify, merge, publish, distribute, 
-sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is 
-furnished to do so, subject to the following conditions: 
-
-The above copyright notice and this permission notice shall be included in all copies or 
-substantial portions of the Software. 
-
-The Software shall be used for Good, not Evil. 
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING 
-BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND 
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
-DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
 */
 
 package com.doccuty.epill.model;
@@ -32,11 +15,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
-
 import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.util.DrugSet;
+import com.doccuty.epill.model.util.GenderSet;
 import com.doccuty.epill.model.util.UserSet;
 import com.doccuty.epill.user.User;
 
@@ -170,6 +153,54 @@ public class DrugFeature implements SendableEntity {
 		setDrugFeature(value);
 		return this;
 	}
+
+	// ==========================================================================
+
+	public static final String PROPERTY_MINAGE = "minAge";
+
+	@Column(nullable=false, columnDefinition = "int default 0")
+	private int minAge;
+
+	public int getMinAge() {
+		return this.minAge;
+	}
+
+	public void setMinAge(int value) {
+		if (this.minAge != value) {
+			int oldValue = this.minAge;
+			this.minAge = value;
+			this.firePropertyChange(PROPERTY_MINAGE, oldValue, value);
+		}
+	}
+
+	public DrugFeature withMinAge(int value) {
+		setMinAge(value);
+		return this;
+	}
+
+	// ==========================================================================
+
+	public static final String PROPERTY_MAXAGE = "maxAge";
+
+	@Column(nullable=false, columnDefinition = "int default 0")
+	private int maxAge;
+
+	public int getMaxAge() {
+		return this.maxAge;
+	}
+
+	public void setMaxAge(int value) {
+		if (this.maxAge != value) {
+			int oldValue = this.maxAge;
+			this.maxAge = value;
+			this.firePropertyChange(PROPERTY_MAXAGE, oldValue, value);
+		}
+	}
+
+	public DrugFeature withMaxAge(int value) {
+		setMaxAge(value);
+		return this;
+	}
 	
 	
 	
@@ -251,12 +282,13 @@ public class DrugFeature implements SendableEntity {
 	    * <pre>
 	    *              one                       many
 	    * DrugFeature ----------------------------------- User
-	    *              country                   user
+	    *          preferredDrugFeature                   user
 	    * </pre>
 	    */
 	   
 	   public static final String PROPERTY_USER = "user";
 
+	   @Column(nullable=true)
 	   @ManyToMany(cascade=CascadeType.ALL, mappedBy="preferredDrugFeature")
 	   private Set<User> user = null;
 	   
@@ -316,6 +348,77 @@ public class DrugFeature implements SendableEntity {
 	   {
 	      User value = new User();
 	      withUser(value);
+	      return value;
+	   } 
+		
+	   
+	   /********************************************************************
+	    * <pre>
+	    *              one                       many
+	    * DrugFeature ----------------------------------- User
+	    *          		gender                   user
+	    * </pre>
+	    */
+	   
+	   public static final String PROPERTY_GENDER = "gender";
+
+	   @OneToMany(cascade=CascadeType.ALL)
+	   private Set<Gender> gender = null;
+	   
+	   public Set<Gender> getGender()
+	   {
+	      if (this.gender == null)
+	      {
+	         return GenderSet.EMPTY_SET;
+	      }
+	   
+	      return this.gender;
+	   }
+
+	   public DrugFeature withGender(Gender... value)
+	   {
+	      if(value==null){
+	         return this;
+	      }
+	      for (Gender item : value)
+	      {
+	         if (item != null)
+	         {
+	            if (this.gender == null)
+	            {
+	               this.gender = new GenderSet();
+	            }
+	            
+	            boolean changed = this.gender.add (item);
+
+	            if (changed)
+	            {
+	               firePropertyChange(PROPERTY_USER, null, item);
+	            }
+	         }
+	      }
+	      return this;
+	   } 
+
+	   public DrugFeature withoutGender(Gender... value)
+	   {
+	      for (Gender item : value)
+	      {
+	         if ((this.gender != null) && (item != null))
+	         {
+	            if (this.gender.remove(item))
+	            {
+	               firePropertyChange(PROPERTY_GENDER, item, null);
+	            }
+	         }
+	      }
+	      return this;
+	   }
+
+	   public Gender createGender()
+	   {
+		  Gender value = new Gender();
+	      withGender(value);
 	      return value;
 	   } 
 }

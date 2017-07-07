@@ -151,7 +151,7 @@ public class DrugController {
      */
 
     @RequestMapping(value = "/list/taking", method = RequestMethod.GET)
-    public ResponseEntity<JsonObject> getUserFavorites() {
+    public ResponseEntity<JsonObject> getTakenDrugByUser() {
     	
 		// A pragmatic approach to security which does not use much
 		// framework-specific magic. While other approaches
@@ -162,12 +162,12 @@ public class DrugController {
 		if (userService.isAnonymous()) {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}  
-		
+
+        List<Drug> set = service.findUserDrugsTaking(userService.getCurrentUser());
+    	
 		IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(2)));
 		
-        List<Drug> set = service.findUserDrugsTaking();
-    	
 	    	JsonObject json = new JsonObject();
 	    	JsonArray drugArray = new JsonArray();
 	    	

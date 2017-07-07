@@ -381,7 +381,7 @@ class DrugList extends React.Component {
 
         var title = null;
         var description = null;
-        
+                
 	    switch(this.state.cmd) {
 	    		case 'taking':
 	    			title = t('userDrugs');
@@ -390,12 +390,13 @@ class DrugList extends React.Component {
 		    case 'remember':
 		    		title = t('rememberedDrugs');
 		    		description = t('drugRememberListDescriptionText');
+		    		break;
 		    	default:
 		    		title = t('drugs');
 		    		description = t('drugListAllDescriptionText');
 		    		break;
 	    }
-        
+
         return (
 	        	<div className="container no-banner">
 		    		<div className='page-header'>
