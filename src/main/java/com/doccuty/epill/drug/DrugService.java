@@ -59,25 +59,6 @@ public class DrugService {
     		return drugs;
     }
 
-    private Drug tailorDrugFeatures(Drug drug, User user) {
-		// tailor drug features
-		
-		Iterator<DrugFeature> features = drug.getDrugFeature().iterator();
-		while (features.hasNext()) {
-			DrugFeature feature = features.next();
-
-			if(user.getAge() != 0 && (user.getAge() < feature.getMinAge()
-				|| feature.getMaxAge() != 0 && user.getAge() > feature.getMaxAge())
-	    			|| (feature.getGender().size() > 0 && user.getGender() != null && !feature.getGender().contains(user.getGender()))) {
-	    				
-	    			logger.info("Removed irrelevant drug feature. feature={} gender={}", feature.getDrugFeature(), user.getGender());
-	
-	    			features.remove();
-	    		}
-		}
-		return drug;
-	}
-
 	public void saveDrug(Drug Drug) {
     		repository.save(Drug);
     }
@@ -108,7 +89,8 @@ public class DrugService {
 				}
 			}
 			
-			
+
+			drug = this.tailorDrugFeatures(drug, user);
 			drug = tailoredSummaryService.replaceSections(drug, user);
 			
 			
@@ -186,4 +168,26 @@ public class DrugService {
 		
 		return drugs;
 	}
+	
+	
+
+    private Drug tailorDrugFeatures(Drug drug, User user) {
+		// tailor drug features
+		
+		Iterator<DrugFeature> features = drug.getDrugFeature().iterator();
+		while (features.hasNext()) {
+			DrugFeature feature = features.next();
+
+			if(user.getAge() != 0 && (user.getAge() < feature.getMinAge()
+				|| feature.getMaxAge() != 0 && user.getAge() > feature.getMaxAge())
+	    			|| (feature.getGender().size() > 0 && user.getGender() != null && !feature.getGender().contains(user.getGender()))) {
+	    				
+	    			logger.info("Removed irrelevant drug feature. feature={} gender={}", feature.getDrugFeature(), user.getGender());
+	
+	    			features.remove();
+	    		}
+		}
+		return drug;
+	}
+
 }
