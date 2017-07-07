@@ -5,6 +5,7 @@
 
 -- DELETE FROM all.
 
+DELETE FROM drug_feature_gender;
 DELETE FROM drug_disease;
 DELETE FROM tailored_summary;
 DELETE FROM drug_active_substance;
@@ -80,7 +81,7 @@ INSERT INTO country (id, name) VALUES (1,'Deutschland');
 -- Dumping data for table `user_`
 --
 
--- INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
+--INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
 
 
 
@@ -245,17 +246,23 @@ INSERT INTO drug_disease (iddrug, iddisease) VALUES (10, 3);
 -- Dumping data for table `drug_feature`
 --
 
-INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (1,'ohne Tierversuche',NULL);
-INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (2,'halal',NULL);
-INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (3,'beeinträchtigt die Fahrtüchtigkeit',NULL);
-INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (4,'verschreibungspflichtig',NULL);
-INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (5,'ohne Alkohol',NULL);
-INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (6,'homöopathisch',NULL);
-INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (7,'glutenfrei',NULL);
-INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (8,'Für Schwangere ungeeignet.',NULL);
-INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (9,'vegan',NULL);
-INSERT INTO drug_feature (id, drug_feature, listeners) VALUES (10,'lactosefrei',NULL);
+INSERT INTO drug_feature (id, drug_feature, min_age, max_age) VALUES (1,'ohne Tierversuche', 0, 0);
+INSERT INTO drug_feature (id, drug_feature) VALUES (2,'halal');
+INSERT INTO drug_feature (id, drug_feature, min_age, max_age) VALUES (3,'beeinträchtigt die Fahrtüchtigkeit', 16, 0);
+INSERT INTO drug_feature (id, drug_feature) VALUES (4,'verschreibungspflichtig');
+INSERT INTO drug_feature (id, drug_feature) VALUES (5,'ohne Alkohol');
+INSERT INTO drug_feature (id, drug_feature) VALUES (6,'homöopathisch');
+INSERT INTO drug_feature (id, drug_feature) VALUES (7,'glutenfrei');
+INSERT INTO drug_feature (id, drug_feature) VALUES (8,'Für Schwangere ungeeignet.');
+INSERT INTO drug_feature (id, drug_feature) VALUES (9,'vegan');
+INSERT INTO drug_feature (id, drug_feature) VALUES (10,'lactosefrei');
 
+
+--
+-- Dumping data for table `drug_feature`
+--
+
+INSERT INTO drug_feature_gender (drug_feature_id, gender_id) VALUES (8,2);
 
 --
 -- Dumping data for table `drug_active_substance`
@@ -287,25 +294,40 @@ INSERT INTO drug_active_substance (iddrug, idactive_substance) VALUES (10,10);
 --
 
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (1,1);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (1,3);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (1,8);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (1,4);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (2,1);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (2,8);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (2,4);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (2,7);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (2,3);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (2,5);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (3,5);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (3,8);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (3,4);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (3,1);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,1);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (3,2);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (4,2);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,2);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (1,3);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (2,3);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (4,3);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (1,4);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (2,4);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (3,4);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (4,4);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,4);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (2,5);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (3,5);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (4,5);
-INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (2,7);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (4,8);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,1);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,4);
 INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,7);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,8);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (6,1);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (6,4);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (6,7);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (6,8);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,7);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (5,8);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (7,1);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (8,4);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (9,7);
+INSERT INTO drug_drug_feature (iddrug, iddrug_feature) VALUES (10,8);
 
 --
 -- Dumping data for table `drug_pharmaceutical_form`

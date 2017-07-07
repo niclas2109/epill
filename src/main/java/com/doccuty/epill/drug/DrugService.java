@@ -1,7 +1,10 @@
 package com.doccuty.epill.drug;
 
+import java.util.Iterator;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,8 @@ import com.doccuty.epill.user.UserService;
 @Service
 public class DrugService {
 
+	private static final Logger logger = LoggerFactory.getLogger(DrugService.class);
+	
 	@Autowired
 	DrugRepository repository;
 
@@ -35,7 +40,7 @@ public class DrugService {
     		List<Drug> drugs = repository.findAllOrderByName();
     		
     		if(!userService.isAnonymous()) {
-    			User user = userService.getCurrentUser();
+    			User user = userService.getUserById(userService.getCurrentUser().getId());
 
     			List<Drug> taking	= repository.findUserDrugsTaking(user.getId());
     	    		List<Drug> remember	= repository.findUserDrugsRemembered(user.getId());
@@ -46,23 +51,34 @@ public class DrugService {
 
     	    			if(remember.contains(drug))
     	    				drug.setIsRemembered(true);
-    	    			
 
-        	    		for(DrugFeature feature : drug.getDrugFeature()) {
-        	    			if(user.getAge() != 0 && user.getAge() <= feature.getMinAge()
-        	    				|| (feature.getGender() != null && user.getGender() != null && !feature.getGender().contains(user.getGender()))) {
-        	    				drug.getDrugFeature().remove(feature);
-        	    			}
-        	    		}
+    	    			drug = this.tailorDrugFeatures(drug, user);
     	    		}
-    	    		
-    	    		
     		}
     		
     		return drugs;
     }
 
-    public void saveDrug(Drug Drug) {
+    private Drug tailorDrugFeatures(Drug drug, User user) {
+		// tailor drug features
+		
+		Iterator<DrugFeature> features = drug.getDrugFeature().iterator();
+		while (features.hasNext()) {
+			DrugFeature feature = features.next();
+
+			if(user.getAge() != 0 && (user.getAge() < feature.getMinAge()
+				|| feature.getMaxAge() != 0 && user.getAge() > feature.getMaxAge())
+	    			|| (feature.getGender().size() > 0 && user.getGender() != null && !feature.getGender().contains(user.getGender()))) {
+	    				
+	    			logger.info("Removed irrelevant drug feature. feature={} gender={}", feature.getDrugFeature(), user.getGender());
+	
+	    			features.remove();
+	    		}
+		}
+		return drug;
+	}
+
+	public void saveDrug(Drug Drug) {
     		repository.save(Drug);
     }
 
