@@ -15,21 +15,26 @@ class Accordion extends React.Component {
 	    }
 
         this.toggleShow = this.toggleShow.bind(this);
-	    this.togglePersonalized	= this.togglePersonalized.bind(this);
+	    this.toggleTailored	= this.toggleTailored.bind(this);
 	  }
 
+	  componentWillReceiveProps(props) {
+		  this.setState({ section: props.section });  
+	  }
+	  
 	  toggleShow(event) {
 		  this.state.show = !this.state.show;
 		  this.setState(this.state);
 	  }
 	  
-	  togglePersonalized(section) {
+	  toggleTailored(section) {
+
 		  this.state.section.isTailored = !this.state.section.isTailored;
 		  this.setState(this.state);
-		  
+
 		  this.props.toggleOriginalAndTailoredText(this.state.section);
 	  }
-	  
+
 	  // for html conversion
 	  createMarkup(text) { return {__html: text}; };
 	    
@@ -49,7 +54,7 @@ class Accordion extends React.Component {
                 		<div className="panel-heading">
                 			{show && User.isAuthenticated() && this.props.toggleOriginalAndTailoredText &&
 	                			<div className="pull-right">
-	                				<button type="button" className="btn btn-default" onClick={() => this.togglePersonalized(section)} >
+	                				<button type="button" className="btn btn-default" onClick={() => this.toggleTailored(section)} >
 	                					{ section.isTailored ? t('getOriginalText') : t('getPersonalizedText') }
 	                				</button>
 	                			</div>
@@ -59,7 +64,7 @@ class Accordion extends React.Component {
                 			</h4>
                 		</div>
                 		{show && <div>
-		                			<div className="panel-body" dangerouslySetInnerHTML={this.createMarkup(section.text)} />
+		                			<div className="panel-body" dangerouslySetInnerHTML={this.createMarkup(this.state.section.text)}></div>
 		                		</div> }
                 	</div>
           );

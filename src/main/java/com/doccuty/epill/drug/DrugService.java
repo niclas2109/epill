@@ -42,6 +42,9 @@ public class DrugService {
     		if(!userService.isAnonymous()) {
     			User user = userService.getUserById(userService.getCurrentUser().getId());
 
+    			if(user == null)
+    				return drugs;
+    			
     			List<Drug> taking	= repository.findUserDrugsTaking(user.getId());
     	    		List<Drug> remember	= repository.findUserDrugsRemembered(user.getId());
     			
@@ -174,6 +177,10 @@ public class DrugService {
     private Drug tailorDrugFeatures(Drug drug, User user) {
 		// tailor drug features
 		
+    		if(user == null) {
+    			return drug;
+    		}
+    	
 		Iterator<DrugFeature> features = drug.getDrugFeature().iterator();
 		while (features.hasNext()) {
 			DrugFeature feature = features.next();

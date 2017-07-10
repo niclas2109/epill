@@ -54,8 +54,6 @@ class UserData extends React.Component {
     		axios.get(`/user/${User.id}`)
             .then(({data, status}) => {
                 
-                console.log(data);
-                
             		this.state.firstname		= data.firstname;
             		this.state.lastname		= data.lastname;
             		this.state.email			= data.email		|| '';

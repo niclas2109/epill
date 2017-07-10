@@ -5,6 +5,7 @@ import {translate} from "react-i18next";
 import { toast } from 'react-toastify';
 
 import Accordion from "./accordion";
+import Loading from "./loading";
 import User from "./../util/User";
 
 class DrugDetail extends React.Component {
@@ -40,15 +41,22 @@ class DrugDetail extends React.Component {
     toggleOriginalAndTailoredText(section) {
 
     		var url = (section.isTailored) ? `packagingSection/tailored/${section.topic.id}/${this.props.match.params.id}` : `packagingSection/${section.topic.id}/${this.props.match.params.id}`;
-        	
-    		axios.get(url)
-         .then(({data, status}) => {
-        	 	 
+
+    		axios.get(url).then(({data, status}) => {
+
         	 	switch(status) {
         	 		case 200:
-        	 			var idx = this.state.drug.packagingSection.indexOf(section);
-                		this.state.drug.packagingSection[idx]["text"] = data["text"];
+        	 			var idx = -1;
+        	 			for(var i=0; i<this.state.drug.packagingSection.length; i++) {
+        	 				if(this.state.drug.packagingSection[i]["id"] == section["id"]) {
+        	 					idx = i;
+        	 					break;
+        	 				}
+        	 			}
+        	 			
+                		this.state.drug.packagingSection[idx] = data;
                 		this.setState(this.state);
+                		
         	 			break;
         	 		default:
         	 			const {t} = this.props;
@@ -272,6 +280,8 @@ class DrugDetail extends React.Component {
     		if(!drug.packagingSection) {
 			return;
 		}
+   
+    		//TODO: toggle does not work anymore!
     		
     		return drug.packagingSection.map((section => {
             return (	<Accordion section={section} toggleOriginalAndTailoredText={this.toggleOriginalAndTailoredText} key={section.id} /> );
@@ -290,11 +300,11 @@ class DrugDetail extends React.Component {
 	            		<div className='page-header'>
 	            			<h3> </h3>
 	            		</div>
-	            		loading...
+	            		<Loading />
             		</div>
             );
         }
-
+        
         return (
         	<div className="container marketing no-banner">
         		<div className='page-header'>
@@ -345,7 +355,7 @@ class DrugDetail extends React.Component {
         			</div>
         			<div className="hidden-xs hidden-sm col-md-3 drug-detail-short-links">
         				<ul>
-        					{this.renderSectionOverview(drug)}
+        					{this.renderSectionOverview(this.state.drug)}
         				</ul>
         			</div>
         		</div>

@@ -68,7 +68,7 @@
 	"usernameUsed": "Your username is already in use!",
 	"passwordsDifferent": "Your passwords are different!",
 	"registrationSuccess": "Your Registration was successful!",
-	"female"	: "femail",
+	"female"	: "female",
 	"male"	: "male",
 	"noInfo"	: "No information",
 	"invalidDateFormat"	: "Invalid date format!",
