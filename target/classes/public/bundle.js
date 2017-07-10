@@ -27830,6 +27830,11 @@ var Accordion = function (_React$Component) {
 	}
 
 	_createClass(Accordion, [{
+		key: "componentWillReceiveProps",
+		value: function componentWillReceiveProps(props) {
+			this.setState({ section: props.section });
+		}
+	}, {
 		key: "toggleShow",
 		value: function toggleShow(event) {
 			this.state.show = !this.state.show;
@@ -30756,8 +30761,6 @@ var UserData = function (_React$Component) {
                 var data = _ref.data,
                     status = _ref.status;
 
-
-                console.log(data);
 
                 _this2.state.firstname = data.firstname;
                 _this2.state.lastname = data.lastname;

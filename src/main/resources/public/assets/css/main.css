@@ -22,6 +22,9 @@ body {
 
 h4 a { cursor: pointer; }
 
+li a.dropdown-toggle {
+	cursor: pointer;
+}
 
 
 span.enumeration {
