@@ -140,7 +140,9 @@ public class DrugService {
 		return interactionText.toString();
 	}
 
-	public List<Drug> findUserDrugsTaking(SimpleUser user) {
+	public List<Drug> findUserDrugsTaking(User user) {
+		
+		user = userService.getUserById(user.getId());
 		
 		List<Drug> drugs = repository.findUserDrugsTaking(user.getId());		
 		List<Drug> remembered = repository.findUserDrugsRemembered(user.getId());
@@ -151,13 +153,17 @@ public class DrugService {
 			if(remembered.contains(drug)) {
 				drug.setIsRemembered(true);
 			}
+
+			drug = this.tailorDrugFeatures(drug, user);
 		}
 		
 		return drugs;
 	}
 	
-	public List<Drug> findUserDrugsRemembered(SimpleUser user) {
+	public List<Drug> findUserDrugsRemembered(User user) {
 
+		user = userService.getUserById(user.getId());
+		
 		List<Drug> drugs = repository.findUserDrugsTaking(user.getId());		
 		List<Drug> taking = repository.findUserDrugsRemembered(user.getId());
 		
@@ -167,6 +173,8 @@ public class DrugService {
 			if(taking.contains(drug)) {
 				drug.setIsTaken(true);
 			}
+
+			drug = this.tailorDrugFeatures(drug, user);
 		}
 		
 		return drugs;
