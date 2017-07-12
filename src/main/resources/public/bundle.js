@@ -29489,8 +29489,13 @@ var DrugList = function (_React$Component) {
 									drug.name
 								)
 							),
-							_this9.renderDisease(drug),
-							_this9.renderActiveSubstance(drug)
+							_this9.renderActiveSubstance(drug),
+							drug.personalizedInformation && _react2.default.createElement(
+								"p",
+								null,
+								drug.personalizedInformation
+							),
+							_this9.renderDisease(drug)
 						),
 						_react2.default.createElement(
 							"div",

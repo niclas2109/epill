@@ -56,6 +56,13 @@ public class DrugService {
     	    				drug.setIsRemembered(true);
 
     	    			drug = this.tailorDrugFeatures(drug, user);
+    	    			
+    	    			// load tailored summary
+    	    			TailoredSummary summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
+
+    	    			if(summary != null) {
+    	    				drug.setTailoredSummary(summary.getText());
+    	    			}
     	    		}
     		}
     		
@@ -155,6 +162,14 @@ public class DrugService {
 			}
 
 			drug = this.tailorDrugFeatures(drug, user);
+			
+			
+			// load tailored summary
+			TailoredSummary summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
+
+			if(summary != null) {
+				drug.setTailoredSummary(summary.getText());
+			}
 		}
 		
 		return drugs;
@@ -175,6 +190,13 @@ public class DrugService {
 			}
 
 			drug = this.tailorDrugFeatures(drug, user);
+			
+			// load tailored summary
+			TailoredSummary summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
+
+			if(summary != null) {
+				drug.setTailoredSummary(summary.getText());
+			}
 		}
 		
 		return drugs;

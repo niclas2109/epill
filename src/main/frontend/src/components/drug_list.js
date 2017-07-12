@@ -318,6 +318,7 @@ class DrugList extends React.Component {
     
     
     renderDrugs(drugs) {
+    	
         return drugs.map((drug => {
             return (
                <li className="row" key={drug.id}>
@@ -334,11 +335,11 @@ class DrugList extends React.Component {
 		        			<Link to={`/drug/${drug.id}`}>
 		        				<h4>{ drug.name }</h4>
 		        			</Link>
-		        			
-		        			{this.renderDisease(drug)}
-		        			
 		        			{this.renderActiveSubstance(drug)}
-		
+		        			
+		        			{drug.personalizedInformation && <p>{drug.personalizedInformation}</p>}
+
+		        			{this.renderDisease(drug)}
 		        		</div>
 		        		<div className="action-pattern">
 			        		{User.isAuthenticated() &&

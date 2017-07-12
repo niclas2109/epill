@@ -29460,6 +29460,8 @@ var DrugList = function (_React$Component) {
 		value: function renderDrugs(drugs) {
 			var _this9 = this;
 
+			console.log(drugs);
+
 			return drugs.map(function (drug) {
 				return _react2.default.createElement(
 					"li",
