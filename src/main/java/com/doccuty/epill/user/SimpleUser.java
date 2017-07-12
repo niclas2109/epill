@@ -296,7 +296,7 @@ public class SimpleUser implements SendableEntity {
 
 	public static final String PROPERTY_EMAIL = "email";
 
-	@Column(unique = true)
+	@Column
 	private String email;
 
 	public String getEmail() {
