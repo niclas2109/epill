@@ -271,14 +271,14 @@ class UserData extends React.Component {
         						<p><b>{t("helpenabled")}</b></p>
         						<ul className="list-inline degree-of-detail-list">
         							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-        								<label htmlFor="settings-detail-min" className="radio-inline">
-        									<input type="radio" value="min" id="settings-detail-min" name="levelOfDetail" checked={this.state.levelOfDetail == 'min'} onChange={this.handleChangeLevelOfDetail} />
+        								<label htmlFor="settings-detail-max" className="radio-inline">
+        									<input type="radio" value="max" id="settings-detail-max" name="levelOfDetail" checked={this.state.levelOfDetail == 'max'} onChange={this.handleChangeLevelOfDetail} />
         									{t('yes')}
         								</label>
         							</li>
         							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
-        								<label htmlFor="settings-detail-max" className="radio-inline">
-        									<input type="radio" value="max" id="settings-detail-max" name="levelOfDetail" checked={this.state.levelOfDetail == 'max'} onChange={this.handleChangeLevelOfDetail} />
+        								<label htmlFor="settings-detail-min" className="radio-inline">
+        									<input type="radio" value="min" id="settings-detail-min" name="levelOfDetail" checked={this.state.levelOfDetail == 'min'} onChange={this.handleChangeLevelOfDetail} />
         									{t('no')}
         								</label>
         							</li>

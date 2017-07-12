@@ -22,6 +22,25 @@ public class TailoredTextService {
 	@Autowired
 	TailoredTextRepository repository;
 	
+
+	public Drug tailorDrugToUser(Drug drug, User user) {
+		drug = this.tailorDrugFeatures(drug, user);
+		
+		drug = this.tailorDiseases(drug, user);
+		
+		
+		// load tailored summary
+		TailoredText summary = this.getTailoredSummaryByDrugAndUser(drug, user);
+
+		if(summary != null) {
+			drug.setTailoredSummary(summary.getText());
+		}
+		
+		this.replaceSections(drug, user);
+		
+		return drug;
+	}
+		
 	public TailoredText getTailoredSummaryByDrugAndUser(Drug drug, User user) {
 
 		List<TailoredText> list = repository.findByDrugAndTopicIsNull(drug);
@@ -80,23 +99,6 @@ public class TailoredTextService {
 		
 		return summary;
 	}
-
-	public Drug tailorDrugToUser(Drug drug, User user) {
-		drug = this.tailorDrugFeatures(drug, user);
-		
-		drug = this.tailorDiseases(drug, user);
-		
-		
-		// load tailored summary
-		TailoredText summary = this.getTailoredSummaryByDrugAndUser(drug, user);
-
-		if(summary != null) {
-			drug.setTailoredSummary(summary.getText());
-		}
-		
-		return drug;
-	}
-	
 	
 	private Drug tailorDiseases(Drug drug, User user) {
 		

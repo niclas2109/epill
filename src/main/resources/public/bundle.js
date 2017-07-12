@@ -31104,8 +31104,8 @@ var UserData = function (_React$Component) {
                                     { className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
                                     _react2.default.createElement(
                                         "label",
-                                        { htmlFor: "settings-detail-min", className: "radio-inline" },
-                                        _react2.default.createElement("input", { type: "radio", value: "min", id: "settings-detail-min", name: "levelOfDetail", checked: this.state.levelOfDetail == 'min', onChange: this.handleChangeLevelOfDetail }),
+                                        { htmlFor: "settings-detail-max", className: "radio-inline" },
+                                        _react2.default.createElement("input", { type: "radio", value: "max", id: "settings-detail-max", name: "levelOfDetail", checked: this.state.levelOfDetail == 'max', onChange: this.handleChangeLevelOfDetail }),
                                         t('yes')
                                     )
                                 ),
@@ -31114,8 +31114,8 @@ var UserData = function (_React$Component) {
                                     { className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
                                     _react2.default.createElement(
                                         "label",
-                                        { htmlFor: "settings-detail-max", className: "radio-inline" },
-                                        _react2.default.createElement("input", { type: "radio", value: "max", id: "settings-detail-max", name: "levelOfDetail", checked: this.state.levelOfDetail == 'max', onChange: this.handleChangeLevelOfDetail }),
+                                        { htmlFor: "settings-detail-min", className: "radio-inline" },
+                                        _react2.default.createElement("input", { type: "radio", value: "min", id: "settings-detail-min", name: "levelOfDetail", checked: this.state.levelOfDetail == 'min', onChange: this.handleChangeLevelOfDetail }),
                                         t('no')
                                     )
                                 )
