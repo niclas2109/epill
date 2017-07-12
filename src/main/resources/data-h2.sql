@@ -7,6 +7,7 @@
 
 DELETE FROM drug_feature_gender;
 DELETE FROM drug_disease;
+DELETE FROM gender_disease;
 DELETE FROM tailored_text;
 DELETE FROM drug_active_substance;
 DELETE FROM drug_pharmaceutical_form;
@@ -220,6 +221,20 @@ INSERT INTO disease (id, name) VALUES(2, 'Grippe');
 INSERT INTO disease (id, name) VALUES(3, 'Gelenkschmerzen');
 INSERT INTO disease (id, name) VALUES(4, 'Lungenentzündung');
 INSERT INTO disease (id, name) VALUES(5, 'Blasenentzündung');
+
+
+--
+-- Dumping data for table `gender_disease`
+--
+
+INSERT INTO gender_disease (idgender, iddisease) VALUES (1, 1);
+INSERT INTO gender_disease (idgender, iddisease) VALUES (1, 3);
+INSERT INTO gender_disease (idgender, iddisease) VALUES (1, 4);
+INSERT INTO gender_disease (idgender, iddisease) VALUES (2, 1);
+INSERT INTO gender_disease (idgender, iddisease) VALUES (2, 2);
+INSERT INTO gender_disease (idgender, iddisease) VALUES (2, 3);
+INSERT INTO gender_disease (idgender, iddisease) VALUES (2, 4);
+INSERT INTO gender_disease (idgender, iddisease) VALUES (2, 5);
 
 
 --

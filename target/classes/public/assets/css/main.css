@@ -20,6 +20,16 @@ body {
 	font-size: 120%;
 }
 
+span.close {
+	float:right;
+    display:inline-block;
+    padding:1px 1px;
+}
+
+span.close:hover {
+    color: #0f0f0f;
+}
+
 h4 a { cursor: pointer; }
 
 li a.dropdown-toggle {
@@ -652,4 +662,15 @@ lightgray
 
 .warning-red-green-colorblind {
 	background-color:black;
+}
+
+
+
+
+.font-size-list li {
+	height: 40px;
+}
+
+.font-size-list li span {
+	height: 40px;
 }

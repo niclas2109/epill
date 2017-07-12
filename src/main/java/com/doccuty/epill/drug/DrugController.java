@@ -308,11 +308,11 @@ public class DrugController {
     @RequestMapping(value={"{id}/{lang}"}, method = RequestMethod.GET)
     public ResponseEntity<JsonObject> getDrugById(@PathVariable(value = "id") long id, @PathVariable(value = "lang") String lang) {
 
+    		Drug drug = service.findDrugById(id);
+
 		IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(5)));
 	
-	    	Drug drug = service.findDrugById(id);
-
 	    	JsonObject json = map.toJsonObject(drug);
 	    	
 		return new ResponseEntity<>(json, HttpStatus.OK);

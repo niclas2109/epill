@@ -19,7 +19,7 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
  */
    
-package com.doccuty.epill.model;
+package com.doccuty.epill.gender;
 
 import de.uniks.networkparser.interfaces.SendableEntity;
 import java.beans.PropertyChangeSupport;
@@ -31,11 +31,17 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import java.beans.PropertyChangeListener;
 import de.uniks.networkparser.EntityUtil;
+
+import com.doccuty.epill.disease.Disease;
+import com.doccuty.epill.model.util.DiseaseSet;
 import com.doccuty.epill.model.util.UserSet;
 import com.doccuty.epill.user.User;
    /**
@@ -246,4 +252,77 @@ import com.doccuty.epill.user.User;
       withUser(value);
       return value;
    } 
+   
+   /********************************************************************
+    * <pre>
+    *              many                       many
+    * Gender ----------------------------------- Disease
+    *              gender                   disease
+    * </pre>
+    */
+   
+   public static final String PROPERTY_DISEASE = "disease";
+
+   @ManyToMany(cascade=CascadeType.ALL)  
+   @JoinTable(name="gender_disease", joinColumns=@JoinColumn(name="idgender"), inverseJoinColumns=@JoinColumn(name="iddisease"))
+   private Set<Disease> disease = null;
+   
+   public Set<Disease> getDisease()
+   {
+      if (this.disease == null)
+      {
+         return DiseaseSet.EMPTY_SET;
+      }
+   
+      return this.disease;
+   }
+
+   public Gender withDisease(Disease... value)
+   {
+      if(value==null){
+         return this;
+      }
+      for (Disease item : value)
+      {
+         if (item != null)
+         {
+            if (this.disease == null)
+            {
+               this.disease = new DiseaseSet();
+            }
+            
+            boolean changed = this.disease.add (item);
+
+            if (changed)
+            {
+               item.withGender(this);
+               firePropertyChange(PROPERTY_DISEASE, null, item);
+            }
+         }
+      }
+      return this;
+   } 
+
+   public Gender withoutDisease(Disease... value)
+   {
+      for (Disease item : value)
+      {
+         if ((this.disease != null) && (item != null))
+         {
+            if (this.disease.remove(item))
+            {
+               item.withoutGender(this);
+               firePropertyChange(PROPERTY_DISEASE, item, null);
+            }
+         }
+      }
+      return this;
+   }
+
+   public Disease createDisease()
+   {
+      Disease value = new Disease();
+      withDisease(value);
+      return value;
+   }
 }

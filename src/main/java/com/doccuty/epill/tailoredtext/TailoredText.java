@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.doccuty.epill.drug.Drug;
-import com.doccuty.epill.model.Gender;
+import com.doccuty.epill.gender.Gender;
 import com.doccuty.epill.model.PackagingTopic;
 import com.doccuty.epill.user.User;
 

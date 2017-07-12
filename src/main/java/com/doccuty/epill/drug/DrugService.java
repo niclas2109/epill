@@ -1,6 +1,5 @@
 package com.doccuty.epill.drug;
 
-import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -13,7 +12,6 @@ import com.doccuty.epill.model.Interaction;
 import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.tailoredtext.TailoredText;
 import com.doccuty.epill.tailoredtext.TailoredTextService;
-import com.doccuty.epill.user.SimpleUser;
 import com.doccuty.epill.user.User;
 import com.doccuty.epill.user.UserService;
 
@@ -32,7 +30,7 @@ public class DrugService {
 	DrugFeatureRepository featureRepository;
 	
 	@Autowired
-	TailoredTextService tailoredSummaryService;
+	TailoredTextService tailoringService;
 	
 	
 	
@@ -55,10 +53,10 @@ public class DrugService {
     	    			if(remember.contains(drug))
     	    				drug.setIsRemembered(true);
 
-    	    			drug = this.tailorDrugFeatures(drug, user);
+    	    			drug = tailoringService.tailorDrugToUser(drug, user);
     	    			
     	    			// load tailored summary
-    	    			TailoredText summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
+    	    			TailoredText summary = tailoringService.getTailoredSummaryByDrugAndUser(drug, user);
 
     	    			if(summary != null) {
     	    				drug.setTailoredSummary(summary.getText());
@@ -100,16 +98,7 @@ public class DrugService {
 			}
 			
 
-			drug = this.tailorDrugFeatures(drug, user);
-			drug = tailoredSummaryService.replaceSections(drug, user);
-			
-			
-			// load tailored summary
-			TailoredText summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
-
-			if(summary != null) {
-				drug.setTailoredSummary(summary.getText());
-			}
+			drug = this.tailoringService.tailorDrugToUser(drug, user);
 		}
 
 		return drug;
@@ -161,15 +150,7 @@ public class DrugService {
 				drug.setIsRemembered(true);
 			}
 
-			drug = this.tailorDrugFeatures(drug, user);
-			
-			
-			// load tailored summary
-			TailoredText summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
-
-			if(summary != null) {
-				drug.setTailoredSummary(summary.getText());
-			}
+			drug = this.tailoringService.tailorDrugToUser(drug, user);
 		}
 		
 		return drugs;
@@ -189,42 +170,9 @@ public class DrugService {
 				drug.setIsTaken(true);
 			}
 
-			drug = this.tailorDrugFeatures(drug, user);
-			
-			// load tailored summary
-			TailoredText summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
-
-			if(summary != null) {
-				drug.setTailoredSummary(summary.getText());
-			}
+			drug = tailoringService.tailorDrugToUser(drug, user);
 		}
 		
 		return drugs;
 	}
-	
-	
-
-    private Drug tailorDrugFeatures(Drug drug, User user) {
-		// tailor drug features
-		
-    		if(user == null) {
-    			return drug;
-    		}
-    	
-		Iterator<DrugFeature> features = drug.getDrugFeature().iterator();
-		while (features.hasNext()) {
-			DrugFeature feature = features.next();
-
-			if(user.getAge() != 0 && (user.getAge() < feature.getMinAge()
-				|| feature.getMaxAge() != 0 && user.getAge() > feature.getMaxAge())
-	    			|| (feature.getGender().size() > 0 && user.getGender() != null && !feature.getGender().contains(user.getGender()))) {
-	    				
-	    			logger.info("Removed irrelevant drug feature. feature={} gender={}", feature.getDrugFeature(), user.getGender());
-	
-	    			features.remove();
-	    		}
-		}
-		return drug;
-	}
-
 }

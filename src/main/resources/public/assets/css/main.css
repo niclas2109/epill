@@ -667,23 +667,10 @@ lightgray
 
 
 
-.degree-of-detail-list {
-	height: 50px;	
-}
-
-.degree-of-detail-list li input {
-	display: block;
-}
-
-
 .font-size-list li {
 	height: 40px;
 }
 
 .font-size-list li span {
 	height: 40px;
-}
-
-.font-size-list li input {
-	display: block;
 }

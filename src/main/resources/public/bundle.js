@@ -31093,7 +31093,7 @@ var UserData = function (_React$Component) {
                                 _react2.default.createElement(
                                     "b",
                                     null,
-                                    t("levelOfDetail")
+                                    t("helpenabled")
                                 )
                             ),
                             _react2.default.createElement(
@@ -31106,27 +31106,7 @@ var UserData = function (_React$Component) {
                                         "label",
                                         { htmlFor: "settings-detail-min", className: "radio-inline" },
                                         _react2.default.createElement("input", { type: "radio", value: "min", id: "settings-detail-min", name: "levelOfDetail", checked: this.state.levelOfDetail == 'min', onChange: this.handleChangeLevelOfDetail }),
-                                        "minimal",
-                                        _react2.default.createElement(
-                                            "p",
-                                            null,
-                                            "kein Hilfe"
-                                        )
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    "li",
-                                    { className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
-                                    _react2.default.createElement(
-                                        "label",
-                                        { htmlFor: "settings-detail-default", className: "radio-inline" },
-                                        _react2.default.createElement("input", { type: "radio", value: "default", id: "settings-detail-default", name: "levelOfDetail", checked: this.state.levelOfDetail == 'default', onChange: this.handleChangeLevelOfDetail }),
-                                        "standard",
-                                        _react2.default.createElement(
-                                            "p",
-                                            null,
-                                            "Hilfe"
-                                        )
+                                        t('yes')
                                     )
                                 ),
                                 _react2.default.createElement(
@@ -31136,12 +31116,7 @@ var UserData = function (_React$Component) {
                                         "label",
                                         { htmlFor: "settings-detail-max", className: "radio-inline" },
                                         _react2.default.createElement("input", { type: "radio", value: "max", id: "settings-detail-max", name: "levelOfDetail", checked: this.state.levelOfDetail == 'max', onChange: this.handleChangeLevelOfDetail }),
-                                        "maximal",
-                                        _react2.default.createElement(
-                                            "p",
-                                            null,
-                                            "Viel Hilfe"
-                                        )
+                                        t('no')
                                     )
                                 )
                             )

@@ -19,6 +19,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import com.doccuty.epill.drug.Drug;
+import com.doccuty.epill.gender.Gender;
 import com.doccuty.epill.model.util.DrugSet;
 import com.doccuty.epill.model.util.GenderSet;
 import com.doccuty.epill.model.util.UserSet;

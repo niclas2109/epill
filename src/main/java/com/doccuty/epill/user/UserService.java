@@ -11,12 +11,12 @@ import com.doccuty.epill.authentication.AuthenticationService;
 import com.doccuty.epill.country.CountryRepository;
 import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.drug.DrugRepository;
+import com.doccuty.epill.gender.Gender;
 import com.doccuty.epill.gender.GenderRepository;
 import com.doccuty.epill.language.Language;
 import com.doccuty.epill.language.LanguageRepository;
 import com.doccuty.epill.model.Country;
 import com.doccuty.epill.model.DrugFeature;
-import com.doccuty.epill.model.Gender;
 import com.doccuty.epill.model.PackagingTopic;
 import com.doccuty.epill.model.ItemInvocation;
 

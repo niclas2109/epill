@@ -26,7 +26,6 @@ import java.beans.PropertyChangeSupport;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,7 +37,9 @@ import java.beans.PropertyChangeListener;
 import de.uniks.networkparser.EntityUtil;
 
 import com.doccuty.epill.drug.Drug;
+import com.doccuty.epill.gender.Gender;
 import com.doccuty.epill.model.util.DrugSet;
+import com.doccuty.epill.model.util.GenderSet;
 import com.doccuty.epill.model.util.UserSet;
 import com.doccuty.epill.user.User;
    /**
@@ -322,4 +323,79 @@ import com.doccuty.epill.user.User;
       withUser(value);
       return value;
    } 
+   
+   
+   
+   /********************************************************************
+    * <pre>
+    *              many                       many
+    * Disease ----------------------------------- Gender
+    *              disease                   gender
+    * </pre>
+    */
+   
+   public static final String PROPERTY_GENDER = "gender";
+
+   @ManyToMany(cascade=CascadeType.ALL, mappedBy="disease")
+   private Set<Gender> gender = null;
+   
+   public Set<Gender> getGender()
+   {
+      if (this.gender == null)
+      {
+         return GenderSet.EMPTY_SET;
+      }
+   
+      return this.gender;
+   }
+
+   public Disease withGender(Gender... value)
+   {
+      if(value==null){
+         return this;
+      }
+      for (Gender item : value)
+      {
+         if (item != null)
+         {
+            if (this.gender == null)
+            {
+               this.gender = new GenderSet();
+            }
+            
+            boolean changed = this.gender.add (item);
+
+            if (changed)
+            {
+               item.withDisease(this);
+               firePropertyChange(PROPERTY_GENDER, null, item);
+            }
+         }
+      }
+      return this;
+   } 
+
+   public Disease withoutGender(Gender... value)
+   {
+      for (Gender item : value)
+      {
+         if ((this.gender != null) && (item != null))
+         {
+            if (this.gender.remove(item))
+            {
+               item.withoutDisease(this);
+               firePropertyChange(PROPERTY_GENDER, item, null);
+            }
+         }
+      }
+      return this;
+   }
+
+   public Gender createGender()
+   {
+      Gender value = new Gender();
+      withGender(value);
+      return value;
+   } 
+   
 }

@@ -14,7 +14,7 @@
 	"savingSuccessfull"	: "Saved successfully!",
 	"savingFailed"	: "Saving failed!",
 	"preferredFontSize": "Preferred Font-Size",
-	"levelOfDetail": "Level of Detail",
+	"helpenabled"	: "Sollen Hilfetexte angezeigt werden?",
 	"viewDetails"	:	"View details",
 	"drugListAllDescriptionText": "%User.firstname%, this is an overview about all drugs in the system. You can add drugs you take frequently into a list by clicking on the heart icon. You can add drugs you want to remember into another list by clicking on the plus icon.",
 	"drugs": "Drugs",

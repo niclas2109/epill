@@ -28,9 +28,9 @@ import com.doccuty.epill.model.PackagingTopic;
 import java.util.Date;
 
 import com.doccuty.epill.disease.Disease;
+import com.doccuty.epill.gender.Gender;
 import com.doccuty.epill.language.Language;
 import com.doccuty.epill.model.Country;
-import com.doccuty.epill.model.Gender;
 import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.model.UserQuery;
 import com.doccuty.epill.user.User;

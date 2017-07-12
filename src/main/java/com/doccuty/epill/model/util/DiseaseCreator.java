@@ -25,6 +25,7 @@ import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
 
 import com.doccuty.epill.disease.Disease;
 import com.doccuty.epill.drug.Drug;
+import com.doccuty.epill.gender.Gender;
 
 import de.uniks.networkparser.IdMap;
 
@@ -38,6 +39,7 @@ public class DiseaseCreator implements SendableEntityCreatorNoIndex
       Disease.PROPERTY_NAME,
       Disease.PROPERTY_DRUG,
       Disease.PROPERTY_USER,
+      Disease.PROPERTY_GENDER
    };
    
    @Override
@@ -81,6 +83,11 @@ public class DiseaseCreator implements SendableEntityCreatorNoIndex
       if (Disease.PROPERTY_USER.equalsIgnoreCase(attribute))
       {
          return ((Disease) target).getUser();
+      }
+
+      if (Disease.PROPERTY_GENDER.equalsIgnoreCase(attribute))
+      {
+         return ((Disease) target).getGender();
       }
       
       return null;
@@ -127,6 +134,18 @@ public class DiseaseCreator implements SendableEntityCreatorNoIndex
       if ((Disease.PROPERTY_USER + SendableEntityCreatorNoIndex.REMOVE).equalsIgnoreCase(attrName))
       {
          ((Disease) target).withoutUser((User) value);
+         return true;
+      }
+
+      if (Disease.PROPERTY_GENDER.equalsIgnoreCase(attrName))
+      {
+         ((Disease) target).withGender((Gender) value);
+         return true;
+      }
+      
+      if ((Disease.PROPERTY_GENDER + SendableEntityCreatorNoIndex.REMOVE).equalsIgnoreCase(attrName))
+      {
+         ((Disease) target).withoutGender((Gender) value);
          return true;
       }
       

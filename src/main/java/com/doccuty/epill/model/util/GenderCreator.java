@@ -22,7 +22,8 @@
 package com.doccuty.epill.model.util;
 
 import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
-import com.doccuty.epill.model.Gender;
+
+import com.doccuty.epill.gender.Gender;
 import com.doccuty.epill.user.User;
 
 import de.uniks.networkparser.IdMap;

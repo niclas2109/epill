@@ -18,11 +18,12 @@ Personalization:
 	
 Tailoring:
 	- presented packaging information is selected with respect to user's gender and age
+	- presented "used when" diseases in drug lists and detail view are show with respect to gender
 	- icons in drug lists are tailored with respect to a users gender and age
 		- the warning-icon referring to pregnancy are only presented to females
 		- the warning-icon referring to roadworthiness is only presented to user with an age >= 16
 	- warnings for adverse effects are presented in respective lists
-	- users can modify the degree of help in user settings
+	- users can enable/disable help texts
 
 
 # Technical Overview

@@ -624,7 +624,7 @@ public class Drug extends SimpleDrug {
 
 	public static final String PROPERTY_CLICKS = "clicks";
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "drug")
+	@Transient
 	private Set<ItemInvocation> clicks = null;
 
 	public Set<ItemInvocation> getClicks() {
