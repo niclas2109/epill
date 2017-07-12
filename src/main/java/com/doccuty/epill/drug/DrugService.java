@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import com.doccuty.epill.model.DrugFeature;
 import com.doccuty.epill.model.Interaction;
 import com.doccuty.epill.model.ItemInvocation;
-import com.doccuty.epill.tailoredsummary.TailoredSummary;
-import com.doccuty.epill.tailoredsummary.TailoredSummaryService;
+import com.doccuty.epill.tailoredtext.TailoredText;
+import com.doccuty.epill.tailoredtext.TailoredTextService;
 import com.doccuty.epill.user.SimpleUser;
 import com.doccuty.epill.user.User;
 import com.doccuty.epill.user.UserService;
@@ -32,7 +32,7 @@ public class DrugService {
 	DrugFeatureRepository featureRepository;
 	
 	@Autowired
-	TailoredSummaryService tailoredSummaryService;
+	TailoredTextService tailoredSummaryService;
 	
 	
 	
@@ -58,7 +58,7 @@ public class DrugService {
     	    			drug = this.tailorDrugFeatures(drug, user);
     	    			
     	    			// load tailored summary
-    	    			TailoredSummary summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
+    	    			TailoredText summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
 
     	    			if(summary != null) {
     	    				drug.setTailoredSummary(summary.getText());
@@ -105,7 +105,7 @@ public class DrugService {
 			
 			
 			// load tailored summary
-			TailoredSummary summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
+			TailoredText summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
 
 			if(summary != null) {
 				drug.setTailoredSummary(summary.getText());
@@ -165,7 +165,7 @@ public class DrugService {
 			
 			
 			// load tailored summary
-			TailoredSummary summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
+			TailoredText summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
 
 			if(summary != null) {
 				drug.setTailoredSummary(summary.getText());
@@ -192,7 +192,7 @@ public class DrugService {
 			drug = this.tailorDrugFeatures(drug, user);
 			
 			// load tailored summary
-			TailoredSummary summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
+			TailoredText summary = tailoredSummaryService.getTailoredSummaryByDrugAndUser(drug, user);
 
 			if(summary != null) {
 				drug.setTailoredSummary(summary.getText());

@@ -410,7 +410,8 @@ class DrugList extends React.Component {
 				}
 					
 					{drugs.length > 1 && User.isAuthenticated() && interactions.length > 0 &&
-						<div className={"alert" + (User.redGreenColorblind ? " danger-red-green-colorblind" : " alert-danger") }>
+						<div className={"alert alert-dismissable" + (User.redGreenColorblind ? " danger-red-green-colorblind" : " alert-danger") }>
+							<a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
 							<h5>{User.redGreenColorblind} {t("interaction")}</h5>
 							<span dangerouslySetInnerHTML={this.createMarkup(interactions)} />
 		                </div>

@@ -1,4 +1,4 @@
-package com.doccuty.epill.tailoredsummary;
+package com.doccuty.epill.tailoredtext;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,15 +16,15 @@ import com.doccuty.epill.user.User;
 
 
 @Entity
-@Table(name = "tailored_summary")
-public class TailoredSummary {
+@Table(name = "tailored_text")
+public class TailoredText {
 
 	private String text;
 
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "iddrug")
 	private Drug drug;
-
+	
 	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "idpackaging_topic")
 	private PackagingTopic topic;
@@ -51,7 +51,7 @@ public class TailoredSummary {
 		}
 	}
 
-	public TailoredSummary withId(long value) {
+	public TailoredText withId(long value) {
 		setId(value);
 		return this;
 	}
@@ -68,7 +68,7 @@ public class TailoredSummary {
 		this.text = value;
 	}
 	
-	public TailoredSummary with(String value) {
+	public TailoredText with(String value) {
 		this.setText(value);
 		return this;
 	}
@@ -91,7 +91,7 @@ public class TailoredSummary {
 		this.drug = value;
 	}
 	
-	public TailoredSummary withDrug(Drug value) {
+	public TailoredText withDrug(Drug value) {
 		this.setDrug(value);
 		return this;
 	}
@@ -109,7 +109,7 @@ public class TailoredSummary {
 		this.topic = value;
 	}
 	
-	public TailoredSummary withTopic(PackagingTopic value) {
+	public TailoredText withTopic(PackagingTopic value) {
 		this.setTopic(value);
 		return this;
 	}
@@ -126,7 +126,7 @@ public class TailoredSummary {
 		this.gender = value;
 	}
 	
-	public TailoredSummary withGender(Gender value) {
+	public TailoredText withGender(Gender value) {
 		this.setGender(value);
 		return this;
 	}
@@ -144,7 +144,7 @@ public class TailoredSummary {
 		this.minAge = value;
 	}
 	
-	public TailoredSummary withMinAge(int value) {
+	public TailoredText withMinAge(int value) {
 		this.setMinAge(value);
 		return this;
 	}	
@@ -162,7 +162,7 @@ public class TailoredSummary {
 		this.maxAge = value;
 	}
 	
-	public TailoredSummary withMaxAge(int value) {
+	public TailoredText withMaxAge(int value) {
 		this.setMaxAge(value);
 		return this;
 	}

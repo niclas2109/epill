@@ -28990,8 +28990,13 @@ var DrugDetail = function (_React$Component) {
             "div",
             { className: "col-xs-12 col-sm-12 col-md-6" },
             _User2.default.isAuthenticated() && drug.personalizedInformation && _react2.default.createElement(
-              "p",
-              null,
+              "div",
+              { className: "alert alert-info alert-dismissable" },
+              _react2.default.createElement(
+                "a",
+                { href: "#", className: "close", "data-dismiss": "alert", "aria-label": "close" },
+                "\xD7"
+              ),
               drug.personalizedInformation.replace("%User.firstname%", _User2.default.firstname).replace("%User.lastname%", _User2.default.lastname)
             ),
             this.renderDisease(drug),
@@ -29592,7 +29597,12 @@ var DrugList = function (_React$Component) {
 				),
 				drugs.length > 1 && _User2.default.isAuthenticated() && interactions.length > 0 && _react2.default.createElement(
 					"div",
-					{ className: "alert" + (_User2.default.redGreenColorblind ? " danger-red-green-colorblind" : " alert-danger") },
+					{ className: "alert alert-dismissable" + (_User2.default.redGreenColorblind ? " danger-red-green-colorblind" : " alert-danger") },
+					_react2.default.createElement(
+						"a",
+						{ href: "#", className: "close", "data-dismiss": "alert", "aria-label": "close" },
+						"\xD7"
+					),
 					_react2.default.createElement(
 						"h5",
 						null,
@@ -30953,7 +30963,7 @@ var UserData = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     "form",
-                    { onSubmit: this.handleSubmit },
+                    { onSubmit: this.handleSubmit, className: "row" },
                     _react2.default.createElement(
                         "fieldset",
                         null,
@@ -31088,7 +31098,7 @@ var UserData = function (_React$Component) {
                             ),
                             _react2.default.createElement(
                                 "ul",
-                                { className: "list-inline" },
+                                { className: "list-inline degree-of-detail-list" },
                                 _react2.default.createElement(
                                     "li",
                                     { className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
@@ -31154,7 +31164,7 @@ var UserData = function (_React$Component) {
                             ),
                             _react2.default.createElement(
                                 "ul",
-                                { className: "list-inline" },
+                                { className: "list-inline font-size-list" },
                                 _react2.default.createElement(
                                     "li",
                                     { className: "col-lg-4 col-md-4 col-xs-4 list-group-item" },
@@ -31202,7 +31212,7 @@ var UserData = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         "div",
-                        { className: "form-actions" },
+                        { className: "form-actions container" },
                         !this.state.sending ? _react2.default.createElement(
                             "button",
                             { type: "submit", className: "btn btn-primary" },

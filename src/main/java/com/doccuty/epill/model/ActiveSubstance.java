@@ -23,6 +23,8 @@ package com.doccuty.epill.model;
 
 import de.uniks.networkparser.interfaces.SendableEntity;
 import java.beans.PropertyChangeSupport;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -35,11 +37,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import java.beans.PropertyChangeListener;
 import de.uniks.networkparser.EntityUtil;
 import com.doccuty.epill.model.util.DrugSet;
+import com.doccuty.epill.tailoredtext.TailoredText;
 import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.SubstanceGroup;
    /**
@@ -176,7 +181,8 @@ import com.doccuty.epill.model.SubstanceGroup;
    {
       setName(value);
       return this;
-   } 
+   }
+
 
    
    /********************************************************************
@@ -310,5 +316,5 @@ import com.doccuty.epill.model.SubstanceGroup;
       SubstanceGroup value = new SubstanceGroup();
       withSubstanceGroup(value);
       return value;
-   } 
+   }
 }

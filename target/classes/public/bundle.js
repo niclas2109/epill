@@ -28918,6 +28918,8 @@ var DrugDetail = function (_React$Component) {
         );
       }
 
+      console.log(drug);
+
       return _react2.default.createElement(
         "div",
         { className: "container marketing no-banner" },

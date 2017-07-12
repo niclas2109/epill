@@ -304,7 +304,7 @@ class DrugDetail extends React.Component {
             		</div>
             );
         }
-        
+
         return (
         	<div className="container marketing no-banner">
         		<div className='page-header'>
@@ -338,7 +338,12 @@ class DrugDetail extends React.Component {
 	            		</div>
         			</div>
         			<div className="col-xs-12 col-sm-12 col-md-6">
-        				{ User.isAuthenticated() && drug.personalizedInformation && <p>{drug.personalizedInformation.replace("%User.firstname%", User.firstname).replace("%User.lastname%", User.lastname)}</p> }
+        				{ User.isAuthenticated() && drug.personalizedInformation &&
+        					<div className="alert alert-info alert-dismissable">
+        						<a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
+        						{drug.personalizedInformation.replace("%User.firstname%", User.firstname).replace("%User.lastname%", User.lastname)}
+        					</div>
+        				}
       
         				{ this.renderDisease(drug) }
         				

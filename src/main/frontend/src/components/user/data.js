@@ -217,7 +217,7 @@ class UserData extends React.Component {
 	        			{t("userCockpitDescr").replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
 				</div>
 		    } 
-	        	   <form onSubmit={this.handleSubmit}>
+	        	   <form onSubmit={this.handleSubmit} className="row">
 		        		<fieldset>
 				            <div className="form-group col-md-6 col-lg-6">
 				               <label htmlFor="firstname">{t('firstname')}</label>
@@ -230,7 +230,7 @@ class UserData extends React.Component {
                             <div className="form-group col-md-6 col-lg-6">
                                <label htmlFor="gender">{t('gender')}</label>
                                <select id="gender" value="0" name="gender" className="form-control" title={t('gender')} value={this.state.gender.id} onChange={this.handleGenderChange}>
-                                        <option value="0" disabled>{t('noInfo')}</option>
+                                     <option value="0" disabled>{t('noInfo')}</option>
                                      <option value="2">{t('female')}</option>
                                      <option value="1">{t('male')}</option>
                                 </select>
@@ -269,7 +269,7 @@ class UserData extends React.Component {
 					<fieldset>
 					    <div className="form-group col-lg-9 col-md-9">
         						<p><b>{t("levelOfDetail")}</b></p>
-        						<ul className="list-inline">
+        						<ul className="list-inline degree-of-detail-list">
         							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
         								<label htmlFor="settings-detail-min" className="radio-inline">
         									<input type="radio" value="min" id="settings-detail-min" name="levelOfDetail" checked={this.state.levelOfDetail == 'min'} onChange={this.handleChangeLevelOfDetail} />
@@ -297,7 +297,7 @@ class UserData extends React.Component {
 					<fieldset>
                         <div className="form-group col-lg-9 col-md-9">
             					<p><b>{t("preferredFontSize")}</b></p>
-            					<ul className="list-inline">
+            					<ul className="list-inline font-size-list">
             						<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
             							<label htmlFor="settings-preferred-font-size-min" className="radio-inline">
             								<input type="radio" value="minFontSize" id="settings-preferred-font-size-min" name="preferredFontSize" checked={this.state.preferredFontSize == 'minFontSize'} onChange={this.handleChangePreferredFontSize} />
@@ -320,7 +320,7 @@ class UserData extends React.Component {
         					</div>
 				</fieldset>	
 						
-						<div className="form-actions">
+						<div className="form-actions container">
 			            {!this.state.sending ?
 	            				<button type="submit" className="btn btn-primary">{t('save')}</button>
 	            				: <button className="btn btn-default"><img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="></img></button> }

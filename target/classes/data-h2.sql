@@ -7,7 +7,7 @@
 
 DELETE FROM drug_feature_gender;
 DELETE FROM drug_disease;
-DELETE FROM tailored_summary;
+DELETE FROM tailored_text;
 DELETE FROM drug_active_substance;
 DELETE FROM drug_pharmaceutical_form;
 DELETE FROM drug_drug_feature;
@@ -274,6 +274,7 @@ INSERT INTO drug_active_substance (iddrug, idactive_substance) VALUES (3,3);
 INSERT INTO drug_active_substance (iddrug, idactive_substance) VALUES (3,4);
 INSERT INTO drug_active_substance (iddrug, idactive_substance) VALUES (4,5);
 INSERT INTO drug_active_substance (iddrug, idactive_substance) VALUES (5,6);
+INSERT INTO drug_active_substance (iddrug, idactive_substance) VALUES (5,1);
 INSERT INTO drug_active_substance (iddrug, idactive_substance) VALUES (6,7);
 INSERT INTO drug_active_substance (iddrug, idactive_substance) VALUES (7,8);
 INSERT INTO drug_active_substance (iddrug, idactive_substance) VALUES (8,9);
@@ -482,44 +483,44 @@ INSERT INTO packaging_section (id, state, text, iddrug, idpackaging_topic) VALUE
 
 
 --
--- Dump tailored_summary
+-- Dump tailored_text
 --
 
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (1, 1, 1, 16, 30, 'Hey %firstname% %lastname%, Hier steht eine wichtige Information für Männer im Alter von %age% Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (2, 1, 1, 4, 0, 0, 'XYZ... Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (3, 1, 1, 5, 0, 0, 'Hallo Hallo! Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (4, 1, 1, 8, 30, 40, 'Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (5, 1, 2, 4, 0, 0, '<p>XYZ</p>... Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (6, 1, 3, 5, 21, 40, 'Hallo Hallo %firstname%! Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (7, 1, 2, 8, 30, 40, 'Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (8, 1, 1, 4, 0, 36, '<p>XYZ</p>... Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (9, 1, 6, 5, 21, 40, 'Hallo Hallo! Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (10, 1, 7, 8, 30, 40, 'Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (11, 1, 1, 30, 40, ' Text... hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (12, 1, 1, 10, 40, 'Hier steht eine andere Information für Männer zwischen 10 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (13, 1, 3, 0, 60, 'Hier steht wieder eine Information für Männer mit %age% Jahren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (14, 2, 1, 30, 40, 'Hier steht eine andere Information für Frauen zwischen 30 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (15, 2, 2, 40, 60, 'Hier steht eine andere Information für Frauen zwischen 40 und 60 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (16, 2, 7, 21, 25, 'Hallo %firstname% %lastname%, Hier steht eine andere Information für Frauen zwischen 21 und 25 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (17, 2, 1, 30, 40, 'Hier steht eine andere Information für Frauen zwischen 30 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (18, 2, 3, 70, 90, 'Hier steht eine andere Information für Frauen zwischen 70 und 90 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (19, 1, 1, 4, 0, 36, '%firstname%,<br />Hier steht eine andere Information für Frauen zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (20, 1, 1, 5, 21, 40, 'Hallo Hallo! Hier steht eine andere Information für Frauen zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (21, 2, 1, 8, 30, 40, 'Hier steht eine andere Information für Frauen zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (22, 2, 5, 4, 0, 36, '%firstname%,<br />Hier steht eine andere Information für Frauen bis 36 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (23, 2, 6, 5, 21, 40, 'Hallo Hallo! Hier steht eine andere Information für Frauen zwischen 21 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (24, 2, 7, 8, 10, 60, 'Hey %fistname%, andere Informationen für Frauen zwischen 30 und 40 Jahren, die sich für diese Medikament interessieren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (25, 1, 2, 1, 15, 40, 'Hallo %firstname% %lastname%,<br />Hier steht wieder ein Text für Frauen mit %age% Jahren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (26, 2, 2, 2, 9, 40, 'Na, %firstname%? Hier steht wieder eine Information für Frauen mit %age% Jahren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (27, 2, 2, 3, 26, 40, 'Hey Hey, Hier steht wieder eine Information für Frauen mit %age% Jahren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (28, 1, 2, 4, 30, 40, 'Hier steht wieder eine Information für Männer mit %age% Jahren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (29, 1, 2, 5, 0, 40, 'Hier steht wieder eine Information für Männer mit %age% Jahren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (30, 1, 2, 0, 40, 'Eine Zusammenfassung für Männer mit %age% Jahren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (31, 1, 2, 41, 70, 'Eine andere Zusammenfassung für Männer mit %age% Jahren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (32, 1, 2, 0, 0, 'Eine Zusammenfassung für Männer ohne Altersbezug.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (33, 2, 2, 0, 0, 'Eine Zusammenfassung für Frauen ohne Altersbezug, %firstname%.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (34, 2, 1, 0, 0, 'Eine Zusammenfassung für Frauen ohne Altersbezug, %firstname%.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (35, 1, 3, 41, 70, 'Eine andere Zusammenfassung für Männer mit %age% Jahren.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (36, 1, 3, 0, 0, 'Eine Zusammenfassung für Männer ohne Altersbezug.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (37, 2, 3, 0, 0, 'Eine Zusammenfassung für Frauen ohne Altersbezug, %firstname%.');
-INSERT INTO tailored_summary (id, idgender, iddrug, min_age, max_age, text) VALUES (38, 2, 4, 0, 0, 'Eine Zusammenfassung für Frauen ohne Altersbezug, %firstname%.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (1, 1, 1, 16, 30, 'Hey %firstname% %lastname%, Hier steht eine wichtige Information für Männer im Alter von %age% Jahren, die sich für dieses Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (2, 1, 1, 4, 0, 0, 'XYZ... Hier steht eine andere Information für Männer ohne Altersbezug, die sich für diese Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (3, 1, 1, 5, 0, 0, 'Hallo Hallo! Hier steht eine andere Information für ohne Altersbezug, die sich für dieses Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (4, 1, 1, 8, 30, 40, 'Hier steht eine andere Information für Männer zwischen 30 und 40 Jahren, die sich für dieses Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (5, 1, 2, 4, 0, 0, '%firstname% %lastname%,<br />Hier steht eine andere Information für Männer ohne Altersbezug, die sich für diese Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (6, 1, 3, 5, 21, 40, 'Hallo Hallo %firstname%! Hier steht eine andere Information für Männer zwischen 21 und 40 Jahren, die sich für diese Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (7, 1, 2, 8, 30, 40, 'Hier steht eine andere Information für Männer mit %age% Jahren, die sich für dieses Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (8, 1, 1, 4, 0, 36, '%firstname% %lastname%,<br />Hier steht eine andere Information für Männer bis 36 Jahren, die sich für diese Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (9, 1, 6, 5, 21, 40, 'Hallo Hallo! Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für diese Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (10, 1, 7, 8, 30, 40, 'Hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für dieses Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (11, 1, 1, 30, 40, ' Text... hier steht eine andere Information für Männer zwischen 16 und 40 Jahren, die sich für dieses Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (12, 1, 1, 10, 40, 'Hier steht eine andere Information für Männer zwischen 10 und 40 Jahren, die sich für dieses Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (13, 1, 3, 0, 60, 'Hier steht wieder eine Information für Männer mit %age% Jahren.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (14, 2, 1, 30, 40, 'Hier steht eine andere Information für Frauen zwischen 30 und 40 Jahren, die sich für dieses Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (15, 2, 2, 40, 60, 'Hier steht eine andere Information für Frauen zwischen 40 und 60 Jahren, die sich für dieses Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (16, 2, 7, 21, 25, 'Hallo %firstname% %lastname%, Hier steht eine andere Information für Frauen zwischen 21 und 25 Jahren, die sich für diese Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (17, 2, 1, 30, 40, 'Hier steht eine andere Information für Frauen zwischen 30 und 40 Jahren, die sich für dieses Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (18, 2, 3, 70, 90, 'Hier steht eine andere Information für Frauen zwischen 70 und 90 Jahren, die sich für dieses Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (19, 1, 1, 4, 0, 36, '%firstname%,<br />Hier steht eine andere Information für Frauen bis 36 Jahren, die sich für dieses Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (20, 1, 1, 5, 21, 40, 'Hallo Hallo! Hier steht eine andere Information für Frauen zwischen 21 und 40 Jahren, die sich für diese Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (21, 2, 1, 8, 30, 40, 'Hier steht eine andere Information für Frauen zwischen 30 und 40 Jahren, die sich für diese Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (22, 2, 5, 4, 0, 36, '%firstname%,<br />Hier steht eine andere Information für Frauen bis 36 Jahren, die sich für diese Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (23, 2, 6, 5, 21, 40, 'Hallo Hallo! Hier steht eine andere Information für Frauen zwischen 21 und 40 Jahren, die sich für diese Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (24, 2, 7, 8, 10, 60, 'Hey %fistname%, andere Informationen für Frauen zwischen 10 und 60 Jahren, die sich für diese Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (25, 1, 2, 1, 15, 40, 'Hallo %firstname% %lastname%,<br />Hier steht wieder ein Text für Frauen mit %age% Jahren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (26, 2, 2, 2, 9, 40, 'Na, %firstname%? Hier steht wieder eine Information für Frauen mit %age% Jahren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (27, 2, 2, 3, 26, 40, 'Hey Hey, Hier steht wieder eine Information für Frauen mit %age% Jahren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (28, 1, 2, 4, 30, 40, 'Hier steht wieder eine Information für Männer mit %age% Jahren.');
+INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (29, 1, 2, 5, 0, 40, 'Hier steht wieder eine Information für alle Männer mit %age% Jahren.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (30, 1, 2, 0, 40, 'Eine Zusammenfassung für Männer mit %age% Jahren.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (31, 1, 2, 41, 70, 'Eine andere Zusammenfassung für Männer mit %age% Jahren.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (32, 1, 2, 0, 0, 'Eine Zusammenfassung für Männer ohne Altersbezug.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (33, 2, 2, 0, 0, 'Eine Zusammenfassung für Frauen ohne Altersbezug, %firstname%.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (34, 2, 1, 0, 45, 'Eine Zusammenfassung für Frauen bis 45, %firstname%.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (35, 1, 3, 41, 70, 'Eine andere Zusammenfassung für Männer mit %age% Jahren.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (36, 1, 3, 0, 0, 'Eine Zusammenfassung für Männer ohne Altersbezug.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (37, 2, 3, 0, 0, 'Eine Zusammenfassung für Frauen ohne Altersbezug, %firstname%.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (38, 2, 4, 0, 0, 'Eine Zusammenfassung für dieses Medikament Frauen ohne Altersbezug, %firstname%.');

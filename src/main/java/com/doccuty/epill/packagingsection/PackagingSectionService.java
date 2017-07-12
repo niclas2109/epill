@@ -9,7 +9,7 @@ import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.drug.DrugService;
 import com.doccuty.epill.model.PackagingTopic;
 import com.doccuty.epill.packaging.PackagingTopicRepository;
-import com.doccuty.epill.tailoredsummary.TailoredSummaryService;
+import com.doccuty.epill.tailoredtext.TailoredTextService;
 import com.doccuty.epill.user.User;
 import com.doccuty.epill.user.UserService;
 import java.util.List;
@@ -29,7 +29,7 @@ public class PackagingSectionService {
     PackagingTopicRepository topicRepository;
 
     @Autowired
-    TailoredSummaryService serviceSummary;
+    TailoredTextService serviceSummary;
 
     @Autowired
     DrugService drugService;
