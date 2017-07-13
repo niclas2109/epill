@@ -11,7 +11,7 @@ This project provides the following features:
 Personalization:
 	- personal and daytime-sensitive addressing in the banner on the home site
 	- personal addressing in help-information
-	- change color mode by selecting a user has a red-green-blindness
+	- change "color mode" for alert by selecting a user has a red-green-blindness
 	- change font-size
 	- frontend language adapts browser language automatically
 	- responsive design of the website
