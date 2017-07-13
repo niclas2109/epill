@@ -27,7 +27,7 @@ i18n
     	
 		//suppress 404 warnings
 		whitelist	: ['de', 'en'],
-        fallbackLng	: 'de',
+        fallbackLng	: 'en',
 
         // Have a common namespace used around the full app
         nsSeparator: false,

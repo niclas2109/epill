@@ -18,7 +18,7 @@ import com.doccuty.epill.user.UserService;
 @Service
 public class DrugService {
 
-	private static final Logger logger = LoggerFactory.getLogger(DrugService.class);
+	private static final Logger LOG = LoggerFactory.getLogger(DrugService.class);
 	
 	@Autowired
 	DrugRepository repository;
@@ -64,11 +64,16 @@ public class DrugService {
     	    		}
     		}
     		
+    		LOG.info("Found {} drugs.", drugs.size());
+    		
     		return drugs;
     }
 
-	public void saveDrug(Drug Drug) {
-    		repository.save(Drug);
+	public Drug saveDrug(Drug drug) {
+
+		LOG.info("Saved drug={}", drug);
+		
+    		return repository.save(drug);
     }
 
 	public Drug findDrugById(long id) {

@@ -31506,7 +31506,7 @@ _i18next2.default.use(_i18nextXhrBackend2.default).use(_i18nextBrowserLanguagede
 
 						//suppress 404 warnings
 						whitelist: ['de', 'en'],
-						fallbackLng: 'de',
+						fallbackLng: 'en',
 
 						// Have a common namespace used around the full app
 						nsSeparator: false,
