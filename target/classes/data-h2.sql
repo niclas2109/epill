@@ -377,7 +377,6 @@ INSERT INTO drug_interaction (idinteraction, iddrug) VALUES (1, 1), (1, 4), (1, 
 -- Dumping data for table `item_invocation`
 --
 
-
 --
 -- Dumping data for table `language`
 --

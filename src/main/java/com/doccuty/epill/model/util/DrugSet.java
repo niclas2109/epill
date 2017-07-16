@@ -30,6 +30,7 @@ import com.doccuty.epill.model.util.PackagingSectionSet;
 import com.doccuty.epill.model.util.ActiveSubstanceSet;
 import com.doccuty.epill.disease.Disease;
 import com.doccuty.epill.drug.Drug;
+import com.doccuty.epill.iteminvocation.ItemInvocation;
 import com.doccuty.epill.model.ActiveSubstance;
 import com.doccuty.epill.model.util.ProductGroupSet;
 import com.doccuty.epill.packagingsection.PackagingSection;
@@ -43,7 +44,6 @@ import com.doccuty.epill.model.AdverseEffect;
 import com.doccuty.epill.model.util.InteractionSet;
 import com.doccuty.epill.model.Interaction;
 import com.doccuty.epill.model.util.ItemInvocationSet;
-import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.model.util.DiseaseSet;
 
 public class DrugSet extends HashSet<Drug>

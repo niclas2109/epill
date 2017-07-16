@@ -21,8 +21,6 @@
    
 package com.doccuty.epill.user;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -38,10 +36,10 @@ import com.doccuty.epill.model.PackagingTopic;
 import com.doccuty.epill.disease.Disease;
 import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.gender.Gender;
+import com.doccuty.epill.iteminvocation.ItemInvocation;
 import com.doccuty.epill.language.Language;
 import com.doccuty.epill.model.Country;
 import com.doccuty.epill.model.util.ItemInvocationSet;
-import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.model.util.UserQuerySet;
 import com.doccuty.epill.model.UserQuery;
 import com.doccuty.epill.model.util.DiseaseSet;

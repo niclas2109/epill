@@ -77,5 +77,6 @@
 	"getPersonalizedText" : "Personalisierten Text anzeigen",
 	"getOriginalText" : "Original Text anzeigen",
 	"errorOccured"	: "Sorry, es ist ein Fehler aufgetreten!",
-	"publishingDate"	: "Veröffentlicht am"
+	"publishingDate"	: "Veröffentlicht am",
+	"lastVisitedItems"	: "Zuletzt angesehene Medikamente"
 }

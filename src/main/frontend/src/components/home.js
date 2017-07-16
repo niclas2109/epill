@@ -2,7 +2,10 @@ import React from "react";
 
 import {translate} from "react-i18next";
 
-import Carousel from "./carousel"
+import Carousel from "./carousel";
+import LastVisitedItems from "./last_visited_items";
+
+import User from "./../util/User";
 
 // See https://facebook.github.io/react/docs/forms.html for documentation about forms.
 class Home extends React.Component {
@@ -21,6 +24,11 @@ class Home extends React.Component {
         		<Carousel />
 
         		<div className="container marketing">
+        		
+        			{User.isAuthenticated() &&
+        				<LastVisitedItems />
+        			}
+        		
         			<div className="row">
         				<div className="col-lg-4">
         					<img className="img-circle" src="/assets/images/logo_s.svg" alt="Generic placeholder image" width="140" height="140"></img>

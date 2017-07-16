@@ -7,9 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.doccuty.epill.iteminvocation.ItemInvocation;
+import com.doccuty.epill.iteminvocation.ItemInvocationRepository;
 import com.doccuty.epill.model.DrugFeature;
 import com.doccuty.epill.model.Interaction;
-import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.tailoredtext.TailoredText;
 import com.doccuty.epill.tailoredtext.TailoredTextService;
 import com.doccuty.epill.user.User;
@@ -25,6 +26,9 @@ public class DrugService {
 
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	ItemInvocationRepository invocationRepository;
 	
 	@Autowired
 	DrugFeatureRepository featureRepository;
@@ -179,5 +183,18 @@ public class DrugService {
 		}
 		
 		return drugs;
+	}
+
+	public List<ItemInvocation> getClicksByUserId() {
+		
+		List<ItemInvocation> list = invocationRepository.findLastInvocedDrugs(userService.getCurrentUser());
+		LOG.info("Retreived last visited items={}", list);
+		
+		/*
+		if(list.size() > 6)
+			return list.subList(0, 6);
+		*/
+		
+		return list;
 	}
 }

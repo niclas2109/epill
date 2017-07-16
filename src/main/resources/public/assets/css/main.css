@@ -4,21 +4,16 @@ html {
 	background-color: rgb(255, 255, 255);
 }
 
-body {
-	margin-bottom: 330px;
-}
+body { margin-bottom: 330px; }
 
-.minFontSize {
-	font-size: 80%;
-}
+a:link { color: #087c74; text-decoration: none; }
 
-.defaultFontSize {
-	font-size: 100%;
-}
+a:visited { color: #000000; }
 
-.maxFontSize {
-	font-size: 120%;
-}
+a:hover { color: #0ca49a; }
+
+a:active { color: #0ca49a; }
+
 
 span.close {
 	float:right;
@@ -39,6 +34,21 @@ li a.dropdown-toggle {
 
 span.enumeration {
 	margin-right:4px;
+}
+
+
+/* classes to modify document font-size */
+
+.minFontSize {
+	font-size: 80%;
+}
+
+.defaultFontSize {
+	font-size: 100%;
+}
+
+.maxFontSize {
+	font-size: 120%;
 }
 
 .margin-s {
@@ -664,6 +674,36 @@ lightgray
 	background-color:black;
 }
 
+
+.last-visited-items-container {
+	border-radius: 10px;
+	padding:10px 0px;
+	background-color: rgba(200, 200, 200, 0.15);
+	margin-bottom:50px;
+}
+
+.drug-min-profile p {
+	width:100%;
+	overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.drug-min-profile div.image-container {
+	height:130px;
+	width:100%;
+	overflow:hidden;
+	background-color: rgba(220, 220, 220, 0.15);
+}
+
+.drug-min-profile div.image-container:hover {
+	background-color: rgba(200, 200, 200, 0.15);
+}
+
+.drug-min-profile>div.image-container img {
+	height:100%;
+	overflow:hidden;
+}
 
 
 

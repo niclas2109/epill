@@ -12,6 +12,7 @@ import com.doccuty.epill.country.CountryRepository;
 import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.drug.DrugRepository;
 import com.doccuty.epill.gender.GenderRepository;
+import com.doccuty.epill.iteminvocation.ItemInvocation;
 import com.doccuty.epill.language.Language;
 import com.doccuty.epill.language.LanguageRepository;
 import com.doccuty.epill.model.Country;
@@ -19,7 +20,6 @@ import com.doccuty.epill.model.DrugFeature;
 import com.doccuty.epill.model.PackagingTopic;
 import com.doccuty.epill.user.SimpleUser;
 import com.doccuty.epill.user.User;
-import com.doccuty.epill.model.ItemInvocation;
 
 import java.util.List;
 

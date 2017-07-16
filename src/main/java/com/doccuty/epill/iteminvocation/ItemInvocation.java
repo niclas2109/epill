@@ -19,7 +19,7 @@
    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. 
  */
    
-package com.doccuty.epill.model;
+package com.doccuty.epill.iteminvocation;
 
 import de.uniks.networkparser.interfaces.SendableEntity;
 import java.beans.PropertyChangeSupport;
@@ -143,7 +143,7 @@ import com.doccuty.epill.user.User;
    {
       StringBuilder result = new StringBuilder();
       
-      result.append(" ").append(this.getId());
+      result.append(" ").append(this.getId()).append(" ").append(this.getDrug());
       return result.substring(1);
    }
 

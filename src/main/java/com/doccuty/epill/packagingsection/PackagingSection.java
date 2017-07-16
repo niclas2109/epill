@@ -43,7 +43,7 @@ import de.uniks.networkparser.EntityUtil;
 
 import com.doccuty.epill.model.util.ItemInvocationSet;
 import com.doccuty.epill.drug.Drug;
-import com.doccuty.epill.model.ItemInvocation;
+import com.doccuty.epill.iteminvocation.ItemInvocation;
 
 
 @Entity

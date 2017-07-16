@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.doccuty.epill.iteminvocation.ItemInvocation;
 import com.doccuty.epill.model.DrugFeature;
 import com.doccuty.epill.model.util.DrugCreator;
+import com.doccuty.epill.model.util.ItemInvocationCreator;
 import com.doccuty.epill.user.UserService;
 
 import de.uniks.networkparser.Deep;
@@ -246,12 +248,12 @@ public class DrugController {
 		IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(2)));
 		
-        List<Drug> set = service.findUserDrugsRemembered(userService.getCurrentUser());
+        List<Drug> list = service.findUserDrugsRemembered(userService.getCurrentUser());
     	
 	    	JsonObject json = new JsonObject();
 	    	JsonArray drugArray = new JsonArray();
 	    	
-	    	for(Drug drug : set) {
+	    	for(Drug drug : list) {
 	    		drugArray.add(map.toJsonObject(drug));
 	    	}
     	
@@ -304,6 +306,36 @@ public class DrugController {
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
     
+    /**
+     * get last visited items by current user
+     * @return
+     */
+    
+    @RequestMapping(value={"/lastVisited"}, method = RequestMethod.GET)
+    public ResponseEntity<JsonArray> getLastVisited() {
+
+		// A pragmatic approach to security which does not use much
+		// framework-specific magic. While other approaches
+		// with annotations, etc. are possible they are much more complex while
+		// this is quite easy to understand and
+		// extend.
+		if (userService.isAnonymous()) {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+		
+		List<ItemInvocation> list = service.getClicksByUserId();
+
+		IdMap map = ItemInvocationCreator.createIdMap("");
+		map.withFilter(Filter.regard(Deep.create(2)));
+		
+	    	JsonArray json = new JsonArray();
+	    	
+	    	for(ItemInvocation invocation : list) {
+	    		json.add(map.toJsonObject(invocation));
+	    	}
+	    	
+	    	return new ResponseEntity<>(json, HttpStatus.OK);
+    } 
     
     @RequestMapping(value={"{id}/{lang}"}, method = RequestMethod.GET)
     public ResponseEntity<JsonObject> getDrugById(@PathVariable(value = "id") long id, @PathVariable(value = "lang") String lang) {
@@ -329,10 +361,8 @@ public class DrugController {
 	    	if(drug.getImage() != null) {
 	    		img = drug.getImage().getImage();
 	    		return ResponseEntity.ok().contentLength(img.length).contentType(MediaType.IMAGE_PNG).body(img);
-	    	} else 
-	    		img = ("").getBytes();
+	    	}
 	
 	    	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     } 
-
 }

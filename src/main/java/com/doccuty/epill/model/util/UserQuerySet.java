@@ -22,6 +22,8 @@
 package com.doccuty.epill.model.util;
 
 import java.util.HashSet;
+
+import com.doccuty.epill.iteminvocation.ItemInvocation;
 import com.doccuty.epill.model.UserQuery;
 import java.util.Collection;
 import de.uniks.networkparser.list.NumberList;
@@ -31,7 +33,6 @@ import java.util.Date;
 
 import com.doccuty.epill.model.util.UserSet;
 import com.doccuty.epill.user.User;
-import com.doccuty.epill.model.ItemInvocation;
 
 public class UserQuerySet extends HashSet<UserQuery> {
 	protected Class<?> getTypClass() {

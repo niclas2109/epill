@@ -29,9 +29,9 @@ import java.util.Date;
 
 import com.doccuty.epill.disease.Disease;
 import com.doccuty.epill.gender.Gender;
+import com.doccuty.epill.iteminvocation.ItemInvocation;
 import com.doccuty.epill.language.Language;
 import com.doccuty.epill.model.Country;
-import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.model.UserQuery;
 import com.doccuty.epill.user.User;
 import com.doccuty.epill.model.DrugFeature;
@@ -54,8 +54,8 @@ public class UserCreator implements SendableEntityCreatorNoIndex
       User.PROPERTY_COUNTRY,
       User.PROPERTY_LANGUAGE,
       User.PROPERTY_GENDER,
-      User.PROPERTY_CLICKS,
-      User.PROPERTY_QUERY,
+      //User.PROPERTY_CLICKS,
+      //User.PROPERTY_QUERY,
       User.PROPERTY_DISEASE,
       User.PROPERTY_REDGREENCOLORBLIND
    };

@@ -33,6 +33,7 @@ import java.util.Date;
 
 import com.doccuty.epill.disease.Disease;
 import com.doccuty.epill.drug.Drug;
+import com.doccuty.epill.iteminvocation.ItemInvocation;
 import com.doccuty.epill.model.ActiveSubstance;
 import com.doccuty.epill.model.ProductGroup;
 import com.doccuty.epill.packagingsection.PackagingSection;
@@ -40,7 +41,6 @@ import com.doccuty.epill.model.IndicationGroup;
 import com.doccuty.epill.model.PharmaceuticalForm;
 import com.doccuty.epill.model.AdverseEffect;
 import com.doccuty.epill.model.Interaction;
-import com.doccuty.epill.model.ItemInvocation;
 import com.doccuty.epill.model.Packaging;
 
 public class DrugCreator implements SendableEntityCreatorNoIndex
