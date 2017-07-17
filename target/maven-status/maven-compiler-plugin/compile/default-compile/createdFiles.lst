@@ -3,7 +3,6 @@ com/doccuty/epill/model/util/PackagingTopicSet.class
 com/doccuty/epill/model/util/ItemInvocationSet.class
 com/doccuty/epill/model/util/DrugCreator.class
 com/doccuty/epill/model/util/ProductGroupSet.class
-com/doccuty/epill/tailoredsummary/TailoredSummaryRepository.class
 de/uniks/networkparser/EPILLMapEntity.class
 com/doccuty/epill/language/LanguageController.class
 com/doccuty/epill/language/LanguageRepository.class
@@ -12,7 +11,6 @@ com/doccuty/epill/model/util/DrugFeatureCreator.class
 com/doccuty/epill/packagingsection/PackagingSection.class
 com/doccuty/epill/language/LanguageService.class
 com/doccuty/epill/model/util/InteractionSet.class
-com/doccuty/epill/tailoredsummary/TailoredSummaryService.class
 com/doccuty/epill/packagingsection/PackagingSectionController.class
 com/doccuty/epill/model/util/SubstanceGroupCreator.class
 com/doccuty/epill/model/util/UserCreator.class
@@ -30,7 +28,6 @@ com/doccuty/epill/model/util/IndicationGroupCreator.class
 com/doccuty/epill/model/util/ItemInvocationCreator.class
 com/doccuty/epill/authentication/LoginAttemptRepository.class
 com/doccuty/epill/country/CountryRepository.class
-com/doccuty/epill/model/Gender.class
 com/doccuty/epill/authentication/AuthenticationService.class
 com/doccuty/epill/model/util/DrugFeatureSet.class
 com/doccuty/epill/disease/DiseaseService.class
@@ -38,10 +35,12 @@ com/doccuty/epill/authentication/JWTFilter.class
 com/doccuty/epill/model/Interaction.class
 com/doccuty/epill/model/util/IndicationGroupSet.class
 com/doccuty/epill/model/util/DrugSet.class
+com/doccuty/epill/tailoredtext/TailoredText.class
 com/doccuty/epill/authentication/SpringSecurityConfig.class
 com/doccuty/epill/model/Question.class
 com/doccuty/epill/disease/DiseaseController.class
 com/doccuty/epill/model/util/PackagingCreator.class
+com/doccuty/epill/iteminvocation/ItemInvocationRepository.class
 com/doccuty/epill/model/Image.class
 com/doccuty/epill/user/SimpleUserRepository.class
 com/doccuty/epill/model/util/AnswerSet.class
@@ -63,6 +62,7 @@ com/doccuty/epill/user/UserRepository.class
 com/doccuty/epill/country/CountryService.class
 com/doccuty/epill/model/LoginAttempt.class
 com/doccuty/epill/authentication/JWTConfiguration.class
+com/doccuty/epill/gender/Gender.class
 com/doccuty/epill/model/Country.class
 com/doccuty/epill/model/util/LanguageSet.class
 com/doccuty/epill/drug/SimpleDrug.class
@@ -79,10 +79,12 @@ com/doccuty/epill/util/AddressServiceImpl.class
 com/doccuty/epill/model/util/InteractionCreator.class
 com/doccuty/epill/model/util/PackagingSectionSet.class
 com/doccuty/epill/model/util/UserQuerySet.class
+com/doccuty/epill/tailoredtext/TailoredTextRepository.class
 com/doccuty/epill/drug/DrugService.class
 com/doccuty/epill/model/util/ActiveSubstanceSet.class
 com/doccuty/epill/model/Tag.class
 com/doccuty/epill/user/UserService.class
+com/doccuty/epill/iteminvocation/ItemInvocation.class
 com/doccuty/epill/model/util/IntakeInformationSet.class
 com/doccuty/epill/model/PackagingTopic.class
 com/doccuty/epill/user/UserController$UserLogin.class
@@ -100,6 +102,7 @@ com/doccuty/epill/model/util/UserQueryCreator.class
 com/doccuty/epill/user/SimpleUser.class
 com/doccuty/epill/authentication/AuthenticationController$UserLogin.class
 com/doccuty/epill/model/util/PackagingSet.class
+com/doccuty/epill/tailoredtext/TailoredTextService.class
 com/doccuty/epill/model/util/SubstanceGroupSet.class
 com/doccuty/epill/model/util/LanguageCreator.class
 com/doccuty/epill/user/UserController.class
@@ -109,12 +112,11 @@ com/doccuty/epill/model/util/UserSet.class
 com/doccuty/epill/user/UserToken.class
 com/doccuty/epill/country/CountryController.class
 com/doccuty/epill/model/Answer.class
-com/doccuty/epill/tailoredsummary/TailoredSummary.class
 com/doccuty/epill/question/QuestionService.class
 com/doccuty/epill/util/AddressService.class
 com/doccuty/epill/gender/GenderController.class
-com/doccuty/epill/model/ItemInvocation.class
 com/doccuty/epill/model/AdverseEffect.class
 com/doccuty/epill/question/QuestionRepository.class
+com/doccuty/epill/drug/DrugService$1.class
 com/doccuty/epill/disease/DiseaseRepository.class
 de/uniks/networkparser/EPILLIdMap.class
