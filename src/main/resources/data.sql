@@ -74,15 +74,15 @@ INSERT INTO country (id, name) VALUES (1,'Deutschland');
 --
 
 
-INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstname, lastname, level_of_detail, password, preferred_font_size, salt, username, red_green_colorblind)
-	VALUES
-	(1,'1990-09-21','2015-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser','max','89794011ed99bae7b5062920bffbef2a334dca75628975cd9cce51ba9691b12843beaed302416bdee221796816346fdeb618903cfa887945174237c92dc2dd2a','defaultFontSize','[B@63ba2cf8','nic', true);
+-- INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstname, lastname, level_of_detail, password, preferred_font_size, salt, username, red_green_colorblind)
+--	VALUES
+--	(1,'1990-09-21','2015-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser','max','89794011ed99bae7b5062920bffbef2a334dca75628975cd9cce51ba9691b12843beaed302416bdee221796816346fdeb618903cfa887945174237c92dc2dd2a','defaultFontSize','[B@63ba2cf8','nic', true);
 
 --
 -- Dumping data for table `user_`
 --
 
-INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
+-- INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
 
 
 
@@ -94,9 +94,9 @@ INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (1,'Acc
 INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (2,'Baymycard',0,'3915-06-01','1.59','2011-1-1');
 INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (3,'Beloc-Zok® comp',6030,'3915-06-01','1.37','2011-1-1');
 INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (4,'Cardular',0,'3915-06-01','1.59','2011-1-1');
-INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (5,'Ciprobay',0,'3915-06-01','1.59','2011-1-1');
+INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (5,'Ciprobay',0,'3915-06-01','1.59','2010-2-1');
 INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (6,'Clexane',0,'3915-06-01','1.59','2011-1-1');
-INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (7,'Novalgin',0,'3915-06-01','1.59','2011-1-1');
+INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (7,'Novalgin',0,'3915-06-01','1.59','2016-3-1');
 INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (8,'REMINYL® 4 mg/ml Lösung zum Einnehmen',0,'3915-06-01','1.36','2011-1-1');
 INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (9,'Topiramat-Janssen',0,'3915-06-01','1.0','2011-1-1');
 INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (10,'Toujeo',0,'3915-06-01','1.59','2011-1-1');
