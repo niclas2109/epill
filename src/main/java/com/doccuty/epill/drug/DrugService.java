@@ -1,5 +1,7 @@
 package com.doccuty.epill.drug;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -187,14 +189,24 @@ public class DrugService {
 
 	public List<ItemInvocation> getClicksByUserId() {
 		
-		List<ItemInvocation> list = invocationRepository.findLastInvocedDrugs(userService.getCurrentUser());
+		List<ItemInvocation> list = invocationRepository.findInvocedDrugs(userService.getCurrentUser());
 		LOG.info("Retreived last visited items={}", list);
 		
-		/*
+		
+		// sort by Date
+		
+		Collections.sort(list, new Comparator<ItemInvocation>() {
+	        @Override
+	        public int compare(ItemInvocation fruit2, ItemInvocation fruit1)
+	        {
+
+	            return  fruit1.getTimestamp().compareTo(fruit2.getTimestamp());
+	        }
+	    });
+
 		if(list.size() > 6)
 			return list.subList(0, 6);
-		*/
-		
+
 		return list;
 	}
 }

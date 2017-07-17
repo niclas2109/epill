@@ -30320,7 +30320,7 @@ var LastVisitedItems = function (_React$Component) {
 						":"
 					),
 					invocations.map(function (invocation) {
-						return _react2.default.createElement(_drug_miniature2.default, { invocation: invocation, key: "" + invocation.drug.id });
+						return _react2.default.createElement(_drug_miniature2.default, { invocation: invocation, key: invocation.drug.id });
 					})
 				)
 			);

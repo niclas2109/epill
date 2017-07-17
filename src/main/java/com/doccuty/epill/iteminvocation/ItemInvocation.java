@@ -34,6 +34,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -49,6 +50,17 @@ import com.doccuty.epill.user.User;
    public  class ItemInvocation implements SendableEntity
 {
 
+	
+	public ItemInvocation() {
+		
+	}
+	
+	public ItemInvocation (Drug drug, Date timestamp, long cntr) {
+		this.drug	= drug;
+		this.timestamp	= timestamp;
+		this.counter	= cntr;
+	}
+	
    
    //==========================================================================
    
@@ -175,6 +187,35 @@ import com.doccuty.epill.user.User;
    public ItemInvocation withTimestamp(Date value)
    {
       setTimestamp(value);
+      return this;
+   } 
+   
+   
+   //==========================================================================
+   
+   public static final String PROPERTY_COUNTER = "counter";
+   
+   @Transient
+   private long counter;
+
+   public long getCounter()
+   {
+      return this.counter;
+   }
+   
+   public void setCounter(long value)
+   {
+      if (this.counter != value) {
+      
+         long oldValue = this.counter;
+         this.counter = value;
+         this.firePropertyChange(PROPERTY_COUNTER, oldValue, value);
+      }
+   }
+   
+   public ItemInvocation withCounter(long value)
+   {
+      setCounter(value);
       return this;
    } 
 
@@ -360,4 +401,5 @@ import com.doccuty.epill.user.User;
       withUser(value);
       return value;
    } 
+      
 }

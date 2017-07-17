@@ -15,8 +15,11 @@ import com.doccuty.epill.user.User;
 @Transactional
 public interface ItemInvocationRepository extends JpaRepository<ItemInvocation, Long> {
 
-	List<ItemInvocation> findDistinctTop5ByUserOrderByTimestampDesc(User user);
+	@Query("SELECT new ItemInvocation(d, MAX(invocation.timestamp), COUNT(*)) FROM ItemInvocation invocation "
+			+ "JOIN invocation.drug d "
+			+ "WHERE invocation.user = :user "
+			+ "GROUP BY d")
+	List<ItemInvocation> findInvocedDrugs(@Param("user") User user);
 	
-	@Query("SELECT i FROM ItemInvocation i JOIN i.drug d WHERE i.user = :user GROUP BY i.drug, i.id ORDER BY i.id DESC")
-	List<ItemInvocation> findLastInvocedDrugs(@Param("user") User user);
+	List<ItemInvocation> findByUser(User user);
 }

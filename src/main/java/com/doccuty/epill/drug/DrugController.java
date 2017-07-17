@@ -32,7 +32,7 @@ import de.uniks.networkparser.json.JsonObject;
 @RequestMapping("/drug")
 public class DrugController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(DrugController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(DrugController.class);
 
     @Autowired
     private DrugService service;
@@ -73,6 +73,8 @@ public class DrugController {
 		
     		service.saveDrug(drug);
 
+    		LOG.info("New drug save drug={}", drug);
+    		
 		return new ResponseEntity<>(HttpStatus.OK);
     }
 

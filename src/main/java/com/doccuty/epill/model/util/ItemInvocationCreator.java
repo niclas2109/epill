@@ -42,6 +42,7 @@ public class ItemInvocationCreator implements SendableEntityCreatorNoIndex
       ItemInvocation.PROPERTY_DRUG,
       ItemInvocation.PROPERTY_PACKAGINGSECTION,
       ItemInvocation.PROPERTY_USER,
+      ItemInvocation.PROPERTY_COUNTER
    };
    
    @Override
@@ -92,6 +93,10 @@ public class ItemInvocationCreator implements SendableEntityCreatorNoIndex
          return ((ItemInvocation) target).getUser();
       }
       
+      if(ItemInvocation.PROPERTY_COUNTER.equalsIgnoreCase(attribute)) {
+    	  	return ((ItemInvocation) target).getCounter();
+      }
+      
       return null;
    }
    
@@ -131,6 +136,11 @@ public class ItemInvocationCreator implements SendableEntityCreatorNoIndex
       {
          ((ItemInvocation) target).setUser((User) value);
          return true;
+      }
+      
+      if(ItemInvocation.PROPERTY_COUNTER.equalsIgnoreCase(attrName)) {
+        ((ItemInvocation) target).setCounter((Integer) value);
+        return true;
       }
       
       return false;

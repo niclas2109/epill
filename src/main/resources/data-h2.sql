@@ -377,6 +377,12 @@ INSERT INTO drug_interaction (idinteraction, iddrug) VALUES (1, 1), (1, 4), (1, 
 -- Dumping data for table `item_invocation`
 --
 
+-- INSERT INTO item_invocation (id, iduser, iddrug, timestamp) VALUES (1, 1, 1, NOW());
+-- INSERT INTO item_invocation (id, iduser, iddrug, timestamp) VALUES (2, 1, 1, NOW());
+-- INSERT INTO item_invocation (id, iduser, iddrug, timestamp) VALUES (3, 1, 2, NOW());
+-- INSERT INTO item_invocation (id, iduser, iddrug, timestamp) VALUES (4, 1, 1, NOW());
+-- INSERT INTO item_invocation (id, iduser, iddrug, timestamp) VALUES (5, 1, 6, NOW());
+
 --
 -- Dumping data for table `language`
 --

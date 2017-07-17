@@ -47,7 +47,7 @@ class LastVisitedItems extends React.Component {
 			      		<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-muted">
 			      			{t('lastVisitedItems')}:
 			      		</div>
-			      		{ invocations.map(invocation => <DrugMiniature invocation={invocation} key={`${invocation.drug.id}`} /> ) }
+			      		{ invocations.map(invocation => <DrugMiniature invocation={invocation} key={invocation.drug.id} /> ) }
 			      	</div>
 			      </div>
 	      );
