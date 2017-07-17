@@ -28861,18 +28861,14 @@ var DrugDetail = function (_React$Component) {
     key: "renderSectionOverview",
     value: function renderSectionOverview(drug) {
       if (!drug.packagingSection) {
-        return;
+        return null;
       }
 
       return drug.packagingSection.map(function (section) {
         return _react2.default.createElement(
           "li",
           { key: section.id },
-          _react2.default.createElement(
-            "a",
-            null,
-            section.topic.title
-          )
+          section.topic.title
         );
       });
     }
@@ -28882,10 +28878,8 @@ var DrugDetail = function (_React$Component) {
       var _this8 = this;
 
       if (!drug.packagingSection) {
-        return;
+        return null;
       }
-
-      //TODO: toggle does not work anymore!
 
       return drug.packagingSection.map(function (section) {
         return _react2.default.createElement(_accordion2.default, { section: section, toggleOriginalAndTailoredText: _this8.toggleOriginalAndTailoredText, key: section.id });
@@ -29696,16 +29690,20 @@ var DrugMiniature = function (_React$Component) {
 
             return _react2.default.createElement(
                 "div",
-                { className: "drug-min-profile hidden-xs-down col-sm-6 col-md-2 col-lg-2" },
-                _react2.default.createElement(
-                    "div",
-                    { className: "image-container" },
-                    _react2.default.createElement("img", { src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg", alt: invocation.timestamp })
-                ),
+                { className: "drug-min-profile col-xs-6 col-sm-4 col-md-4 col-lg-2" },
                 _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: "/drug/" + invocation.drug.id + "/de" },
-                    invocation.drug.name
+                    _react2.default.createElement(
+                        "div",
+                        { className: "image-container" },
+                        _react2.default.createElement("img", { src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg", alt: invocation.timestamp, className: "img-responsive center-block" })
+                    ),
+                    _react2.default.createElement(
+                        "p",
+                        null,
+                        invocation.drug.name
+                    )
                 )
             );
         }
@@ -30311,15 +30309,20 @@ var LastVisitedItems = function (_React$Component) {
 
 			return _react2.default.createElement(
 				"div",
-				{ className: "row" },
+				{ className: "container" },
 				_react2.default.createElement(
 					"div",
-					{ className: "container" },
+					{ className: "row last-visited-items-container" },
+					_react2.default.createElement(
+						"div",
+						{ className: "col-xs-12 col-sm-12 col-md-12 col-lg-12 text-muted" },
+						t('lastVisitedItems'),
+						":"
+					),
 					invocations.map(function (invocation) {
 						return _react2.default.createElement(_drug_miniature2.default, { invocation: invocation, key: "" + invocation.drug.id });
 					})
-				),
-				_react2.default.createElement("hr", null)
+				)
 			);
 		}
 	}]);
@@ -31704,7 +31707,7 @@ _i18next2.default.use(_i18nextXhrBackend2.default).use(_i18nextBrowserLanguagede
 
 						//suppress 404 warnings
 						whitelist: ['de', 'en'],
-						fallbackLng: 'en',
+						fallbackLng: 'de',
 
 						// Have a common namespace used around the full app
 						nsSeparator: false,

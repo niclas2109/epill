@@ -28861,18 +28861,14 @@ var DrugDetail = function (_React$Component) {
     key: "renderSectionOverview",
     value: function renderSectionOverview(drug) {
       if (!drug.packagingSection) {
-        return;
+        return null;
       }
 
       return drug.packagingSection.map(function (section) {
         return _react2.default.createElement(
           "li",
           { key: section.id },
-          _react2.default.createElement(
-            "a",
-            null,
-            section.topic.title
-          )
+          section.topic.title
         );
       });
     }
@@ -28882,10 +28878,8 @@ var DrugDetail = function (_React$Component) {
       var _this8 = this;
 
       if (!drug.packagingSection) {
-        return;
+        return null;
       }
-
-      //TODO: toggle does not work anymore!
 
       return drug.packagingSection.map(function (section) {
         return _react2.default.createElement(_accordion2.default, { section: section, toggleOriginalAndTailoredText: _this8.toggleOriginalAndTailoredText, key: section.id });
@@ -30309,7 +30303,7 @@ var LastVisitedItems = function (_React$Component) {
 
 			var invocations = this.state.invocations;
 
-			if (!invocations) {
+			if (!invocations || invocations.length == 0) {
 				return null;
 			}
 
@@ -31713,7 +31707,7 @@ _i18next2.default.use(_i18nextXhrBackend2.default).use(_i18nextBrowserLanguagede
 
 						//suppress 404 warnings
 						whitelist: ['de', 'en'],
-						fallbackLng: 'en',
+						fallbackLng: 'de',
 
 						// Have a common namespace used around the full app
 						nsSeparator: false,

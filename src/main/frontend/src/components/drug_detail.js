@@ -266,23 +266,21 @@ class DrugDetail extends React.Component {
     
     renderSectionOverview(drug) {
     		if(!drug.packagingSection) {
-			return;
+			return null;
 		}
 
         return drug.packagingSection.map((section => {
             return (
-            	<li key={section.id}><a>{section.topic.title}</a></li>
+            		<li key={section.id}>{section.topic.title}</li>
             );
         }));
     }
 
     renderSectionList(drug) {
     		if(!drug.packagingSection) {
-			return;
+			return null;
 		}
    
-    		//TODO: toggle does not work anymore!
-    		
     		return drug.packagingSection.map((section => {
             return (	<Accordion section={section} toggleOriginalAndTailoredText={this.toggleOriginalAndTailoredText} key={section.id} /> );
         }));
