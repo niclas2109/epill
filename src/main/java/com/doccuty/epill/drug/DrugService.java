@@ -197,10 +197,16 @@ public class DrugService {
 		
 		Collections.sort(list, new Comparator<ItemInvocation>() {
 	        @Override
-	        public int compare(ItemInvocation fruit2, ItemInvocation fruit1)
+	        public int compare(ItemInvocation invocation1, ItemInvocation invocation2)
 	        {
 
-	            return  fruit1.getTimestamp().compareTo(fruit2.getTimestamp());
+	        		if(invocation1.getCounter() == invocation2.getCounter())
+	        			return  invocation1.getTimestamp().compareTo(invocation2.getTimestamp());
+	        		
+	        		if(invocation1.getCounter() < invocation2.getCounter())
+	        			return 1;
+	        		
+	        		return -1;
 	        }
 	    });
 

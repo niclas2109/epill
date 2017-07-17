@@ -28410,13 +28410,13 @@ var Carousel = function (_React$Component) {
                 case time > 4 && time < 9:
                     greeting = t("greetingMorning");
                     break;
-                case time < 13:
+                case time > 9 && time < 13:
                     greeting = t("greetingNoon");
                     break;
-                case time < 17:
+                case time > 13 && time < 17:
                     greeting = t("greetingHighNoon");
                     break;
-                case time < 21:
+                case time > 17 && time < 22:
                     greeting = t("greetingEvening");
                     break;
                 default:
@@ -30090,9 +30090,9 @@ var _carousel = __webpack_require__(245);
 
 var _carousel2 = _interopRequireDefault(_carousel);
 
-var _last_visited_items = __webpack_require__(252);
+var _most_visited_items = __webpack_require__(253);
 
-var _last_visited_items2 = _interopRequireDefault(_last_visited_items);
+var _most_visited_items2 = _interopRequireDefault(_most_visited_items);
 
 var _User = __webpack_require__(11);
 
@@ -30132,7 +30132,7 @@ var Home = function (_React$Component) {
                 _react2.default.createElement(
                     "div",
                     { className: "container marketing" },
-                    _User2.default.isAuthenticated() && _react2.default.createElement(_last_visited_items2.default, null),
+                    _User2.default.isAuthenticated() && _react2.default.createElement(_most_visited_items2.default, null),
                     _react2.default.createElement(
                         "div",
                         { className: "row" },
@@ -30235,116 +30235,6 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _axios = __webpack_require__(12);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactI18next = __webpack_require__(9);
-
-var _drug_miniature = __webpack_require__(248);
-
-var _drug_miniature2 = _interopRequireDefault(_drug_miniature);
-
-var _User = __webpack_require__(11);
-
-var _User2 = _interopRequireDefault(_User);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var LastVisitedItems = function (_React$Component) {
-	_inherits(LastVisitedItems, _React$Component);
-
-	function LastVisitedItems(props) {
-		_classCallCheck(this, LastVisitedItems);
-
-		var _this = _possibleConstructorReturn(this, (LastVisitedItems.__proto__ || Object.getPrototypeOf(LastVisitedItems)).call(this, props));
-
-		_this.state = {
-			invocations: []
-		};
-
-		_this.getLastVisitedItems = _this.getLastVisitedItems.bind(_this);
-		return _this;
-	}
-
-	_createClass(LastVisitedItems, [{
-		key: "componentDidMount",
-		value: function componentDidMount() {
-			this.getLastVisitedItems();
-		}
-	}, {
-		key: "getLastVisitedItems",
-		value: function getLastVisitedItems() {
-			var _this2 = this;
-
-			if (!_User2.default.isAuthenticated()) return;
-
-			_axios2.default.get("/drug/lastVisited").then(function (_ref) {
-				var data = _ref.data,
-				    status = _ref.status;
-
-				_this2.setState({ invocations: data });
-			});
-		}
-	}, {
-		key: "render",
-		value: function render() {
-			var t = this.props.t;
-
-			var invocations = this.state.invocations;
-
-			if (!invocations || invocations.length == 0) {
-				return null;
-			}
-
-			return _react2.default.createElement(
-				"div",
-				{ className: "container" },
-				_react2.default.createElement(
-					"div",
-					{ className: "row last-visited-items-container" },
-					_react2.default.createElement(
-						"div",
-						{ className: "col-xs-12 col-sm-12 col-md-12 col-lg-12 text-muted" },
-						t('lastVisitedItems'),
-						":"
-					),
-					invocations.map(function (invocation) {
-						return _react2.default.createElement(_drug_miniature2.default, { invocation: invocation, key: invocation.drug.id });
-					})
-				)
-			);
-		}
-	}]);
-
-	return LastVisitedItems;
-}(_react2.default.Component);
-
-exports.default = (0, _reactI18next.translate)()(LastVisitedItems);
-
-/***/ }),
-/* 253 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
@@ -30397,6 +30287,118 @@ var MenueItem = function (_React$Component) {
 exports.default = (0, _reactI18next.translate)()(MenueItem);
 
 /***/ }),
+/* 253 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _axios = __webpack_require__(12);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactI18next = __webpack_require__(9);
+
+var _drug_miniature = __webpack_require__(248);
+
+var _drug_miniature2 = _interopRequireDefault(_drug_miniature);
+
+var _User = __webpack_require__(11);
+
+var _User2 = _interopRequireDefault(_User);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var MostVisitedItems = function (_React$Component) {
+	_inherits(MostVisitedItems, _React$Component);
+
+	function MostVisitedItems(props) {
+		_classCallCheck(this, MostVisitedItems);
+
+		var _this = _possibleConstructorReturn(this, (MostVisitedItems.__proto__ || Object.getPrototypeOf(MostVisitedItems)).call(this, props));
+
+		_this.state = {
+			invocations: []
+		};
+
+		_this.getMostVisitedItems = _this.getMostVisitedItems.bind(_this);
+		return _this;
+	}
+
+	_createClass(MostVisitedItems, [{
+		key: "componentDidMount",
+		value: function componentDidMount() {
+			this.getMostVisitedItems();
+		}
+	}, {
+		key: "getMostVisitedItems",
+		value: function getMostVisitedItems() {
+			var _this2 = this;
+
+			if (!_User2.default.isAuthenticated()) return;
+
+			_axios2.default.get("/drug/lastVisited").then(function (_ref) {
+				var data = _ref.data,
+				    status = _ref.status;
+
+				_this2.setState({ invocations: data });
+			});
+		}
+	}, {
+		key: "render",
+		value: function render() {
+			var t = this.props.t;
+
+			var invocations = this.state.invocations;
+
+			if (!invocations || invocations.length == 0) {
+				return null;
+			}
+
+			console.log(invocations);
+
+			return _react2.default.createElement(
+				"div",
+				{ className: "container" },
+				_react2.default.createElement(
+					"div",
+					{ className: "row last-visited-items-container" },
+					_react2.default.createElement(
+						"div",
+						{ className: "col-xs-12 col-sm-12 col-md-12 col-lg-12 text-muted" },
+						t('MostVisitedItems'),
+						":"
+					),
+					invocations.map(function (invocation) {
+						return _react2.default.createElement(_drug_miniature2.default, { invocation: invocation, key: invocation.drug.id });
+					})
+				)
+			);
+		}
+	}]);
+
+	return MostVisitedItems;
+}(_react2.default.Component);
+
+exports.default = (0, _reactI18next.translate)()(MostVisitedItems);
+
+/***/ }),
 /* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -30429,7 +30431,7 @@ var _auto_complete = __webpack_require__(244);
 
 var _auto_complete2 = _interopRequireDefault(_auto_complete);
 
-var _menue_item = __webpack_require__(253);
+var _menue_item = __webpack_require__(252);
 
 var _menue_item2 = _interopRequireDefault(_menue_item);
 

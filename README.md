@@ -15,6 +15,7 @@ Personalization:
 	- change font-size
 	- frontend language adapts browser language automatically
 	- responsive design of the website
+	- most-viewed item list on home site offers the possibility to easily return to items that appear relevant to the user
 	
 Tailoring:
 	- presented packaging information is selected with respect to user's gender and age

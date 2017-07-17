@@ -78,5 +78,5 @@
 	"getOriginalText" : "Original Text anzeigen",
 	"errorOccured"	: "Sorry, es ist ein Fehler aufgetreten!",
 	"publishingDate"	: "Veröffentlicht am",
-	"lastVisitedItems"	: "Zuletzt angesehene Medikamente"
+	"mostVisitedItems"	: "Häufig angesehene Medikamente"
 }

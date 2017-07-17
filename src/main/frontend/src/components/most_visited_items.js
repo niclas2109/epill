@@ -7,22 +7,22 @@ import DrugMiniature from "./drug_miniature";
 
 import User from "./../util/User";
 
-class LastVisitedItems extends React.Component {
+class MostVisitedItems extends React.Component {
 	  constructor(props) {
 	    super(props);
 	    this.state = {
 	    		invocations	: []
 	    }
 
-        this.getLastVisitedItems = this.getLastVisitedItems.bind(this);
+        this.getMostVisitedItems = this.getMostVisitedItems.bind(this);
 	  }
 
 
 	  componentDidMount() {
-		  this.getLastVisitedItems();
+		  this.getMostVisitedItems();
 	  }
 	  
-	  getLastVisitedItems() {
+	  getMostVisitedItems() {
   		if(!User.isAuthenticated())
 			return;
 
@@ -40,12 +40,12 @@ class LastVisitedItems extends React.Component {
 	      if(!invocations || invocations.length == 0) {
 	    	  	return null;
 	      }
-	      
+
 	      return (
 			      <div className="container">
 			      	<div className="row last-visited-items-container">
 			      		<div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-muted">
-			      			{t('lastVisitedItems')}:
+			      			{t('mostVisitedItems')}:
 			      		</div>
 			      		{ invocations.map(invocation => <DrugMiniature invocation={invocation} key={invocation.drug.id} /> ) }
 			      	</div>
@@ -54,4 +54,4 @@ class LastVisitedItems extends React.Component {
 	  }
 	}
 
-export default translate()(LastVisitedItems);
+export default translate()(MostVisitedItems);

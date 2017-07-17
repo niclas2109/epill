@@ -24,13 +24,13 @@ class Carousel extends React.Component {
 			case (time > 4 && time < 9):
 				greeting = t("greetingMorning");
 				break;
-			case (time < 13):
+			case (time > 9 && time < 13):
 				greeting = t("greetingNoon");
 				break;
-			case (time < 17):
+			case (time > 13 && time < 17):
 				greeting = t("greetingHighNoon");
 				break;
-			case (time < 21):
+			case (time > 17 && time < 22):
 				greeting = t("greetingEvening");
 				break;
     			default:

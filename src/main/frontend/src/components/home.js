@@ -3,7 +3,7 @@ import React from "react";
 import {translate} from "react-i18next";
 
 import Carousel from "./carousel";
-import LastVisitedItems from "./last_visited_items";
+import MostVisitedItems from "./most_visited_items";
 
 import User from "./../util/User";
 
@@ -26,7 +26,7 @@ class Home extends React.Component {
         		<div className="container marketing">
         		
         			{User.isAuthenticated() &&
-        				<LastVisitedItems />
+        				<MostVisitedItems />
         			}
         		
         			<div className="row">
