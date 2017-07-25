@@ -30371,8 +30371,6 @@ var MostVisitedItems = function (_React$Component) {
 				return null;
 			}
 
-			console.log(invocations);
-
 			return _react2.default.createElement(
 				"div",
 				{ className: "container" },
@@ -30382,7 +30380,7 @@ var MostVisitedItems = function (_React$Component) {
 					_react2.default.createElement(
 						"div",
 						{ className: "col-xs-12 col-sm-12 col-md-12 col-lg-12 text-muted" },
-						t('MostVisitedItems'),
+						t('mostVisitedItems'),
 						":"
 					),
 					invocations.map(function (invocation) {
