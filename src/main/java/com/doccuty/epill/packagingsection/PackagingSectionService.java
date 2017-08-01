@@ -42,7 +42,6 @@ public class PackagingSectionService {
 		return (List<PackagingSection>) repository.findAll();
 	}
 
-	
 	public PackagingSection savePackagingSection(PackagingSection gender) {
 		return repository.save(gender);
 	}
@@ -82,10 +81,4 @@ public class PackagingSectionService {
 		return tailoredSection;
 	}
 
-	/*
-	public PackagingSection getTailoredDescription(long drugId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	*/
 }

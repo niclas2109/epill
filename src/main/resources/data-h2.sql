@@ -87,6 +87,27 @@ INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
 
 
 --
+-- Dumping data for table `indication_group`
+--
+
+INSERT INTO indication_group (id, name) VALUES (1,'Indikations Gruppe 1');
+INSERT INTO indication_group (id, name) VALUES (2,'Indikations Gruppe 2');
+INSERT INTO indication_group (id, name) VALUES (3,'Indikations Gruppe 3');
+INSERT INTO indication_group (id, name) VALUES (4,'Indikations Gruppe 4');
+INSERT INTO indication_group (id, name) VALUES (5,'Indikations Gruppe 5');
+INSERT INTO indication_group (id, name) VALUES (6,'Indikations Gruppe 6');
+
+
+--
+-- Dumping data for table `product_group`
+--
+
+INSERT INTO product_group (id, name) VALUES (1,'Produkt Gruppe 1');
+INSERT INTO product_group (id, name) VALUES (2,'Produkt Gruppe 2');
+
+
+
+--
 -- Dumping data for table `drug_simple`
 --
 
@@ -106,16 +127,16 @@ INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (10,'To
 -- Dumping data for table `drug`
 --
 
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (1,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (2,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (3,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (4,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (5,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (6,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (7,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (8,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (9,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (10,NULL,NULL);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (1,1,1);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (2,2,1);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (3,3,2);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (4,4,2);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (5,5,NULL);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (6,1,NULL);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (7,6,NULL);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (8,2,NULL);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (9,3,NULL);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (10,5,NULL);
 
 
 --

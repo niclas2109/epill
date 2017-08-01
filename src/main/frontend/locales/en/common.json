@@ -80,5 +80,6 @@
 	"errorOccured"	: "Sorry, an error occured!",
 	"publishingDate"	: "Publishing date",
 	"mostVisitedItems"	: "Most viewed medications",
-	"pzn"	: "PZN"
+	"pzn"	: "PZN",
+	"pharmaceuticalForm"	: "Pharmaceutical Form"
 }

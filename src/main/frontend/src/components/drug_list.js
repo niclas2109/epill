@@ -266,6 +266,7 @@ class DrugList extends React.Component {
             });
     }
 
+    //============================
     
     checkForInteractions() {
         axios.get('/drug/interactions').then(({data}) => {
@@ -304,6 +305,21 @@ class DrugList extends React.Component {
 		);
 	}
 	
+	renderPharmaceuticalForm(drug) {
+		if(!drug.pharmaceuticalForm) {
+			return;
+		}
+
+        const {t} = this.props;
+        return (
+        		<section className="diseases">
+    				{t('pharmaceuticalForm')+": "}
+	    			{drug.pharmaceuticalForm.map(pharmaceuticalForm => <span key={pharmaceuticalForm.id}>{pharmaceuticalForm.name}</span> )
+	    				.reduce((prev, curr) => [prev, ', ', curr]) }
+	        </section>
+		);	
+	}
+	
 	renderActiveSubstance(drug) {
 		if(!drug.activeSubstance) {
 			return;
@@ -338,11 +354,11 @@ class DrugList extends React.Component {
 		        			<Link to={`/drug/${drug.id}`}>
 		        				<h4>{ drug.name }</h4>
 		        			</Link>
+		        			{this.renderPharmaceuticalForm(drug)}
 		        			{this.renderDisease(drug)}
-
+		        			
 		        			{drug.personalizedInformation && <section className="minimum-summary" dangerouslySetInnerHTML={this.createMarkup(drug.personalizedInformation)} />}
 
-		        			{this.renderActiveSubstance(drug)}
 		        		</div>
 		        		<div className="action-pattern">
 			        		{User.isAuthenticated() &&

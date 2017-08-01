@@ -16,9 +16,9 @@ class CreatorCreator{
       jsonIdMap.with(new ProductGroupCreator());
       jsonIdMap.with(new ActiveSubstanceCreator());
       jsonIdMap.with(new SubstanceGroupCreator());
-      jsonIdMap.with(new IndicationGroupCreator());
       jsonIdMap.with(new PharmaceuticalFormCreator());
       jsonIdMap.with(new AdverseEffectCreator());
+      jsonIdMap.with(new IndicationGroupCreator());
       jsonIdMap.with(new InteractionCreator());
       jsonIdMap.with(new IntakeInformationCreator());
       jsonIdMap.with(new CountryCreator());

@@ -28831,6 +28831,30 @@ var DrugDetail = function (_React$Component) {
       );
     }
   }, {
+    key: "renderPharmaceuticalForm",
+    value: function renderPharmaceuticalForm(drug) {
+      if (!drug.pharmaceuticalForm) {
+        return;
+      }
+
+      var t = this.props.t;
+
+      return _react2.default.createElement(
+        "section",
+        { className: "diseases" },
+        t('pharmaceuticalForm') + ": ",
+        drug.pharmaceuticalForm.map(function (pharmaceuticalForm) {
+          return _react2.default.createElement(
+            "span",
+            { key: pharmaceuticalForm.id },
+            pharmaceuticalForm.name
+          );
+        }).reduce(function (prev, curr) {
+          return [prev, ', ', curr];
+        })
+      );
+    }
+  }, {
     key: "renderActiveSubstance",
     value: function renderActiveSubstance(drug) {
       if (!drug.activeSubstance) return null;
@@ -28877,6 +28901,37 @@ var DrugDetail = function (_React$Component) {
         }).reduce(function (prev, curr) {
           return [prev, ', ', curr];
         })
+      );
+    }
+  }, {
+    key: "renderIndicationGroup",
+    value: function renderIndicationGroup(drug) {
+      if (!drug.indicationGroup || !drug.indicationGroup.name) return null;
+
+      var t = this.props.t;
+
+
+      return _react2.default.createElement(
+        "section",
+        null,
+        t('indicationGroup') + ": " + drug.indicationGroup.name
+      );
+    }
+  }, {
+    key: "renderProductGroup",
+    value: function renderProductGroup(drug) {
+
+      console.log(drug);
+
+      if (!drug.productGroup || !drug.productGroup.name) return null;
+
+      var t = this.props.t;
+
+
+      return _react2.default.createElement(
+        "section",
+        null,
+        t('productGroup') + ": " + drug.productGroup.name
       );
     }
   }, {
@@ -28973,7 +29028,7 @@ var DrugDetail = function (_React$Component) {
             null,
             drug.name,
             " ",
-            drug.productGroup && _react2.default.createElement(
+            drug.productGroup && drug.productGroup.name && _react2.default.createElement(
               "span",
               { className: "text-muted" },
               "drug.productGroup.name"
@@ -29016,18 +29071,8 @@ var DrugDetail = function (_React$Component) {
               ),
               _react2.default.createElement("span", { dangerouslySetInnerHTML: this.createMarkup(drug.personalizedInformation) })
             ),
+            this.renderPharmaceuticalForm(drug),
             this.renderDisease(drug),
-            drug.indicationGroup && _react2.default.createElement(
-              "p",
-              null,
-              t('indicationGroup'),
-              ":",
-              _react2.default.createElement(
-                "span",
-                null,
-                drug.indicationGroup.name
-              )
-            ),
             this.renderActiveSubstance(drug),
             _react2.default.createElement(
               "div",
@@ -29035,7 +29080,9 @@ var DrugDetail = function (_React$Component) {
               showAdditionalInfo && _react2.default.createElement(
                 "section",
                 null,
-                this.renderPZN(drug)
+                this.renderPZN(drug),
+                this.renderIndicationGroup(drug),
+                this.renderProductGroup(drug)
               ),
               _react2.default.createElement(
                 "p",
@@ -29416,6 +29463,9 @@ var DrugList = function (_React$Component) {
 				});
 			});
 		}
+
+		//============================
+
 	}, {
 		key: "checkForInteractions",
 		value: function checkForInteractions() {
@@ -29465,6 +29515,30 @@ var DrugList = function (_React$Component) {
 						"span",
 						{ key: disease.id },
 						disease.name
+					);
+				}).reduce(function (prev, curr) {
+					return [prev, ', ', curr];
+				})
+			);
+		}
+	}, {
+		key: "renderPharmaceuticalForm",
+		value: function renderPharmaceuticalForm(drug) {
+			if (!drug.pharmaceuticalForm) {
+				return;
+			}
+
+			var t = this.props.t;
+
+			return _react2.default.createElement(
+				"section",
+				{ className: "diseases" },
+				t('pharmaceuticalForm') + ": ",
+				drug.pharmaceuticalForm.map(function (pharmaceuticalForm) {
+					return _react2.default.createElement(
+						"span",
+						{ key: pharmaceuticalForm.id },
+						pharmaceuticalForm.name
 					);
 				}).reduce(function (prev, curr) {
 					return [prev, ', ', curr];
@@ -29531,9 +29605,9 @@ var DrugList = function (_React$Component) {
 									drug.name
 								)
 							),
+							_this9.renderPharmaceuticalForm(drug),
 							_this9.renderDisease(drug),
-							drug.personalizedInformation && _react2.default.createElement("section", { className: "minimum-summary", dangerouslySetInnerHTML: _this9.createMarkup(drug.personalizedInformation) }),
-							_this9.renderActiveSubstance(drug)
+							drug.personalizedInformation && _react2.default.createElement("section", { className: "minimum-summary", dangerouslySetInnerHTML: _this9.createMarkup(drug.personalizedInformation) })
 						),
 						_react2.default.createElement(
 							"div",

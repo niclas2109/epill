@@ -390,7 +390,7 @@ public class DrugController {
     		Drug drug = service.findDrugById(id);
 
 		IdMap map = DrugCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(5)));
+		map.withFilter(Filter.regard(Deep.create(6)));
 	
 	    	JsonObject json = map.toJsonObject(drug);
 	    	

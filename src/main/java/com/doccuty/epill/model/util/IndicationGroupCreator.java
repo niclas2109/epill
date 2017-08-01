@@ -80,15 +80,15 @@ public class IndicationGroupCreator implements SendableEntityCreatorNoIndex
    @Override
    public boolean setValue(Object target, String attrName, Object value, String type)
    {
-      if (IndicationGroup.PROPERTY_NAME.equalsIgnoreCase(attrName))
-      {
-         ((IndicationGroup) target).setName((String) value);
-         return true;
-      }
-
       if (IndicationGroup.PROPERTY_ID.equalsIgnoreCase(attrName))
       {
          ((IndicationGroup) target).setId(Integer.parseInt(value.toString()));
+         return true;
+      }
+      
+      if (IndicationGroup.PROPERTY_NAME.equalsIgnoreCase(attrName))
+      {
+         ((IndicationGroup) target).setName((String) value);
          return true;
       }
 

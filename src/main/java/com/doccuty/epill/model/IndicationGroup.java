@@ -26,7 +26,6 @@ import java.beans.PropertyChangeSupport;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -39,10 +38,7 @@ import de.uniks.networkparser.EntityUtil;
 
 import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.util.DrugSet;
-   /**
-    * 
-    * @see <a href='../../../../../../../src/test/java/com/doccuty/epill/model/SDMLib/ModelCreator.java'>ModelCreator.java</a>
- */
+
 @Entity
 @Table(name="indication_group")
    public  class IndicationGroup implements SendableEntity
@@ -161,7 +157,6 @@ import com.doccuty.epill.model.util.DrugSet;
    public void setName(String value)
    {
       if ( ! EntityUtil.stringEquals(this.name, value)) {
-      
          String oldValue = this.name;
          this.name = value;
          this.firePropertyChange(PROPERTY_NAME, oldValue, value);

@@ -153,6 +153,7 @@ a.wide { display : block }
 
 .drug-list>li section.minimum-summary {
 	margin: 10px 0px;
+	background-color:black;	
 }
 
 .drug-list>li section.diseases {
@@ -185,7 +186,7 @@ a.wide { display : block }
 
 @media ( min-width: 768px) {
 	.dropdown-toggle {
-		max-width: 130px;
+		width:100%;
 	}
 	
 	.drug-list>li {

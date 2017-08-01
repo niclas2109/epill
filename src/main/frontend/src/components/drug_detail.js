@@ -255,6 +255,21 @@ class DrugDetail extends React.Component {
 		);
 	}
 	
+	renderPharmaceuticalForm(drug) {
+		if(!drug.pharmaceuticalForm) {
+			return;
+		}
+
+        const {t} = this.props;
+        return (
+        		<section className="diseases">
+	    			{t('pharmaceuticalForm')+": "}
+	    			{ drug.pharmaceuticalForm.map(pharmaceuticalForm => <span key={pharmaceuticalForm.id}>{pharmaceuticalForm.name}</span> )
+	    				.reduce((prev, curr) => [prev, ', ', curr]) }
+	        </section>
+		);	
+	}
+	
 	renderActiveSubstance(drug) {
 		if(!drug.activeSubstance)
 			return null;
@@ -280,6 +295,36 @@ class DrugDetail extends React.Component {
 	    			{t('pzn')+": "}
 	    			{ drug.packaging.map(packaging => <span key={packaging.id}>{packaging.name} {packaging.pzn}</span> )
 	    				.reduce((prev, curr) => [prev, ', ', curr]) }
+	    		</section>
+		);
+	}
+	
+
+	renderIndicationGroup(drug) {
+		if(!drug.indicationGroup || !drug.indicationGroup.name)
+			return null;
+			
+        const {t} = this.props;
+        
+        return (
+        		<section>
+	    			{t('indicationGroup')+": "+drug.indicationGroup.name}
+	    		</section>
+		);
+	}
+	
+	renderProductGroup(drug) {
+		
+		console.log(drug);
+		
+		if(!drug.productGroup || !drug.productGroup.name)
+			return null;
+			
+        const {t} = this.props;
+        
+        return (
+        		<section>
+	    			{t('productGroup')+": "+drug.productGroup.name}
 	    		</section>
 		);
 	}
@@ -348,7 +393,7 @@ class DrugDetail extends React.Component {
 			        		  </div>	
 		        			}
 	        			
-	        			<h3>{drug.name} {drug.productGroup && <span className="text-muted">drug.productGroup.name</span> }</h3>
+	        			<h3>{drug.name} {drug.productGroup && drug.productGroup.name && <span className="text-muted">drug.productGroup.name</span> }</h3>
 	        			<span>v. {drug.version} | {t('publishingDate')}: {new Date(drug.year).toLocaleDateString()}</span>
 	  
 	        		</div>
@@ -366,14 +411,10 @@ class DrugDetail extends React.Component {
 	        						<span dangerouslySetInnerHTML={this.createMarkup(drug.personalizedInformation)} />
 	        					</div>
 	        				}
+
+	        				{ this.renderPharmaceuticalForm(drug)}
 	      
 	        				{ this.renderDisease(drug) }
-	        				
-	        				{drug.indicationGroup &&
-		        				<p>
-		        					{t('indicationGroup')}:<span>{drug.indicationGroup.name}</span>
-		        				</p>
-	        				}
 	        				
 	        				{this.renderActiveSubstance(drug)}
 	
@@ -383,6 +424,10 @@ class DrugDetail extends React.Component {
 		    	    				{showAdditionalInfo &&
 		    		    				<section>
 		    		    					{this.renderPZN(drug)}
+		    		        				
+		    		        				{this.renderIndicationGroup(drug)}
+		    		        				
+		    		        				{this.renderProductGroup(drug)}
 		    		    				</section>
 		    	    				}
 
