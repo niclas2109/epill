@@ -105,6 +105,7 @@ INSERT INTO indication_group (id, name) VALUES (6,'Indikations Gruppe 6');
 
 INSERT INTO product_group (id, name) VALUES (1,'Produkt Gruppe 1');
 INSERT INTO product_group (id, name) VALUES (2,'Produkt Gruppe 2');
+INSERT INTO product_group (id, name) VALUES (3,'Produkt Gruppe 3');
 
 
 
@@ -147,7 +148,7 @@ INSERT INTO drug_simple (id, name, number, status, version, year, idimage) VALUE
 INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (1,1,1);
 INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (2,2,2);
 INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (3,3,1);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (4,4,1);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (4,4,3);
 INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (5,5,1);
 INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (6,1,2);
 INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (7,6,2);

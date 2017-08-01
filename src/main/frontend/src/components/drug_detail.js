@@ -315,8 +315,6 @@ class DrugDetail extends React.Component {
 	
 	renderProductGroup(drug) {
 		
-		console.log(drug);
-		
 		if(!drug.productGroup || !drug.productGroup.name)
 			return null;
 			
@@ -393,7 +391,7 @@ class DrugDetail extends React.Component {
 			        		  </div>	
 		        			}
 	        			
-	        			<h3>{drug.name} {drug.productGroup && drug.productGroup.name && <span className="text-muted">drug.productGroup.name</span> }</h3>
+	        			<h3>{drug.name} {drug.productGroup && drug.productGroup.name && <span className="text-muted">{drug.productGroup.name}</span> }</h3>
 	        			<span>v. {drug.version} | {t('publishingDate')}: {new Date(drug.year).toLocaleDateString()}</span>
 	  
 	        		</div>
@@ -423,11 +421,11 @@ class DrugDetail extends React.Component {
 		    	    			<div className="additional-information">
 		    	    				{showAdditionalInfo &&
 		    		    				<section>
-		    		    					{this.renderPZN(drug)}
-		    		        				
 		    		        				{this.renderIndicationGroup(drug)}
 		    		        				
 		    		        				{this.renderProductGroup(drug)}
+
+		    		    					{this.renderPZN(drug)}
 		    		    				</section>
 		    	    				}
 

@@ -42,6 +42,28 @@ public class DrugController {
     
     
     /**
+     * get a drug by id
+     * @param id
+     * @param lang
+     * @return
+     */
+    
+    @RequestMapping(value={"{id}/{lang}"}, method = RequestMethod.GET)
+    public ResponseEntity<JsonObject> getDrugById(@PathVariable(value = "id") long id, @PathVariable(value = "lang") String lang) {
+
+	    Drug drug = service.findDrugById(id);
+	    
+	    // generate JSON formatted string
+	    
+	    	IdMap map = DrugCreator.createIdMap("");
+		map.withFilter(Filter.regard(Deep.create(2)));
+			
+	    	JsonObject json = map.toJsonObject(drug);
+
+		return new ResponseEntity<>(json, HttpStatus.OK);
+    }
+    
+    /**
      * Get full list of all drugs in the system
      * @return
      */
@@ -97,6 +119,7 @@ public class DrugController {
     
     /**
      * Search database for drugs matching the sent expression
+     * This is used for autocompletion
      * @param exp
      * @return
      */
@@ -131,7 +154,7 @@ public class DrugController {
      */
     
     @RequestMapping(value = "/feature/all", method = RequestMethod.GET)
-    public ResponseEntity<JsonObject> searchDrug() {
+    public ResponseEntity<JsonObject> findAllDrugFeaturesSimple() {
     	
 	    	List<DrugFeature> list = service.findAllDrugFeaturesSimple();
 		    
@@ -365,7 +388,7 @@ public class DrugController {
 		List<ItemInvocation> list = service.getClicksByUserId();
 
 		IdMap map = ItemInvocationCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(2)));
+		map.withFilter(Filter.regard(Deep.create(1)));
 		
 	    	JsonArray json = new JsonArray();
 	    	
@@ -377,26 +400,6 @@ public class DrugController {
     } 
     
     
-    /**
-     * get a drug by id
-     * @param id
-     * @param lang
-     * @return
-     */
-    
-    @RequestMapping(value={"{id}/{lang}"}, method = RequestMethod.GET)
-    public ResponseEntity<JsonObject> getDrugById(@PathVariable(value = "id") long id, @PathVariable(value = "lang") String lang) {
-
-    		Drug drug = service.findDrugById(id);
-
-		IdMap map = DrugCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(6)));
-	
-	    	JsonObject json = map.toJsonObject(drug);
-	    	
-		return new ResponseEntity<>(json, HttpStatus.OK);
-    }
-
     
     /**
      * get respective image for drug

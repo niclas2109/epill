@@ -28906,8 +28906,6 @@ var DrugDetail = function (_React$Component) {
     key: "renderProductGroup",
     value: function renderProductGroup(drug) {
 
-      console.log(drug);
-
       if (!drug.productGroup || !drug.productGroup.name) return null;
 
       var t = this.props.t;
@@ -28975,6 +28973,8 @@ var DrugDetail = function (_React$Component) {
         );
       }
 
+      console.log(drug);
+
       return _react2.default.createElement(
         "div",
         { className: "container marketing no-banner" },
@@ -29016,7 +29016,7 @@ var DrugDetail = function (_React$Component) {
             drug.productGroup && drug.productGroup.name && _react2.default.createElement(
               "span",
               { className: "text-muted" },
-              "drug.productGroup.name"
+              drug.productGroup.name
             )
           ),
           _react2.default.createElement(
@@ -29562,6 +29562,7 @@ var DrugList = function (_React$Component) {
 			var _this9 = this;
 
 			return drugs.map(function (drug) {
+
 				return _react2.default.createElement(
 					"li",
 					{ className: "row", key: drug.id },

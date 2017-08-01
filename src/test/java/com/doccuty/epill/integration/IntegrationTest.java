@@ -33,17 +33,6 @@ public class IntegrationTest {
     @LocalServerPort
     int port;
 
-    /**
-     * Test that listing drugs works.
-     */
-    @Test
-    public void testDrugList() {
-        RestTemplate rest = new RestTemplate();
-        //ResponseEntity<List> response = rest.getForEntity(getPostURL()+"/list/all", List.class);
-        //List<User> list = response.getBody();
-        //assertEquals(200, response.getStatusCodeValue());
-        //assertTrue(list.size() == 0);
-    }
 
     /**
      * Test that adding drugs as frequently taking works.

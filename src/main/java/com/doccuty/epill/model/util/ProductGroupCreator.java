@@ -22,12 +22,13 @@
 package com.doccuty.epill.model.util;
 
 import de.uniks.networkparser.interfaces.SendableEntityCreator;
+import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
 
 import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.ProductGroup;
 import de.uniks.networkparser.IdMap;
 
-public class ProductGroupCreator implements SendableEntityCreator
+public class ProductGroupCreator implements SendableEntityCreatorNoIndex
 {
    private final String[] properties = new String[]
    {
