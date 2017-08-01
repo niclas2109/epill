@@ -74,48 +74,85 @@ INSERT INTO country (id, name) VALUES (1,'Deutschland');
 --
 
 
--- INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstname, lastname, level_of_detail, password, preferred_font_size, salt, username, red_green_colorblind)
---	VALUES
---	(1,'1990-09-21','2015-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser','max','89794011ed99bae7b5062920bffbef2a334dca75628975cd9cce51ba9691b12843beaed302416bdee221796816346fdeb618903cfa887945174237c92dc2dd2a','defaultFontSize','[B@63ba2cf8','nic', true);
+INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstname, lastname, level_of_detail, password, preferred_font_size, salt, username, red_green_colorblind)
+	VALUES
+	(1,'1990-09-21','2015-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser','max','89794011ed99bae7b5062920bffbef2a334dca75628975cd9cce51ba9691b12843beaed302416bdee221796816346fdeb618903cfa887945174237c92dc2dd2a','defaultFontSize','[B@63ba2cf8','nic', true);
 
 --
 -- Dumping data for table `user_`
 --
 
--- INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
+INSERT INTO user_ (id, idcountry, idgender, idlanguage) VALUES (1,1,1,1);
 
+
+
+--
+-- Dumping data for table `indication_group`
+--
+
+INSERT INTO indication_group (id, name) VALUES (1,'Indikations Gruppe 1');
+INSERT INTO indication_group (id, name) VALUES (2,'Indikations Gruppe 2');
+INSERT INTO indication_group (id, name) VALUES (3,'Indikations Gruppe 3');
+INSERT INTO indication_group (id, name) VALUES (4,'Indikations Gruppe 4');
+INSERT INTO indication_group (id, name) VALUES (5,'Indikations Gruppe 5');
+INSERT INTO indication_group (id, name) VALUES (6,'Indikations Gruppe 6');
+
+
+--
+-- Dumping data for table `product_group`
+--
+
+INSERT INTO product_group (id, name) VALUES (1,'Produkt Gruppe 1');
+INSERT INTO product_group (id, name) VALUES (2,'Produkt Gruppe 2');
+
+
+
+--
+-- Dumping data for table `image`
+--
+
+INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (1,'default','image/jpg', NOW(), FILE_READ('src/main/frontend/assets/images/drug-placeholder.jpg'));
+INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (2,'Accupro','image/jpg', NOW(), FILE_READ('src/main/frontend/assets/images/accupro.jpg'));
+INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (3,'Baymycard','image/jpg', NOW(), FILE_READ('src/main/frontend/assets/images/baymycard.jpg'));
+INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (4,'Beloc-Zok','image/jpg', NOW(), FILE_READ('src/main/frontend/assets/images/beloc-zok.jpg'));
+INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (5,'Cardular','image/jpg', NOW(), FILE_READ('src/main/frontend/assets/images/cardura.jpg'));
+INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (6,'Ciprobay','image/jpg', NOW(), FILE_READ('src/main/frontend/assets/images/ciprobay.jpg'));
+INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (7,'Clexane','image/jpg', NOW(), FILE_READ('src/main/frontend/assets/images/clexane.jpg'));
+INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (8,'Novalgin','image/jpg', NOW(), FILE_READ('src/main/frontend/assets/images/novalgin.jpg'));
+INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (9,'Reminyl','image/jpg', NOW(), FILE_READ('src/main/frontend/assets/images/reminyl.jpg'));
+INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (10,'Toujeo','image/jpg', NOW(), FILE_READ('src/main/frontend/assets/images/toujeo.jpg'));
 
 
 --
 -- Dumping data for table `drug_simple`
 --
 
-INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (1,'Accupro® 10 Filmtabletten',0,'3915-06-01','1.59', '2011-1-1');
-INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (2,'Baymycard',0,'3915-06-01','1.59','2011-1-1');
-INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (3,'Beloc-Zok® comp',6030,'3915-06-01','1.37','2011-1-1');
-INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (4,'Cardular',0,'3915-06-01','1.59','2011-1-1');
-INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (5,'Ciprobay',0,'3915-06-01','1.59','2010-2-1');
-INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (6,'Clexane',0,'3915-06-01','1.59','2011-1-1');
-INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (7,'Novalgin',0,'3915-06-01','1.59','2016-3-1');
-INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (8,'REMINYL® 4 mg/ml Lösung zum Einnehmen',0,'3915-06-01','1.36','2011-1-1');
-INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (9,'Topiramat-Janssen',0,'3915-06-01','1.0','2011-1-1');
-INSERT INTO drug_simple (id, name, number, status, version, year) VALUES (10,'Toujeo',0,'3915-06-01','1.59','2011-1-1');
+INSERT INTO drug_simple (id, name, number, status, version, year, idimage) VALUES (1,'Accupro® 10 Filmtabletten',0,'3915-06-01','1.59', '2011-1-1', 2);
+INSERT INTO drug_simple (id, name, number, status, version, year, idimage) VALUES (2,'Baymycard',0,'3915-06-01','1.59','2011-1-1', 3);
+INSERT INTO drug_simple (id, name, number, status, version, year, idimage) VALUES (3,'Beloc-Zok® comp',6030,'3915-06-01','1.37','2011-1-1', 4);
+INSERT INTO drug_simple (id, name, number, status, version, year, idimage) VALUES (4,'Cardura',0,'3915-06-01','1.59','2011-1-1', 5);
+INSERT INTO drug_simple (id, name, number, status, version, year, idimage) VALUES (5,'Ciprobay',0,'3915-06-01','1.59','2011-1-1', 6);
+INSERT INTO drug_simple (id, name, number, status, version, year, idimage) VALUES (6,'Clexane',0,'3915-06-01','1.59','2011-1-1', 7);
+INSERT INTO drug_simple (id, name, number, status, version, year, idimage) VALUES (7,'Novalgin',0,'3915-06-01','1.59','2011-1-1', 8);
+INSERT INTO drug_simple (id, name, number, status, version, year, idimage) VALUES (8,'REMINYL® 4 mg/ml Lösung zum Einnehmen',0,'3915-06-01','1.36','2011-1-1', 9);
+INSERT INTO drug_simple (id, name, number, status, version, year, idimage) VALUES (9,'Topiramat-Janssen',0,'3915-06-01','1.0','2011-1-1', 1);
+INSERT INTO drug_simple (id, name, number, status, version, year, idimage) VALUES (10,'Toujeo',0,'3915-06-01','1.59','2011-1-1', 10);
 
 
 --
 -- Dumping data for table `drug`
 --
 
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (1,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (2,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (3,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (4,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (5,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (6,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (7,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (8,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (9,NULL,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (10,NULL,NULL);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (1,1,1);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (2,2,1);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (3,3,2);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (4,4,2);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (5,5,NULL);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (6,1,NULL);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (7,6,NULL);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (8,2,NULL);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (9,3,NULL);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (10,5,NULL);
 
 
 --
@@ -159,6 +196,8 @@ INSERT INTO question (id, address, question) VALUES (1,'Hallo %firstname% %lastn
 --
 -- Dumping data for table `adverse_effect`
 --
+
+
 
 --
 -- Dumping data for table `packaging_topic`
@@ -392,6 +431,7 @@ INSERT INTO drug_interaction (idinteraction, iddrug) VALUES (1, 1), (1, 4), (1, 
 -- Dumping data for table `login_attempt`
 --
 
+
 --
 -- Dumping data for table `user_disease`
 --
@@ -506,7 +546,7 @@ INSERT INTO packaging_section (id, state, text, iddrug, idpackaging_topic) VALUE
 -- Dump tailored_text
 --
 
-INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (1, 1, 1, 16, 30, 'Hey %firstname% %lastname%, Hier steht eine wichtige Information für Männer im Alter von %age% Jahren, die sich für dieses Medikament interessieren.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (1, 1, 1, 16, 30, 'Hey %firstname% %lastname%, Hier steht eine wichtige Information für Männer im Alter von %age% Jahren, die sich für dieses Medikament interessieren.<br />2 mal täglich einnehmen<br />1 Tablette morgens gegen 9:00<br />1 Tablette am Abend gegen 20:00');
 INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (2, 1, 1, 4, 0, 0, 'XYZ... Hier steht eine andere Information für Männer ohne Altersbezug, die sich für diese Medikament interessieren.');
 INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (3, 1, 1, 5, 0, 0, 'Hallo Hallo! Hier steht eine andere Information für ohne Altersbezug, die sich für dieses Medikament interessieren.');
 INSERT INTO tailored_text (id, idgender, iddrug, idpackaging_topic, min_age, max_age, text) VALUES (4, 1, 1, 8, 30, 40, 'Hier steht eine andere Information für Männer zwischen 30 und 40 Jahren, die sich für dieses Medikament interessieren.');
@@ -541,6 +581,34 @@ INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES 
 INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (33, 2, 2, 0, 0, 'Eine Zusammenfassung für Frauen ohne Altersbezug, %firstname%.');
 INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (34, 2, 1, 0, 45, 'Eine Zusammenfassung für Frauen bis 45, %firstname%.');
 INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (35, 1, 3, 41, 70, 'Eine andere Zusammenfassung für Männer mit %age% Jahren.');
-INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (36, 1, 3, 0, 0, 'Eine Zusammenfassung für Männer ohne Altersbezug.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (36, 1, 3, 0, 0, 'Eine Zusammenfassung für Männer ohne Altersbezug. 2 mal täglich einnehmen<br />1 Tablette morgens gegen 9:00<br />1 Tablette am Abend gegen 20:00');
 INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (37, 2, 3, 0, 0, 'Eine Zusammenfassung für Frauen ohne Altersbezug, %firstname%.');
 INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (38, 2, 4, 0, 0, 'Eine Zusammenfassung für dieses Medikament Frauen ohne Altersbezug, %firstname%.');
+
+
+-- minimum summaries for listing
+
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (49, 1, 1, 0, 0, true, '2 mal täglich einnehmen<br />1 Tablette morgens gegen 9:00<br />1 Tablette am Abend gegen 20:00');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (50, 1, 2, 0, 0, true, '2 Mal am Tag einmassieren');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (51, 1, 3, 0, 0, true, 'Nimm 2 Mal am Tag eine Kapsel, %firstname%.<br />1h vor der Einnahme nichts essen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (52, 1, 4, 0, 0, true, '3 mal täglich eincremen<br />1 Mal morgens gegen 9:00<br />1 Mal mittags gegen 14:00<br />1 Mal abend gegen 19:00');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (53, 1, 5, 0, 0, true, '1 Mal am Tag eine Tablette.<br />1h vor der Einnahme nichts essen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (54, 1, 6, 0, 0, true, '1 Mal am Abend 20 Tropfen<br />Verträgt sich nicht mit Alkohol!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (55, 1, 7, 0, 0, true, '1 Mal am Morgen eine Kapsel.<br />1h vor der Einnahme darfst dur keine Milch zu dir nehmen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (56, 1, 8, 0, 0, true, 'Nimm 2 Mal am Tag eine Kapsel.<br />1 h vor der Einnahme nichts essen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (57, 1, 9, 0, 0, true, '2 Mal am Tag 1 Kapsel<br />20 min vor der Einnahme nicht in die Sonne gehen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (58, 1, 10, 0, 0, true, '1 Mal am Tag eine Tablette in ca. 150 ml warmem Wasser auflösen und trinken.');
+
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (39, 2, 1, 0, 0, true, '2 Mal am Tag eine Kapsel.<br />1h vor der Einnahme nichts essen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (40, 2, 2, 0, 0, true, '3 Mal am Tag eine Tablette in ca. 150 ml warmem Wasser auflösen und trinken.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (41, 2, 3, 0, 0, true, '1 Spritze morgens gegen 10:00');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (42, 2, 4, 0, 0, true, '2 Mal täglich einschmieren.<br />1 Mal morgens gegen 9:00<br />1 Mal abends gegen 19:00');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (43, 2, 5, 0, 0, true, 'Nimm 2 Mal am Tag eine Kapsel.<br />1h vor der Einnahme nichts essen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (44, 2, 6, 0, 0, true, '1 Mal täglich eincremen<br />1h vor der Einnahme nicht duschen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (45, 2, 7, 0, 0, true, 'Vor dem zu Bett gehen eine Filmtablette einnehmen.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (46, 2, 8, 0, 0, true, 'Nimm 2 Mal am Tag eine Kapsel.<br />1h vor der Einnahme nichts essen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (47, 2, 9, 0, 0, true, '1 Mal am Abend 20 Tropfen<br />Verträgt sich nicht mit Nikotin!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (48, 2, 10, 0, 0, true, '1 Mal täglich morgens gegen 8:00 einnehmen');
+
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (59, 1, 1, 18, 25, true, 'Jeden zweiten Tag eine Tablette lutschen.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, is_minimum, text) VALUES (60, 2, 2, 21, 40, true, 'Jeden dritten Tag eine Tablette kauen und nicht in Chlorwasser schwimmen.');

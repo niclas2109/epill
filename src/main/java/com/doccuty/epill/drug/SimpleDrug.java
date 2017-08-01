@@ -32,6 +32,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -43,10 +45,6 @@ import de.uniks.networkparser.EntityUtil;
 
 import com.doccuty.epill.model.Image;
 import com.doccuty.epill.model.ProductGroup;
-   /**
-    * 
-    * @see <a href='../../../../../../../src/test/java/com/doccuty/epill/model/SDMLib/ModelCreator.java'>ModelCreator.java</a>
- */
 
 
 @Entity  
@@ -308,7 +306,8 @@ import com.doccuty.epill.model.ProductGroup;
    
    public static final String PROPERTY_IMAGE = "drug_image";
    
-   @OneToOne(cascade = CascadeType.ALL)
+   @ManyToOne(cascade = CascadeType.ALL, optional = false)
+   @JoinColumn(name = "idimage")
    private Image image;
 
    public Image getImage()

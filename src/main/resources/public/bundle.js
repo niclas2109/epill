@@ -29051,7 +29051,7 @@ var DrugDetail = function (_React$Component) {
           _react2.default.createElement(
             "div",
             { className: "col-xs-12 col-sm-12 col-md-3" },
-            _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "{drug.name}", src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg" }),
+            _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: drug.name, src: "/drug/" + drug.id + "/image" }),
             _react2.default.createElement(
               "div",
               { className: "drug-features margin-s" },
@@ -29586,7 +29586,7 @@ var DrugList = function (_React$Component) {
 						_react2.default.createElement(
 							_reactRouterDom.Link,
 							{ to: "/drug/" + drug.id },
-							_react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: "{drug.name}", src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg" })
+							_react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: drug.name, src: "/drug/" + drug.id + "/image" })
 						)
 					),
 					_react2.default.createElement(

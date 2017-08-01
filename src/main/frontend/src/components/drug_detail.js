@@ -399,7 +399,7 @@ class DrugDetail extends React.Component {
 	        		</div>
 	        		<div className="row featurette drug-detail-header">
 	        			<div className="col-xs-12 col-sm-12 col-md-3">
-	        				<img className="featurette-image img-responsive center-block" alt="{drug.name}" src="http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg"></img>
+	        				<img className="featurette-image img-responsive center-block" alt={drug.name} src={`/drug/${drug.id}/image`}></img>
 	                		<div className="drug-features margin-s">
 		    					{this.renderDrugFeatures(drug)}
 		            		</div>

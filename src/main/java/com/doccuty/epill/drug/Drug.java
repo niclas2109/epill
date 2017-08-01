@@ -35,28 +35,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.doccuty.epill.model.util.PackagingSectionSet;
-import com.doccuty.epill.model.util.PackagingSet;
-import com.doccuty.epill.model.util.ActiveSubstanceSet;
 import com.doccuty.epill.disease.Disease;
 import com.doccuty.epill.iteminvocation.ItemInvocation;
 import com.doccuty.epill.model.ActiveSubstance;
 import com.doccuty.epill.model.ProductGroup;
 import com.doccuty.epill.model.IndicationGroup;
-import com.doccuty.epill.model.util.PharmaceuticalFormSet;
 import com.doccuty.epill.model.PharmaceuticalForm;
-import com.doccuty.epill.model.util.AdverseEffectSet;
 import com.doccuty.epill.model.AdverseEffect;
-import com.doccuty.epill.model.util.InteractionSet;
 import com.doccuty.epill.model.Interaction;
 import com.doccuty.epill.model.util.ItemInvocationSet;
 import com.doccuty.epill.model.util.UserSet;
 import com.doccuty.epill.packagingsection.PackagingSection;
 import com.doccuty.epill.user.User;
 import com.doccuty.epill.model.Packaging;
-import com.doccuty.epill.model.util.DiseaseSet;
-import com.doccuty.epill.model.util.DrugFeatureSet;
-import com.doccuty.epill.model.util.DrugSet;
 import com.doccuty.epill.model.DrugFeature;
 
 @Entity
