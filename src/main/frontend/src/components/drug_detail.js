@@ -38,6 +38,8 @@ class DrugDetail extends React.Component {
         this.init();
      }
     
+    createMarkup(text) { return {__html: text}; };
+    
     //=============================
     
     toggleShowAdditionalInfo() {
@@ -361,7 +363,7 @@ class DrugDetail extends React.Component {
 	        				{ User.isAuthenticated() && drug.personalizedInformation &&
 	        					<div className="alert alert-info alert-dismissable">
 	        						<a href="#" className="close" data-dismiss="alert" aria-label="close">&times;</a>
-	        						{drug.personalizedInformation.replace("%User.firstname%", User.firstname).replace("%User.lastname%", User.lastname)}
+	        						<span dangerouslySetInnerHTML={this.createMarkup(drug.personalizedInformation)} />
 	        					</div>
 	        				}
 	      

@@ -28573,11 +28573,17 @@ var DrugDetail = function (_React$Component) {
       this.props = props;
       this.init();
     }
+  }, {
+    key: "createMarkup",
+    value: function createMarkup(text) {
+      return { __html: text };
+    }
+  }, {
+    key: "toggleShowAdditionalInfo",
+
 
     //=============================
 
-  }, {
-    key: "toggleShowAdditionalInfo",
     value: function toggleShowAdditionalInfo() {
       this.setState({ showAdditionalInfo: !this.state.showAdditionalInfo });
     }
@@ -29008,7 +29014,7 @@ var DrugDetail = function (_React$Component) {
                 { href: "#", className: "close", "data-dismiss": "alert", "aria-label": "close" },
                 "\xD7"
               ),
-              drug.personalizedInformation.replace("%User.firstname%", _User2.default.firstname).replace("%User.lastname%", _User2.default.lastname)
+              _react2.default.createElement("span", { dangerouslySetInnerHTML: this.createMarkup(drug.personalizedInformation) })
             ),
             this.renderDisease(drug),
             drug.indicationGroup && _react2.default.createElement(
