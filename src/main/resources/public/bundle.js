@@ -28539,9 +28539,11 @@ var DrugDetail = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (DrugDetail.__proto__ || Object.getPrototypeOf(DrugDetail)).call(this));
 
     _this.state = {
-      drug: undefined
+      drug: undefined,
+      showAdditionalInfo: false
     };
 
+    _this.toggleShowAdditionalInfo = _this.toggleShowAdditionalInfo.bind(_this);
     _this.toggleOriginalAndTailoredText = _this.toggleOriginalAndTailoredText.bind(_this);
     return _this;
   }
@@ -28574,6 +28576,11 @@ var DrugDetail = function (_React$Component) {
 
     //=============================
 
+  }, {
+    key: "toggleShowAdditionalInfo",
+    value: function toggleShowAdditionalInfo() {
+      this.setState({ showAdditionalInfo: !this.state.showAdditionalInfo });
+    }
   }, {
     key: "toggleOriginalAndTailoredText",
     value: function toggleOriginalAndTailoredText(section) {
@@ -28689,6 +28696,11 @@ var DrugDetail = function (_React$Component) {
         }
       });
     }
+
+    /**
+     * toggle add/remove to/from remember/taking list
+     */
+
   }, {
     key: "toggleRemember",
     value: function toggleRemember(drug) {
@@ -28798,25 +28810,24 @@ var DrugDetail = function (_React$Component) {
       var t = this.props.t;
 
       return _react2.default.createElement(
-        "p",
-        null,
-        t('usedWhen'),
-        ":",
+        "section",
+        { className: "diseases" },
+        t('usedWhen') + ": ",
         drug.disease.map(function (disease) {
           return _react2.default.createElement(
             "span",
             { key: disease.id },
             disease.name
           );
+        }).reduce(function (prev, curr) {
+          return [prev, ', ', curr];
         })
       );
     }
   }, {
     key: "renderActiveSubstance",
     value: function renderActiveSubstance(drug) {
-      if (!drug.activeSubstance) {
-        return;
-      }
+      if (!drug.activeSubstance) return null;
 
       var t = this.props.t;
 
@@ -28824,29 +28835,32 @@ var DrugDetail = function (_React$Component) {
       return _react2.default.createElement(
         "p",
         null,
-        t('activeSubstance'),
-        ":",
-        drug.activeSubstance.map(function (substance, i) {
+        " ",
+        t('activeSubstance') + ": ",
+        drug.activeSubstance.map(function (substance) {
           return _react2.default.createElement(
             "span",
             { key: substance.id },
             substance.name
           );
+        }).reduce(function (prev, curr) {
+          return [prev, ', ', curr];
         })
       );
     }
   }, {
     key: "renderPZN",
     value: function renderPZN(drug) {
-      if (!drug.packaging) {
-        return;
-      }
+      if (!drug.packaging) return null;
+
+      var t = this.props.t;
+
 
       return _react2.default.createElement(
-        "p",
-        null,
-        " PZN:",
-        drug.packaging.map(function (packaging, i) {
+        "section",
+        { className: "pzn" },
+        t('pzn') + ": ",
+        drug.packaging.map(function (packaging) {
           return _react2.default.createElement(
             "span",
             { key: packaging.id },
@@ -28854,6 +28868,8 @@ var DrugDetail = function (_React$Component) {
             " ",
             packaging.pzn
           );
+        }).reduce(function (prev, curr) {
+          return [prev, ', ', curr];
         })
       );
     }
@@ -28893,6 +28909,7 @@ var DrugDetail = function (_React$Component) {
       var t = this.props.t;
 
       var drug = this.state.drug;
+      var showAdditionalInfo = this.state.showAdditionalInfo;
 
       if (!drug) {
         // Do not show anything while loading.
@@ -28969,7 +28986,7 @@ var DrugDetail = function (_React$Component) {
         ),
         _react2.default.createElement(
           "div",
-          { className: "row featurette" },
+          { className: "row featurette drug-detail-header" },
           _react2.default.createElement(
             "div",
             { className: "col-xs-12 col-sm-12 col-md-3" },
@@ -28982,7 +28999,7 @@ var DrugDetail = function (_React$Component) {
           ),
           _react2.default.createElement(
             "div",
-            { className: "col-xs-12 col-sm-12 col-md-6" },
+            { className: "col-xs-12 col-sm-12 col-md-9" },
             _User2.default.isAuthenticated() && drug.personalizedInformation && _react2.default.createElement(
               "div",
               { className: "alert alert-info alert-dismissable" },
@@ -29006,15 +29023,34 @@ var DrugDetail = function (_React$Component) {
               )
             ),
             this.renderActiveSubstance(drug),
-            this.renderPZN(drug)
-          ),
-          _react2.default.createElement(
-            "div",
-            { className: "hidden-xs hidden-sm col-md-3 drug-detail-short-links" },
             _react2.default.createElement(
-              "ul",
-              null,
-              this.renderSectionOverview(this.state.drug)
+              "div",
+              { className: "additional-information" },
+              showAdditionalInfo && _react2.default.createElement(
+                "section",
+                null,
+                this.renderPZN(drug)
+              ),
+              _react2.default.createElement(
+                "p",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { onClick: this.toggleShowAdditionalInfo },
+                  "[",
+                  !showAdditionalInfo && _react2.default.createElement(
+                    "span",
+                    null,
+                    t('viewDetails')
+                  ),
+                  showAdditionalInfo && _react2.default.createElement(
+                    "span",
+                    null,
+                    t('hideDetails')
+                  ),
+                  "]"
+                )
+              )
             )
           )
         ),
@@ -29415,17 +29451,17 @@ var DrugList = function (_React$Component) {
 
 
 			return _react2.default.createElement(
-				"p",
-				null,
-				" ",
-				t('usedWhen'),
-				":",
+				"section",
+				{ className: "diseases" },
+				t('usedWhen') + ": ",
 				drug.disease.map(function (disease) {
 					return _react2.default.createElement(
 						"span",
 						{ key: disease.id },
 						disease.name
 					);
+				}).reduce(function (prev, curr) {
+					return [prev, ', ', curr];
 				})
 			);
 		}
@@ -29443,14 +29479,15 @@ var DrugList = function (_React$Component) {
 				"p",
 				null,
 				" ",
-				t('activeSubstance'),
-				":",
+				t('activeSubstance') + ": ",
 				drug.activeSubstance.map(function (substance) {
 					return _react2.default.createElement(
 						"span",
 						{ key: substance.id },
 						substance.name
 					);
+				}).reduce(function (prev, curr) {
+					return [prev, ', ', curr];
 				})
 			);
 		}
@@ -29488,13 +29525,9 @@ var DrugList = function (_React$Component) {
 									drug.name
 								)
 							),
-							_this9.renderActiveSubstance(drug),
-							drug.personalizedInformation && _react2.default.createElement(
-								"p",
-								null,
-								drug.personalizedInformation
-							),
-							_this9.renderDisease(drug)
+							_this9.renderDisease(drug),
+							drug.personalizedInformation && _react2.default.createElement("section", { className: "minimum-summary", dangerouslySetInnerHTML: _this9.createMarkup(drug.personalizedInformation) }),
+							_this9.renderActiveSubstance(drug)
 						),
 						_react2.default.createElement(
 							"div",
@@ -30353,7 +30386,7 @@ var MostVisitedItems = function (_React$Component) {
 
 			if (!_User2.default.isAuthenticated()) return;
 
-			_axios2.default.get("/drug/lastVisited").then(function (_ref) {
+			_axios2.default.get("/drug/frequentlyVisited").then(function (_ref) {
 				var data = _ref.data,
 				    status = _ref.status;
 

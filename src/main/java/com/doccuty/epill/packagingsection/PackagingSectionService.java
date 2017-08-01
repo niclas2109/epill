@@ -81,4 +81,11 @@ public class PackagingSectionService {
 		
 		return tailoredSection;
 	}
+
+	/*
+	public PackagingSection getTailoredDescription(long drugId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	*/
 }

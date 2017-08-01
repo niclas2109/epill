@@ -26,7 +26,7 @@ class MostVisitedItems extends React.Component {
   		if(!User.isAuthenticated())
 			return;
 
-		axios.get(`/drug/lastVisited`)
+		axios.get(`/drug/frequentlyVisited`)
         .then(({data, status}) => {
         		this.setState({ invocations : data });
         });

@@ -14,8 +14,9 @@
 	"savingSuccessfull"	: "Saved successfully!",
 	"savingFailed"	: "Saving failed!",
 	"preferredFontSize": "Preferred Font-Size",
-	"helpenabled"	: "Sollen Hilfetexte angezeigt werden?",
-	"viewDetails"	:	"View details",
+	"helpenabled"	: "Should help texts be shown?",
+	"viewDetails"	:	"view details",
+	"hideDetails"	:	"hide details",
 	"drugListAllDescriptionText": "%User.firstname%, this is an overview about all drugs in the system. You can add drugs you take frequently into a list by clicking on the heart icon. You can add drugs you want to remember into another list by clicking on the plus icon.",
 	"drugs": "Drugs",
 	"drug": "Drug",
@@ -78,5 +79,6 @@
 	"getOriginalText" : "Show original text",
 	"errorOccured"	: "Sorry, an error occured!",
 	"publishingDate"	: "Publishing date",
-	"mostVisitedItems"	: "Most viewed medications"
+	"mostVisitedItems"	: "Most viewed medications",
+	"pzn"	: "PZN"
 }

@@ -1,6 +1,7 @@
 package com.doccuty.epill.tailoredtext;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,6 +37,9 @@ public class TailoredText {
 	private int minAge;
 	private int maxAge;
 	
+	@Column(columnDefinition = "boolean default false")
+	private boolean isMinimum;
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,9 +60,8 @@ public class TailoredText {
 		return this;
 	}
 	
-	/*
-	 * text message
-	 */
+	
+	// text message
 	
 	public String getText() {
 		return this.text;
@@ -97,9 +100,7 @@ public class TailoredText {
 	}
 	
 	
-	/*
-	 * topic
-	 */
+	// topic
 	
 	public PackagingTopic getTopic() {
 		return this.topic;
@@ -114,9 +115,8 @@ public class TailoredText {
 		return this;
 	}
 	
-	/*
-	 * gender
-	 */
+	
+	// gender
 	
 	public Gender getGender() {
 		return this.gender;
@@ -132,9 +132,7 @@ public class TailoredText {
 	}
 	
 	
-	/*
-	 * minimum Age
-	 */
+	// minimum Age
 	
 	public int getMinAge() {
 		return this.minAge;
@@ -150,9 +148,7 @@ public class TailoredText {
 	}	
 	
 	
-	/*
-	 * maximum Age
-	 */
+	// maximum Age
 	
 	public int getMaxAge() {
 		return this.maxAge;
@@ -164,6 +160,22 @@ public class TailoredText {
 	
 	public TailoredText withMaxAge(int value) {
 		this.setMaxAge(value);
+		return this;
+	}
+	
+	
+	// is minimum
+	
+	public boolean getIsMinimum() {
+		return this.isMinimum;
+	}
+	
+	public void setIsMinimum(boolean value) {
+		this.isMinimum = value;
+	}
+	
+	public TailoredText withIsMinimum(boolean value) {
+		this.setIsMinimum(value);
 		return this;
 	}
 	

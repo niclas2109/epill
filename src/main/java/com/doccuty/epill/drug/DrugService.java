@@ -62,7 +62,7 @@ public class DrugService {
     	    			drug = tailoringService.tailorDrugToUser(drug, user);
     	    			
     	    			// load tailored summary
-    	    			TailoredText summary = tailoringService.getTailoredSummaryByDrugAndUser(drug, user);
+    	    			TailoredText summary = tailoringService.getTailoredMinimumSummaryByDrugAndUser(drug, user);
 
     	    			if(summary != null) {
     	    				drug.setTailoredSummary(summary.getText());
@@ -86,7 +86,11 @@ public class DrugService {
 		
 		Drug drug = repository.findOne(id);
 
+		
 		if(drug != null && !userService.isAnonymous()) {
+
+			// save invocation of the drug
+			
 			User user = userService.getCurrentUser();
 			
 			ItemInvocation invocation = new ItemInvocation();
@@ -94,6 +98,8 @@ public class DrugService {
 			
 			user = userService.saveItemInvocation(invocation);
 
+			// check if drug is already in remember or taking list
+			
 			for(User usr : drug.getUserRemembering()) {
 				if(usr.getId() == user.getId()) {
 					drug.setIsRemembered(true);
@@ -108,7 +114,7 @@ public class DrugService {
 				}
 			}
 			
-
+			// tailor drug information to user characteristics
 			drug = this.tailoringService.tailorDrugToUser(drug, user);
 		}
 
@@ -128,6 +134,12 @@ public class DrugService {
 		return featureRepository.findAllSimple();
 	}
 
+	
+	/**
+	 * check 
+	 * @return
+	 */
+	
 	public String checkUserDrugsInteractions() {
 
 		StringBuilder interactionText = new StringBuilder();
@@ -187,6 +199,7 @@ public class DrugService {
 		return drugs;
 	}
 
+	
 	public List<ItemInvocation> getClicksByUserId() {
 		
 		List<ItemInvocation> list = invocationRepository.findInvocedDrugs(userService.getCurrentUser());

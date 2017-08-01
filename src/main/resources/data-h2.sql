@@ -544,3 +544,31 @@ INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES 
 INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (36, 1, 3, 0, 0, 'Eine Zusammenfassung für Männer ohne Altersbezug.');
 INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (37, 2, 3, 0, 0, 'Eine Zusammenfassung für Frauen ohne Altersbezug, %firstname%.');
 INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (38, 2, 4, 0, 0, 'Eine Zusammenfassung für dieses Medikament Frauen ohne Altersbezug, %firstname%.');
+
+
+-- Short summaries for listing
+
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (49, 1, 1, 0, 0, '2 mal täglich einnehmen<br />1 Tablette morgens gegen 9:00<br />1 Tablette am Abend gegen 20:00');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (50, 1, 2, 0, 0, '2 Mal am Tag einmassieren');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (51, 1, 3, 0, 0, 'Nimm 2 Mal am Tag eine Kapsel.<br />1h vor der Einnahme nichts essen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (52, 1, 4, 0, 0, '3 mal täglich eincremen<br />1 Mal morgens gegen 9:00<br />1 Mal mittags gegen 14:00<br />1 Mal abend gegen 19:00');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (53, 1, 5, 0, 0, '1 Mal am Tag eine Tablette.<br />1h vor der Einnahme nichts essen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (54, 1, 6, 0, 0, '1 Mal am Abend 20 Tropfen<br />Verträgt sich nicht mit Alkohol!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (55, 1, 7, 0, 0, '1 Mal am Morgen eine Kapsel.<br />1h vor der Einnahme darfst dur keine Milch zu dir nehmen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (56, 1, 8, 0, 0, 'Nimm 2 Mal am Tag eine Kapsel.<br />1 h vor der Einnahme nichts essen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (57, 1, 9, 0, 0, 'Nimm 2 Mal am Tag eine eincremen<br />20 min vor der Einnahme nicht in die Sonne gehen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (58, 1, 10, 0, 0, '1 Mal am Tag eine Tablette in ca. 150 ml warmem Wasser auflösen und trinken.');
+
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (39, 2, 1, 0, 0, '2 Mal am Tag eine Kapsel.<br />1h vor der Einnahme nichts essen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (40, 2, 2, 0, 0, '3 Mal am Tag eine Tablette in ca. 150 ml warmem Wasser auflösen und trinken.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (41, 2, 3, 0, 0, '1 Spritze morgens gegen 10:00');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (42, 2, 4, 0, 0, '2 Mal täglich einschmieren.<br />1 Mal morgens gegen 9:00<br />1 Mal abends gegen 19:00');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (43, 2, 5, 0, 0, 'Nimm 2 Mal am Tag eine Kapsel.<br />1h vor der Einnahme nichts essen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (44, 2, 6, 0, 0, '1 Mal täglich eincremen<br />1h vor der Einnahme nicht duschen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (45, 2, 7, 0, 0, 'Vor dem zu Bett gehen eine Filmtablette einnehmen.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (46, 2, 8, 0, 0, 'Nimm 2 Mal am Tag eine Kapsel.<br />1h vor der Einnahme nichts essen!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (47, 2, 9, 0, 0, '1 Mal am Abend 20 Tropfen<br />Verträgt sich nicht mit Nikotin!');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (48, 2, 10, 0, 0, '1 Mal täglich morgens gegen 8:00 einnehmen');
+
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (59, 1, 1, 18, 25, 'Jeden zweiten Tag eine Tablette lutschen.');
+INSERT INTO tailored_text (id, idgender, iddrug, min_age, max_age, text) VALUES (60, 2, 2, 21, 40, 'Jeden dritten Tag eine Tablette kauen und nicht in Chlorwasser schwimmen.');

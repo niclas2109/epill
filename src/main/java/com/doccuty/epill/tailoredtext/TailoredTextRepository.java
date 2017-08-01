@@ -7,8 +7,8 @@ import com.doccuty.epill.drug.Drug;
 import com.doccuty.epill.model.PackagingTopic;
 
 public interface TailoredTextRepository extends JpaRepository<TailoredText,Long> {
-	
-	List<TailoredText> findByDrugAndTopicIsNull(Drug drug);
+
+	List<TailoredText> findByDrugAndTopicIsNullAndIsMinimum(Drug drug, boolean isMinimum);
 	
 	List<TailoredText> findByDrugAndTopic(Drug drug, PackagingTopic topic);
 }

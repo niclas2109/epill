@@ -24,6 +24,7 @@ public class TailoredTextService {
 	
 
 	public Drug tailorDrugToUser(Drug drug, User user) {
+		
 		drug = this.tailorDrugFeatures(drug, user);
 		
 		drug = this.tailorDiseases(drug, user);
@@ -40,14 +41,52 @@ public class TailoredTextService {
 		
 		return drug;
 	}
-		
+	
+	
+	
+	/**
+	 * Get the minimum version of drug summary. This one is thought be displayed in detail view
+	 * @param drug
+	 * @param user
+	 * @return
+	 */
+	
 	public TailoredText getTailoredSummaryByDrugAndUser(Drug drug, User user) {
-
-		List<TailoredText> list = repository.findByDrugAndTopicIsNull(drug);
+	
+		List<TailoredText> list = repository.findByDrugAndTopicIsNullAndIsMinimum(drug, false);
+		
+		return findTailoredSummaryForUser(list, user);
+	}
+	
+	
+	
+	/**
+	 * Get the minimum version of drug summary. This one is thought be displayed in listings.
+	 * If no minimum summary is available, regular summary is used.
+	 * @param drug
+	 * @param user
+	 * @return
+	 */
+	
+	public TailoredText getTailoredMinimumSummaryByDrugAndUser(Drug drug, User user) {
+	
+		List<TailoredText> list = repository.findByDrugAndTopicIsNullAndIsMinimum(drug, true);
+	
+		if(list.size() == 0) {
+			return getTailoredSummaryByDrugAndUser(drug, user);
+		}
 		
 		return findTailoredSummaryForUser(list, user);
 	}
 
+	
+	/**
+	 * Replace original packaging sections of the drug with tailored ones if available
+	 * @param drug
+	 * @param user
+	 * @return
+	 */
+	
 	public Drug replaceSections(Drug drug, User user) {
 
 		for(PackagingSection section : drug.getPackagingSection()) {
@@ -64,7 +103,16 @@ public class TailoredTextService {
 		return drug;
 	}
 	
-
+	
+	/**
+	 * Select all available tailored summaries for given drug, packaging section
+	 * and select with repect to user characteristics
+	 * @param drug
+	 * @param section
+	 * @param user
+	 * @return
+	 */
+	
 	public PackagingSection findTailoredPackagingSummary(Drug drug, PackagingSection section, User user) {
 	
 		List<TailoredText> list = repository.findByDrugAndTopic(drug, section.getTopic());
@@ -78,6 +126,15 @@ public class TailoredTextService {
 		
 		return section;
 	}
+	
+	
+	/**
+	 * Find and return first summary of a list that matches user characteristics
+	 * A match is given if a text fits users' age and gender
+	 * @param list
+	 * @param user
+	 * @return
+	 */
 	
 	public TailoredText findTailoredSummaryForUser(List<TailoredText> list, User user) {
 		
@@ -99,6 +156,13 @@ public class TailoredTextService {
 		
 		return summary;
 	}
+	
+	/**
+	 * Remove diseases that are irrelevant for current user
+	 * @param drug
+	 * @param user
+	 * @return
+	 */
 	
 	private Drug tailorDiseases(Drug drug, User user) {
 		
@@ -122,6 +186,13 @@ public class TailoredTextService {
 	}
 	
 
+	/**
+	 * Remove drug features that are irrelevant for current user
+	 * @param drug
+	 * @param user
+	 * @return
+	 */
+	
     private Drug tailorDrugFeatures(Drug drug, User user) {
 		// tailor drug features
 		

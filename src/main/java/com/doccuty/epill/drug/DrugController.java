@@ -40,10 +40,19 @@ public class DrugController {
     @Autowired
     private UserService userService;
     
+    
+    /**
+     * Get full list of all drugs in the system
+     * @return
+     */
+    
     @RequestMapping(value = "/list/all", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> getAllDrugs() {
 
 	    List<Drug> set = service.findAllDrugs();
+	    
+	    
+	    // generate JSON formatted string
 	    
 	    	IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(2)));
@@ -60,6 +69,13 @@ public class DrugController {
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }
     
+    
+    /**
+     * save a new drug
+     * @param drug
+     * @return
+     */
+    
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ResponseEntity<Object> addDrug(@RequestBody Drug drug) {
 		// A pragmatic approach to security which does not use much
@@ -73,16 +89,26 @@ public class DrugController {
 		
     		service.saveDrug(drug);
 
-    		LOG.info("New drug save drug={}", drug);
+    		LOG.info("New drug saved drug={}", drug);
     		
 		return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    
+    /**
+     * Search database for drugs matching the sent expression
+     * @param exp
+     * @return
+     */
+    
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> searchDrug(@RequestParam("exp") String exp) {
 
     		List<Drug> list = service.findDrugByName(exp);
-    	
+    	    
+    	    
+    	    // generate JSON formatted string
+    	    
 		IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(2)));
 		
@@ -99,11 +125,19 @@ public class DrugController {
     }
     
 
+    /**
+     * get all drug features
+     * @return
+     */
+    
     @RequestMapping(value = "/feature/all", method = RequestMethod.GET)
     public ResponseEntity<JsonObject> searchDrug() {
     	
 	    	List<DrugFeature> list = service.findAllDrugFeaturesSimple();
-
+		    
+		    
+		// generate JSON formatted string
+		    
 		IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(1)));
 
@@ -122,7 +156,7 @@ public class DrugController {
     
     
     /**
-     * check a collection of drugs for adverse effects
+     * check a collection of drugs for interactions
      * @return
      */
 
@@ -135,7 +169,7 @@ public class DrugController {
 		// extend.
 
 		if (userService.isAnonymous()) {
-			//return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}  
 		
 		IdMap map = DrugCreator.createIdMap("");
@@ -229,6 +263,7 @@ public class DrugController {
     }
 
     
+    
     /**
      * retrieve drugs a user has marked as frequently taking
      * @return
@@ -308,13 +343,15 @@ public class DrugController {
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
     
+    
+    
     /**
-     * get last visited items by current user
+     * get frequently visited items by current user
      * @return
      */
     
-    @RequestMapping(value={"/lastVisited"}, method = RequestMethod.GET)
-    public ResponseEntity<JsonArray> getLastVisited() {
+    @RequestMapping(value={"/frequentlyVisited"}, method = RequestMethod.GET)
+    public ResponseEntity<JsonArray> getFrequentlyVisited() {
 
 		// A pragmatic approach to security which does not use much
 		// framework-specific magic. While other approaches
@@ -339,6 +376,14 @@ public class DrugController {
 	    	return new ResponseEntity<>(json, HttpStatus.OK);
     } 
     
+    
+    /**
+     * get a drug by id
+     * @param id
+     * @param lang
+     * @return
+     */
+    
     @RequestMapping(value={"{id}/{lang}"}, method = RequestMethod.GET)
     public ResponseEntity<JsonObject> getDrugById(@PathVariable(value = "id") long id, @PathVariable(value = "lang") String lang) {
 
@@ -352,6 +397,12 @@ public class DrugController {
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }
 
+    
+    /**
+     * get respective image for drug
+     * @param id
+     * @return
+     */
     
     @RequestMapping(value={"{id}/image"}, method = RequestMethod.GET)
     public ResponseEntity<byte[]> getDrugById(@PathVariable(value = "id") long id) {

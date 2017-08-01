@@ -296,9 +296,11 @@ class DrugList extends React.Component {
         const {t} = this.props;
         
         return (
-        		<p> {t('usedWhen')}: 
-        			{ drug.disease.map(disease => <span key={disease.id}>{disease.name}</span> ) }
-	        </p>
+        		<section className="diseases">
+        			{t('usedWhen')+": "}
+        			{ drug.disease.map(disease => <span key={disease.id}>{disease.name}</span> )
+        				.reduce((prev, curr) => [prev, ', ', curr]) }
+	        </section>
 		);
 	}
 	
@@ -310,8 +312,9 @@ class DrugList extends React.Component {
         const {t} = this.props;
         
         return (
-        		<p> {t('activeSubstance')}: 
-        			{ drug.activeSubstance.map(substance => <span key={substance.id}>{substance.name}</span> ) }
+        		<p> {t('activeSubstance')+": "}
+        			{ drug.activeSubstance.map(substance => <span key={substance.id}>{substance.name}</span> )
+    					.reduce((prev, curr) => [prev, ', ', curr]) }
 	        </p>
 		);
 	}
@@ -335,11 +338,11 @@ class DrugList extends React.Component {
 		        			<Link to={`/drug/${drug.id}`}>
 		        				<h4>{ drug.name }</h4>
 		        			</Link>
-		        			{this.renderActiveSubstance(drug)}
-		        			
-		        			{drug.personalizedInformation && <p>{drug.personalizedInformation}</p>}
-
 		        			{this.renderDisease(drug)}
+
+		        			{drug.personalizedInformation && <section className="minimum-summary" dangerouslySetInnerHTML={this.createMarkup(drug.personalizedInformation)} />}
+
+		        			{this.renderActiveSubstance(drug)}
 		        		</div>
 		        		<div className="action-pattern">
 			        		{User.isAuthenticated() &&
