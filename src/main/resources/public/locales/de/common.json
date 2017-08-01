@@ -81,5 +81,6 @@
 	"publishingDate"	: "Veröffentlicht am",
 	"mostVisitedItems"	: "Häufig angesehene Medikamente",
 	"pzn"	: "PZN",
-	"pharmaceuticalForm"	: "Darreichungsform"
+	"pharmaceuticalForm"	: "Darreichungsform",
+	"imprintText"	: "sdsds"
 }

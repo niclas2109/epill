@@ -46,12 +46,12 @@ class Footer extends React.Component {
 									<li className="text-uppercase">ePill:</li>
 									<li><a href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/team.html" target="blank">{t("team")}</a></li>
 									<li><a href="https://www.uni-kassel.de/fb07/institute/ibwl/personen-fachgebiete/sunyaev-prof-dr/research.html" target="blank">{t("articles")}</a></li>
-									<li><a href="#!/about">{t('whyRegister')}</a></li>
+									<li><a href="#/about">{t('whyRegister')}</a></li>
 								</ul>
 								<ul className="list-inline">
 									<li className="text-uppercase">{t("help")}:</li>
-									<li><a href="#!/sitemap">{t("functions")}</a></li>
-									<li><a href="#!/privacy">{t("privacy")}</a></li>
+									<li><a href="#/sitemap">{t("functions")}</a></li>
+									<li><a href="#/privacy">{t("privacy")}</a></li>
 								</ul>
 							</div>
 							<div className="col-sm-3">
@@ -68,7 +68,7 @@ class Footer extends React.Component {
 									<ul className="nav navbar-nav">
 										<li><a href="#">{t("customerCare")}</a></li>
 										<li><a href="#">{t("news")}</a></li>
-										<li><a href="#">{t("imprint")}</a></li>
+										<li><a href="#/imprint">{t("imprint")}</a></li>
 									</ul>
 								</nav>
 							</div>

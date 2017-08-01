@@ -81,5 +81,6 @@
 	"publishingDate"	: "Publishing date",
 	"mostVisitedItems"	: "Most viewed medications",
 	"pzn"	: "PZN",
-	"pharmaceuticalForm"	: "Pharmaceutical Form"
+	"pharmaceuticalForm"	: "Pharmaceutical Form",
+	"imprintText"	: "sdasd"
 }
