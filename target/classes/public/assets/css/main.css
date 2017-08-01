@@ -151,6 +151,14 @@ a.wide { display : block }
 	height:30px;
 }
 
+.drug-list>li section.minimum-summary {
+	margin: 10px 0px;
+}
+
+.drug-list>li section.diseases {
+	margin: 0px 0px 10px 0px;
+}
+
 .btn-like {
 	background-color: #ff7884;
 }
@@ -177,7 +185,7 @@ a.wide { display : block }
 
 @media ( min-width: 768px) {
 	.dropdown-toggle {
-		max-width: 130px;
+		width:100%;
 	}
 	
 	.drug-list>li {
@@ -232,6 +240,20 @@ a.wide { display : block }
 
 .drug-detail-short-links ul li {
 	list-style: none;
+}
+
+
+
+.drug-detail-header section.diseases {
+	margin: 0px 0px 10px 0px;
+}
+
+.drug-detail-header .additional-information p {
+	text-align:right;
+}
+
+.drug-detail-header .additional-information p a {
+	cursor: pointer;
 }
 
 
@@ -428,39 +450,10 @@ a.wide { display : block }
 	margin-top: 40px;
 	padding-top: 20px;
 	border-top: 10px solid #332e20;
-	background-color: white;
 }
 
-.footer
- 
-.list-inline
- 
-li
-:not
- 
-(
-:first-child
- 
-)
-:not
- 
-(
-:last-child
- 
-)
-{
-border-right
-:
- 
-1
-px
- 
-solid
- 
-lightgray
-;
-
-
+.footer .list-inline li:not(:first-child):not(:last-child) {
+	border-right:1px solid lightgray;
 }
 .footer-section {
 	margin-bottom: 20px;
