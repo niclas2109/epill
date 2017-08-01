@@ -34,8 +34,7 @@ public class ImageCreator implements SendableEntityCreatorNoIndex
 	  Image.PROPERTY_ID,
 	  Image.PROPERTY_FILENAME,
 	  Image.PROPERTY_FILETYPE,
-	  Image.PROPERTY_UPLOADEDATE,
-	  //Image.PROPERTY_IMAGE
+	  Image.PROPERTY_UPLOADEDATE
 	  
    };
    

@@ -32,8 +32,7 @@ public class IndicationGroupCreator implements SendableEntityCreatorNoIndex
    private final String[] properties = new String[]
    {
       IndicationGroup.PROPERTY_ID,
-      IndicationGroup.PROPERTY_NAME,
-      IndicationGroup.PROPERTY_DRUG,
+      IndicationGroup.PROPERTY_NAME
    };
    
    @Override

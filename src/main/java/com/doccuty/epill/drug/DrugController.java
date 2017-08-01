@@ -56,7 +56,7 @@ public class DrugController {
 	    // generate JSON formatted string
 	    
 	    	IdMap map = DrugCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(2)));
+		map.withFilter(Filter.regard(Deep.create(3)));
 			
 	    	JsonObject json = map.toJsonObject(drug);
 

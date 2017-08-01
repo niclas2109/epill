@@ -28973,8 +28973,6 @@ var DrugDetail = function (_React$Component) {
         );
       }
 
-      console.log(drug);
-
       return _react2.default.createElement(
         "div",
         { className: "container marketing no-banner" },
@@ -29065,9 +29063,9 @@ var DrugDetail = function (_React$Component) {
               showAdditionalInfo && _react2.default.createElement(
                 "section",
                 null,
-                this.renderPZN(drug),
                 this.renderIndicationGroup(drug),
-                this.renderProductGroup(drug)
+                this.renderProductGroup(drug),
+                this.renderPZN(drug)
               ),
               _react2.default.createElement(
                 "p",
@@ -29562,7 +29560,6 @@ var DrugList = function (_React$Component) {
 			var _this9 = this;
 
 			return drugs.map(function (drug) {
-
 				return _react2.default.createElement(
 					"li",
 					{ className: "row", key: drug.id },

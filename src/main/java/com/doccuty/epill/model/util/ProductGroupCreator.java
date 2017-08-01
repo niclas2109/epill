@@ -33,8 +33,7 @@ public class ProductGroupCreator implements SendableEntityCreatorNoIndex
    private final String[] properties = new String[]
    {
       ProductGroup.PROPERTY_ID,
-      ProductGroup.PROPERTY_NAME,
-      ProductGroup.PROPERTY_DRUG,
+      ProductGroup.PROPERTY_NAME
    };
    
    @Override
