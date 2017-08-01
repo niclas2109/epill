@@ -335,7 +335,6 @@ class DrugList extends React.Component {
 		);
 	}
     
-    
     renderDrugs(drugs) {
     	
         return drugs.map((drug => {
@@ -343,7 +342,7 @@ class DrugList extends React.Component {
                <li className="row" key={drug.id}>
                	<div className="image-container col-sm-3 col-md-3 col-lg-4">
                		<Link to={`/drug/${drug.id}`}>
-		        				<img className="featurette-image img-responsive center-block" alt={drug.name} src={`/drug/${drug.id}/image`}></img>
+               			<img className="featurette-image img-responsive center-block" alt={drug.name} src={`/drug/${drug.id}/image`}></img>
 		        		</Link>
 		        </div>
 		        <div>

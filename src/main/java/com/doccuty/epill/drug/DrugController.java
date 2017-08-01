@@ -413,9 +413,12 @@ public class DrugController {
 	    	
 	    	if(drug.getImage() != null) {
 	    		img = drug.getImage().getImage();
-	    		return ResponseEntity.ok().contentLength(img.length).contentType(MediaType.IMAGE_PNG).body(img);
+	    		
+	    		MediaType mT = MediaType.IMAGE_JPEG;
+	    		
+	    		return ResponseEntity.ok().contentLength(img.length).contentType(mT).body(img);
 	    	}
-	
+	    	
 	    	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     } 
 }
