@@ -15,9 +15,6 @@ import com.doccuty.epill.drug.DrugService;
 import com.doccuty.epill.user.UserService;
 
 import javax.transaction.Transactional;
-import java.util.Iterator;
-import java.util.UUID;
-
 import static org.junit.Assert.*;
 
 // Use Spring's testing support in JUnit
@@ -79,37 +76,4 @@ public class UserServiceTest {
 	    	assertNotNull("User found by username", userSimple);
 	    	
 	}
-    
-    /**
-     * Test that adding a new user leads to an id (and the post is thus persisted).
-     */
-    @Test
-    @Transactional
-    public void testUserDrugTaking() {
-	    	
-	    	String username = "peterle";
-	    	
-	    	User user = new User();
-	    	user.withFirstname("Peter")
-	    		.withLastname("Mustermann")
-	    		.withUsername("peterle121")
-	    		.withPassword("password")
-	    		.withEmail("test@test.de");
-	
-
-	    	Drug drug = new Drug();
-	    	drug.withName("example");
-
-	    	
-	    	assertEquals("User takes drugs", user.getTakingDrug().size(), 0);
-	    	
-	    	user.withTakingDrug(drug);
-	    	user = userService.saveUser(user);
-
-	    	user = userService.getUserById(user.getId());
-	    	
-	    	assertEquals("User takes drugs", user.getTakingDrug().size(), 1);
-	    	
-	}
-
 }

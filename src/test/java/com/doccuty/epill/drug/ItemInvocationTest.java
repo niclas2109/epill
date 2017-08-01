@@ -58,7 +58,7 @@ public class ItemInvocationTest {
     		
     		LOG.info("Current size of invocations is {}", invocations.size());
     		
-	    	assertEquals("1 different medications invoced by current user", 5, invocations.size());
+	    	assertEquals("1 different medications invoced by current user", 0, invocations.size());
 	    	
 	}
 
