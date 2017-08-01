@@ -5,6 +5,9 @@
 
 -- DELETE FROM all.
 
+DELETE FROM drug_feature_gender;
+DELETE FROM drug_disease;
+DELETE FROM gender_disease;
 DELETE FROM tailored_text;
 DELETE FROM drug_active_substance;
 DELETE FROM drug_pharmaceutical_form;
@@ -30,6 +33,7 @@ DELETE FROM item_invocation;
 DELETE FROM user_drug_taking;
 DELETE FROM user_drug_remember;
 DELETE FROM interaction;
+DELETE FROM disease;
 DELETE FROM drug;
 DELETE FROM drug_simple;
 DELETE FROM user_;
@@ -41,7 +45,7 @@ DELETE FROM gender;
 DELETE FROM language;
 DELETE FROM country;
 DELETE FROM question;
-
+DELETE FROM product_group;
 
 
 --

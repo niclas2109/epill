@@ -45,6 +45,7 @@ DELETE FROM gender;
 DELETE FROM language;
 DELETE FROM country;
 DELETE FROM question;
+DELETE FROM product_group;
 
 
 
@@ -144,15 +145,15 @@ INSERT INTO drug_simple (id, name, number, status, version, year, idimage) VALUE
 --
 
 INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (1,1,1);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (2,2,1);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (3,3,2);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (4,4,2);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (5,5,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (6,1,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (7,6,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (8,2,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (9,3,NULL);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (10,5,NULL);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (2,2,2);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (3,3,1);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (4,4,1);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (5,5,1);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (6,1,2);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (7,6,2);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (8,2,2);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (9,3,1);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (10,5,1);
 
 
 --

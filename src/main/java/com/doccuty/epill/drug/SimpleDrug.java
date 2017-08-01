@@ -34,7 +34,6 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -44,7 +43,6 @@ import java.beans.PropertyChangeListener;
 import de.uniks.networkparser.EntityUtil;
 
 import com.doccuty.epill.model.Image;
-import com.doccuty.epill.model.ProductGroup;
 
 
 @Entity  
@@ -56,9 +54,9 @@ import com.doccuty.epill.model.ProductGroup;
 	public SimpleDrug() {
 	}
 	
-	public SimpleDrug(long id, String name, ProductGroup productGroup) {
+	public SimpleDrug(long id, String name) {
 		this.setId(id);
-		this.setName(name);		
+		this.setName(name);
 	}
 	
    

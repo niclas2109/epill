@@ -18,7 +18,7 @@ public interface DrugRepository extends JpaRepository<Drug, Long> {
 	
 	List<Drug> findByNameContainingIgnoreCase(@Param(value = "value") String value);
 	
-	@Query("SELECT NEW SimpleDrug(drug.id, drug.name, drug.productGroup) "
+	@Query("SELECT NEW SimpleDrug(drug.id, drug.name) "
 			+ "FROM Drug drug WHERE drug.name LIKE %:value%")
 	List<Drug> findByNameMinimized(@Param(value = "value") String value);
 
