@@ -60,6 +60,7 @@ INSERT INTO gender (id, gender) VALUES (1,'männlich'), (2,'weiblich');
 --
 
 INSERT INTO language (id, language) VALUES (1,'Deutsch');
+INSERT INTO language (id, language) VALUES (2,'Französisch');
 
 
 
@@ -68,16 +69,16 @@ INSERT INTO language (id, language) VALUES (1,'Deutsch');
 --
 
 INSERT INTO country (id, name) VALUES (1,'Deutschland');
+INSERT INTO country (id, name) VALUES (2,'Frankreich');
 
 
 --
 -- Dumping data for table `user_simple`
 --
 
-
 INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstname, lastname, level_of_detail, password, preferred_font_size, salt, username, red_green_colorblind)
 	VALUES
-	(1,'1990-09-21','2015-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser','max','89794011ed99bae7b5062920bffbef2a334dca75628975cd9cce51ba9691b12843beaed302416bdee221796816346fdeb618903cfa887945174237c92dc2dd2a','defaultFontSize','[B@63ba2cf8','nic', true);
+	(1,'1990-09-21','2015-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser',3,'89794011ed99bae7b5062920bffbef2a334dca75628975cd9cce51ba9691b12843beaed302416bdee221796816346fdeb618903cfa887945174237c92dc2dd2a','defaultFontSize','[B@63ba2cf8','nic', true);
 
 --
 -- Dumping data for table `user_`
@@ -105,6 +106,7 @@ INSERT INTO indication_group (id, name) VALUES (6,'Indikations Gruppe 6');
 
 INSERT INTO product_group (id, name) VALUES (1,'Produkt Gruppe 1');
 INSERT INTO product_group (id, name) VALUES (2,'Produkt Gruppe 2');
+INSERT INTO product_group (id, name) VALUES (3,'Produkt Gruppe 3');
 
 
 
@@ -144,10 +146,10 @@ INSERT INTO drug_simple (id, name, number, status, version, year, idimage) VALUE
 -- Dumping data for table `drug`
 --
 
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (1,1,1);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (2,2,2);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (3,3,1);
-INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (4,4,1);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (1,4,1);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (2,3,2);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (3,4,1);
+INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (4,4,3);
 INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (5,5,1);
 INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (6,1,2);
 INSERT INTO drug (id, idindication_group, idproduct_group) VALUES (7,6,2);

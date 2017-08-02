@@ -55,7 +55,6 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class SimpleUser implements SendableEntity {
 
-	private static final String PROPERTY_LEVELOFDETAIL_DEFAULT = "max";
 	private static final String PROPERTY_PREFERREDFONTSIZE_DEFAULT = "defaultFontSize";
 
 	public SimpleUser() {
@@ -69,7 +68,7 @@ public class SimpleUser implements SendableEntity {
 	}
 
 	public SimpleUser(long id, String firstname, String lastname, String username, String password, String salt,
-			String preferredFontSize, String levelOfDetail, boolean redGreenColorblind) {
+			String preferredFontSize, int levelOfDetail, boolean redGreenColorblind) {
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -377,21 +376,21 @@ public class SimpleUser implements SendableEntity {
 
 	public static final String PROPERTY_LEVELOFDETAIL = "levelOfDetail";
 	
-	private String levelOfDetail = PROPERTY_LEVELOFDETAIL_DEFAULT;
+	private int levelOfDetail;
 
-	public String getLevelOfDetail() {
+	public int getLevelOfDetail() {
 		return this.levelOfDetail;
 	}
 
-	public void setLevelOfDetail(String value) {
+	public void setLevelOfDetail(int value) {
 		if (this.levelOfDetail != value) {
-			String oldValue = this.levelOfDetail;
+			int oldValue = this.levelOfDetail;
 			this.levelOfDetail = value;
 			this.firePropertyChange(PROPERTY_LEVELOFDETAIL, oldValue, value);
 		}
 	}
 
-	public SimpleUser withLevelOfDetail(String value) {
+	public SimpleUser withLevelOfDetail(int value) {
 		setLevelOfDetail(value);
 		return this;
 	}

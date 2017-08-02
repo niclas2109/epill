@@ -16,7 +16,7 @@ public interface DrugRepository extends JpaRepository<Drug, Long> {
 	@Query("SELECT drug FROM Drug drug ORDER BY drug.name")
 	List<Drug> findAllOrderByName();
 	
-	List<Drug> findByNameContainingIgnoreCase(@Param(value = "value") String value);
+	List<Drug> findByNameContainingIgnoreCase(String value);
 	
 	@Query("SELECT NEW SimpleDrug(drug.id, drug.name) "
 			+ "FROM Drug drug WHERE drug.name LIKE %:value%")

@@ -35,7 +35,7 @@ public class PackagingSectionCreator implements SendableEntityCreatorNoIndex
       PackagingSection.PROPERTY_ID,
       PackagingSection.PROPERTY_TOPIC,
       PackagingSection.PROPERTY_TEXT,
-      PackagingSection.PROPERTY_DRUG,
+      //PackagingSection.PROPERTY_DRUG,
       //PackagingSection.PROPERTY_CLICKS,
       PackagingSection.PROPERTY_ISTAILORED
    };

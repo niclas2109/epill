@@ -75,18 +75,30 @@ public class ItemInvocationTest {
     @Transactional
     public void testGetDrugById() {
 
-    		Drug drug = drugService.findDrugById(8);
+    		Drug drug = drugService.findDrugById(1);
     		
-	    	assertEquals("Found drug with id = 8", 8, drug.getId());
+	    	assertNotNull("No drug found.", drug);
 	    	
 		IdMap map = DrugCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(6)));
+		
+		/*
+		 *  only works with deep filter of <= 2
+		 *  4 is needed
+		 */
+		map.withFilter(Filter.regard(Deep.create(4)));
 		
 		JsonObject json = map.toJsonObject(drug);
 
-		LOG.info("Json contains size={} attributes.", json.size());
-		LOG.info("Product group is {}.", json.get(6).toString());
-		LOG.info("String  {}.", json.toString());
+		if(drug.getProductGroup() != null) {
+			LOG.info("\nproduct group = {}\njson={}", drug.getProductGroup(), json.get("productGroup").toString());
+		}
+
+		if(drug.getIndicationGroup() != null) {
+			LOG.info("\nindication group = {}\njson={}", drug.getIndicationGroup(), json.get("indicationGroup").toString());
+		}
+		
+		assertNotNull("No product group found.", json.get("productGroup"));
+		assertNotNull("No indication group found.", json.get("indicationGroup"));
 	}
 
 }

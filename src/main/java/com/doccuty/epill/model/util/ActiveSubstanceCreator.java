@@ -36,8 +36,8 @@ public class ActiveSubstanceCreator implements SendableEntityCreatorNoIndex
    {
       ActiveSubstance.PROPERTY_ID,
       ActiveSubstance.PROPERTY_NAME,
-      ActiveSubstance.PROPERTY_DRUG,
-      ActiveSubstance.PROPERTY_SUBSTANCEGROUP,
+      //ActiveSubstance.PROPERTY_DRUG,
+      ActiveSubstance.PROPERTY_SUBSTANCEGROUP
    };
    
    @Override

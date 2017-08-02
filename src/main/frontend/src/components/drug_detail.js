@@ -397,7 +397,7 @@ class DrugDetail extends React.Component {
 	        		</div>
 	        		<div className="row featurette drug-detail-header">
 	        			<div className="col-xs-12 col-sm-12 col-md-3">
-	        				<img className="featurette-image img-responsive center-block" alt={drug.name} src={`/drug/${drug.id}/image`}></img>
+	        				<img className="featurette-image img-responsive center-block" alt={drug.name} src={`/image/drug/${drug.id}`}></img>
 	                		<div className="drug-features margin-s">
 		    					{this.renderDrugFeatures(drug)}
 		            		</div>
@@ -416,8 +416,7 @@ class DrugDetail extends React.Component {
 	        				
 	        				{this.renderActiveSubstance(drug)}
 	
-	        				
-	    	        		
+	        			
 		    	    			<div className="additional-information">
 		    	    				{showAdditionalInfo &&
 		    		    				<section>

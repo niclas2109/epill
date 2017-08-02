@@ -22,7 +22,7 @@ class User {
         this.username	= data.username;
         this.firstname	= data.firstname;
         this.lastname	= data.lastname;
-        this.levelOfDetail		= data.levelOfDetail || 5;
+        this.levelOfDetail		= data.levelOfDetail || 3;
         this.preferredFontSize	= data.preferredFontSize || 'defaultFontSize';
         this.redGreenColorblind	= data.redGreenColorblind || false;
     }
@@ -31,7 +31,7 @@ class User {
         this.username = undefined;
         this.firstname = undefined;
         this.lastname = undefined;
-        this.levelOfDetail		= 5;
+        this.levelOfDetail		= 3;
         this.preferredFontSize	= 100;
         this.redGreenColorblind	= false;
         this.id = -1;

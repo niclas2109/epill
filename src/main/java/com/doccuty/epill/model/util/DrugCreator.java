@@ -25,7 +25,6 @@ import de.uniks.networkparser.interfaces.SendableEntityCreator;
 import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
 
 import com.doccuty.epill.model.DrugFeature;
-import com.doccuty.epill.model.Image;
 
 import de.uniks.networkparser.IdMap;
 
@@ -33,6 +32,7 @@ import java.util.Date;
 
 import com.doccuty.epill.disease.Disease;
 import com.doccuty.epill.drug.Drug;
+import com.doccuty.epill.image.Image;
 import com.doccuty.epill.iteminvocation.ItemInvocation;
 import com.doccuty.epill.model.ActiveSubstance;
 import com.doccuty.epill.model.ProductGroup;

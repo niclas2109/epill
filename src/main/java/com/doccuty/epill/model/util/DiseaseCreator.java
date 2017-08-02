@@ -36,10 +36,10 @@ public class DiseaseCreator implements SendableEntityCreatorNoIndex
    private final String[] properties = new String[]
    {
       Disease.PROPERTY_ID,
-      Disease.PROPERTY_NAME,
-      Disease.PROPERTY_DRUG,
-      Disease.PROPERTY_USER,
-      Disease.PROPERTY_GENDER
+      Disease.PROPERTY_NAME
+      //Disease.PROPERTY_DRUG,
+      //Disease.PROPERTY_USER,
+      //Disease.PROPERTY_GENDER
    };
    
    @Override

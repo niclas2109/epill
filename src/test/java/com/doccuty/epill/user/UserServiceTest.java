@@ -44,6 +44,24 @@ public class UserServiceTest {
         assertNotNull("We should have an instance of userService", userService);
     }
 
+    @Test
+    public void testGetUserById() {
+	    	
+	    User user = userService.getUserById(1);
+	
+	    	assertNotNull("No user found by id = 1", user);	
+	}
+
+    @Test
+    public void testGetUserByUsername() {
+	    	
+	    	SimpleUser user = userService.findByUsername("nic");
+	
+	    	assertNotNull("No user found by username", user);
+
+	    	assertEquals("User has not id = 1", 1, user.getId());
+	
+	}
 
     /**
      * Test that adding a new user leads to an id (and the post is thus persisted).

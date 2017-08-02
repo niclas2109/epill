@@ -342,7 +342,7 @@ class DrugList extends React.Component {
                <li className="row" key={drug.id}>
                	<div className="image-container col-sm-3 col-md-3 col-lg-4">
                		<Link to={`/drug/${drug.id}`}>
-               			<img className="featurette-image img-responsive center-block" alt={drug.name} src={`/drug/${drug.id}/image`}></img>
+               			<img className="featurette-image img-responsive center-block" alt={drug.name} src={`/image/drug/${drug.id}`}></img>
 		        		</Link>
 		        </div>
 		        <div>
@@ -421,7 +421,7 @@ class DrugList extends React.Component {
 		    		<div className='page-header'>
 		    			<h3>{title}</h3>
 				</div>
-				{User.isAuthenticated() && User.levelOfDetail != 'min' &&
+				{User.isAuthenticated() && User.levelOfDetail > 1 &&
 		            <div className="text-box">
 						{description.replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
 		            </div>

@@ -18,10 +18,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.doccuty.epill.image.Image;
+
 import java.beans.PropertyChangeListener;
 import de.uniks.networkparser.EntityUtil;
-
-import com.doccuty.epill.model.Image;
 
 
 @Entity  

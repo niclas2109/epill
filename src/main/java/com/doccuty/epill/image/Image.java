@@ -1,4 +1,4 @@
-package com.doccuty.epill.model;
+package com.doccuty.epill.image;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

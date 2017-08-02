@@ -43,11 +43,7 @@ import com.doccuty.epill.model.util.UserSet;
 import com.doccuty.epill.packagingsection.PackagingSection;
 import com.doccuty.epill.user.User;
 
-/**
- * 
- * @see <a href=
- *      '../../../../../../../src/test/java/com/doccuty/epill/model/SDMLib/ModelCreator.java'>ModelCreator.java</a>
- */
+
 @Entity
 @Table(name = "packaging_topic")
 public class PackagingTopic implements SendableEntity {

@@ -54,12 +54,11 @@ public class DrugController {
 	    Drug drug = service.findDrugById(id);
 	    
 	    // generate JSON formatted string
-	    
 	    	IdMap map = DrugCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(3)));
+		map.withFilter(Filter.regard(Deep.create(4)));
 			
-	    	JsonObject json = map.toJsonObject(drug);
-
+	    	JsonObject json = map.toJsonObject(drug);   	
+	    	
 		return new ResponseEntity<>(json, HttpStatus.OK);
     }
     
@@ -75,7 +74,6 @@ public class DrugController {
 	    
 	    
 	    // generate JSON formatted string
-	    
 	    	IdMap map = DrugCreator.createIdMap("");
 		map.withFilter(Filter.regard(Deep.create(2)));
 			
@@ -397,31 +395,5 @@ public class DrugController {
 	    	}
 	    	
 	    	return new ResponseEntity<>(json, HttpStatus.OK);
-    } 
-    
-    
-    
-    /**
-     * get respective image for drug
-     * @param id
-     * @return
-     */
-    
-    @RequestMapping(value={"{id}/image"}, method = RequestMethod.GET)
-    public ResponseEntity<byte[]> getDrugById(@PathVariable(value = "id") long id) {
-	
-	    	Drug drug = service.findDrugById(id);
-	
-	    	byte[] img = null;
-	    	
-	    	if(drug.getImage() != null) {
-	    		img = drug.getImage().getImage();
-	    		
-	    		MediaType mT = MediaType.IMAGE_JPEG;
-	    		
-	    		return ResponseEntity.ok().contentLength(img.length).contentType(mT).body(img);
-	    	}
-	    	
-	    	return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     } 
 }

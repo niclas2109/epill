@@ -24,7 +24,8 @@ package com.doccuty.epill.model.util;
 import de.uniks.networkparser.interfaces.SendableEntityCreator;
 import de.uniks.networkparser.interfaces.SendableEntityCreatorNoIndex;
 
-import com.doccuty.epill.model.Image;
+import com.doccuty.epill.image.Image;
+
 import de.uniks.networkparser.IdMap;
 
 public class ImageCreator implements SendableEntityCreatorNoIndex

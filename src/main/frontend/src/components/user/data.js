@@ -22,7 +22,7 @@ class UserData extends React.Component {
 	        	gender		: {id : 0},
 	        	email		: '',
 	        	redGreenColorblind    : false,
-            levelOfDetail       : 'max',
+            levelOfDetail       : 3,
             preferredFontSize   : 'defaultFontSize',
 	        	sending		: false
         };
@@ -62,7 +62,7 @@ class UserData extends React.Component {
             		this.state.username		= data.username;
             		this.state.redGreenColorblind    = data.redGreenColorblind || false;
             		
-            		this.state.levelOfDetail	    = data.levelOfDetail	|| 'max';
+            		this.state.levelOfDetail	    = data.levelOfDetail	|| 3;
             		this.state.preferredFontSize	= data.preferredFontSize   || 'defaultFontSize';
 
                 this.setState(this.state);
@@ -212,7 +212,7 @@ class UserData extends React.Component {
 	        	      <h3>{t("userData")}</h3>
 	        	</div>
 	     	
-	        	{User.levelOfDetail != 'min' &&
+	        	{User.levelOfDetail > 1 &&
 			    <div className="text-box">
 	        			{t("userCockpitDescr").replace("%User.firstname%", firstname).replace("%User.lastname%", lastname)}
 				</div>
@@ -272,13 +272,13 @@ class UserData extends React.Component {
         						<ul className="list-inline degree-of-detail-list">
         							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
         								<label htmlFor="settings-detail-max" className="radio-inline">
-        									<input type="radio" value="max" id="settings-detail-max" name="levelOfDetail" checked={this.state.levelOfDetail == 'max'} onChange={this.handleChangeLevelOfDetail} />
+        									<input type="radio" value="3" id="settings-detail-max" name="levelOfDetail" checked={this.state.levelOfDetail == 3} onChange={this.handleChangeLevelOfDetail} />
         									{t('yes')}
         								</label>
         							</li>
         							<li className="col-lg-4 col-md-4 col-xs-4 list-group-item">
         								<label htmlFor="settings-detail-min" className="radio-inline">
-        									<input type="radio" value="min" id="settings-detail-min" name="levelOfDetail" checked={this.state.levelOfDetail == 'min'} onChange={this.handleChangeLevelOfDetail} />
+        									<input type="radio" value="1" id="settings-detail-min" name="levelOfDetail" checked={this.state.levelOfDetail == 1} onChange={this.handleChangeLevelOfDetail} />
         									{t('no')}
         								</label>
         							</li>

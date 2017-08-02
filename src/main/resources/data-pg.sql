@@ -77,7 +77,7 @@ INSERT INTO country (id, name) VALUES (1,'Deutschland');
 
 INSERT INTO user_simple (id, date_of_birth, date_of_registration, email, firstname, lastname, level_of_detail, password, preferred_font_size, salt, username, red_green_colorblind)
 	VALUES
-	(1,'1990-09-21','2015-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser','max','89794011ed99bae7b5062920bffbef2a334dca75628975cd9cce51ba9691b12843beaed302416bdee221796816346fdeb618903cfa887945174237c92dc2dd2a','defaultFontSize','[B@63ba2cf8','nic', true);
+	(1,'1990-09-21','2015-06-27 13:16:01','n.kannengiesser@web.de','Niclas','Kannengiesser',3,'89794011ed99bae7b5062920bffbef2a334dca75628975cd9cce51ba9691b12843beaed302416bdee221796816346fdeb618903cfa887945174237c92dc2dd2a','defaultFontSize','[B@63ba2cf8','nic', true);
 
 --
 -- Dumping data for table `user_`
@@ -112,16 +112,16 @@ INSERT INTO product_group (id, name) VALUES (2,'Produkt Gruppe 2');
 -- Dumping data for table `image`
 --
 
--- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (1,'default','image/jpg', NOW(), pg_read_file('drug-placeholder.jpg')::oid);
--- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (2,'Accupro','image/jpg', NOW(), pg_read_file('src/main/frontend/assets/images/accupro.jpg')::oid);
--- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (3,'Baymycard','image/jpg', NOW(), pg_read_file('src/main/frontend/assets/images/baymycard.jpg')::oid);
--- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (4,'Beloc-Zok','image/jpg', NOW(), pg_read_file('src/main/frontend/assets/images/beloc-zok.jpg')::oid);
--- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (5,'Cardular','image/jpg', NOW(), pg_read_file('src/main/frontend/assets/images/cardura.jpg')::oid);
--- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (6,'Ciprobay','image/jpg', NOW(), pg_read_file('src/main/frontend/assets/images/ciprobay.jpg')::oid);
--- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (7,'Clexane','image/jpg', NOW(), pg_read_file('src/main/frontend/assets/images/clexane.jpg')::oid);
--- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (8,'Novalgin','image/jpg', NOW(), pg_read_file('src/main/frontend/assets/images/novalgin.jpg')::oid);
--- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (9,'Reminyl','image/jpg', NOW(), pg_read_file('src/main/frontend/assets/images/reminyl.jpg')::oid);
--- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (10,'Toujeo','image/jpg', NOW(), pg_read_file('src/main/frontend/assets/images/toujeo.jpg')::oid);
+-- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (1,'default','image/jpeg', NOW(), pg_read_file('drug-placeholder.jpg')::oid);
+-- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (2,'Accupro','image/jpeg', NOW(), pg_read_file('src/main/frontend/assets/images/accupro.jpg')::oid);
+-- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (3,'Baymycard','image/jpeg', NOW(), pg_read_file('src/main/frontend/assets/images/baymycard.jpg')::oid);
+-- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (4,'Beloc-Zok','image/jpeg', NOW(), pg_read_file('src/main/frontend/assets/images/beloc-zok.jpg')::oid);
+-- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (5,'Cardular','image/jpeg', NOW(), pg_read_file('src/main/frontend/assets/images/cardura.jpg')::oid);
+-- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (6,'Ciprobay','image/jpeg', NOW(), pg_read_file('src/main/frontend/assets/images/ciprobay.jpg')::oid);
+-- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (7,'Clexane','image/jpeg', NOW(), pg_read_file('src/main/frontend/assets/images/clexane.jpg')::oid);
+-- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (8,'Novalgin','image/jpeg', NOW(), pg_read_file('src/main/frontend/assets/images/novalgin.jpg')::oid);
+-- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (9,'Reminyl','image/jpeg', NOW(), pg_read_file('src/main/frontend/assets/images/reminyl.jpg')::oid);
+-- INSERT INTO image (id, filename, filetype, uploaded_at, image) VALUES (10,'Toujeo','image/jpeg', NOW(), pg_read_file('src/main/frontend/assets/images/toujeo.jpg')::oid);
 
 
 --
