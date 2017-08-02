@@ -27,12 +27,12 @@ class DrugMiniature extends React.Component {
 
         const {t} = this.props;
         const invocation = this.state.invocation;
-        
+
         return (
         		<div className="drug-min-profile col-xs-6 col-sm-4 col-md-4 col-lg-2">
         			<Link to={`/drug/${invocation.drug.id}/de`}>
 	        			<div className="image-container">
-	        				<img src="http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg" alt={invocation.timestamp} className="img-responsive center-block"></img>
+	        				<img src={`/image/drug/${invocation.drug.id}`} alt={invocation.drug.name} title={invocation.drug.name} className="img-responsive center-block"></img>
 	        			</div>
 		      		<p>{invocation.drug.name}</p>
 	      		</Link>

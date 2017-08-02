@@ -386,7 +386,7 @@ public class DrugController {
 		List<ItemInvocation> list = service.getClicksByUserId();
 
 		IdMap map = ItemInvocationCreator.createIdMap("");
-		map.withFilter(Filter.regard(Deep.create(1)));
+		map.withFilter(Filter.regard(Deep.create(2)));
 		
 	    	JsonArray json = new JsonArray();
 	    	
