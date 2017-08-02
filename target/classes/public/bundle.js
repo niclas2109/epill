@@ -29794,7 +29794,7 @@ var DrugMiniature = function (_React$Component) {
                     _react2.default.createElement(
                         "div",
                         { className: "image-container" },
-                        _react2.default.createElement("img", { src: "http://www.benefit-online.de/fileadmin/content/magazin/gesundheit/Medikamente2.jpg", alt: invocation.timestamp, className: "img-responsive center-block" })
+                        _react2.default.createElement("img", { src: "/image/drug/" + drug.id, alt: drug.name, title: drug.name, className: "img-responsive center-block" })
                     ),
                     _react2.default.createElement(
                         "p",
