@@ -343,7 +343,7 @@ class DrugList extends React.Component {
         			<li className="row" key={drug.id}>
 	               	<div className="image-container hidden-xs col-sm-4 col-md-3 col-lg-4 no-padding">
 	               		<Link to={`/drug/${drug.id}`}>
-	               			<img className="featurette-image img-responsive center-block" alt={drug.name} src={`/image/drug/${drug.id}`}></img>
+	               			<img className="featurette-image img-responsive center-block" alt={drug.name} title={drug.name} src={`/image/drug/${drug.id}`}></img>
 			        		</Link>
 			        </div>
 			        <div className="image-container col-xs-12 col-sm-8 col-md-9 col-lg-8 no-padding">

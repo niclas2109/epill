@@ -29034,7 +29034,7 @@ var DrugDetail = function (_React$Component) {
           _react2.default.createElement(
             "div",
             { className: "col-xs-12 col-sm-12 col-md-3" },
-            _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: drug.name, src: "/image/drug/" + drug.id }),
+            _react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: drug.name, title: drug.name, src: "/image/drug/" + drug.id }),
             _react2.default.createElement(
               "div",
               { className: "drug-features margin-s" },
@@ -29570,7 +29570,7 @@ var DrugList = function (_React$Component) {
 						_react2.default.createElement(
 							_reactRouterDom.Link,
 							{ to: "/drug/" + drug.id },
-							_react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: drug.name, src: "/image/drug/" + drug.id })
+							_react2.default.createElement("img", { className: "featurette-image img-responsive center-block", alt: drug.name, title: drug.name, src: "/image/drug/" + drug.id })
 						)
 					),
 					_react2.default.createElement(
