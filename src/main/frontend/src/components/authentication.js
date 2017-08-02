@@ -123,7 +123,7 @@ class Authentication extends React.Component {
 			        </div>
                 </form>
         } else {
-            component = <div>
+            component = <div className="container">
         						Current user: {User.username || 'not logged in'}<br />
             					<button onClick={this.handleLogout} className="btn btn-danger">Logout</button>
             				</div>
@@ -134,7 +134,7 @@ class Authentication extends React.Component {
 	        		<div className="page-header">
 	        			<h2>{t('login')}</h2>
 	        		</div>
-	        		<div className="container">
+	        		<div className="row">
 	                	{component}
 	                		
 	                	{User.isNotAuthenticated() &&

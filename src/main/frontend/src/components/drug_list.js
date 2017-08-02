@@ -338,52 +338,53 @@ class DrugList extends React.Component {
     renderDrugs(drugs) {
     	
         return drugs.map((drug => {
-            return (
-               <li className="row" key={drug.id}>
-               	<div className="image-container col-sm-3 col-md-3 col-lg-4">
-               		<Link to={`/drug/${drug.id}`}>
-               			<img className="featurette-image img-responsive center-block" alt={drug.name} src={`/image/drug/${drug.id}`}></img>
-		        		</Link>
-		        </div>
-		        <div>
-		        		<div className="info">
-		    			
-		    				{this.renderDrugFeatures(drug)}
-		    			
-		        			<Link to={`/drug/${drug.id}`}>
-		        				<h4>{ drug.name }</h4>
-		        			</Link>
-		        			{this.renderPharmaceuticalForm(drug)}
-		        			{this.renderDisease(drug)}
-		        			
-		        			{drug.personalizedInformation && <section className="minimum-summary" dangerouslySetInnerHTML={this.createMarkup(drug.personalizedInformation)} />}
-
-		        		</div>
-		        		<div className="action-pattern">
-			        		{User.isAuthenticated() &&
-			        			<ul>
-			        				<li>
-			        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.toggleTaking(drug)}>
-			        						<span className={"glyphicon white "+(drug.isTaken ? 'glyphicon-minus' : 'glyphicon-heart' )}></span>
-			        					</button>
-			        				</li>
-			        				<li>
-			        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.toggleRemember(drug)}>
-			        						<span className={"glyphicon white "+ (drug.isRemembered ? 'glyphicon-minus' : 'glyphicon-plus' )}></span>
-			        					</button>
-			        				</li>
-			        				<li>
-				        				<button type="button" className="btn btn-xs btn-open">
-					        				<Link to={`/drug/${drug.id}`}>
-				        						<span className="glyphicon glyphicon-eye-open white"></span>
-						        			</Link>
-				        				</button>
-			        				</li>
-			        			</ul>
-			        		}
+            
+        		return (
+        			<li className="row" key={drug.id}>
+	               	<div className="image-container hidden-xs col-sm-4 col-md-3 col-lg-4 no-padding">
+	               		<Link to={`/drug/${drug.id}`}>
+	               			<img className="featurette-image img-responsive center-block" alt={drug.name} src={`/image/drug/${drug.id}`}></img>
+			        		</Link>
+			        </div>
+			        <div className="image-container col-xs-12 col-sm-8 col-md-9 col-lg-8 no-padding">
+			        		<div className="info">
+			    			
+			    				{this.renderDrugFeatures(drug)}
+			    			
+			        			<Link to={`/drug/${drug.id}`}>
+			        				<h4>{ drug.name }</h4>
+			        			</Link>
+			        			{this.renderPharmaceuticalForm(drug)}
+			        			{this.renderDisease(drug)}
+			        			
+			        			{drug.personalizedInformation && <section className="minimum-summary" dangerouslySetInnerHTML={this.createMarkup(drug.personalizedInformation)} />}
+	
+			        		</div>
+			        		<div className="action-pattern">
+				        		{User.isAuthenticated() &&
+				        			<ul>
+				        				<li>
+				        					<button type="button" className="btn btn-xs btn-like" onClick={() => this.toggleTaking(drug)}>
+				        						<span className={"glyphicon white "+(drug.isTaken ? 'glyphicon-minus' : 'glyphicon-heart' )}></span>
+				        					</button>
+				        				</li>
+				        				<li>
+				        					<button type="button" className="btn btn-xs btn-add" onClick={() => this.toggleRemember(drug)}>
+				        						<span className={"glyphicon white "+ (drug.isRemembered ? 'glyphicon-minus' : 'glyphicon-plus' )}></span>
+				        					</button>
+				        				</li>
+				        				<li>
+					        				<button type="button" className="btn btn-xs btn-open">
+						        				<Link to={`/drug/${drug.id}`}>
+					        						<span className="glyphicon glyphicon-eye-open white"></span>
+							        			</Link>
+					        				</button>
+				        				</li>
+				        			</ul>
+				        		}
+				        	</div>
 			        	</div>
-		        	</div>
-        	</li>
+		        	</li>
             );
         }));
     }

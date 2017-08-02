@@ -34,7 +34,7 @@ public class PharmaceuticalFormCreator implements SendableEntityCreatorNoIndex
    {
       PharmaceuticalForm.PROPERTY_ID,
       PharmaceuticalForm.PROPERTY_NAME,
-      PharmaceuticalForm.PROPERTY_DRUG,
+      //PharmaceuticalForm.PROPERTY_DRUG,
       PharmaceuticalForm.PROPERTY_INTAKEINFORMATION,
    };
    

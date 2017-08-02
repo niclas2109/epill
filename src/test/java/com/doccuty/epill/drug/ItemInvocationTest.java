@@ -13,6 +13,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.doccuty.epill.drug.DrugService;
 import com.doccuty.epill.iteminvocation.ItemInvocation;
 import com.doccuty.epill.model.util.DrugCreator;
+import com.doccuty.epill.model.util.ProductGroupCreator;
+import com.doccuty.epill.packagingsection.PackagingSection;
 import com.doccuty.epill.user.UserService;
 
 import de.uniks.networkparser.Deep;
@@ -21,6 +23,8 @@ import de.uniks.networkparser.IdMap;
 import de.uniks.networkparser.json.JsonObject;
 
 import javax.transaction.Transactional;
+
+import java.util.Iterator;
 import java.util.List;
 import static org.junit.Assert.*;
 
@@ -69,36 +73,93 @@ public class ItemInvocationTest {
 	}
     
     /**
-     * Test that adding a new user leads to an id (and the post is thus persisted).
+     * Test that getting a drug and serializing works
      */
     @Test
     @Transactional
     public void testGetDrugById() {
 
-    		Drug drug = drugService.findDrugById(1);
-    		
-	    	assertNotNull("No drug found.", drug);
+		Drug drug1 = drugService.findDrugById(2);
+		Drug drug2 = drugService.findDrugById(4);
+
+		assertNotNull("No drug1 found.", drug1);
+		assertNotNull("No drug2 found.", drug2);
 	    	
-		IdMap map = DrugCreator.createIdMap("");
 		
 		/*
-		 *  only works with deep filter of <= 2
-		 *  4 is needed
+		 *  only works with deep filter of <= 2 for iddrug = 1 (4 is needed)
+		 *  works with iddrug = 4
 		 */
-		map.withFilter(Filter.regard(Deep.create(4)));
 		
-		JsonObject json = map.toJsonObject(drug);
+		IdMap map = DrugCreator.createIdMap("");
+		map.withFilter(Filter.regard(Deep.create(4)));
 
-		if(drug.getProductGroup() != null) {
-			LOG.info("\nproduct group = {}\njson={}", drug.getProductGroup(), json.get("productGroup").toString());
+		JsonObject json = map.toJsonObject(drug1);
+		JsonObject json2 = map.toJsonObject(drug2);
+		
+		LOG.info("json={}", json);
+		LOG.info("json2={}", json2);
+		
+
+		if(drug1.getProductGroup() != null) {
+			//LOG.info("\nproduct group = {}\njson={}", drug1.getProductGroup(), json.get("productGroup").toString());
 		}
 
-		if(drug.getIndicationGroup() != null) {
-			LOG.info("\nindication group = {}\njson={}", drug.getIndicationGroup(), json.get("indicationGroup").toString());
+		if(drug1.getIndicationGroup() != null) {
+			//LOG.info("\nindication group = {}\njson={}", drug1.getIndicationGroup(), json.get("indicationGroup").toString());
 		}
 		
 		assertNotNull("No product group found.", json.get("productGroup"));
 		assertNotNull("No indication group found.", json.get("indicationGroup"));
 	}
+    
+    
+    /**
+     * Test that getting a drug's product group and serializing works
+     */
+    @Test
+    @Transactional
+    public void testGetDrugByIdAndSerializeProductGroup() {
 
+    		Drug drug = drugService.findDrugById(1);
+    		
+	    	assertNotNull("No drug found.", drug);
+	    	
+		IdMap map = ProductGroupCreator.createIdMap("");
+		
+		map.withFilter(Filter.regard(Deep.create(4)));
+		
+		JsonObject json = map.toJsonObject(drug.getProductGroup());
+
+		if(drug.getProductGroup() != null) {
+			LOG.info("\nproduct group = {}\njson={}", drug.getProductGroup(), json.toString());
+		}
+
+		assertNotNull("No product group found.", json);
+	}
+    
+    
+    /**
+     * Test that getting a drug's indication group and serializing works
+     */
+    @Test
+    @Transactional
+    public void testGetDrugByIdAndSerializeIndicationGroup() {
+
+    		Drug drug = drugService.findDrugById(1);
+    		
+	    	assertNotNull("No drug found.", drug);
+	    	
+		IdMap map = ProductGroupCreator.createIdMap("");
+		
+		map.withFilter(Filter.regard(Deep.create(4)));
+		
+		JsonObject json = map.toJsonObject(drug.getIndicationGroup());
+
+		if(drug.getIndicationGroup() != null) {
+			LOG.info("\nproduct group = {}\njson={}", drug.getIndicationGroup(), json.toString());
+		}
+
+		assertNotNull("No indication group found.", json);
+	}
 }

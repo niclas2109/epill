@@ -36,6 +36,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.doccuty.epill.disease.Disease;
+import com.doccuty.epill.gender.Gender;
 import com.doccuty.epill.iteminvocation.ItemInvocation;
 import com.doccuty.epill.model.ActiveSubstance;
 import com.doccuty.epill.model.ProductGroup;
@@ -56,14 +57,11 @@ public class Drug extends SimpleDrug {
 
 	@Override
 	public void removeYou() {
-		withoutPackagingSection(
-				this.getPackagingSection().toArray(new PackagingSection[this.getPackagingSection().size()]));
-		withoutActiveSubstance(
-				this.getActiveSubstance().toArray(new ActiveSubstance[this.getActiveSubstance().size()]));
 		setProductGroup(null);
 		setIndicationGroup(null);
-		withoutPharmaceuticalForm(
-				this.getPharmaceuticalForm().toArray(new PharmaceuticalForm[this.getPharmaceuticalForm().size()]));
+		withoutPackagingSection(this.getPackagingSection().toArray(new PackagingSection[this.getPackagingSection().size()]));
+		withoutActiveSubstance(this.getActiveSubstance().toArray(new ActiveSubstance[this.getActiveSubstance().size()]));
+		withoutPharmaceuticalForm(this.getPharmaceuticalForm().toArray(new PharmaceuticalForm[this.getPharmaceuticalForm().size()]));
 		withoutAdverseEffects(this.getAdverseEffects().toArray(new AdverseEffect[this.getAdverseEffects().size()]));
 		withoutInteraction(this.getInteraction().toArray(new Interaction[this.getInteraction().size()]));
 		withoutClicks(this.getClicks().toArray(new ItemInvocation[this.getClicks().size()]));
@@ -389,12 +387,15 @@ public class Drug extends SimpleDrug {
 	}
 
 	public boolean setIndicationGroup(IndicationGroup value) {
+		
 		boolean changed = false;
 
 		if (this.indicationGroup != value) {
+			
 			IndicationGroup oldValue = this.indicationGroup;
 
-			if (this.indicationGroup != null) {
+			if (this.indicationGroup != null)
+			{
 				this.indicationGroup = null;
 				oldValue.withoutDrug(this);
 			}

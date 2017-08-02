@@ -28120,7 +28120,7 @@ var Authentication = function (_React$Component) {
             } else {
                 component = _react2.default.createElement(
                     "div",
-                    null,
+                    { className: "container" },
                     "Current user: ",
                     _User2.default.username || 'not logged in',
                     _react2.default.createElement("br", null),
@@ -28146,7 +28146,7 @@ var Authentication = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     "div",
-                    { className: "container" },
+                    { className: "row" },
                     component,
                     _User2.default.isNotAuthenticated() && _react2.default.createElement(
                         "div",
@@ -29560,12 +29560,13 @@ var DrugList = function (_React$Component) {
 			var _this9 = this;
 
 			return drugs.map(function (drug) {
+
 				return _react2.default.createElement(
 					"li",
 					{ className: "row", key: drug.id },
 					_react2.default.createElement(
 						"div",
-						{ className: "image-container col-sm-3 col-md-3 col-lg-4" },
+						{ className: "image-container hidden-xs col-sm-4 col-md-3 col-lg-4 no-padding" },
 						_react2.default.createElement(
 							_reactRouterDom.Link,
 							{ to: "/drug/" + drug.id },
@@ -29574,7 +29575,7 @@ var DrugList = function (_React$Component) {
 					),
 					_react2.default.createElement(
 						"div",
-						null,
+						{ className: "image-container col-xs-12 col-sm-8 col-md-9 col-lg-8 no-padding" },
 						_react2.default.createElement(
 							"div",
 							{ className: "info" },
@@ -30892,7 +30893,7 @@ var Register = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     "div",
-                    { className: "container" },
+                    { className: "row" },
                     _react2.default.createElement(
                         "form",
                         { onSubmit: this.handleSubmit, className: "col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0 col-lg-4 col-lg-offset-0 column" },

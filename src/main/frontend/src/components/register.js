@@ -126,7 +126,7 @@ class Register extends React.Component {
 	        		<div className="page-header">
 	        			<h2>{t('register')}</h2>
 	        		</div>
-	        		<div className="container">
+	        		<div className="row">
 		                <form onSubmit={this.handleSubmit} className="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-0 col-lg-4 col-lg-offset-0 column">
 			                <div className="form-group">
 			                    <label htmlFor="firstname">{t('firstname')}</label>
