@@ -2,7 +2,7 @@
 
 # ePill
 ePill is a service for presenting health package information (PIL) leaflets in a customized way.
-By implementing personalization and tailoring mechanisms understanding of PILs should be improved.
+By implementing personalization and tailoring mechanisms comprehension of PILs should be improved.
 
 
 # Customization Features
@@ -29,7 +29,7 @@ Tailoring:
 
 # Technical Overview
 
-This Java project is based on Maven and Webpak and uses spring framework and react.
+This Java project is based on Maven and Webpack and uses spring framework and react.
 There is a strict seperation between frontend and backend.
 Currently you can choose between two profiles:
 Per default ePill is using H2 database for development mode which is very comfortable when developing
