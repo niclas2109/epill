@@ -20,6 +20,7 @@
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/tailoredtext/TailoredTextService.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/user/UserController.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/EpillMain.java
+/Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/image/ImageRepository.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/UserQuery.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/packaging/PackagingTopicRepository.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/authentication/SpringSecurityConfig.java
@@ -28,6 +29,7 @@
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/disease/Disease.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/AdverseEffect.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/AnswerSet.java
+/Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/image/ImageService.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/SubstanceGroupSet.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/Country.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/CountryCreator.java
@@ -73,6 +75,7 @@
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/PackagingTopicSet.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/LanguageCreator.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/packagingsection/PackagingSectionService.java
+/Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/image/ImageController.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/user/User.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/ActiveSubstanceSet.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/LanguageSet.java
@@ -102,7 +105,6 @@
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/IntakeInformationSet.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/authentication/AuthenticationService.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/drug/SimpleDrug.java
-/Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/Image.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/InteractionSet.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/ActiveSubstance.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/UserQueryCreator.java
@@ -112,6 +114,7 @@
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/UserCreator.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/question/QuestionService.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/authentication/AuthenticationController.java
+/Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/image/Image.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/drug/DrugFeatureRepository.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/model/util/DrugCreator.java
 /Users/mac/Workspace/Java/epill-react/src/main/java/com/doccuty/epill/drug/DrugController.java
